@@ -32,24 +32,24 @@
             this.buttonAbout = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.tableLayoutPanelCellButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonCell1 = new System.Windows.Forms.Button();
-            this.buttonCell2 = new System.Windows.Forms.Button();
-            this.buttonCell3 = new System.Windows.Forms.Button();
-            this.buttonCell4 = new System.Windows.Forms.Button();
-            this.buttonCell5 = new System.Windows.Forms.Button();
-            this.buttonCell6 = new System.Windows.Forms.Button();
-            this.buttonCell7 = new System.Windows.Forms.Button();
-            this.buttonCell8 = new System.Windows.Forms.Button();
-            this.buttonCell9 = new System.Windows.Forms.Button();
-            this.buttonCell10 = new System.Windows.Forms.Button();
-            this.buttonCell11 = new System.Windows.Forms.Button();
-            this.buttonCell12 = new System.Windows.Forms.Button();
-            this.buttonCell13 = new System.Windows.Forms.Button();
-            this.buttonCell14 = new System.Windows.Forms.Button();
-            this.buttonCell15 = new System.Windows.Forms.Button();
             this.buttonCell16 = new System.Windows.Forms.Button();
+            this.buttonCell15 = new System.Windows.Forms.Button();
+            this.buttonCell14 = new System.Windows.Forms.Button();
+            this.buttonCell13 = new System.Windows.Forms.Button();
+            this.buttonCell12 = new System.Windows.Forms.Button();
+            this.buttonCell11 = new System.Windows.Forms.Button();
+            this.buttonCell10 = new System.Windows.Forms.Button();
+            this.buttonCell9 = new System.Windows.Forms.Button();
+            this.buttonCell8 = new System.Windows.Forms.Button();
+            this.buttonCell7 = new System.Windows.Forms.Button();
+            this.buttonCell5 = new System.Windows.Forms.Button();
+            this.buttonCell4 = new System.Windows.Forms.Button();
+            this.buttonCell3 = new System.Windows.Forms.Button();
+            this.buttonCell2 = new System.Windows.Forms.Button();
+            this.buttonCell1 = new System.Windows.Forms.Button();
+            this.buttonCell6 = new System.Windows.Forms.Button();
             this.groupBoxTime = new System.Windows.Forms.GroupBox();
-            this.labelTime = new System.Windows.Forms.Label();
+            this.labelTimer = new System.Windows.Forms.Label();
             this.groupBoxMoves = new System.Windows.Forms.GroupBox();
             this.labelMoves = new System.Windows.Forms.Label();
             this.buttonNewGame = new System.Windows.Forms.Button();
@@ -112,229 +112,21 @@
             this.tableLayoutPanelCellButtons.Size = new System.Drawing.Size(391, 375);
             this.tableLayoutPanelCellButtons.TabIndex = 1;
             // 
-            // buttonCell1
+            // buttonCell16
             // 
-            this.buttonCell1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonCell16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell1.AutoSize = true;
-            this.buttonCell1.Enabled = false;
-            this.buttonCell1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell1.Location = new System.Drawing.Point(3, 3);
-            this.buttonCell1.Name = "buttonCell1";
-            this.buttonCell1.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell1.TabIndex = 0;
-            this.buttonCell1.Text = "1";
-            this.buttonCell1.UseVisualStyleBackColor = true;
-            this.buttonCell1.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell2
-            // 
-            this.buttonCell2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell2.AutoSize = true;
-            this.buttonCell2.Enabled = false;
-            this.buttonCell2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell2.Location = new System.Drawing.Point(100, 3);
-            this.buttonCell2.Name = "buttonCell2";
-            this.buttonCell2.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell2.TabIndex = 1;
-            this.buttonCell2.Text = "2";
-            this.buttonCell2.UseVisualStyleBackColor = true;
-            this.buttonCell2.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell3
-            // 
-            this.buttonCell3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell3.AutoSize = true;
-            this.buttonCell3.Enabled = false;
-            this.buttonCell3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell3.Location = new System.Drawing.Point(197, 3);
-            this.buttonCell3.Name = "buttonCell3";
-            this.buttonCell3.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell3.TabIndex = 2;
-            this.buttonCell3.Text = "3";
-            this.buttonCell3.UseVisualStyleBackColor = true;
-            this.buttonCell3.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell4
-            // 
-            this.buttonCell4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell4.AutoSize = true;
-            this.buttonCell4.Enabled = false;
-            this.buttonCell4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell4.Location = new System.Drawing.Point(294, 3);
-            this.buttonCell4.Name = "buttonCell4";
-            this.buttonCell4.Size = new System.Drawing.Size(94, 87);
-            this.buttonCell4.TabIndex = 3;
-            this.buttonCell4.Text = "4";
-            this.buttonCell4.UseVisualStyleBackColor = true;
-            this.buttonCell4.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell5
-            // 
-            this.buttonCell5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell5.AutoSize = true;
-            this.buttonCell5.Enabled = false;
-            this.buttonCell5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell5.Location = new System.Drawing.Point(3, 96);
-            this.buttonCell5.Name = "buttonCell5";
-            this.buttonCell5.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell5.TabIndex = 4;
-            this.buttonCell5.Text = "5";
-            this.buttonCell5.UseVisualStyleBackColor = true;
-            this.buttonCell5.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell6
-            // 
-            this.buttonCell6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell6.AutoSize = true;
-            this.buttonCell6.Enabled = false;
-            this.buttonCell6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell6.Location = new System.Drawing.Point(100, 96);
-            this.buttonCell6.Name = "buttonCell6";
-            this.buttonCell6.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell6.TabIndex = 5;
-            this.buttonCell6.Text = "6";
-            this.buttonCell6.UseVisualStyleBackColor = true;
-            this.buttonCell6.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell7
-            // 
-            this.buttonCell7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell7.AutoSize = true;
-            this.buttonCell7.Enabled = false;
-            this.buttonCell7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell7.Location = new System.Drawing.Point(197, 96);
-            this.buttonCell7.Name = "buttonCell7";
-            this.buttonCell7.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell7.TabIndex = 6;
-            this.buttonCell7.Text = "7";
-            this.buttonCell7.UseVisualStyleBackColor = true;
-            this.buttonCell7.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell8
-            // 
-            this.buttonCell8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell8.AutoSize = true;
-            this.buttonCell8.Enabled = false;
-            this.buttonCell8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell8.Location = new System.Drawing.Point(294, 96);
-            this.buttonCell8.Name = "buttonCell8";
-            this.buttonCell8.Size = new System.Drawing.Size(94, 87);
-            this.buttonCell8.TabIndex = 7;
-            this.buttonCell8.Text = "8";
-            this.buttonCell8.UseVisualStyleBackColor = true;
-            this.buttonCell8.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell9
-            // 
-            this.buttonCell9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell9.AutoSize = true;
-            this.buttonCell9.Enabled = false;
-            this.buttonCell9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell9.Location = new System.Drawing.Point(3, 189);
-            this.buttonCell9.Name = "buttonCell9";
-            this.buttonCell9.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell9.TabIndex = 8;
-            this.buttonCell9.Text = "9";
-            this.buttonCell9.UseVisualStyleBackColor = true;
-            this.buttonCell9.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell10
-            // 
-            this.buttonCell10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell10.AutoSize = true;
-            this.buttonCell10.Enabled = false;
-            this.buttonCell10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell10.Location = new System.Drawing.Point(100, 189);
-            this.buttonCell10.Name = "buttonCell10";
-            this.buttonCell10.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell10.TabIndex = 9;
-            this.buttonCell10.Text = "10";
-            this.buttonCell10.UseVisualStyleBackColor = true;
-            this.buttonCell10.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell11
-            // 
-            this.buttonCell11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell11.AutoSize = true;
-            this.buttonCell11.Enabled = false;
-            this.buttonCell11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell11.Location = new System.Drawing.Point(197, 189);
-            this.buttonCell11.Name = "buttonCell11";
-            this.buttonCell11.Size = new System.Drawing.Size(91, 87);
-            this.buttonCell11.TabIndex = 10;
-            this.buttonCell11.Text = "11";
-            this.buttonCell11.UseVisualStyleBackColor = true;
-            this.buttonCell11.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell12
-            // 
-            this.buttonCell12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell12.AutoSize = true;
-            this.buttonCell12.Enabled = false;
-            this.buttonCell12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell12.Location = new System.Drawing.Point(294, 189);
-            this.buttonCell12.Name = "buttonCell12";
-            this.buttonCell12.Size = new System.Drawing.Size(94, 87);
-            this.buttonCell12.TabIndex = 11;
-            this.buttonCell12.Text = "12";
-            this.buttonCell12.UseVisualStyleBackColor = true;
-            this.buttonCell12.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell13
-            // 
-            this.buttonCell13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell13.AutoSize = true;
-            this.buttonCell13.Enabled = false;
-            this.buttonCell13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell13.Location = new System.Drawing.Point(3, 282);
-            this.buttonCell13.Name = "buttonCell13";
-            this.buttonCell13.Size = new System.Drawing.Size(91, 90);
-            this.buttonCell13.TabIndex = 12;
-            this.buttonCell13.Text = "13";
-            this.buttonCell13.UseVisualStyleBackColor = true;
-            this.buttonCell13.Click += new System.EventHandler(this.buttonCell_Click);
-            // 
-            // buttonCell14
-            // 
-            this.buttonCell14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell14.AutoSize = true;
-            this.buttonCell14.Enabled = false;
-            this.buttonCell14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell14.Location = new System.Drawing.Point(100, 282);
-            this.buttonCell14.Name = "buttonCell14";
-            this.buttonCell14.Size = new System.Drawing.Size(91, 90);
-            this.buttonCell14.TabIndex = 13;
-            this.buttonCell14.Text = "14";
-            this.buttonCell14.UseVisualStyleBackColor = true;
-            this.buttonCell14.Click += new System.EventHandler(this.buttonCell_Click);
+            this.buttonCell16.AutoSize = true;
+            this.buttonCell16.Enabled = false;
+            this.buttonCell16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell16.Location = new System.Drawing.Point(294, 282);
+            this.buttonCell16.Name = "buttonCell16";
+            this.buttonCell16.Size = new System.Drawing.Size(94, 90);
+            this.buttonCell16.TabIndex = 15;
+            this.buttonCell16.UseVisualStyleBackColor = true;
+            this.buttonCell16.Visible = false;
+            this.buttonCell16.Click += new System.EventHandler(this.buttonCell_Click);
             // 
             // buttonCell15
             // 
@@ -352,25 +144,233 @@
             this.buttonCell15.UseVisualStyleBackColor = true;
             this.buttonCell15.Click += new System.EventHandler(this.buttonCell_Click);
             // 
-            // buttonCell16
+            // buttonCell14
             // 
-            this.buttonCell16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonCell14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCell16.AutoSize = true;
-            this.buttonCell16.Enabled = false;
-            this.buttonCell16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCell16.Location = new System.Drawing.Point(294, 282);
-            this.buttonCell16.Name = "buttonCell16";
-            this.buttonCell16.Size = new System.Drawing.Size(94, 90);
-            this.buttonCell16.TabIndex = 15;
-            this.buttonCell16.UseVisualStyleBackColor = true;
-            this.buttonCell16.Visible = false;
-            this.buttonCell16.Click += new System.EventHandler(this.buttonCell_Click);
+            this.buttonCell14.AutoSize = true;
+            this.buttonCell14.Enabled = false;
+            this.buttonCell14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell14.Location = new System.Drawing.Point(100, 282);
+            this.buttonCell14.Name = "buttonCell14";
+            this.buttonCell14.Size = new System.Drawing.Size(91, 90);
+            this.buttonCell14.TabIndex = 13;
+            this.buttonCell14.Text = "14";
+            this.buttonCell14.UseVisualStyleBackColor = true;
+            this.buttonCell14.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell13
+            // 
+            this.buttonCell13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell13.AutoSize = true;
+            this.buttonCell13.Enabled = false;
+            this.buttonCell13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell13.Location = new System.Drawing.Point(3, 282);
+            this.buttonCell13.Name = "buttonCell13";
+            this.buttonCell13.Size = new System.Drawing.Size(91, 90);
+            this.buttonCell13.TabIndex = 12;
+            this.buttonCell13.Text = "13";
+            this.buttonCell13.UseVisualStyleBackColor = true;
+            this.buttonCell13.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell12
+            // 
+            this.buttonCell12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell12.AutoSize = true;
+            this.buttonCell12.Enabled = false;
+            this.buttonCell12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell12.Location = new System.Drawing.Point(294, 189);
+            this.buttonCell12.Name = "buttonCell12";
+            this.buttonCell12.Size = new System.Drawing.Size(94, 87);
+            this.buttonCell12.TabIndex = 11;
+            this.buttonCell12.Text = "12";
+            this.buttonCell12.UseVisualStyleBackColor = true;
+            this.buttonCell12.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell11
+            // 
+            this.buttonCell11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell11.AutoSize = true;
+            this.buttonCell11.Enabled = false;
+            this.buttonCell11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell11.Location = new System.Drawing.Point(197, 189);
+            this.buttonCell11.Name = "buttonCell11";
+            this.buttonCell11.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell11.TabIndex = 10;
+            this.buttonCell11.Text = "11";
+            this.buttonCell11.UseVisualStyleBackColor = true;
+            this.buttonCell11.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell10
+            // 
+            this.buttonCell10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell10.AutoSize = true;
+            this.buttonCell10.Enabled = false;
+            this.buttonCell10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell10.Location = new System.Drawing.Point(100, 189);
+            this.buttonCell10.Name = "buttonCell10";
+            this.buttonCell10.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell10.TabIndex = 9;
+            this.buttonCell10.Text = "10";
+            this.buttonCell10.UseVisualStyleBackColor = true;
+            this.buttonCell10.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell9
+            // 
+            this.buttonCell9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell9.AutoSize = true;
+            this.buttonCell9.Enabled = false;
+            this.buttonCell9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell9.Location = new System.Drawing.Point(3, 189);
+            this.buttonCell9.Name = "buttonCell9";
+            this.buttonCell9.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell9.TabIndex = 8;
+            this.buttonCell9.Text = "9";
+            this.buttonCell9.UseVisualStyleBackColor = true;
+            this.buttonCell9.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell8
+            // 
+            this.buttonCell8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell8.AutoSize = true;
+            this.buttonCell8.Enabled = false;
+            this.buttonCell8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell8.Location = new System.Drawing.Point(294, 96);
+            this.buttonCell8.Name = "buttonCell8";
+            this.buttonCell8.Size = new System.Drawing.Size(94, 87);
+            this.buttonCell8.TabIndex = 7;
+            this.buttonCell8.Text = "8";
+            this.buttonCell8.UseVisualStyleBackColor = true;
+            this.buttonCell8.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell7
+            // 
+            this.buttonCell7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell7.AutoSize = true;
+            this.buttonCell7.Enabled = false;
+            this.buttonCell7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell7.Location = new System.Drawing.Point(197, 96);
+            this.buttonCell7.Name = "buttonCell7";
+            this.buttonCell7.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell7.TabIndex = 6;
+            this.buttonCell7.Text = "7";
+            this.buttonCell7.UseVisualStyleBackColor = true;
+            this.buttonCell7.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell5
+            // 
+            this.buttonCell5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell5.AutoSize = true;
+            this.buttonCell5.Enabled = false;
+            this.buttonCell5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell5.Location = new System.Drawing.Point(3, 96);
+            this.buttonCell5.Name = "buttonCell5";
+            this.buttonCell5.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell5.TabIndex = 4;
+            this.buttonCell5.Text = "5";
+            this.buttonCell5.UseVisualStyleBackColor = true;
+            this.buttonCell5.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell4
+            // 
+            this.buttonCell4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell4.AutoSize = true;
+            this.buttonCell4.Enabled = false;
+            this.buttonCell4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell4.Location = new System.Drawing.Point(294, 3);
+            this.buttonCell4.Name = "buttonCell4";
+            this.buttonCell4.Size = new System.Drawing.Size(94, 87);
+            this.buttonCell4.TabIndex = 3;
+            this.buttonCell4.Text = "4";
+            this.buttonCell4.UseVisualStyleBackColor = true;
+            this.buttonCell4.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell3
+            // 
+            this.buttonCell3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell3.AutoSize = true;
+            this.buttonCell3.Enabled = false;
+            this.buttonCell3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell3.Location = new System.Drawing.Point(197, 3);
+            this.buttonCell3.Name = "buttonCell3";
+            this.buttonCell3.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell3.TabIndex = 2;
+            this.buttonCell3.Text = "3";
+            this.buttonCell3.UseVisualStyleBackColor = true;
+            this.buttonCell3.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell2
+            // 
+            this.buttonCell2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell2.AutoSize = true;
+            this.buttonCell2.Enabled = false;
+            this.buttonCell2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell2.Location = new System.Drawing.Point(100, 3);
+            this.buttonCell2.Name = "buttonCell2";
+            this.buttonCell2.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell2.TabIndex = 1;
+            this.buttonCell2.Text = "2";
+            this.buttonCell2.UseVisualStyleBackColor = true;
+            this.buttonCell2.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell1
+            // 
+            this.buttonCell1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell1.AutoSize = true;
+            this.buttonCell1.Enabled = false;
+            this.buttonCell1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell1.Location = new System.Drawing.Point(3, 3);
+            this.buttonCell1.Name = "buttonCell1";
+            this.buttonCell1.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell1.TabIndex = 0;
+            this.buttonCell1.Text = "1";
+            this.buttonCell1.UseVisualStyleBackColor = true;
+            this.buttonCell1.Click += new System.EventHandler(this.buttonCell_Click);
+            // 
+            // buttonCell6
+            // 
+            this.buttonCell6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCell6.AutoSize = true;
+            this.buttonCell6.Enabled = false;
+            this.buttonCell6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCell6.Location = new System.Drawing.Point(100, 96);
+            this.buttonCell6.Name = "buttonCell6";
+            this.buttonCell6.Size = new System.Drawing.Size(91, 87);
+            this.buttonCell6.TabIndex = 5;
+            this.buttonCell6.Text = "6";
+            this.buttonCell6.UseVisualStyleBackColor = true;
+            this.buttonCell6.Click += new System.EventHandler(this.buttonCell_Click);
             // 
             // groupBoxTime
             // 
-            this.groupBoxTime.Controls.Add(this.labelTime);
+            this.groupBoxTime.Controls.Add(this.labelTimer);
             this.groupBoxTime.Location = new System.Drawing.Point(446, 29);
             this.groupBoxTime.Name = "groupBoxTime";
             this.groupBoxTime.Size = new System.Drawing.Size(136, 65);
@@ -378,16 +378,15 @@
             this.groupBoxTime.TabStop = false;
             this.groupBoxTime.Text = "Время:";
             // 
-            // labelTime
+            // labelTimer
             // 
-            this.labelTime.Enabled = false;
-            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTime.Location = new System.Drawing.Point(19, 28);
-            this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(100, 23);
-            this.labelTime.TabIndex = 0;
-            this.labelTime.Text = "00:00:00";
-            this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelTimer.Enabled = false;
+            this.labelTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTimer.Location = new System.Drawing.Point(19, 28);
+            this.labelTimer.Name = "labelTimer";
+            this.labelTimer.Size = new System.Drawing.Size(100, 23);
+            this.labelTimer.TabIndex = 0;
+            this.labelTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBoxMoves
             // 
@@ -407,7 +406,6 @@
             this.labelMoves.Name = "labelMoves";
             this.labelMoves.Size = new System.Drawing.Size(100, 23);
             this.labelMoves.TabIndex = 0;
-            this.labelMoves.Text = "0";
             this.labelMoves.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonNewGame
@@ -470,7 +468,7 @@
         private System.Windows.Forms.Button buttonCell2;
         private System.Windows.Forms.Button buttonCell1;
         private System.Windows.Forms.GroupBox groupBoxTime;
-        private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.GroupBox groupBoxMoves;
         private System.Windows.Forms.Label labelMoves;
         private System.Windows.Forms.Button buttonNewGame;

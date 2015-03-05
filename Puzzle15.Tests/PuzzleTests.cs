@@ -5,6 +5,24 @@ namespace Puzzle15.Tests
     [TestFixture]
     public class PuzzleTests
     {
+        [Test]
+        public void Init_None_DefaultStateOfGame()
+        {
+            var puzzle = new Puzzle();
+
+            // Этот вызов не нужен, Init() вызывается в конструкторе
+            //puzzle.Init();
+
+            for (uint y = 0; y < puzzle.FieldSideSize; y++)
+                for (uint x = 0; x < puzzle.FieldSideSize; x++)
+                    if (puzzle.Cells[y, x] != y * puzzle.FieldSideSize + x + 1)
+                        Assert.Fail();
+
+            Assert.That(puzzle.EmptyY, Is.EqualTo(3));
+            Assert.That(puzzle.EmptyX, Is.EqualTo(3));
+            Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
+        }
+
         [TestCase(0, 0, Result = false)]
         [TestCase(0, 1, Result = true)]
         [TestCase(0, 2, Result = false)]

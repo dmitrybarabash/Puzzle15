@@ -16,7 +16,10 @@ namespace Puzzle15
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var mainForm = new MainForm();
+            var gamePresenter = new GamePresenter(mainForm);
+            Application.Run(mainForm);
         }
     }
 }

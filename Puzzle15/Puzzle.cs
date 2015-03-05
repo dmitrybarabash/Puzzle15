@@ -12,26 +12,29 @@ namespace Puzzle15
             Down
         }
 
-        public int[,] Cells { get; set; }
-        public int EmptyX { get; set; }
-        public int EmptyY { get; set; }
+        public uint[,] Cells { get; set; }
+        public uint EmptyX { get; set; }
+        public uint EmptyY { get; set; }
+        public uint MovesCounter { get; private set; }
+        public DateTime StartTime { get; private set; }
 
-        public readonly int EmptyCellValue = 16;
-        public readonly int FieldSideSize = 4;
+        public readonly uint EmptyCellValue = 16;
+        public readonly uint FieldSideSize = 4;
 
         public Puzzle()
         {
-            Cells = new int[FieldSideSize, FieldSideSize];
+            Cells = new uint[FieldSideSize, FieldSideSize];
             Init();
         }
 
         public void Init()
         {
-            for (int i = 0; i < FieldSideSize; i++)
-                for (int j = 0; j < FieldSideSize; j++)
+            for (uint i = 0; i < FieldSideSize; i++)
+                for (uint j = 0; j < FieldSideSize; j++)
                     Cells[i, j] = i * FieldSideSize + j + 1;
             EmptyX = FieldSideSize - 1;
             EmptyY = FieldSideSize - 1;
+            MovesCounter = 0;
         }
 
         public void Start()
@@ -39,9 +42,11 @@ namespace Puzzle15
             var rnd = new Random();
             for (int i = 0; i < 1000; i++)
                 Move((MoveDirection)rnd.Next(4));
+            MovesCounter = 0;
+            StartTime = DateTime.Now;
         }
 
-        public void Move(MoveDirection moveDirection)
+        private void Move(MoveDirection moveDirection)
         {
             switch (moveDirection)
             {
@@ -78,6 +83,7 @@ namespace Puzzle15
                     }
                     break;
             }
+            MovesCounter++;
         }
 
         public void Move(int y, int x)

@@ -3,50 +3,75 @@ using System.Windows.Forms;
 
 namespace Puzzle15
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IPuzzleView
     {
-        private Puzzle puzzle = new Puzzle();
-        private DateTime gameStartTime;
-        private uint movesCounter;
-
         public MainForm()
         {
             InitializeComponent();
+            UpdateGameLabels(false);
         }
 
-        private void UpdateButtons(bool active)
+        #region IPuzzleView Implementation
+
+        public string LabelTimer
         {
-            foreach (var control in tableLayoutPanelCellButtons.Controls)
-            {
-                var button = control as Button;
-                button.Enabled = active;
-                int number = int.Parse(button.Name.Remove(0, 10));
-                int cellValue = puzzle.Cells[(number - 1) / 4, (number - 1) % 4];
-                button.Text = cellValue != puzzle.EmptyCellValue ? cellValue.ToString() : string.Empty;
-                button.Visible = cellValue != puzzle.EmptyCellValue;
-            }
+            get { return labelTimer.Text; }
+            set { labelTimer.Text = value; }
         }
 
-        private void UpdateGameState(bool active)
+        public string LabelMoves
         {
-            if (active)
-            {
-                gameStartTime = DateTime.Now;
-                timerGame.Enabled = true;
-                movesCounter = 0;
-            }
+            get { return labelMoves.Text; }
+            set { labelMoves.Text = value; }
+        }
 
-            labelTime.Enabled = active;
-            labelTime.Text = "00:00:00";
+        public TableLayoutControlCollection Buttons
+        {
+            get { return tableLayoutPanelCellButtons.Controls; }
+        }
+
+        public event EventHandler<EventArgs> NewGame;
+
+        public event EventHandler<EventArgs> Timer;
+
+        public event EventHandler<EventArgs> Move;
+
+        public void StartTimer()
+        {
+            timerGame.Enabled = true;
+        }
+
+        public void StopTimer()
+        {
+            timerGame.Enabled = false;
+        }
+
+        public void UpdateGameLabels(bool active)
+        {
+            labelTimer.Text = "00:00:00";
+            labelTimer.Enabled = active;
             labelMoves.Text = "0";
             labelMoves.Enabled = active;
         }
 
+        #endregion
+
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
-            puzzle.Start();
-            UpdateButtons(true);
-            UpdateGameState(true);
+            if (NewGame != null)
+                NewGame(this, EventArgs.Empty);
+        }
+
+        private void buttonCell_Click(object sender, EventArgs e)
+        {
+            if (Move != null)
+                Move(sender, EventArgs.Empty);
+        }
+
+        private void timerGame_Tick(object sender, EventArgs e)
+        {
+            if (Timer != null)
+                Timer(this, EventArgs.Empty);
         }
 
         private void buttonAbout_Click(object sender, EventArgs e)
@@ -57,34 +82,6 @@ namespace Puzzle15
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void buttonCell_Click(object sender, EventArgs e)
-        {
-            int clickedNumber = int.Parse((sender as Button).Name.Remove(0, 10));
-            int y = (clickedNumber - 1) / 4;
-            int x = (clickedNumber - 1) % 4;
-            if (puzzle.IsMoveable(y, x))
-            {
-                puzzle.Move(y, x);
-                UpdateButtons(true);
-                labelMoves.Text = (++movesCounter).ToString();
-
-                if (puzzle.IsDone())
-                {
-                    timerGame.Enabled = false;
-                    MessageBox.Show("You won!\n\nYou've made " + movesCounter + " moves for " + labelTime.Text + "!",
-                        "Great work!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    puzzle.Init();
-                    UpdateButtons(false);
-                    UpdateGameState(false);
-                }
-            }
-        }
-
-        private void timerGame_Tick(object sender, EventArgs e)
-        {
-            labelTime.Text = (DateTime.Now - gameStartTime).ToString(@"hh\:mm\:ss");
         }
     }
 }
