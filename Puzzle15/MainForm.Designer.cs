@@ -454,7 +454,7 @@
             // 
             this.fileExitToolStripMenuItem.Name = "fileExitToolStripMenuItem";
             this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.fileExitToolStripMenuItem.Text = "Вы&ход";
+            this.fileExitToolStripMenuItem.Text = "&Выход";
             this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
             // gameToolStripMenuItem
@@ -468,7 +468,8 @@
             // gameNewGameToolStripMenuItem
             // 
             this.gameNewGameToolStripMenuItem.Name = "gameNewGameToolStripMenuItem";
-            this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.gameNewGameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.gameNewGameToolStripMenuItem.Text = "&Новая игра";
             this.gameNewGameToolStripMenuItem.Click += new System.EventHandler(this.NewGameHandler);
             // 
