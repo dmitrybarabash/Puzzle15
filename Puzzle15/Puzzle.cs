@@ -4,7 +4,7 @@ namespace Puzzle15
 {
     public class Puzzle
     {
-        public enum MoveDirection
+        private enum MoveDirection
         {
             Up,
             Left,

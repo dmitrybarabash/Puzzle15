@@ -34,7 +34,7 @@ namespace Puzzle15
 
         public event EventHandler Timer;
 
-        public event EventHandler Move;
+        public new event EventHandler Move;
 
         public void StartTimer()
         {
