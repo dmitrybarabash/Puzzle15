@@ -54,14 +54,22 @@
             this.labelMoves = new System.Windows.Forms.Label();
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.timerGame = new System.Windows.Forms.Timer(this.components);
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameNewGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanelCellButtons.SuspendLayout();
             this.groupBoxTime.SuspendLayout();
             this.groupBoxMoves.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonAbout
             // 
-            this.buttonAbout.Location = new System.Drawing.Point(446, 311);
+            this.buttonAbout.Location = new System.Drawing.Point(446, 328);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(136, 38);
             this.buttonAbout.TabIndex = 17;
@@ -71,7 +79,7 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(446, 366);
+            this.buttonExit.Location = new System.Drawing.Point(446, 383);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(136, 38);
             this.buttonExit.TabIndex = 18;
@@ -102,7 +110,7 @@
             this.tableLayoutPanelCellButtons.Controls.Add(this.buttonCell2, 1, 0);
             this.tableLayoutPanelCellButtons.Controls.Add(this.buttonCell1, 0, 0);
             this.tableLayoutPanelCellButtons.Controls.Add(this.buttonCell6, 1, 1);
-            this.tableLayoutPanelCellButtons.Location = new System.Drawing.Point(29, 29);
+            this.tableLayoutPanelCellButtons.Location = new System.Drawing.Point(29, 46);
             this.tableLayoutPanelCellButtons.Name = "tableLayoutPanelCellButtons";
             this.tableLayoutPanelCellButtons.RowCount = 4;
             this.tableLayoutPanelCellButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -371,7 +379,7 @@
             // groupBoxTime
             // 
             this.groupBoxTime.Controls.Add(this.labelTimer);
-            this.groupBoxTime.Location = new System.Drawing.Point(446, 29);
+            this.groupBoxTime.Location = new System.Drawing.Point(446, 46);
             this.groupBoxTime.Name = "groupBoxTime";
             this.groupBoxTime.Size = new System.Drawing.Size(136, 65);
             this.groupBoxTime.TabIndex = 2;
@@ -391,7 +399,7 @@
             // groupBoxMoves
             // 
             this.groupBoxMoves.Controls.Add(this.labelMoves);
-            this.groupBoxMoves.Location = new System.Drawing.Point(446, 109);
+            this.groupBoxMoves.Location = new System.Drawing.Point(446, 126);
             this.groupBoxMoves.Name = "groupBoxMoves";
             this.groupBoxMoves.Size = new System.Drawing.Size(136, 65);
             this.groupBoxMoves.TabIndex = 2;
@@ -410,7 +418,7 @@
             // 
             // buttonNewGame
             // 
-            this.buttonNewGame.Location = new System.Drawing.Point(446, 192);
+            this.buttonNewGame.Location = new System.Drawing.Point(446, 209);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(136, 38);
             this.buttonNewGame.TabIndex = 16;
@@ -422,17 +430,75 @@
             // 
             this.timerGame.Tick += new System.EventHandler(this.timerGame_Tick);
             // 
+            // mainMenuStrip
+            // 
+            this.mainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.gameToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(611, 28);
+            this.mainMenuStrip.TabIndex = 19;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileExitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.fileToolStripMenuItem.Text = "&Файл";
+            // 
+            // fileExitToolStripMenuItem
+            // 
+            this.fileExitToolStripMenuItem.Name = "fileExitToolStripMenuItem";
+            this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.fileExitToolStripMenuItem.Text = "Вы&ход";
+            this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // gameToolStripMenuItem
+            // 
+            this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gameNewGameToolStripMenuItem});
+            this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.gameToolStripMenuItem.Text = "&Игра";
+            // 
+            // gameNewGameToolStripMenuItem
+            // 
+            this.gameNewGameToolStripMenuItem.Name = "gameNewGameToolStripMenuItem";
+            this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.gameNewGameToolStripMenuItem.Text = "&Новая игра";
+            this.gameNewGameToolStripMenuItem.Click += new System.EventHandler(this.buttonNewGame_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpAboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(28, 24);
+            this.helpToolStripMenuItem.Text = "&?";
+            // 
+            // helpAboutToolStripMenuItem
+            // 
+            this.helpAboutToolStripMenuItem.Name = "helpAboutToolStripMenuItem";
+            this.helpAboutToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.helpAboutToolStripMenuItem.Text = "О &программе...";
+            this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.buttonAbout_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 433);
+            this.ClientSize = new System.Drawing.Size(611, 447);
             this.Controls.Add(this.groupBoxMoves);
             this.Controls.Add(this.groupBoxTime);
             this.Controls.Add(this.tableLayoutPanelCellButtons);
             this.Controls.Add(this.buttonNewGame);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonAbout);
+            this.Controls.Add(this.mainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "MainForm";
@@ -442,7 +508,10 @@
             this.tableLayoutPanelCellButtons.PerformLayout();
             this.groupBoxTime.ResumeLayout(false);
             this.groupBoxMoves.ResumeLayout(false);
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -473,6 +542,13 @@
         private System.Windows.Forms.Label labelMoves;
         private System.Windows.Forms.Button buttonNewGame;
         private System.Windows.Forms.Timer timerGame;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameNewGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpAboutToolStripMenuItem;
     }
 }
 

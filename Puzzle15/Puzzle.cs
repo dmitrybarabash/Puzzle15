@@ -86,7 +86,7 @@ namespace Puzzle15
             MovesCounter++;
         }
 
-        public void Move(int y, int x)
+        public void Move(uint y, uint x)
         {
             if (y == EmptyY && x == EmptyX - 1) Move(MoveDirection.Left);
             if (y == EmptyY && x == EmptyX + 1) Move(MoveDirection.Right);
@@ -94,7 +94,7 @@ namespace Puzzle15
             if (y == EmptyY + 1 && x == EmptyX) Move(MoveDirection.Down);
         }
 
-        public bool IsMoveable(int y, int x)
+        public bool IsMoveable(uint y, uint x)
         {
             return
                 (y == EmptyY && x == EmptyX - 1) ||
@@ -105,8 +105,8 @@ namespace Puzzle15
 
         public bool IsDone()
         {
-            for (int i = 0; i < FieldSideSize; i++)
-                for (int j = 0; j < FieldSideSize; j++)
+            for (uint i = 0; i < FieldSideSize; i++)
+                for (uint j = 0; j < FieldSideSize; j++)
                     if (Cells[i, j] != i * FieldSideSize + j + 1)
                         return false;
             return true;

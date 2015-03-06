@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace Puzzle15
 {
@@ -12,9 +11,9 @@ namespace Puzzle15
         public GamePresenter(IPuzzleView puzzleView)
         {
             view = puzzleView;
-            view.NewGame += new EventHandler<EventArgs>(OnNewGame);
-            view.Timer += new EventHandler<EventArgs>(OnTimer);
-            view.Move += new EventHandler<EventArgs>(OnMove);
+            view.NewGame += OnNewGame;
+            view.Timer += OnTimer;
+            view.Move += OnMove;
         }
 
         public void UpdateButtons(bool active)
@@ -23,7 +22,7 @@ namespace Puzzle15
             {
                 var button = control as Button;
                 button.Enabled = active;
-                int number = int.Parse(button.Name.Remove(0, 10));
+                uint number = uint.Parse(button.Name.Remove(0, 10));
                 uint cellValue = model.Cells[(number - 1) / 4, (number - 1) % 4];
                 button.Text = cellValue != model.EmptyCellValue ? cellValue.ToString() : string.Empty;
                 button.Visible = cellValue != model.EmptyCellValue;
@@ -45,9 +44,9 @@ namespace Puzzle15
 
         private void OnMove(object sender, EventArgs e)
         {
-            int clickedNumber = int.Parse((sender as Button).Name.Remove(0, 10));
-            int y = (clickedNumber - 1) / 4;
-            int x = (clickedNumber - 1) % 4;
+            uint clickedNumber = uint.Parse((sender as Button).Name.Remove(0, 10));
+            uint y = (clickedNumber - 1) / 4;
+            uint x = (clickedNumber - 1) % 4;
             if (model.IsMoveable(y, x))
             {
                 model.Move(y, x);
