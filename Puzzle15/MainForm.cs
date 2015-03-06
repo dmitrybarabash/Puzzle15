@@ -30,11 +30,11 @@ namespace Puzzle15
             get { return tableLayoutPanelCellButtons.Controls; }
         }
 
-        public event EventHandler<EventArgs> NewGame;
+        public event EventHandler NewGame;
 
-        public event EventHandler<EventArgs> Timer;
+        public event EventHandler Timer;
 
-        public event EventHandler<EventArgs> Move;
+        public event EventHandler Move;
 
         public void StartTimer()
         {

@@ -9,9 +9,9 @@ namespace Puzzle15
         string LabelMoves { get; set; }
         TableLayoutControlCollection Buttons { get; }
 
-        event EventHandler<EventArgs> NewGame;
-        event EventHandler<EventArgs> Timer;
-        event EventHandler<EventArgs> Move;
+        event EventHandler NewGame;
+        event EventHandler Timer;
+        event EventHandler Move;
 
         void StartTimer();
         void StopTimer();
