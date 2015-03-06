@@ -56,12 +56,6 @@ namespace Puzzle15
 
         #endregion
 
-        private void buttonNewGame_Click(object sender, EventArgs e)
-        {
-            if (NewGame != null)
-                NewGame(this, EventArgs.Empty);
-        }
-
         private void buttonCell_Click(object sender, EventArgs e)
         {
             if (Move != null)
@@ -74,12 +68,18 @@ namespace Puzzle15
                 Timer(this, EventArgs.Empty);
         }
 
-        private void buttonAbout_Click(object sender, EventArgs e)
+        private void NewGameHandler(object sender, EventArgs e)
+        {
+            if (NewGame != null)
+                NewGame(this, EventArgs.Empty);
+        }
+
+        private void AboutHandler(object sender, EventArgs e)
         {
             new AboutForm().ShowDialog();
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void ExitHandler(object sender, EventArgs e)
         {
             Close();
         }

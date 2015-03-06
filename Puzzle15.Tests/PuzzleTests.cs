@@ -23,18 +23,18 @@ namespace Puzzle15.Tests
             Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
         }
 
-        [TestCase(0, 0, Result = false)]
-        [TestCase(0, 1, Result = true)]
-        [TestCase(0, 2, Result = false)]
-        [TestCase(0, 3, Result = false)]
-        [TestCase(1, 0, Result = true)]
-        [TestCase(1, 2, Result = true)]
-        [TestCase(1, 3, Result = false)]
-        [TestCase(2, 0, Result = false)]
-        [TestCase(2, 1, Result = true)]
-        [TestCase(2, 2, Result = false)]
-        [TestCase(2, 3, Result = false)]
-        public bool IsMoveable_CellCoords_ReturnsResult(int y, int x)
+        [TestCase(0U, 0U, Result = false)]
+        [TestCase(0U, 1U, Result = true)]
+        [TestCase(0U, 2U, Result = false)]
+        [TestCase(0U, 3U, Result = false)]
+        [TestCase(1U, 0U, Result = true)]
+        [TestCase(1U, 2U, Result = true)]
+        [TestCase(1U, 3U, Result = false)]
+        [TestCase(2U, 0U, Result = false)]
+        [TestCase(2U, 1U, Result = true)]
+        [TestCase(2U, 2U, Result = false)]
+        [TestCase(2U, 3U, Result = false)]
+        public bool IsMoveable_CellCoords_ReturnsResult(uint y, uint x)
         {
             var puzzle = new Puzzle();
             puzzle.Cells[0, 0] =  1; puzzle.Cells[0, 1] =  2; puzzle.Cells[0, 2] =  3; puzzle.Cells[0, 3] =  4;

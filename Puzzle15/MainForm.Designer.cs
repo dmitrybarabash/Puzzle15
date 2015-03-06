@@ -75,7 +75,7 @@
             this.buttonAbout.TabIndex = 17;
             this.buttonAbout.Text = "О программе...";
             this.buttonAbout.UseVisualStyleBackColor = true;
-            this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
+            this.buttonAbout.Click += new System.EventHandler(this.AboutHandler);
             // 
             // buttonExit
             // 
@@ -85,7 +85,7 @@
             this.buttonExit.TabIndex = 18;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonExit.Click += new System.EventHandler(this.ExitHandler);
             // 
             // tableLayoutPanelCellButtons
             // 
@@ -424,7 +424,7 @@
             this.buttonNewGame.TabIndex = 16;
             this.buttonNewGame.Text = "Новая игра";
             this.buttonNewGame.UseVisualStyleBackColor = true;
-            this.buttonNewGame.Click += new System.EventHandler(this.buttonNewGame_Click);
+            this.buttonNewGame.Click += new System.EventHandler(this.NewGameHandler);
             // 
             // timerGame
             // 
@@ -455,7 +455,7 @@
             this.fileExitToolStripMenuItem.Name = "fileExitToolStripMenuItem";
             this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.fileExitToolStripMenuItem.Text = "Вы&ход";
-            this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.buttonExit_Click);
+            this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
             // gameToolStripMenuItem
             // 
@@ -470,7 +470,7 @@
             this.gameNewGameToolStripMenuItem.Name = "gameNewGameToolStripMenuItem";
             this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.gameNewGameToolStripMenuItem.Text = "&Новая игра";
-            this.gameNewGameToolStripMenuItem.Click += new System.EventHandler(this.buttonNewGame_Click);
+            this.gameNewGameToolStripMenuItem.Click += new System.EventHandler(this.NewGameHandler);
             // 
             // helpToolStripMenuItem
             // 
@@ -485,7 +485,7 @@
             this.helpAboutToolStripMenuItem.Name = "helpAboutToolStripMenuItem";
             this.helpAboutToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             this.helpAboutToolStripMenuItem.Text = "О &программе...";
-            this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.buttonAbout_Click);
+            this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.AboutHandler);
             // 
             // MainForm
             // 
