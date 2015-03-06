@@ -16,7 +16,7 @@ namespace Puzzle15
             view.Move += OnMove;
         }
 
-        public void UpdateButtons(bool active)
+        private void UpdateButtons(bool active)
         {
             foreach (var control in view.Buttons)
             {
