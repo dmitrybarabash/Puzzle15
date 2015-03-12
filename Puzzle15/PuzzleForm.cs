@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Puzzle15
 {
-    public partial class MainForm : Form, IPuzzleView
+    public partial class PuzzleForm : Form, IPuzzleView
     {
-        public MainForm()
+        public PuzzleForm()
         {
             InitializeComponent();
             UpdateGameLabels(false);

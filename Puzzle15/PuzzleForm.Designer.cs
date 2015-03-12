@@ -1,6 +1,6 @@
 ﻿namespace Puzzle15
 {
-    partial class MainForm
+    partial class PuzzleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -489,7 +489,7 @@
             this.helpAboutToolStripMenuItem.Text = "О &программе...";
             this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.AboutHandler);
             // 
-            // MainForm
+            // PuzzleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -504,7 +504,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "PuzzleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Пятнашки";
             this.tableLayoutPanelCellButtons.ResumeLayout(false);

@@ -3,12 +3,12 @@ using System.Windows.Forms;
 
 namespace Puzzle15
 {
-    public class GamePresenter
+    public class PuzzlePresenter
     {
         private readonly Puzzle model = new Puzzle();
         private readonly IPuzzleView view;
 
-        public GamePresenter(IPuzzleView puzzleView)
+        public PuzzlePresenter(IPuzzleView puzzleView)
         {
             view = puzzleView;
             view.NewGame += OnNewGame;
