@@ -17,9 +17,9 @@ namespace Puzzle15
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = new PuzzleForm();
-            var gamePresenter = new PuzzlePresenter(mainForm);
-            Application.Run(mainForm);
+            var puzzleForm = new PuzzleForm();
+            var puzzlePresenter = new PuzzlePresenter(puzzleForm);
+            Application.Run(puzzleForm);
         }
     }
 }
