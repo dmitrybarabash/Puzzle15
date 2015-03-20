@@ -99,8 +99,8 @@ namespace Puzzle15.Tests
             puzzle.Cells[1, 0] =  5; puzzle.Cells[1, 1] =  6; puzzle.Cells[1, 2] =  7; puzzle.Cells[1, 3] =  8;
             puzzle.Cells[2, 0] =  9; puzzle.Cells[2, 1] = 10; puzzle.Cells[2, 2] = 11; puzzle.Cells[2, 3] = 12;
             puzzle.Cells[3, 0] = 13; puzzle.Cells[3, 1] = 14; puzzle.Cells[3, 2] = 15; puzzle.Cells[3, 3] = 16;
-            puzzle.EmptyY = 1;
-            puzzle.EmptyX = 1;
+            puzzle.EmptyY = 3;
+            puzzle.EmptyX = 3;
 
             bool actual = puzzle.IsDone();
 
@@ -115,8 +115,8 @@ namespace Puzzle15.Tests
             puzzle.Cells[1, 0] =  5; puzzle.Cells[1, 1] =  6; puzzle.Cells[1, 2] =  7; puzzle.Cells[1, 3] =  8;
             puzzle.Cells[2, 0] =  9; puzzle.Cells[2, 1] = 10; puzzle.Cells[2, 2] = 11; puzzle.Cells[2, 3] = 12;
             puzzle.Cells[3, 0] = 13; puzzle.Cells[3, 1] = 14; puzzle.Cells[3, 2] = 16; puzzle.Cells[3, 3] = 15;
-            puzzle.EmptyY = 1;
-            puzzle.EmptyX = 1;
+            puzzle.EmptyY = 3;
+            puzzle.EmptyX = 2;
 
             bool actual = puzzle.IsDone();
 
