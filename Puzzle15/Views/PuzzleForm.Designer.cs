@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PuzzleForm));
             this.buttonAbout = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.tableLayoutPanelCellButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -503,6 +504,7 @@
             this.Controls.Add(this.mainMenuStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PuzzleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
