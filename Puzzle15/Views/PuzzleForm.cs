@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Puzzle15.DomainModel;
+using Puzzle15.Presenters;
 
 namespace Puzzle15.Views
 {
@@ -72,6 +74,12 @@ namespace Puzzle15.Views
         {
             if (NewGame != null)
                 NewGame(this, EventArgs.Empty);
+        }
+
+        private void fileBestScoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var bestScoresPresenter = new BestScoresPresenter(new BestScores(), new BestScoresForm());
+            ((Form)bestScoresPresenter.View).ShowDialog();
         }
 
         private void AboutHandler(object sender, EventArgs e)

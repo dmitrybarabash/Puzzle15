@@ -62,6 +62,8 @@
             this.gameNewGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileBestScoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileSeparatorToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanelCellButtons.SuspendLayout();
             this.groupBoxTime.SuspendLayout();
             this.groupBoxMoves.SuspendLayout();
@@ -71,7 +73,7 @@
             // buttonAbout
             // 
             this.buttonAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAbout.Location = new System.Drawing.Point(408, 295);
+            this.buttonAbout.Location = new System.Drawing.Point(408, 303);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(119, 38);
             this.buttonAbout.TabIndex = 17;
@@ -452,6 +454,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileBestScoresToolStripMenuItem,
+            this.fileSeparatorToolStripMenuItem,
             this.fileExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
@@ -460,7 +464,7 @@
             // fileExitToolStripMenuItem
             // 
             this.fileExitToolStripMenuItem.Name = "fileExitToolStripMenuItem";
-            this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
             this.fileExitToolStripMenuItem.Text = "&Выход";
             this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
@@ -494,6 +498,18 @@
             this.helpAboutToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
             this.helpAboutToolStripMenuItem.Text = "О &программе...";
             this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.AboutHandler);
+            // 
+            // fileBestScoresToolStripMenuItem
+            // 
+            this.fileBestScoresToolStripMenuItem.Name = "fileBestScoresToolStripMenuItem";
+            this.fileBestScoresToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.fileBestScoresToolStripMenuItem.Text = "&Лучшие результаты";
+            this.fileBestScoresToolStripMenuItem.Click += new System.EventHandler(this.fileBestScoresToolStripMenuItem_Click);
+            // 
+            // fileSeparatorToolStripMenuItem
+            // 
+            this.fileSeparatorToolStripMenuItem.Name = "fileSeparatorToolStripMenuItem";
+            this.fileSeparatorToolStripMenuItem.Size = new System.Drawing.Size(211, 6);
             // 
             // PuzzleForm
             // 
@@ -559,6 +575,8 @@
         private System.Windows.Forms.ToolStripMenuItem gameNewGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpAboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileBestScoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator fileSeparatorToolStripMenuItem;
     }
 }
 
