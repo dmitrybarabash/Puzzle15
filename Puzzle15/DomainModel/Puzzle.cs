@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Puzzle15
+namespace Puzzle15.DomainModel
 {
-    public class Puzzle
+    public class Puzzle : IPuzzle
     {
         private enum MoveDirection
         {
@@ -15,11 +15,10 @@ namespace Puzzle15
         public uint[,] Cells { get; set; }
         public uint EmptyX { get; set; }
         public uint EmptyY { get; set; }
+        public uint EmptyCellValue { get { return 16; } }
+        public uint FieldSideSize { get { return 4; } }
         public uint MovesCounter { get; private set; }
         public DateTime StartTime { get; private set; }
-
-        public readonly uint EmptyCellValue = 16;
-        public readonly uint FieldSideSize = 4;
 
         public Puzzle()
         {

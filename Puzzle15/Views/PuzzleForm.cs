@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Puzzle15
+namespace Puzzle15.Views
 {
     public partial class PuzzleForm : Form, IPuzzleView
     {
