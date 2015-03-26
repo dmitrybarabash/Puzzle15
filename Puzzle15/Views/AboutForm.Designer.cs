@@ -42,7 +42,7 @@
             // buttonOk
             // 
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(204, 245);
+            this.buttonOk.Location = new System.Drawing.Point(204, 234);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(112, 36);
             this.buttonOk.TabIndex = 0;
@@ -58,14 +58,14 @@
             this.groupBox1.Controls.Add(this.labelProductName);
             this.groupBox1.Location = new System.Drawing.Point(24, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(470, 206);
+            this.groupBox1.Size = new System.Drawing.Size(470, 196);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // linkLabelWebsite
             // 
             this.linkLabelWebsite.AutoSize = true;
-            this.linkLabelWebsite.Location = new System.Drawing.Point(179, 116);
+            this.linkLabelWebsite.Location = new System.Drawing.Point(189, 118);
             this.linkLabelWebsite.Name = "linkLabelWebsite";
             this.linkLabelWebsite.Size = new System.Drawing.Size(173, 17);
             this.linkLabelWebsite.TabIndex = 3;
@@ -76,7 +76,7 @@
             // linkLabelEmail
             // 
             this.linkLabelEmail.AutoSize = true;
-            this.linkLabelEmail.Location = new System.Drawing.Point(179, 151);
+            this.linkLabelEmail.Location = new System.Drawing.Point(189, 153);
             this.linkLabelEmail.Name = "linkLabelEmail";
             this.linkLabelEmail.Size = new System.Drawing.Size(148, 17);
             this.linkLabelEmail.TabIndex = 3;
@@ -87,9 +87,9 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Image = global::Puzzle15.Properties.Resources.Puzzle15;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(24, 29);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(24, 31);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(122, 140);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(139, 140);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 2;
             this.pictureBoxLogo.TabStop = false;
@@ -97,7 +97,7 @@
             // labelCopyright
             // 
             this.labelCopyright.AutoSize = true;
-            this.labelCopyright.Location = new System.Drawing.Point(178, 80);
+            this.labelCopyright.Location = new System.Drawing.Point(188, 82);
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(252, 17);
             this.labelCopyright.TabIndex = 1;
@@ -107,7 +107,7 @@
             // 
             this.labelProductName.AutoSize = true;
             this.labelProductName.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelProductName.Location = new System.Drawing.Point(173, 20);
+            this.labelProductName.Location = new System.Drawing.Point(183, 22);
             this.labelProductName.Name = "labelProductName";
             this.labelProductName.Size = new System.Drawing.Size(246, 46);
             this.labelProductName.TabIndex = 0;
@@ -119,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonOk;
-            this.ClientSize = new System.Drawing.Size(521, 297);
+            this.ClientSize = new System.Drawing.Size(521, 286);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonOk);
             this.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
