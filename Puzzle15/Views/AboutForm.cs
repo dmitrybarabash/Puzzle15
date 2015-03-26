@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Puzzle15
+namespace Puzzle15.Views
 {
     public partial class AboutForm : Form
     {

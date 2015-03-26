@@ -44,27 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="Common\BasePresenter.cs" />
+    <Compile Include="Common\IPresenter.cs" />
+    <Compile Include="Common\IView.cs" />
+    <Compile Include="DomainModel\IPuzzle.cs" />
+    <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="Views\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PuzzlePresenter.cs" />
-    <Compile Include="IPuzzleView.cs" />
-    <Compile Include="PuzzleForm.cs">
+    <Compile Include="Presenters\PuzzlePresenter.cs" />
+    <Compile Include="Views\IPuzzleView.cs" />
+    <Compile Include="Views\PuzzleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PuzzleForm.Designer.cs">
+    <Compile Include="Views\PuzzleForm.Designer.cs">
       <DependentUpon>PuzzleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Puzzle.cs" />
-    <EmbeddedResource Include="AboutForm.resx">
+    <Compile Include="DomainModel\Puzzle.cs" />
+    <EmbeddedResource Include="Views\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PuzzleForm.resx">
+    <EmbeddedResource Include="Views\PuzzleForm.resx">
       <DependentUpon>PuzzleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -93,6 +97,7 @@
   <ItemGroup>
     <None Include="Resources\Puzzle15.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

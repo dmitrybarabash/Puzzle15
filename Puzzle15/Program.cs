@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Puzzle15.DomainModel;
+using Puzzle15.Presenters;
+using Puzzle15.Views;
 
 namespace Puzzle15
 {
@@ -17,9 +17,13 @@ namespace Puzzle15
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var puzzleForm = new PuzzleForm();
-            var puzzlePresenter = new PuzzlePresenter(puzzleForm);
-            Application.Run(puzzleForm);
+            //var puzzle = new Puzzle();
+            //var puzzleForm = new PuzzleForm();
+            //var puzzlePresenter = new PuzzlePresenter(puzzle, puzzleForm);
+            //Application.Run(puzzleForm);
+
+            var puzzlePresenter = new PuzzlePresenter(new Puzzle(), new PuzzleForm());
+            Application.Run((Form)puzzlePresenter.View);
         }
     }
 }

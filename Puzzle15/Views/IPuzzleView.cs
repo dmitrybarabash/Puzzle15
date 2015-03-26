@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using Puzzle15.Common;
 
-namespace Puzzle15
+namespace Puzzle15.Views
 {
-    public interface IPuzzleView
+    public interface IPuzzleView : IView
     {
         string LabelTimer { get; set; }
         string LabelMoves { get; set; }
