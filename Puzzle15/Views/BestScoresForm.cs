@@ -12,6 +12,16 @@ namespace Puzzle15.Views
 {
     public partial class BestScoresForm : Form, IBestScoresView
     {
+
+        #region IBestScoresView Implementation
+
+        public TableLayoutControlCollection Labels
+        {
+            get { return tableLayoutPanelLabels.Controls; }
+        }
+
+        #endregion
+
         public BestScoresForm()
         {
             InitializeComponent();

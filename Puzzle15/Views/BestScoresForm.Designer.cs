@@ -30,7 +30,7 @@
         {
             this.buttonOk = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelLabels = new System.Windows.Forms.TableLayoutPanel();
             this.scoreLabel1 = new System.Windows.Forms.Label();
             this.scoreLabel2 = new System.Windows.Forms.Label();
             this.scoreLabel3 = new System.Windows.Forms.Label();
@@ -61,18 +61,18 @@
             this.timerLabel8 = new System.Windows.Forms.Label();
             this.timerLabel9 = new System.Windows.Forms.Label();
             this.timerLabel10 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelNumber1 = new System.Windows.Forms.Label();
+            this.labelNumber2 = new System.Windows.Forms.Label();
+            this.labelNumber3 = new System.Windows.Forms.Label();
+            this.labelNumber4 = new System.Windows.Forms.Label();
+            this.labelNumber5 = new System.Windows.Forms.Label();
+            this.labelNumber6 = new System.Windows.Forms.Label();
+            this.labelNumber7 = new System.Windows.Forms.Label();
+            this.labelNumber8 = new System.Windows.Forms.Label();
+            this.labelNumber9 = new System.Windows.Forms.Label();
+            this.labelNumber10 = new System.Windows.Forms.Label();
             this.groupBox.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanelLabels.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOk
@@ -90,7 +90,7 @@
             // 
             this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox.Controls.Add(this.tableLayoutPanelLabels);
             this.groupBox.Location = new System.Drawing.Point(25, 21);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(413, 396);
@@ -98,71 +98,71 @@
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Лучшие результаты:";
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanelLabels
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tableLayoutPanelLabels.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.02494F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.09975F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.93766F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.93766F));
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel3, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel4, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel5, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel6, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel7, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel8, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel9, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.scoreLabel10, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel1, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel3, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel4, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel5, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel6, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel7, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel8, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel9, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.movesLabel10, 2, 9);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel2, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel3, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel4, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel5, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel6, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel7, 3, 6);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel8, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel9, 3, 8);
-            this.tableLayoutPanel1.Controls.Add(this.timerLabel10, 3, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 9);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 33);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(372, 335);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanelLabels.ColumnCount = 4;
+            this.tableLayoutPanelLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.02494F));
+            this.tableLayoutPanelLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.09975F));
+            this.tableLayoutPanelLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.93766F));
+            this.tableLayoutPanelLabels.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.93766F));
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel1, 1, 0);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel2, 1, 1);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel3, 1, 2);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel4, 1, 3);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel5, 1, 4);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel6, 1, 5);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel7, 1, 6);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel8, 1, 7);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel9, 1, 8);
+            this.tableLayoutPanelLabels.Controls.Add(this.scoreLabel10, 1, 9);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel1, 2, 0);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel1, 3, 0);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel2, 2, 1);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel3, 2, 2);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel4, 2, 3);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel5, 2, 4);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel6, 2, 5);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel7, 2, 6);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel8, 2, 7);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel9, 2, 8);
+            this.tableLayoutPanelLabels.Controls.Add(this.movesLabel10, 2, 9);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel2, 3, 1);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel3, 3, 2);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel4, 3, 3);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel5, 3, 4);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel6, 3, 5);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel7, 3, 6);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel8, 3, 7);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel9, 3, 8);
+            this.tableLayoutPanelLabels.Controls.Add(this.timerLabel10, 3, 9);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber1, 0, 0);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber2, 0, 1);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber3, 0, 2);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber4, 0, 3);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber5, 0, 4);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber6, 0, 5);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber7, 0, 6);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber8, 0, 7);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber9, 0, 8);
+            this.tableLayoutPanelLabels.Controls.Add(this.labelNumber10, 0, 9);
+            this.tableLayoutPanelLabels.Location = new System.Drawing.Point(20, 33);
+            this.tableLayoutPanelLabels.Name = "tableLayoutPanelLabels";
+            this.tableLayoutPanelLabels.RowCount = 10;
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelLabels.Size = new System.Drawing.Size(372, 335);
+            this.tableLayoutPanelLabels.TabIndex = 0;
             // 
             // scoreLabel1
             // 
@@ -584,145 +584,145 @@
             this.timerLabel10.Text = "00:00:00";
             this.timerLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // labelNumber1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 33);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "1.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber1.AutoSize = true;
+            this.labelNumber1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber1.Location = new System.Drawing.Point(3, 0);
+            this.labelNumber1.Name = "labelNumber1";
+            this.labelNumber1.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber1.TabIndex = 0;
+            this.labelNumber1.Text = "1.";
+            this.labelNumber1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // labelNumber2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(3, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 33);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "2.";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber2.AutoSize = true;
+            this.labelNumber2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber2.Location = new System.Drawing.Point(3, 33);
+            this.labelNumber2.Name = "labelNumber2";
+            this.labelNumber2.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber2.TabIndex = 0;
+            this.labelNumber2.Text = "2.";
+            this.labelNumber2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // labelNumber3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(3, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 33);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "3.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber3.AutoSize = true;
+            this.labelNumber3.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber3.Location = new System.Drawing.Point(3, 66);
+            this.labelNumber3.Name = "labelNumber3";
+            this.labelNumber3.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber3.TabIndex = 0;
+            this.labelNumber3.Text = "3.";
+            this.labelNumber3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // labelNumber4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(3, 99);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 33);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "4.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber4.AutoSize = true;
+            this.labelNumber4.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber4.Location = new System.Drawing.Point(3, 99);
+            this.labelNumber4.Name = "labelNumber4";
+            this.labelNumber4.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber4.TabIndex = 0;
+            this.labelNumber4.Text = "4.";
+            this.labelNumber4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // labelNumber5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(3, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 33);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "5.";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber5.AutoSize = true;
+            this.labelNumber5.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber5.Location = new System.Drawing.Point(3, 132);
+            this.labelNumber5.Name = "labelNumber5";
+            this.labelNumber5.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber5.TabIndex = 0;
+            this.labelNumber5.Text = "5.";
+            this.labelNumber5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // labelNumber6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(3, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 33);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "6.";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber6.AutoSize = true;
+            this.labelNumber6.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber6.Location = new System.Drawing.Point(3, 165);
+            this.labelNumber6.Name = "labelNumber6";
+            this.labelNumber6.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber6.TabIndex = 0;
+            this.labelNumber6.Text = "6.";
+            this.labelNumber6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label7
+            // labelNumber7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(3, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 33);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "7.";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber7.AutoSize = true;
+            this.labelNumber7.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber7.Location = new System.Drawing.Point(3, 198);
+            this.labelNumber7.Name = "labelNumber7";
+            this.labelNumber7.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber7.TabIndex = 0;
+            this.labelNumber7.Text = "7.";
+            this.labelNumber7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // labelNumber8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(3, 231);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 33);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "8.";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber8.AutoSize = true;
+            this.labelNumber8.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber8.Location = new System.Drawing.Point(3, 231);
+            this.labelNumber8.Name = "labelNumber8";
+            this.labelNumber8.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber8.TabIndex = 0;
+            this.labelNumber8.Text = "8.";
+            this.labelNumber8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label9
+            // labelNumber9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(3, 264);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 33);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "9.";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber9.AutoSize = true;
+            this.labelNumber9.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber9.Location = new System.Drawing.Point(3, 264);
+            this.labelNumber9.Name = "labelNumber9";
+            this.labelNumber9.Size = new System.Drawing.Size(31, 33);
+            this.labelNumber9.TabIndex = 0;
+            this.labelNumber9.Text = "9.";
+            this.labelNumber9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // labelNumber10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelNumber10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(3, 297);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 38);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "10.";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNumber10.AutoSize = true;
+            this.labelNumber10.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.labelNumber10.Location = new System.Drawing.Point(3, 297);
+            this.labelNumber10.Name = "labelNumber10";
+            this.labelNumber10.Size = new System.Drawing.Size(31, 38);
+            this.labelNumber10.TabIndex = 0;
+            this.labelNumber10.Text = "10.";
+            this.labelNumber10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BestScoresForm
             // 
@@ -741,8 +741,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Лучшие результаты";
             this.groupBox.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanelLabels.ResumeLayout(false);
+            this.tableLayoutPanelLabels.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -751,7 +751,7 @@
 
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.GroupBox groupBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelLabels;
         private System.Windows.Forms.Label scoreLabel1;
         private System.Windows.Forms.Label scoreLabel2;
         private System.Windows.Forms.Label scoreLabel3;
@@ -782,15 +782,15 @@
         private System.Windows.Forms.Label timerLabel8;
         private System.Windows.Forms.Label timerLabel9;
         private System.Windows.Forms.Label timerLabel10;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelNumber1;
+        private System.Windows.Forms.Label labelNumber2;
+        private System.Windows.Forms.Label labelNumber3;
+        private System.Windows.Forms.Label labelNumber4;
+        private System.Windows.Forms.Label labelNumber5;
+        private System.Windows.Forms.Label labelNumber6;
+        private System.Windows.Forms.Label labelNumber7;
+        private System.Windows.Forms.Label labelNumber8;
+        private System.Windows.Forms.Label labelNumber9;
+        private System.Windows.Forms.Label labelNumber10;
     }
 }

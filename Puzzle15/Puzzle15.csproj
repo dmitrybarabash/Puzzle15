@@ -50,6 +50,7 @@
     <Compile Include="Common\BasePresenter.cs" />
     <Compile Include="Common\IPresenter.cs" />
     <Compile Include="Common\IView.cs" />
+    <Compile Include="DomainModel\Score.cs" />
     <Compile Include="DomainModel\BestScores.cs" />
     <Compile Include="DomainModel\IBestScores.cs" />
     <Compile Include="DomainModel\IPuzzle.cs" />
