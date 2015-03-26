@@ -16,6 +16,7 @@ namespace Puzzle15
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new SplashScreenForm());
 
             //var puzzle = new Puzzle();
             //var puzzleForm = new PuzzleForm();
