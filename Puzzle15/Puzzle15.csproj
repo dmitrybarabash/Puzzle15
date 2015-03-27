@@ -55,7 +55,7 @@
     <Compile Include="DomainModel\IBestScores.cs" />
     <Compile Include="DomainModel\IPuzzle.cs" />
     <Compile Include="Presenters\BestScoresPresenter.cs" />
-    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Utils\CommonUtils.cs" />
     <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
