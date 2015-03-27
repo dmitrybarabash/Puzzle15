@@ -12,11 +12,14 @@ namespace Puzzle15.DomainModel
             Down
         }
 
+        private const uint EmptyCellValueConst = 16;
+        private const uint FieldSideSizeConst = 4;
+
         public uint[,] Cells { get; set; }
         public uint EmptyX { get; set; }
         public uint EmptyY { get; set; }
-        public uint EmptyCellValue { get { return 16; } }
-        public uint FieldSideSize { get { return 4; } }
+        public uint EmptyCellValue { get { return EmptyCellValueConst; } }
+        public uint FieldSideSize { get { return FieldSideSizeConst; } }
         public uint MovesCounter { get; private set; }
         public DateTime StartTime { get; private set; }
 

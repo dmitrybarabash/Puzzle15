@@ -23,7 +23,7 @@ namespace Puzzle15
             //var puzzlePresenter = new PuzzlePresenter(puzzle, puzzleForm);
             //Application.Run(puzzleForm);
 
-            var puzzlePresenter = new PuzzlePresenter(new Puzzle(), new PuzzleForm());
+            var puzzlePresenter = new PuzzlePresenter(new Puzzle(), new BestScores(), new PuzzleForm());
             Application.Run((Form)puzzlePresenter.View);
         }
     }

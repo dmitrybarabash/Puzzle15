@@ -9,14 +9,17 @@ namespace Puzzle15.Presenters
     public class PuzzlePresenter : BasePresenter<IPuzzleView>
     {
         private IPuzzle Model { get; set; }
+        private IBestScores ModelScores { get; set; }
 
-        public PuzzlePresenter(IPuzzle puzzleModel, IPuzzleView puzzleView)
+        public PuzzlePresenter(IPuzzle puzzleModel, IBestScores bestBestScoresModel, IPuzzleView puzzleView)
         {
             Model = puzzleModel;
+            ModelScores = bestBestScoresModel;
             View = puzzleView;
             View.NewGame += OnNewGame;
             View.Timer += OnTimer;
             View.Move += OnMove;
+            View.BestScores += OnBestScores;
         }
 
         private void UpdateButtons(bool active)
@@ -59,14 +62,34 @@ namespace Puzzle15.Presenters
                 if (Model.IsDone())
                 {
                     View.StopTimer();
+                    var score = new Score() { Moves = Model.MovesCounter, Timer = DateTime.Now - Model.StartTime };
+
                     MessageBox.Show("You won!\n\nYou've made " + Model.MovesCounter + " moves for " + View.LabelTimer + "!",
                         "Great work!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ModelScores.Load();
+                    if (ModelScores.CanBeAdded(score))
+                    {
+                        var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
+                        if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
+                        {
+                            score.Name = bestScoredPlayerNameForm.PlayerName;
+                            ModelScores.Add(score);
+                            ModelScores.Save();
+                        }
+                    }
+
                     Model.Init();
                     UpdateButtons(false);
                     View.StopTimer();
                     View.UpdateGameLabels(false);
                 }
             }
+        }
+        private void OnBestScores(object sender, EventArgs e)
+        {
+            var bestScoresPresenter = new BestScoresPresenter(ModelScores, new BestScoresForm());
+            ((Form)bestScoresPresenter.View).ShowDialog();
         }
     }
 }
