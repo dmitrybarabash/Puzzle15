@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Puzzle15.DomainModel;
-using Puzzle15.Presenters;
 
 namespace Puzzle15.Views
 {

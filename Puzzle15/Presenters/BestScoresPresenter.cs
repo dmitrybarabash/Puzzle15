@@ -2,7 +2,6 @@
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 using Puzzle15.Views;
-using Puzzle15.Utils;
 
 namespace Puzzle15.Presenters
 {
@@ -33,7 +32,7 @@ namespace Puzzle15.Presenters
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
                     if (index < Model.Scores.Count)
-                        label.Text = Model.Scores[index].Moves + " " + CommonUtils.GetMovesWord(Model.Scores[index].Moves);
+                        label.Text = Model.Scores[index].Moves + " " + Utils.GetMovesWord(Model.Scores[index].Moves);
                 }
                 if (label.Name.StartsWith("timerLabel"))
                 {

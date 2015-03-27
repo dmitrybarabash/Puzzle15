@@ -1,6 +1,6 @@
-﻿namespace Puzzle15.Utils
+﻿namespace Puzzle15.Common
 {
-    public static class CommonUtils
+    public static class Utils
     {
         public static string GetMovesWord(uint moves)
         {
