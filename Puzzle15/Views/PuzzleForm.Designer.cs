@@ -504,7 +504,7 @@
             this.fileBestScoresToolStripMenuItem.Name = "fileBestScoresToolStripMenuItem";
             this.fileBestScoresToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
             this.fileBestScoresToolStripMenuItem.Text = "&Лучшие результаты";
-            this.fileBestScoresToolStripMenuItem.Click += new System.EventHandler(this.fileBestScoresToolStripMenuItem_Click);
+            this.fileBestScoresToolStripMenuItem.Click += new System.EventHandler(this.BestScoresHandler);
             // 
             // fileSeparatorToolStripMenuItem
             // 

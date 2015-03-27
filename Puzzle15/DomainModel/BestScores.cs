@@ -1,42 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Puzzle15.DomainModel
 {
     public class BestScores : IBestScores
     {
-        private const int MaxCount = 10;
+        public const int MaxCount = 10;
+        public const string FileName = "Puzzle.dat";
 
-        private List<Score> Scores { get; set; }
-
-        public int Count { get { return Scores.Count; } }
-
-        public BestScores()
-        {
-            Scores = new List<Score>();
-        }
-
-        #region IEnumerable implementation
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public IEnumerator<Score> GetEnumerator()
-        {
-            foreach (var score in Scores)
-                yield return score;
-        }
-
-        #endregion
+        private List<Score> scores = new List<Score>();
+        public List<Score> Scores { get { return scores; } }
 
         public bool CanBeAdded(Score score)
         {
-            var tmp = new List<Score>(Scores);
-            tmp.Add(score);
-            tmp.Sort();
-            return !(tmp.Count == MaxCount + 1 && tmp[MaxCount] == score);
+            var tempScores = new List<Score>(Scores);
+            tempScores.Add(score);
+            tempScores.Sort();
+            return !(tempScores.Count == MaxCount + 1 && tempScores[MaxCount] == score);
         }
 
         public void Add(Score score)
@@ -45,8 +26,28 @@ namespace Puzzle15.DomainModel
             {
                 Scores.Add(score);
                 Scores.Sort();
-                if (Count == MaxCount + 1)
+                if (Scores.Count == MaxCount + 1)
                     Scores.RemoveAt(MaxCount);
+            }
+        }
+
+        public void Save()
+        {
+            var formatter = new BinaryFormatter();
+            using (var fileStream = new FileStream(FileName,
+                FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                formatter.Serialize(fileStream, Scores);
+            }
+        }
+
+        public void Load()
+        {
+            if (!File.Exists(FileName)) return;
+            using (var fileStream = new FileStream(FileName, FileMode.Open))
+            {
+                var formatter = new BinaryFormatter();
+                scores = (List<Score>)formatter.Deserialize(fileStream);
             }
         }
     }

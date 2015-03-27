@@ -2,10 +2,12 @@
 
 namespace Puzzle15.DomainModel
 {
-    public interface IBestScores : IEnumerable<Score>
+    public interface IBestScores
     {
-        int Count { get; }
+        List<Score> Scores { get; }
         bool CanBeAdded(Score score);
         void Add(Score score);
+        void Save();
+        void Load();
     }
 }

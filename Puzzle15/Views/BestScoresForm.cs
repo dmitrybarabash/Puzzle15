@@ -12,6 +12,10 @@ namespace Puzzle15.Views
 {
     public partial class BestScoresForm : Form, IBestScoresView
     {
+        public BestScoresForm()
+        {
+            InitializeComponent();
+        }
 
         #region IBestScoresView Implementation
 
@@ -21,10 +25,5 @@ namespace Puzzle15.Views
         }
 
         #endregion
-
-        public BestScoresForm()
-        {
-            InitializeComponent();
-        }
     }
 }

@@ -16,5 +16,12 @@ namespace Puzzle15.Views
         {
             InitializeComponent();
         }
+
+        public string PlayerName { get { return nameTextBox.Text.Trim(); } }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            buttonOk.Enabled = PlayerName.Length > 0;
+        }
     }
 }

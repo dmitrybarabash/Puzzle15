@@ -38,6 +38,8 @@ namespace Puzzle15.Views
 
         public new event EventHandler Move;
 
+        public event EventHandler BestScores;
+
         public void StartTimer()
         {
             timerGame.Enabled = true;
@@ -76,10 +78,10 @@ namespace Puzzle15.Views
                 NewGame(this, EventArgs.Empty);
         }
 
-        private void fileBestScoresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BestScoresHandler(object sender, EventArgs e)
         {
-            var bestScoresPresenter = new BestScoresPresenter(new BestScores(), new BestScoresForm());
-            ((Form)bestScoresPresenter.View).ShowDialog();
+            if (BestScores != null)
+                BestScores(this, EventArgs.Empty);
         }
 
         private void AboutHandler(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 
 namespace Puzzle15.DomainModel
 {
+    [Serializable]
     public class Score : IComparable<Score>
     {
         public string Name { get; set; }
