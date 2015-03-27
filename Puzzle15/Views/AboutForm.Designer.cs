@@ -111,7 +111,7 @@
             this.labelProductName.Name = "labelProductName";
             this.labelProductName.Size = new System.Drawing.Size(246, 46);
             this.labelProductName.TabIndex = 0;
-            this.labelProductName.Text = "Пятнашки 1.3";
+            this.labelProductName.Text = "Пятнашки 1.4";
             // 
             // AboutForm
             // 
