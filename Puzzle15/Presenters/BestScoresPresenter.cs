@@ -2,6 +2,7 @@
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 using Puzzle15.Views;
+using Puzzle15.Utils;
 
 namespace Puzzle15.Presenters
 {
@@ -14,21 +15,6 @@ namespace Puzzle15.Presenters
             Model = bestScoresModel;
             View = bestScoresView;
             UpdateView();
-        }
-
-        private static string GetMovesWord(uint moves)
-        {
-            switch (moves % 10)
-            {
-                case 1:
-                    return "ход";
-                case 2:
-                case 3:
-                case 4:
-                    return "хода";
-                default:
-                    return "ходов";
-            }
         }
 
         private void UpdateView()
@@ -47,7 +33,7 @@ namespace Puzzle15.Presenters
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
                     if (index < Model.Scores.Count)
-                        label.Text = Model.Scores[index].Moves + " " + GetMovesWord(Model.Scores[index].Moves);
+                        label.Text = Model.Scores[index].Moves + " " + CommonUtils.GetMovesWord(Model.Scores[index].Moves);
                 }
                 if (label.Name.StartsWith("timerLabel"))
                 {
