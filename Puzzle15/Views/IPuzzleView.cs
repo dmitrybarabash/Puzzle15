@@ -13,6 +13,7 @@ namespace Puzzle15.Views
         event EventHandler NewGame;
         event EventHandler Timer;
         event EventHandler Move;
+        event EventHandler BestScores;
 
         void StartTimer();
         void StopTimer();

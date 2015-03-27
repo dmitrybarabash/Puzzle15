@@ -50,7 +50,11 @@
     <Compile Include="Common\BasePresenter.cs" />
     <Compile Include="Common\IPresenter.cs" />
     <Compile Include="Common\IView.cs" />
+    <Compile Include="DomainModel\Score.cs" />
+    <Compile Include="DomainModel\BestScores.cs" />
+    <Compile Include="DomainModel\IBestScores.cs" />
     <Compile Include="DomainModel\IPuzzle.cs" />
+    <Compile Include="Presenters\BestScoresPresenter.cs" />
     <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,7 +62,20 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenters\PuzzlePresenter.cs" />
+    <Compile Include="Views\BestScoresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BestScoresForm.Designer.cs">
+      <DependentUpon>BestScoresForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IBestScoresView.cs" />
     <Compile Include="Views\IPuzzleView.cs" />
+    <Compile Include="Views\BestScoredPlayerNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BestScoredPlayerNameForm.Designer.cs">
+      <DependentUpon>BestScoredPlayerNameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PuzzleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +93,12 @@
     </Compile>
     <EmbeddedResource Include="Views\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BestScoresForm.resx">
+      <DependentUpon>BestScoresForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BestScoredPlayerNameForm.resx">
+      <DependentUpon>BestScoredPlayerNameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PuzzleForm.resx">
       <DependentUpon>PuzzleForm.cs</DependentUpon>

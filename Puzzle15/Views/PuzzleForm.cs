@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Puzzle15.DomainModel;
+using Puzzle15.Presenters;
 
 namespace Puzzle15.Views
 {
@@ -35,6 +37,8 @@ namespace Puzzle15.Views
         public event EventHandler Timer;
 
         public new event EventHandler Move;
+
+        public event EventHandler BestScores;
 
         public void StartTimer()
         {
@@ -72,6 +76,12 @@ namespace Puzzle15.Views
         {
             if (NewGame != null)
                 NewGame(this, EventArgs.Empty);
+        }
+
+        private void BestScoresHandler(object sender, EventArgs e)
+        {
+            if (BestScores != null)
+                BestScores(this, EventArgs.Empty);
         }
 
         private void AboutHandler(object sender, EventArgs e)
