@@ -9,6 +9,8 @@ namespace Puzzle15.DomainModel
         public const int MaxCount = 10;
         public const string FileName = "Puzzle.dat";
 
+        #region IBestScores Implementation
+
         private List<Score> scores = new List<Score>();
         public List<Score> Scores { get { return scores; } }
 
@@ -50,5 +52,7 @@ namespace Puzzle15.DomainModel
                 scores = (List<Score>)formatter.Deserialize(fileStream);
             }
         }
+
+        #endregion
     }
 }

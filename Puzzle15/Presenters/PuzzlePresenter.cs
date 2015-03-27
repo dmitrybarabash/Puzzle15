@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Puzzle15.DomainModel;
 using Puzzle15.Common;
+using Puzzle15.Utils;
 using Puzzle15.Views;
 
 namespace Puzzle15.Presenters
@@ -64,8 +65,9 @@ namespace Puzzle15.Presenters
                     View.StopTimer();
                     var score = new Score() { Moves = Model.MovesCounter, Timer = DateTime.Now - Model.StartTime };
 
-                    MessageBox.Show("You won!\n\nYou've made " + Model.MovesCounter + " moves for " + View.LabelTimer + "!",
-                        "Great work!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.MovesCounter + " " +
+                        CommonUtils.GetMovesWord(Model.MovesCounter) + " за " + View.LabelTimer + "!",
+                        "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ModelScores.Load();
                     if (ModelScores.CanBeAdded(score))
