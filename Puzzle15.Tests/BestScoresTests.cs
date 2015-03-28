@@ -12,7 +12,7 @@ namespace Puzzle15.Tests
         public void CanBeAdded_OneOfTheBestScores_AddsScore()
         {
             // Best scores
-            var bestScores = new BestScores();
+            var bestScores = new BestScores(new BestScoresStorage(BestScores.FileName));
             bestScores.Add(new Score() { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
             bestScores.Add(new Score() { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
             bestScores.Add(new Score() { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
@@ -35,7 +35,7 @@ namespace Puzzle15.Tests
         public void CanBeAdded_NotOneOfTheBestScores_DoesntAddScore()
         {
             // Best scores
-            var bestScores = new BestScores();
+            var bestScores = new BestScores(new BestScoresStorage(BestScores.FileName));
             bestScores.Add(new Score() { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
             bestScores.Add(new Score() { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
             bestScores.Add(new Score() { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
@@ -69,7 +69,7 @@ namespace Puzzle15.Tests
         [TestCase(10, 11U, 9, Result = false)]
         public bool Add_ExistingScores_Adds(int existingScores, uint moves, int expectedIndex)
         {
-            var bestScores = new BestScores();
+            var bestScores = new BestScores(new BestScoresStorage(BestScores.FileName));
             for (uint i = 0; i < existingScores; i++)
                 bestScores.Add(new Score() { Name = i.ToString(), Moves = i + 1, Timer = new TimeSpan(0, 1, 2, 3) });
             var score = new Score() { Name = "Dmitrik", Moves = moves, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -82,7 +82,7 @@ namespace Puzzle15.Tests
         [Test]
         public void Save_Nothing_Saves()
         {
-            var bestScores = new BestScores();
+            var bestScores = new BestScores(new BestScoresStorage(BestScores.FileName));
             bestScores.Add(new Score() { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
             bestScores.Add(new Score() { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
             bestScores.Add(new Score() { Name = "Cccccc", Moves = 103, Timer = new TimeSpan(0, 0, 13, 25) });

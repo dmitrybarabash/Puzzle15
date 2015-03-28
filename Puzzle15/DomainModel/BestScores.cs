@@ -9,6 +9,13 @@ namespace Puzzle15.DomainModel
         public const int MaxCount = 10;
         public const string FileName = "Puzzle.dat";
 
+        private IBestScoresStorage storage;
+
+        public BestScores(IBestScoresStorage bestScoresStorage)
+        {
+            storage = bestScoresStorage;
+        }
+
         #region IBestScores Implementation
 
         private List<Score> scores = new List<Score>();
@@ -35,22 +42,13 @@ namespace Puzzle15.DomainModel
 
         public void Save()
         {
-            var formatter = new BinaryFormatter();
-            using (var fileStream = new FileStream(FileName,
-                FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                formatter.Serialize(fileStream, Scores);
-            }
+            storage.Save(Scores);
         }
 
         public void Load()
         {
-            if (!File.Exists(FileName)) return;
-            using (var fileStream = new FileStream(FileName, FileMode.Open))
-            {
-                var formatter = new BinaryFormatter();
-                scores = (List<Score>)formatter.Deserialize(fileStream);
-            }
+            var newScores = storage.Load();
+            if (newScores != null) scores = newScores;
         }
 
         #endregion
