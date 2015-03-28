@@ -2,6 +2,8 @@
 {
     public static class Utils
     {
+        public const string BestScoresStorageFileName = "Puzzle.dat";
+
         public static string GetMovesWord(uint moves)
         {
             uint afterLast = moves % 100 / 10;

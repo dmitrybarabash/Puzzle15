@@ -68,7 +68,8 @@ namespace Puzzle15.Presenters
                         Utils.GetMovesWord(Model.MovesCounter) + " за " + View.LabelTimer + "!",
                         "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    ModelScores.Load();
+                    var bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
+                    bestScoresStorage.Load(ModelScores);
                     if (ModelScores.CanBeAdded(score))
                     {
                         var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
@@ -76,7 +77,7 @@ namespace Puzzle15.Presenters
                         {
                             score.Name = bestScoredPlayerNameForm.PlayerName;
                             ModelScores.Add(score);
-                            ModelScores.Save();
+                            bestScoresStorage.Save(ModelScores);
                         }
                     }
 
