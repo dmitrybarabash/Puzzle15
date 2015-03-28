@@ -13,26 +13,27 @@ namespace Puzzle15.DomainModel
             FileName = fileName;
         }
 
-        public void Save(List<Score> scores)
+        public void Save(IBestScores bestScores)
         {
             var formatter = new BinaryFormatter();
             using (var fileStream = new FileStream(FileName,
                 FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                formatter.Serialize(fileStream, scores);
+                formatter.Serialize(fileStream, bestScores.Scores);
             }
         }
 
-        public List<Score> Load()
+        public void Load(IBestScores bestScores)
         {
-            List<Score> result = null;
-            if (!File.Exists(FileName)) return result;
+            if (!File.Exists(FileName)) return;
+
             using (var fileStream = new FileStream(FileName, FileMode.Open))
             {
                 var formatter = new BinaryFormatter();
-                result = (List<Score>)formatter.Deserialize(fileStream);
+                var scores = (List<Score>)formatter.Deserialize(fileStream);
+                bestScores.Scores.Clear();
+                bestScores.Scores.AddRange(scores);
             }
-            return result;
         }
     }
 }

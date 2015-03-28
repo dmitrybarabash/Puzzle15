@@ -18,7 +18,7 @@ namespace Puzzle15.Presenters
 
         private void UpdateView()
         {
-            Model.Load();
+            new BestScoresStorage(Utils.BestScoresStorageFileName).Load(Model);
 
             foreach (Label label in View.Labels)
             {
