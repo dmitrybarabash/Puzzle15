@@ -54,6 +54,31 @@ namespace Puzzle15.Tests
             Assert.That(actual, Is.False);
         }
 
+        [TestCase(0, 1U, 0, Result = true)]
+        [TestCase(1, 0U, 0, Result = true)]
+        [TestCase(1, 1U, 0, Result = true)]
+        [TestCase(1, 2U, 1, Result = true)]
+        [TestCase(2, 1U, 0, Result = true)]
+        [TestCase(2, 2U, 1, Result = true)]
+        [TestCase(2, 3U, 2, Result = true)]
+        [TestCase(9, 5U, 4, Result = true)]
+        [TestCase(9, 9U, 8, Result = true)]
+        [TestCase(9, 10U, 9, Result = true)]
+        [TestCase(10, 5U, 4, Result = true)]
+        [TestCase(10, 10U, 9, Result = true)]
+        [TestCase(10, 11U, 9, Result = false)]
+        public bool Add_ExistingScores_Adds(int existingScores, uint moves, int expectedIndex)
+        {
+            var bestScores = new BestScores();
+            for (uint i = 0; i < existingScores; i++)
+                bestScores.Add(new Score() { Name = i.ToString(), Moves = i + 1, Timer = new TimeSpan(0, 1, 2, 3) });
+            var score = new Score() { Name = "Dmitrik", Moves = moves, Timer = new TimeSpan(0, 0, 1, 30) };
+
+            bestScores.Add(score);
+
+            return bestScores.Scores[expectedIndex] == score;
+        }
+
         [Test]
         public void Save_Nothing_Saves()
         {
