@@ -17,5 +17,29 @@ namespace Puzzle15.DomainModel
             if (Timer > other.Timer) return 1;
             return 0;
         }
+
+        //
+        // Методы Equals здесь только для удобства
+        // модульного тестирования класса Score
+        //
+
+        public override bool Equals(object other)
+        {
+            if (other == null) return false;
+            if (object.ReferenceEquals(this, other)) return true;
+            if (GetType() != other.GetType()) return false;
+            return Equals(other as Score);
+        }
+
+        public bool Equals(Score other)
+        {
+            if (other == null) return false;
+            if (object.ReferenceEquals(this, other)) return true;
+            if (GetType() != other.GetType()) return false;
+            return
+                string.Compare(Name, other.Name, StringComparison.CurrentCulture) == 0 &&
+                Moves.Equals(other.Moves) &&
+                Timer.Equals(other.Timer);
+        }
     }
 }
