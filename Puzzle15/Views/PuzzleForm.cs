@@ -58,7 +58,7 @@ namespace Puzzle15.Views
 
         #endregion
 
-        private void buttonCell_Click(object sender, EventArgs e)
+        public void buttonCell_Click(object sender, EventArgs e)
         {
             if (Move != null)
                 Move(sender, EventArgs.Empty);
@@ -70,7 +70,7 @@ namespace Puzzle15.Views
                 Timer(this, EventArgs.Empty);
         }
 
-        private void NewGameHandler(object sender, EventArgs e)
+        public void NewGameHandler(object sender, EventArgs e)
         {
             if (NewGame != null)
                 NewGame(this, EventArgs.Empty);
