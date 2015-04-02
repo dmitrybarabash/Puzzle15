@@ -1,12 +1,11 @@
 ﻿using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Puzzle15.Common;
 using Puzzle15.Presenters;
 using Puzzle15.Tests.Stubs;
 using Puzzle15.Views;
 
-namespace Puzzle15.Tests
+namespace Puzzle15.Tests.Presenters
 {
     [TestFixture]
     class BestScoresPresenterTests
