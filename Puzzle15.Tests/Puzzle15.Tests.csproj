@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,11 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestScoresPresenterTests.cs" />
     <Compile Include="BestScoresStorageTests.cs" />
     <Compile Include="BestScoresTests.cs" />
+    <Compile Include="PuzzlePresenterTests.cs" />
     <Compile Include="ScoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuzzleTests.cs" />
+    <Compile Include="Stubs\StubBestScores.cs" />
+    <Compile Include="Stubs\StubBestScoresStorage.cs" />
+    <Compile Include="Stubs\StubPuzzle.cs" />
+    <Compile Include="Stubs\StubPuzzleDomainModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

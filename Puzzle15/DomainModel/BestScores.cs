@@ -11,6 +11,14 @@ namespace Puzzle15.DomainModel
         private List<Score> scores = new List<Score>();
         public List<Score> Scores { get { return scores; } }
 
+        public int Count { get { return Scores.Count; } }
+
+        public Score this[int index]
+        {
+            get { return Scores[index]; }
+            set { Scores[index] = value; }
+        }
+
         public bool CanBeAdded(Score score)
         {
             var tempScores = new List<Score>(Scores);

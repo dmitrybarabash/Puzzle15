@@ -1,8 +1,9 @@
 ﻿using System;
+using Puzzle15.DomainModel;
 
-namespace Puzzle15.DomainModel
+namespace Puzzle15.Tests.Stubs
 {
-    public class Puzzle : IPuzzle
+    public class StubPuzzle : IPuzzle
     {
         private enum MoveDirection
         {
@@ -15,7 +16,7 @@ namespace Puzzle15.DomainModel
         private const uint EmptyCellValueConst = 16;
         private const uint FieldSideSizeConst = 4;
 
-        public Puzzle()
+        public StubPuzzle()
         {
             Cells = new uint[FieldSideSize, FieldSideSize];
             Init();
@@ -48,11 +49,12 @@ namespace Puzzle15.DomainModel
 
         public void Start()
         {
-            var rnd = new Random();
-            for (int i = 0; i < 1000; i++)
-                Move((MoveDirection)rnd.Next(4));
-            MovesCounter = 0;
-            StartTime = DateTime.Now;
+            Cells[3, 2] = 16;
+            Cells[3, 3] = 15;
+            EmptyY = 3;
+            EmptyX = 2;
+            MovesCounter = 100;
+            StartTime = DateTime.Now - new TimeSpan(0, 0, 1, 30);
         }
 
         private void Move(MoveDirection moveDirection)

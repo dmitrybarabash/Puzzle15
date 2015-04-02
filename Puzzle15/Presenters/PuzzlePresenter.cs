@@ -8,13 +8,11 @@ namespace Puzzle15.Presenters
 {
     public class PuzzlePresenter : BasePresenter<IPuzzleView>
     {
-        private IPuzzle Model { get; set; }
-        private IBestScores ModelScores { get; set; }
+        private IPuzzleDomainModel Model { get; set; }
 
-        public PuzzlePresenter(IPuzzle puzzleModel, IBestScores bestBestScoresModel, IPuzzleView puzzleView)
+        public PuzzlePresenter(IPuzzleDomainModel domainModel, IPuzzleView puzzleView)
         {
-            Model = puzzleModel;
-            ModelScores = bestBestScoresModel;
+            Model = domainModel;
             View = puzzleView;
             View.NewGame += OnNewGame;
             View.Timer += OnTimer;
@@ -29,15 +27,15 @@ namespace Puzzle15.Presenters
                 var button = control as Button;
                 button.Enabled = active;
                 uint number = uint.Parse(button.Name.Remove(0, 10));
-                uint cellValue = Model.Cells[(number - 1) / 4, (number - 1) % 4];
-                button.Text = cellValue != Model.EmptyCellValue ? cellValue.ToString() : string.Empty;
-                button.Visible = cellValue != Model.EmptyCellValue;
+                uint cellValue = Model.Puzzle.Cells[(number - 1) / 4, (number - 1) % 4];
+                button.Text = cellValue.ToString();
+                button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
             }
         }
 
         private void OnNewGame(object sender, EventArgs e)
         {
-            Model.Start();
+            Model.Puzzle.Start();
             UpdateButtons(true);
             View.StartTimer();
             View.UpdateGameLabels(true);
@@ -45,7 +43,7 @@ namespace Puzzle15.Presenters
 
         private void OnTimer(object sender, EventArgs e)
         {
-            View.LabelTimer = (DateTime.Now - Model.StartTime).ToString(@"hh\:mm\:ss");
+            View.LabelTimer = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
         }
 
         private void OnMove(object sender, EventArgs e)
@@ -53,35 +51,38 @@ namespace Puzzle15.Presenters
             uint clickedNumber = uint.Parse((sender as Button).Name.Remove(0, 10));
             uint y = (clickedNumber - 1) / 4;
             uint x = (clickedNumber - 1) % 4;
-            if (Model.IsMoveable(y, x))
+            if (Model.Puzzle.IsMoveable(y, x))
             {
-                Model.Move(y, x);
+                Model.Puzzle.Move(y, x);
                 UpdateButtons(true);
-                View.LabelMoves = Model.MovesCounter.ToString();
+                View.LabelMoves = Model.Puzzle.MovesCounter.ToString();
 
-                if (Model.IsDone())
+                if (Model.Puzzle.IsDone())
                 {
                     View.StopTimer();
-                    var score = new Score() { Moves = Model.MovesCounter, Timer = DateTime.Now - Model.StartTime };
+                    var score = new Score()
+                    {
+                        Moves = Model.Puzzle.MovesCounter,
+                        Timer = DateTime.Now - Model.Puzzle.StartTime
+                    };
 
-                    MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.MovesCounter + " " +
-                        Utils.GetMovesWord(Model.MovesCounter) + " за " + View.LabelTimer + "!",
+                    MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.Puzzle.MovesCounter + " " +
+                        Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
                         "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    var bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
-                    bestScoresStorage.Load(ModelScores);
-                    if (ModelScores.CanBeAdded(score))
+                    Model.BestScoresStorage.Load(Model.BestScores);
+                    if (Model.BestScores.CanBeAdded(score))
                     {
                         var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
                         if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
                         {
                             score.Name = bestScoredPlayerNameForm.PlayerName;
-                            ModelScores.Add(score);
-                            bestScoresStorage.Save(ModelScores);
+                            Model.BestScores.Add(score);
+                            Model.BestScoresStorage.Save(Model.BestScores);
                         }
                     }
 
-                    Model.Init();
+                    Model.Puzzle.Init();
                     UpdateButtons(false);
                     View.StopTimer();
                     View.UpdateGameLabels(false);
@@ -90,7 +91,7 @@ namespace Puzzle15.Presenters
         }
         private void OnBestScores(object sender, EventArgs e)
         {
-            var bestScoresPresenter = new BestScoresPresenter(ModelScores, new BestScoresForm());
+            var bestScoresPresenter = new BestScoresPresenter(Model, new BestScoresForm());
             ((Form)bestScoresPresenter.View).ShowDialog();
         }
     }
