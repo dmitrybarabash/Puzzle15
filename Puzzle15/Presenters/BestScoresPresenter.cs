@@ -7,38 +7,39 @@ namespace Puzzle15.Presenters
 {
     public class BestScoresPresenter : BasePresenter<IBestScoresView>
     {
-        private IBestScores Model { get; set; }
+        private IPuzzleDomainModel Model { get; set; }
 
-        public BestScoresPresenter(IBestScores bestScoresModel, IBestScoresView bestScoresView)
+        public BestScoresPresenter(IPuzzleDomainModel domainModel, IBestScoresView bestScoresView)
         {
-            Model = bestScoresModel;
+            Model = domainModel;
             View = bestScoresView;
             UpdateView();
         }
 
         private void UpdateView()
         {
-            new BestScoresStorage(Utils.BestScoresStorageFileName).Load(Model);
+            //new BestScoresStorage(Utils.BestScoresStorageFileName).Load(Model);
+            Model.BestScoresStorage.Load(Model.BestScores);
 
             foreach (Label label in View.Labels)
             {
                 if (label.Name.StartsWith("nameLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 9)) - 1;
-                    if (index < Model.Scores.Count)
-                        label.Text = Model.Scores[index].Name;
+                    if (index < Model.BestScores.Scores.Count)
+                        label.Text = Model.BestScores.Scores[index].Name;
                 }
                 if (label.Name.StartsWith("movesLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                    if (index < Model.Scores.Count)
-                        label.Text = Model.Scores[index].Moves + " " + Utils.GetMovesWord(Model.Scores[index].Moves);
+                    if (index < Model.BestScores.Scores.Count)
+                        label.Text = Model.BestScores.Scores[index].Moves + " " + Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
                 }
                 if (label.Name.StartsWith("timerLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                    if (index < Model.Scores.Count)
-                        label.Text = Model.Scores[index].Timer.ToString(@"hh\:mm\:ss");
+                    if (index < Model.BestScores.Scores.Count)
+                        label.Text = Model.BestScores.Scores[index].Timer.ToString(@"hh\:mm\:ss");
                 }
             }
         }
