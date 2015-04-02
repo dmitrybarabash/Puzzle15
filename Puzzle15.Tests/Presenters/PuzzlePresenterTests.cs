@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using NUnit.Framework;
 using Puzzle15.Presenters;
 using Puzzle15.Tests.Stubs;
 using Puzzle15.Views;
 
-namespace Puzzle15.Tests
+namespace Puzzle15.Tests.Presenters
 {
-    [TestFixtureAttribute]
+    [TestFixture]
     class PuzzlePresenterTests
     {
         [Test]
