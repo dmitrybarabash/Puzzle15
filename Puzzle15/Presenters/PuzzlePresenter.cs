@@ -28,7 +28,7 @@ namespace Puzzle15.Presenters
                 button.Enabled = active;
                 uint number = uint.Parse(button.Name.Remove(0, 10));
                 uint cellValue = Model.Puzzle.Cells[(number - 1) / 4, (number - 1) % 4];
-                button.Text = cellValue != Model.Puzzle.EmptyCellValue ? cellValue.ToString() : string.Empty;
+                button.Text = cellValue.ToString();
                 button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
             }
         }
@@ -70,8 +70,6 @@ namespace Puzzle15.Presenters
                         Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
                         "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //var bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
-                    //bestScoresStorage.Load(ModelScores);
                     Model.BestScoresStorage.Load(Model.BestScores);
                     if (Model.BestScores.CanBeAdded(score))
                     {

@@ -5,6 +5,7 @@ namespace Puzzle15.DomainModel
     public interface IPuzzle
     {
         uint[,] Cells { get; set; }
+        uint this[uint indexY, uint indexX] { get; set; }
         uint EmptyX { get; set; }
         uint EmptyY { get; set; }
         uint EmptyCellValue { get; }

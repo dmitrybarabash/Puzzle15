@@ -6,12 +6,14 @@ namespace Puzzle15.DomainModel
 {
     public class BestScoresStorage : IBestScoresStorage
     {
-        private string FileName { get; set; }
-
         public BestScoresStorage(string fileName)
         {
             FileName = fileName;
         }
+
+        #region IBestScoresStorage Implementation
+
+        public string FileName { get; set; }
 
         public void Save(IBestScores bestScores)
         {
@@ -35,5 +37,7 @@ namespace Puzzle15.DomainModel
                 bestScores.Scores.AddRange(scores);
             }
         }
+
+        #endregion
     }
 }
