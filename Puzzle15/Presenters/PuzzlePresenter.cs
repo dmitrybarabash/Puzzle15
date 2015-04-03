@@ -27,7 +27,7 @@ namespace Puzzle15.Presenters
                 var button = control as Button;
                 button.Enabled = active;
                 uint number = uint.Parse(button.Name.Remove(0, 10));
-                uint cellValue = Model.Puzzle.Cells[(number - 1) / 4, (number - 1) % 4];
+                uint cellValue = Model.Puzzle[(number - 1) / 4, (number - 1) % 4];
                 button.Text = cellValue.ToString();
                 button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
             }

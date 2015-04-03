@@ -18,7 +18,6 @@ namespace Puzzle15.Presenters
 
         private void UpdateView()
         {
-            //new BestScoresStorage(Utils.BestScoresStorageFileName).Load(Model);
             Model.BestScoresStorage.Load(Model.BestScores);
 
             foreach (Label label in View.Labels)
@@ -26,20 +25,20 @@ namespace Puzzle15.Presenters
                 if (label.Name.StartsWith("nameLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 9)) - 1;
-                    if (index < Model.BestScores.Scores.Count)
-                        label.Text = Model.BestScores.Scores[index].Name;
+                    if (index < Model.BestScores.Count)
+                        label.Text = Model.BestScores[index].Name;
                 }
                 if (label.Name.StartsWith("movesLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                    if (index < Model.BestScores.Scores.Count)
-                        label.Text = Model.BestScores.Scores[index].Moves + " " + Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
+                    if (index < Model.BestScores.Count)
+                        label.Text = Model.BestScores[index].Moves + " " + Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
                 }
                 if (label.Name.StartsWith("timerLabel"))
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                    if (index < Model.BestScores.Scores.Count)
-                        label.Text = Model.BestScores.Scores[index].Timer.ToString(@"hh\:mm\:ss");
+                    if (index < Model.BestScores.Count)
+                        label.Text = Model.BestScores[index].Timer.ToString(@"hh\:mm\:ss");
                 }
             }
         }

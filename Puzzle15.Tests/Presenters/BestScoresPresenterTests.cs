@@ -29,9 +29,9 @@ namespace Puzzle15.Tests.Presenters
                 string moves = model.BestScores[i].Moves + " " + Utils.GetMovesWord(model.BestScores[i].Moves);
                 string timer = model.BestScores[i].Timer.ToString(@"hh\:mm\:ss");
 
-                var labelNames = presenter.View.Labels.Find("nameLabel" + (i + 1).ToString(), false);
-                var labelMoves = presenter.View.Labels.Find("movesLabel" + (i + 1).ToString(), false);
-                var labelTimers = presenter.View.Labels.Find("timerLabel" + (i + 1).ToString(), false);
+                var labelNames = presenter.View.Labels.Find("nameLabel" + (i + 1), false);
+                var labelMoves = presenter.View.Labels.Find("movesLabel" + (i + 1), false);
+                var labelTimers = presenter.View.Labels.Find("timerLabel" + (i + 1), false);
 
                 if (name != labelNames[0].Text || moves != labelMoves[0].Text || timer != labelTimers[0].Text)
                     Assert.Fail();
