@@ -54,14 +54,14 @@ namespace Puzzle15.Tests.DomainModel
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             // Вариант на случай отсутствия перегруженного метода Score.Equals
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            //if (bestScores.Scores.Count != loadBestScores.Scores.Count)
+            //if (bestScores.Count != loadBestScores.Count)
             //    Assert.Fail();
             //bool equals = true;
-            //for (int i = 0; i < bestScores.Scores.Count; i++)
+            //for (int i = 0; i < bestScores.Count; i++)
             //{
-            //    if (bestScores.Scores[i].Name != loadBestScores.Scores[i].Name ||
-            //        bestScores.Scores[i].Moves != loadBestScores.Scores[i].Moves ||
-            //        bestScores.Scores[i].Timer != loadBestScores.Scores[i].Timer)
+            //    if (bestScores[i].Name != loadBestScores[i].Name ||
+            //        bestScores[i].Moves != loadBestScores[i].Moves ||
+            //        bestScores[i].Timer != loadBestScores[i].Timer)
             //    {
             //        equals = false;
             //        break;

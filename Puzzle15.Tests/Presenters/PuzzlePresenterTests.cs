@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows.Forms;
 using NUnit.Framework;
 using Puzzle15.Presenters;
 using Puzzle15.Tests.Stubs;
@@ -68,10 +69,6 @@ namespace Puzzle15.Tests.Presenters
         //    for (int i = 1; i <= 16; i++)
         //        if (uint.Parse(view.Controls.Find("buttonCell" + i, true)[0].Text) != i)
         //            Assert.Fail();
-        //    if (uint.Parse(view.Controls.Find("buttonCell15", true)[0].Text) != 15U)
-        //        Assert.Fail();
-        //    if (uint.Parse(view.Controls.Find("buttonCell16", true)[0].Text) != 16U)
-        //        Assert.Fail();
         //    if (view.Controls.Find("buttonCell15", true)[0].Visible == false)
         //        Assert.Fail();
         //    if (view.Controls.Find("buttonCell16", true)[0].Visible)
