@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 using Puzzle15.Views;
@@ -18,7 +19,16 @@ namespace Puzzle15.Presenters
 
         private void UpdateView()
         {
-            Model.BestScoresStorage.Load(Model.BestScores);
+            try
+            {
+                Model.BestScoresStorage.Load(Model.BestScores);
+            }
+            catch
+            {
+                // Ничего не делаем, пользователю ничего не говорим.
+                // Не получилось прочитать файл с рекордами — ок, просто пропускаем эту часть.
+                return;
+            }
 
             foreach (Label label in View.Labels)
             {
