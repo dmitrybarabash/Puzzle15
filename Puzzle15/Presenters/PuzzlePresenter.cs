@@ -70,16 +70,24 @@ namespace Puzzle15.Presenters
                         Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
                         "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    Model.BestScoresStorage.Load(Model.BestScores);
-                    if (Model.BestScores.CanBeAdded(score))
+                    try
                     {
-                        var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
-                        if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
+                        Model.BestScoresStorage.Load(Model.BestScores);
+                        if (Model.BestScores.CanBeAdded(score))
                         {
-                            score.Name = bestScoredPlayerNameForm.PlayerName;
-                            Model.BestScores.Add(score);
-                            Model.BestScoresStorage.Save(Model.BestScores);
+                            var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
+                            if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
+                            {
+                                score.Name = bestScoredPlayerNameForm.PlayerName;
+                                Model.BestScores.Add(score);
+                                Model.BestScoresStorage.Save(Model.BestScores);
+                            }
                         }
+                    }
+                    catch
+                    {
+                        // Ничего не делаем, пользователю ничего не говорим.
+                        // Не получилось прочитать/записать файл с рекордами — ок, просто пропускаем эту часть.
                     }
 
                     Model.Puzzle.Init();
@@ -89,6 +97,7 @@ namespace Puzzle15.Presenters
                 }
             }
         }
+
         private void OnBestScores(object sender, EventArgs e)
         {
             var bestScoresPresenter = new BestScoresPresenter(Model, new BestScoresForm());
