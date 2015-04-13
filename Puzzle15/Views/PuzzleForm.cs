@@ -11,7 +11,7 @@ namespace Puzzle15.Views
             UpdateGameLabels(false);
         }
 
-        #region IPuzzleView Implementation
+        #region IPuzzleView implementation
 
         public string LabelTimer
         {

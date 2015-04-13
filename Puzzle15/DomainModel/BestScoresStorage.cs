@@ -11,7 +11,7 @@ namespace Puzzle15.DomainModel
             FileName = fileName;
         }
 
-        #region IBestScoresStorage Implementation
+        #region IBestScoresStorage implementation
 
         public string FileName { get; set; }
 

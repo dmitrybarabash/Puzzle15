@@ -22,7 +22,7 @@ namespace Puzzle15.Tests.Stubs
             Init();
         }
 
-        #region IPuzzle Implementation
+        #region IPuzzle implementation
 
         public uint[,] Cells { get; set; }
         public uint this[uint indexY, uint indexX]
