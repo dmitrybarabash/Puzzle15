@@ -26,7 +26,7 @@ namespace Puzzle15.Tests.Stubs
             };
         }
 
-        #region IBestScoresStorage Implementation
+        #region IBestScoresStorage implementation
 
         public string FileName { get; set; }
 

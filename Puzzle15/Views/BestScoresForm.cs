@@ -9,7 +9,7 @@ namespace Puzzle15.Views
             InitializeComponent();
         }
 
-        #region IBestScoresView Implementation
+        #region IBestScoresView implementation
 
         public TableLayoutControlCollection Labels
         {

@@ -6,7 +6,7 @@ namespace Puzzle15.DomainModel
     {
         public const int MaxCount = 10;
 
-        #region IBestScores Implementation
+        #region IBestScores implementation
 
         private List<Score> scores = new List<Score>();
         public List<Score> Scores { get { return scores; } }
