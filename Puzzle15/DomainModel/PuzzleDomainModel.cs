@@ -8,8 +8,12 @@ namespace Puzzle15.DomainModel
         private readonly IBestScores bestScores = new BestScores();
         private readonly IBestScoresStorage bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
 
+        #region IPuzzleDomainModel implementation
+
         public IPuzzle Puzzle { get { return puzzle; } }
         public IBestScores BestScores { get { return bestScores; } }
         public IBestScoresStorage BestScoresStorage { get { return bestScoresStorage; } }
+
+        #endregion
     }
 }

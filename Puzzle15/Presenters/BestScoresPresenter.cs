@@ -42,7 +42,9 @@ namespace Puzzle15.Presenters
                 {
                     int index = int.Parse(label.Name.Remove(0, 10)) - 1;
                     if (index < Model.BestScores.Count)
-                        label.Text = Model.BestScores[index].Moves + " " + Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
+                        label.Text =
+                            Model.BestScores[index].Moves + " " +
+                            Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
                 }
                 if (label.Name.StartsWith("timerLabel"))
                 {
