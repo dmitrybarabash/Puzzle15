@@ -56,7 +56,7 @@ namespace Puzzle15.Tests.DomainModel
         }
 
         [Test]
-        public void CompareTo_ObjectWithEqualMovesAndLessTimer_ReturnsMinus1()
+        public void CompareTo_ObjectWithEqualMovesAndLessTimer_Returns1()
         {
             var score = new Score() { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
             var anotherScore = new Score() { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 0, 45) };
