@@ -748,6 +748,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BestScoresForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Лучшие результаты";
             this.groupBox.ResumeLayout(false);
