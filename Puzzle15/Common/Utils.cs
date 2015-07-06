@@ -1,9 +1,20 @@
 ﻿namespace Puzzle15.Common
 {
+    /// <summary>
+    /// Статический класс с разными вспомогательными свойствами и методами.
+    /// </summary>
     public static class Utils
     {
+        /// <summary>
+        /// Имя файла с лучшими результатами.
+        /// </summary>
         public const string BestScoresStorageFileName = "Puzzle.dat";
 
+        /// <summary>
+        /// Возвращает правильный вариант слова "ход/ходов/ходы".
+        /// </summary>
+        /// <param name="moves">Количество ходов.</param>
+        /// <returns>Правильный вариант слова "ход/ходов/ходы".</returns>
         public static string GetMovesWord(uint moves)
         {
             uint afterLast = moves % 100 / 10;
