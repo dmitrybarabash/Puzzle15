@@ -24,8 +24,8 @@ namespace Puzzle15.Tests.DomainModel
             bestScores.Add(new Score() { Name = "Iiiiiiii", Moves = 159, Timer = new TimeSpan(0, 1, 19, 25) });
             bestScores.Add(new Score() { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
 
-            new BestScoresStorage(Utils.BestScoresStorageFileName).Save(bestScores);
-            bool actual = File.Exists(Utils.BestScoresStorageFileName);
+            new BestScoresStorage(Options.BestScoresStorageFileName).Save(bestScores);
+            bool actual = File.Exists(Options.BestScoresStorageFileName);
 
             Assert.That(actual, Is.True);
         }
@@ -45,7 +45,7 @@ namespace Puzzle15.Tests.DomainModel
             bestScores.Add(new Score() { Name = "Iiiiiiii", Moves = 159, Timer = new TimeSpan(0, 1, 19, 25) });
             bestScores.Add(new Score() { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
 
-            var bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
+            var bestScoresStorage = new BestScoresStorage(Options.BestScoresStorageFileName);
             bestScoresStorage.Save(bestScores);
 
             var loadBestScores = new BestScores();

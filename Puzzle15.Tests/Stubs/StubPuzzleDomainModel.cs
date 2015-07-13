@@ -7,7 +7,7 @@ namespace Puzzle15.Tests.Stubs
     {
         private readonly IPuzzle puzzle = new StubPuzzle();
         private readonly IBestScores bestScores = new StubBestScores();
-        private readonly IBestScoresStorage bestScoresStorage = new StubBestScoresStorage(Utils.BestScoresStorageFileName);
+        private readonly IBestScoresStorage bestScoresStorage = new StubBestScoresStorage(Options.BestScoresStorageFileName);
 
         #region IPuzzleDomainModel implementation
 
