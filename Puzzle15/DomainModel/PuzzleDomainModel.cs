@@ -6,7 +6,7 @@ namespace Puzzle15.DomainModel
     {
         private readonly IPuzzle puzzle = new Puzzle();
         private readonly IBestScores bestScores = new BestScores();
-        private readonly IBestScoresStorage bestScoresStorage = new BestScoresStorage(Utils.BestScoresStorageFileName);
+        private readonly IBestScoresStorage bestScoresStorage = new BestScoresStorage(Options.BestScoresStorageFileName);
 
         #region IPuzzleDomainModel implementation
 

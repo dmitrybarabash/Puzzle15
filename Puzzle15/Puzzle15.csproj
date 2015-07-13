@@ -50,6 +50,7 @@
     <Compile Include="Common\BasePresenter.cs" />
     <Compile Include="Common\IPresenter.cs" />
     <Compile Include="Common\IView.cs" />
+    <Compile Include="Common\Options.cs" />
     <Compile Include="DomainModel\PuzzleDomainModel.cs" />
     <Compile Include="DomainModel\IPuzzleDomainModel.cs" />
     <Compile Include="DomainModel\Score.cs" />
