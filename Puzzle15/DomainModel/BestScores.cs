@@ -8,7 +8,7 @@ namespace Puzzle15.DomainModel
 
         #region IBestScores implementation
 
-        private List<Score> scores = new List<Score>();
+        private readonly List<Score> scores = new List<Score>();
         public List<Score> Scores { get { return scores; } }
 
         public int Count { get { return Scores.Count; } }
