@@ -12,8 +12,10 @@ namespace Puzzle15.Presenters
 
         public BestScoresPresenter(IPuzzleDomainModel domainModel, IBestScoresView bestScoresView)
         {
+            // Сохраняем внедряемые ссылки на модель и представление
             Model = domainModel;
             View = bestScoresView;
+            // Синхронизируем представление с текущим состоянием модели
             UpdateView();
         }
 

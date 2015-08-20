@@ -12,8 +12,10 @@ namespace Puzzle15.Presenters
 
         public PuzzlePresenter(IPuzzleDomainModel domainModel, IPuzzleView puzzleView)
         {
+            // Сохраняем внедряемые ссылки на модель и представление
             Model = domainModel;
             View = puzzleView;
+            // Подписываемся на события представления
             View.NewGame += OnNewGame;
             View.Timer += OnTimer;
             View.Move += OnMove;
