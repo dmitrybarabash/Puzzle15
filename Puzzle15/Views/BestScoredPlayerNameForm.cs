@@ -14,7 +14,7 @@ namespace Puzzle15.Views
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            buttonOk.Enabled = PlayerName.Length > 0;
+            buttonOk.Enabled = PlayerName.Trim().Length > 0;
         }
     }
 }
