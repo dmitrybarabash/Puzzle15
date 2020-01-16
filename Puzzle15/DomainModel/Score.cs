@@ -41,5 +41,13 @@ namespace Puzzle15.DomainModel
                 Moves.Equals(other.Moves) &&
                 Timer.Equals(other.Timer);
         }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((int)Moves * 397) ^ (int)Timer.TotalSeconds;
+            }
+        }
     }
 }

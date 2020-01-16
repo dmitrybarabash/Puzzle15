@@ -57,13 +57,13 @@
             this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileBestScoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileSeparatorToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.fileExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameNewGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileBestScoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileSeparatorToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanelCellButtons.SuspendLayout();
             this.groupBoxTime.SuspendLayout();
             this.groupBoxMoves.SuspendLayout();
@@ -137,6 +137,7 @@
             this.buttonCell16.Name = "buttonCell16";
             this.buttonCell16.Size = new System.Drawing.Size(86, 81);
             this.buttonCell16.TabIndex = 15;
+            this.buttonCell16.TabStop = false;
             this.buttonCell16.UseVisualStyleBackColor = true;
             this.buttonCell16.Visible = false;
             this.buttonCell16.Click += new System.EventHandler(this.buttonCell_Click);
@@ -153,6 +154,7 @@
             this.buttonCell15.Name = "buttonCell15";
             this.buttonCell15.Size = new System.Drawing.Size(83, 81);
             this.buttonCell15.TabIndex = 14;
+            this.buttonCell15.TabStop = false;
             this.buttonCell15.Text = "15";
             this.buttonCell15.UseVisualStyleBackColor = true;
             this.buttonCell15.Click += new System.EventHandler(this.buttonCell_Click);
@@ -169,6 +171,7 @@
             this.buttonCell14.Name = "buttonCell14";
             this.buttonCell14.Size = new System.Drawing.Size(83, 81);
             this.buttonCell14.TabIndex = 13;
+            this.buttonCell14.TabStop = false;
             this.buttonCell14.Text = "14";
             this.buttonCell14.UseVisualStyleBackColor = true;
             this.buttonCell14.Click += new System.EventHandler(this.buttonCell_Click);
@@ -185,6 +188,7 @@
             this.buttonCell13.Name = "buttonCell13";
             this.buttonCell13.Size = new System.Drawing.Size(83, 81);
             this.buttonCell13.TabIndex = 12;
+            this.buttonCell13.TabStop = false;
             this.buttonCell13.Text = "13";
             this.buttonCell13.UseVisualStyleBackColor = true;
             this.buttonCell13.Click += new System.EventHandler(this.buttonCell_Click);
@@ -201,6 +205,7 @@
             this.buttonCell12.Name = "buttonCell12";
             this.buttonCell12.Size = new System.Drawing.Size(86, 79);
             this.buttonCell12.TabIndex = 11;
+            this.buttonCell12.TabStop = false;
             this.buttonCell12.Text = "12";
             this.buttonCell12.UseVisualStyleBackColor = true;
             this.buttonCell12.Click += new System.EventHandler(this.buttonCell_Click);
@@ -217,6 +222,7 @@
             this.buttonCell11.Name = "buttonCell11";
             this.buttonCell11.Size = new System.Drawing.Size(83, 79);
             this.buttonCell11.TabIndex = 10;
+            this.buttonCell11.TabStop = false;
             this.buttonCell11.Text = "11";
             this.buttonCell11.UseVisualStyleBackColor = true;
             this.buttonCell11.Click += new System.EventHandler(this.buttonCell_Click);
@@ -233,6 +239,7 @@
             this.buttonCell10.Name = "buttonCell10";
             this.buttonCell10.Size = new System.Drawing.Size(83, 79);
             this.buttonCell10.TabIndex = 9;
+            this.buttonCell10.TabStop = false;
             this.buttonCell10.Text = "10";
             this.buttonCell10.UseVisualStyleBackColor = true;
             this.buttonCell10.Click += new System.EventHandler(this.buttonCell_Click);
@@ -249,6 +256,7 @@
             this.buttonCell9.Name = "buttonCell9";
             this.buttonCell9.Size = new System.Drawing.Size(83, 79);
             this.buttonCell9.TabIndex = 8;
+            this.buttonCell9.TabStop = false;
             this.buttonCell9.Text = "9";
             this.buttonCell9.UseVisualStyleBackColor = true;
             this.buttonCell9.Click += new System.EventHandler(this.buttonCell_Click);
@@ -265,6 +273,7 @@
             this.buttonCell8.Name = "buttonCell8";
             this.buttonCell8.Size = new System.Drawing.Size(86, 79);
             this.buttonCell8.TabIndex = 7;
+            this.buttonCell8.TabStop = false;
             this.buttonCell8.Text = "8";
             this.buttonCell8.UseVisualStyleBackColor = true;
             this.buttonCell8.Click += new System.EventHandler(this.buttonCell_Click);
@@ -281,6 +290,7 @@
             this.buttonCell7.Name = "buttonCell7";
             this.buttonCell7.Size = new System.Drawing.Size(83, 79);
             this.buttonCell7.TabIndex = 6;
+            this.buttonCell7.TabStop = false;
             this.buttonCell7.Text = "7";
             this.buttonCell7.UseVisualStyleBackColor = true;
             this.buttonCell7.Click += new System.EventHandler(this.buttonCell_Click);
@@ -297,6 +307,7 @@
             this.buttonCell5.Name = "buttonCell5";
             this.buttonCell5.Size = new System.Drawing.Size(83, 79);
             this.buttonCell5.TabIndex = 4;
+            this.buttonCell5.TabStop = false;
             this.buttonCell5.Text = "5";
             this.buttonCell5.UseVisualStyleBackColor = true;
             this.buttonCell5.Click += new System.EventHandler(this.buttonCell_Click);
@@ -313,6 +324,7 @@
             this.buttonCell4.Name = "buttonCell4";
             this.buttonCell4.Size = new System.Drawing.Size(86, 79);
             this.buttonCell4.TabIndex = 3;
+            this.buttonCell4.TabStop = false;
             this.buttonCell4.Text = "4";
             this.buttonCell4.UseVisualStyleBackColor = true;
             this.buttonCell4.Click += new System.EventHandler(this.buttonCell_Click);
@@ -329,6 +341,7 @@
             this.buttonCell3.Name = "buttonCell3";
             this.buttonCell3.Size = new System.Drawing.Size(83, 79);
             this.buttonCell3.TabIndex = 2;
+            this.buttonCell3.TabStop = false;
             this.buttonCell3.Text = "3";
             this.buttonCell3.UseVisualStyleBackColor = true;
             this.buttonCell3.Click += new System.EventHandler(this.buttonCell_Click);
@@ -345,6 +358,7 @@
             this.buttonCell2.Name = "buttonCell2";
             this.buttonCell2.Size = new System.Drawing.Size(83, 79);
             this.buttonCell2.TabIndex = 1;
+            this.buttonCell2.TabStop = false;
             this.buttonCell2.Text = "2";
             this.buttonCell2.UseVisualStyleBackColor = true;
             this.buttonCell2.Click += new System.EventHandler(this.buttonCell_Click);
@@ -361,6 +375,7 @@
             this.buttonCell1.Name = "buttonCell1";
             this.buttonCell1.Size = new System.Drawing.Size(83, 79);
             this.buttonCell1.TabIndex = 0;
+            this.buttonCell1.TabStop = false;
             this.buttonCell1.Text = "1";
             this.buttonCell1.UseVisualStyleBackColor = true;
             this.buttonCell1.Click += new System.EventHandler(this.buttonCell_Click);
@@ -377,6 +392,7 @@
             this.buttonCell6.Name = "buttonCell6";
             this.buttonCell6.Size = new System.Drawing.Size(83, 79);
             this.buttonCell6.TabIndex = 5;
+            this.buttonCell6.TabStop = false;
             this.buttonCell6.Text = "6";
             this.buttonCell6.UseVisualStyleBackColor = true;
             this.buttonCell6.Click += new System.EventHandler(this.buttonCell_Click);
@@ -458,13 +474,25 @@
             this.fileSeparatorToolStripMenuItem,
             this.fileExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.fileToolStripMenuItem.Text = "&Файл";
+            // 
+            // fileBestScoresToolStripMenuItem
+            // 
+            this.fileBestScoresToolStripMenuItem.Name = "fileBestScoresToolStripMenuItem";
+            this.fileBestScoresToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.fileBestScoresToolStripMenuItem.Text = "&Лучшие результаты";
+            this.fileBestScoresToolStripMenuItem.Click += new System.EventHandler(this.BestScoresHandler);
+            // 
+            // fileSeparatorToolStripMenuItem
+            // 
+            this.fileSeparatorToolStripMenuItem.Name = "fileSeparatorToolStripMenuItem";
+            this.fileSeparatorToolStripMenuItem.Size = new System.Drawing.Size(225, 6);
             // 
             // fileExitToolStripMenuItem
             // 
             this.fileExitToolStripMenuItem.Name = "fileExitToolStripMenuItem";
-            this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.fileExitToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.fileExitToolStripMenuItem.Text = "&Выход";
             this.fileExitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
@@ -473,14 +501,14 @@
             this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameNewGameToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
             this.gameToolStripMenuItem.Text = "&Игра";
             // 
             // gameNewGameToolStripMenuItem
             // 
             this.gameNewGameToolStripMenuItem.Name = "gameNewGameToolStripMenuItem";
             this.gameNewGameToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.gameNewGameToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.gameNewGameToolStripMenuItem.Text = "&Новая игра";
             this.gameNewGameToolStripMenuItem.Click += new System.EventHandler(this.NewGameHandler);
             // 
@@ -489,27 +517,15 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpAboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(28, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(30, 24);
             this.helpToolStripMenuItem.Text = "&?";
             // 
             // helpAboutToolStripMenuItem
             // 
             this.helpAboutToolStripMenuItem.Name = "helpAboutToolStripMenuItem";
-            this.helpAboutToolStripMenuItem.Size = new System.Drawing.Size(182, 24);
+            this.helpAboutToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.helpAboutToolStripMenuItem.Text = "О &программе...";
             this.helpAboutToolStripMenuItem.Click += new System.EventHandler(this.AboutHandler);
-            // 
-            // fileBestScoresToolStripMenuItem
-            // 
-            this.fileBestScoresToolStripMenuItem.Name = "fileBestScoresToolStripMenuItem";
-            this.fileBestScoresToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
-            this.fileBestScoresToolStripMenuItem.Text = "&Лучшие результаты";
-            this.fileBestScoresToolStripMenuItem.Click += new System.EventHandler(this.BestScoresHandler);
-            // 
-            // fileSeparatorToolStripMenuItem
-            // 
-            this.fileSeparatorToolStripMenuItem.Name = "fileSeparatorToolStripMenuItem";
-            this.fileSeparatorToolStripMenuItem.Size = new System.Drawing.Size(211, 6);
             // 
             // PuzzleForm
             // 

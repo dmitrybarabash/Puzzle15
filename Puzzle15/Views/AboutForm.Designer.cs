@@ -67,10 +67,10 @@
             this.linkLabelWebsite.AutoSize = true;
             this.linkLabelWebsite.Location = new System.Drawing.Point(189, 118);
             this.linkLabelWebsite.Name = "linkLabelWebsite";
-            this.linkLabelWebsite.Size = new System.Drawing.Size(173, 17);
+            this.linkLabelWebsite.Size = new System.Drawing.Size(179, 17);
             this.linkLabelWebsite.TabIndex = 3;
             this.linkLabelWebsite.TabStop = true;
-            this.linkLabelWebsite.Text = "http://itstep.barabash.com";
+            this.linkLabelWebsite.Text = "https://itstep.barabash.com";
             this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
             // 
             // linkLabelEmail

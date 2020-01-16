@@ -29,7 +29,7 @@ namespace Puzzle15.Presenters
                 var button = control as Button;
                 button.Enabled = active;
                 uint number = uint.Parse(button.Name.Remove(0, 10));
-                uint cellValue = Model.Puzzle[(number - 1) / 4, (number - 1) % 4];
+                uint cellValue = Model.Puzzle[(number - 1) / Model.Puzzle.FieldSideSize, (number - 1) % Model.Puzzle.FieldSideSize];
                 button.Text = cellValue.ToString();
                 button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
             }
@@ -51,8 +51,8 @@ namespace Puzzle15.Presenters
         private void OnMove(object sender, EventArgs e)
         {
             uint clickedNumber = uint.Parse((sender as Button).Name.Remove(0, 10));
-            uint y = (clickedNumber - 1) / 4;
-            uint x = (clickedNumber - 1) % 4;
+            uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
+            uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
             if (Model.Puzzle.IsMoveable(y, x))
             {
                 Model.Puzzle.Move(y, x);
