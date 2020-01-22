@@ -24,17 +24,17 @@ namespace Puzzle15.Tests.DomainModel
             Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
         }
 
-        [TestCase(0U, 0U, Result = false)]
-        [TestCase(0U, 1U, Result = true)]
-        [TestCase(0U, 2U, Result = false)]
-        [TestCase(0U, 3U, Result = false)]
-        [TestCase(1U, 0U, Result = true)]
-        [TestCase(1U, 2U, Result = true)]
-        [TestCase(1U, 3U, Result = false)]
-        [TestCase(2U, 0U, Result = false)]
-        [TestCase(2U, 1U, Result = true)]
-        [TestCase(2U, 2U, Result = false)]
-        [TestCase(2U, 3U, Result = false)]
+        [TestCase(0U, 0U, ExpectedResult = false)]
+        [TestCase(0U, 1U, ExpectedResult = true)]
+        [TestCase(0U, 2U, ExpectedResult = false)]
+        [TestCase(0U, 3U, ExpectedResult = false)]
+        [TestCase(1U, 0U, ExpectedResult = true)]
+        [TestCase(1U, 2U, ExpectedResult = true)]
+        [TestCase(1U, 3U, ExpectedResult = false)]
+        [TestCase(2U, 0U, ExpectedResult = false)]
+        [TestCase(2U, 1U, ExpectedResult = true)]
+        [TestCase(2U, 2U, ExpectedResult = false)]
+        [TestCase(2U, 3U, ExpectedResult = false)]
         public bool Move_CellCoords_ReturnsResult(uint y, uint x)
         {
             var puzzle = new Puzzle();
@@ -50,18 +50,18 @@ namespace Puzzle15.Tests.DomainModel
             return puzzle[y, x] == puzzle.EmptyCellValue;
         }
 
-        [TestCase(0U, 0U, Result = false)]
-        [TestCase(0U, 1U, Result = true)]
-        [TestCase(0U, 2U, Result = false)]
-        [TestCase(0U, 3U, Result = false)]
-        [TestCase(1U, 0U, Result = true)]
-        [TestCase(1U, 1U, Result = false)]
-        [TestCase(1U, 2U, Result = true)]
-        [TestCase(1U, 3U, Result = false)]
-        [TestCase(2U, 0U, Result = false)]
-        [TestCase(2U, 1U, Result = true)]
-        [TestCase(2U, 2U, Result = false)]
-        [TestCase(2U, 3U, Result = false)]
+        [TestCase(0U, 0U, ExpectedResult = false)]
+        [TestCase(0U, 1U, ExpectedResult = true)]
+        [TestCase(0U, 2U, ExpectedResult = false)]
+        [TestCase(0U, 3U, ExpectedResult = false)]
+        [TestCase(1U, 0U, ExpectedResult = true)]
+        [TestCase(1U, 1U, ExpectedResult = false)]
+        [TestCase(1U, 2U, ExpectedResult = true)]
+        [TestCase(1U, 3U, ExpectedResult = false)]
+        [TestCase(2U, 0U, ExpectedResult = false)]
+        [TestCase(2U, 1U, ExpectedResult = true)]
+        [TestCase(2U, 2U, ExpectedResult = false)]
+        [TestCase(2U, 3U, ExpectedResult = false)]
         public bool IsMoveable_CellCoords_ReturnsResult(uint y, uint x)
         {
             var puzzle = new Puzzle();
@@ -75,10 +75,10 @@ namespace Puzzle15.Tests.DomainModel
             return puzzle.IsMoveable(y, x);
         }
 
-        [TestCase(0U, 0U, Result = false)]
-        [TestCase(0U, 1U, Result = true)]
-        [TestCase(1U, 0U, Result = true)]
-        [TestCase(1U, 1U, Result = false)]
+        [TestCase(0U, 0U, ExpectedResult = false)]
+        [TestCase(0U, 1U, ExpectedResult = true)]
+        [TestCase(1U, 0U, ExpectedResult = true)]
+        [TestCase(1U, 1U, ExpectedResult = false)]
         public bool IsMoveable_CellCoordsAroundCorner_ReturnsResult(uint y, uint x)
         {
             var puzzle = new Puzzle();
