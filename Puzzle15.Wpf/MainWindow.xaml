@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="/AppIcon.ico">
+        Title="Пятнашки" Height="380" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850" Icon="/AppIcon.ico">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="CellButtonsGrid" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="CellButton1" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">1</Button>
+            <Button x:Name="CellButton2" Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">2</Button>
+            <Button x:Name="CellButton3" Grid.Row="1" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">3</Button>
+            <Button x:Name="CellButton4" Grid.Row="1" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">4</Button>
+            <Button x:Name="CellButton5" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">5</Button>
+            <Button x:Name="CellButton6" Grid.Row="2" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">6</Button>
+            <Button x:Name="CellButton7" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">7</Button>
+            <Button x:Name="CellButton8" Grid.Row="2" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">8</Button>
+            <Button x:Name="CellButton9" Grid.Row="3" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">9</Button>
+            <Button x:Name="CellButton10" Grid.Row="3" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">10</Button>
+            <Button x:Name="CellButton11" Grid.Row="3" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">11</Button>
+            <Button x:Name="CellButton12" Grid.Row="3" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">12</Button>
+            <Button x:Name="CellButton13" Grid.Row="4" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">13</Button>
+            <Button x:Name="CellButton14" Grid.Row="4" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">14</Button>
+            <Button x:Name="CellButton15" Grid.Row="4" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">15</Button>
+            <Button x:Name="CellButton16" Grid.Row="4" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Visibility="Hidden">16</Button>
+        </Grid>
+        <Grid x:Name="RightPartGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Margin="5,10,15,10" Padding="15,5" Header="Время:">
+                <Label x:Name="TimerLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">00:00:00</Label>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
+                <Label x:Name="MovesLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">0</Label>
+            </GroupBox>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5">Новая игра</Button>
+            <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
+                <Button Margin="5,0,15,10" Padding="15,5">О программе...</Button>
+                <Button Margin="5,5,15,15" Padding="15,5">Выход</Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
