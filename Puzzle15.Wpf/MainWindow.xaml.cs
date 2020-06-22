@@ -24,5 +24,10 @@ namespace Puzzle15.Wpf
         {
             InitializeComponent();
         }
+
+        private void CellButton_Click(object sender, RoutedEventArgs e)
+        {
+            //
+        }
     }
 }

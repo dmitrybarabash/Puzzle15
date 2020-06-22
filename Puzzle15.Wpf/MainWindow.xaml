@@ -14,36 +14,36 @@
         <Grid x:Name="CellButtonsGrid" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition Height="10"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CellButton1" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">1</Button>
-            <Button x:Name="CellButton2" Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">2</Button>
-            <Button x:Name="CellButton3" Grid.Row="1" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">3</Button>
-            <Button x:Name="CellButton4" Grid.Row="1" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">4</Button>
-            <Button x:Name="CellButton5" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">5</Button>
-            <Button x:Name="CellButton6" Grid.Row="2" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">6</Button>
-            <Button x:Name="CellButton7" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">7</Button>
-            <Button x:Name="CellButton8" Grid.Row="2" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">8</Button>
-            <Button x:Name="CellButton9" Grid.Row="3" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">9</Button>
-            <Button x:Name="CellButton10" Grid.Row="3" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">10</Button>
-            <Button x:Name="CellButton11" Grid.Row="3" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">11</Button>
-            <Button x:Name="CellButton12" Grid.Row="3" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False">12</Button>
-            <Button x:Name="CellButton13" Grid.Row="4" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False">13</Button>
-            <Button x:Name="CellButton14" Grid.Row="4" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False">14</Button>
-            <Button x:Name="CellButton15" Grid.Row="4" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False">15</Button>
-            <Button x:Name="CellButton16" Grid.Row="4" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Visibility="Hidden">16</Button>
+            <Button x:Name="CellButton1" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">1</Button>
+            <Button x:Name="CellButton2" Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">2</Button>
+            <Button x:Name="CellButton3" Grid.Row="1" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">3</Button>
+            <Button x:Name="CellButton4" Grid.Row="1" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">4</Button>
+            <Button x:Name="CellButton5" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">5</Button>
+            <Button x:Name="CellButton6" Grid.Row="2" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">6</Button>
+            <Button x:Name="CellButton7" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">7</Button>
+            <Button x:Name="CellButton8" Grid.Row="2" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">8</Button>
+            <Button x:Name="CellButton9" Grid.Row="3" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">9</Button>
+            <Button x:Name="CellButton10" Grid.Row="3" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">10</Button>
+            <Button x:Name="CellButton11" Grid.Row="3" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">11</Button>
+            <Button x:Name="CellButton12" Grid.Row="3" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">12</Button>
+            <Button x:Name="CellButton13" Grid.Row="4" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">13</Button>
+            <Button x:Name="CellButton14" Grid.Row="4" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">14</Button>
+            <Button x:Name="CellButton15" Grid.Row="4" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">15</Button>
+            <Button x:Name="CellButton16" Grid.Row="4" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click" Visibility="Hidden">16</Button>
         </Grid>
         <Grid x:Name="RightPartGrid" Grid.Column="1">
             <Grid.RowDefinitions>
