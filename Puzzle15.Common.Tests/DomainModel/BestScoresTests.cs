@@ -12,18 +12,18 @@ namespace Puzzle15.Tests.DomainModel
         {
             // Best scores
             var bestScores = new BestScores();
-            bestScores.Add(new Score() { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 4, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 6, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 7, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 8, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 9, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 10, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 4, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 6, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 7, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 8, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 9, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 10, Timer = new TimeSpan(0, 0, 10, 25) });
             // New score
-            var score = new Score() { Name = "Dmitrik", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) };
+            var score = new Score { Name = "Dmitrik", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) };
 
             bool actual = bestScores.CanBeAdded(score);
 
@@ -35,18 +35,18 @@ namespace Puzzle15.Tests.DomainModel
         {
             // Best scores
             var bestScores = new BestScores();
-            bestScores.Add(new Score() { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 4, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 6, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 7, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 8, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 9, Timer = new TimeSpan(0, 0, 10, 25) });
-            bestScores.Add(new Score() { Name = "A", Moves = 10, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 2, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 3, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 4, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 6, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 7, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 8, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 9, Timer = new TimeSpan(0, 0, 10, 25) });
+            bestScores.Add(new Score { Name = "A", Moves = 10, Timer = new TimeSpan(0, 0, 10, 25) });
             // New score
-            var score = new Score() { Name = "Dmitrik", Moves = 11, Timer = new TimeSpan(0, 0, 10, 25) };
+            var score = new Score { Name = "Dmitrik", Moves = 11, Timer = new TimeSpan(0, 0, 10, 25) };
 
             bool actual = bestScores.CanBeAdded(score);
 
@@ -70,8 +70,8 @@ namespace Puzzle15.Tests.DomainModel
         {
             var bestScores = new BestScores();
             for (uint i = 0; i < existingScores; i++)
-                bestScores.Add(new Score() { Name = i.ToString(), Moves = i + 1, Timer = new TimeSpan(0, 1, 2, 3) });
-            var score = new Score() { Name = "Dmitrik", Moves = moves, Timer = new TimeSpan(0, 0, 1, 30) };
+                bestScores.Add(new Score { Name = i.ToString(), Moves = i + 1, Timer = new TimeSpan(0, 1, 2, 3) });
+            var score = new Score { Name = "Dmitrik", Moves = moves, Timer = new TimeSpan(0, 0, 1, 30) };
 
             bestScores.Add(score);
 

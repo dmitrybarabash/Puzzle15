@@ -10,9 +10,9 @@ namespace Puzzle15.DomainModel
 
         #region IPuzzleDomainModel implementation
 
-        public IPuzzle Puzzle { get => puzzle; }
-        public IBestScores BestScores { get => bestScores; }
-        public IBestScoresStorage BestScoresStorage { get => bestScoresStorage; }
+        public IPuzzle Puzzle => puzzle;
+        public IBestScores BestScores => bestScores;
+        public IBestScoresStorage BestScoresStorage => bestScoresStorage;
 
         #endregion
     }

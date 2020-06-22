@@ -11,10 +11,7 @@ namespace Puzzle15.Views
 
         #region IBestScoresView implementation
 
-        public TableLayoutControlCollection Labels
-        {
-            get => tableLayoutPanelLabels.Controls;
-        }
+        public TableLayoutControlCollection Labels => tableLayoutPanelLabels.Controls;
 
         #endregion
     }

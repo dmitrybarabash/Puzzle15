@@ -25,10 +25,7 @@ namespace Puzzle15.Views
             set => labelMoves.Text = value;
         }
 
-        public TableLayoutControlCollection Buttons
-        {
-            get => tableLayoutPanelCellButtons.Controls;
-        }
+        public TableLayoutControlCollection Buttons => tableLayoutPanelCellButtons.Controls;
 
         public event EventHandler NewGame;
 
