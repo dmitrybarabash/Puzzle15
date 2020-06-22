@@ -31,7 +31,7 @@ namespace Puzzle15.DomainModel
         }
         public uint EmptyX { get; set; }
         public uint EmptyY { get; set; }
-        public uint EmptyCellValue  => EmptyCellValueConst;
+        public uint EmptyCellValue => EmptyCellValueConst;
         public uint FieldSideSize => FieldSideSizeConst;
         public uint MovesCounter { get; private set; }
         public DateTime StartTime { get; private set; }
