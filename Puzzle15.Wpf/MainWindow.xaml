@@ -5,21 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Title="Пятнашки" Height="380" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
+        Title="Пятнашки" Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
         WindowStartupLocation="CenterScreen" Icon="/Resources/AppIcon.ico">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="CellButtonsGrid" Grid.Column="0">
+
+        <!-- Главное меню -->
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <MenuItem Header="_Файл" Margin="5,2,0,2">
+                <MenuItem Header="_Лучшие результаты" Click="BestScores_Click"/>
+                <Separator/>
+                <MenuItem Header="_Выход" InputGestureText="Alt+X" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Игра" Margin="5,2,0,2">
+                <MenuItem Header="_Новая игра" InputGestureText="Ctrl+N" Click="NewGame_Click"/>
+            </MenuItem>
+            <MenuItem Header="_?" Margin="5,2,0,2">
+                <MenuItem Header="О _программе..." Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Сетка с цифровыми кнопками -->
+        <Grid x:Name="CellButtonsGrid" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="10"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
@@ -29,6 +50,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
+
             <Button x:Name="CellButton1" Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">1</Button>
             <Button x:Name="CellButton2" Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">2</Button>
             <Button x:Name="CellButton3" Grid.Row="1" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">3</Button>
@@ -46,25 +68,41 @@
             <Button x:Name="CellButton15" Grid.Row="4" Grid.Column="3" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click">15</Button>
             <Button x:Name="CellButton16" Grid.Row="4" Grid.Column="4" FontWeight="Bold" Margin="5,5" IsEnabled="False" Click="CellButton_Click" Visibility="Hidden">16</Button>
         </Grid>
-        <Grid x:Name="RightPartGrid" Grid.Column="1">
+
+        <!-- Сетка с временем игры, количеством ходов и служебными кнопками -->
+        <Grid x:Name="RightPartGrid" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
             <GroupBox Grid.Row="0" Margin="5,10,15,10" Padding="15,5" Header="Время:">
                 <Label x:Name="TimerLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">00:00:00</Label>
             </GroupBox>
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="MovesLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">0</Label>
             </GroupBox>
-            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="ButtonNewGame_Click">Новая игра</Button>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="NewGame_Click">Новая игра</Button>
+
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
-                <Button Margin="5,0,15,10" Padding="15,5" Click="ButtonAbout_Click">О программе...</Button>
-                <Button Margin="5,5,15,15" Padding="15,5" Click="ButtonExit_Click">Выход</Button>
+                <Button Margin="5,0,15,10" Padding="15,5" Click="About_Click">О программе...</Button>
+                <Button Margin="5,5,15,15" Padding="15,5" Click="Exit_Click">Выход</Button>
             </StackPanel>
         </Grid>
     </Grid>
+
+    <!-- Контекстное меню -->
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="_Новая игра" InputGestureText="Ctrl+N" Click="NewGame_Click"/>
+            <MenuItem Header="_Лучшие результаты" Click="BestScores_Click"/>
+            <Separator/>
+            <MenuItem Header="О _программе..." Click="About_Click"/>
+            <Separator/>
+            <MenuItem Header="_Выход" InputGestureText="Alt+X" Click="Exit_Click"/>
+        </ContextMenu>
+    </Window.ContextMenu>
 </Window>
