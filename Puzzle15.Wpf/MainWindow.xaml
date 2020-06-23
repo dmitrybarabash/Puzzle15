@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Title="Пятнашки" Height="380" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850" Icon="/AppIcon.ico">
+        Title="Пятнашки" Height="380" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
+        WindowStartupLocation="CenterScreen" Icon="/AppIcon.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
