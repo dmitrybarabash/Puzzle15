@@ -17,11 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\Puzzle15.Common\Resources\AppIcon.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="AppIcon.ico">
+    <None Include="Resources\AppIcon.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
