@@ -8,6 +8,10 @@ namespace Puzzle15.Wpf
     /// </summary>
     public partial class App : Application
     {
+        //
+        // https://wpf.programmingpedia.net/en/tutorial/3948/creating-splash-screen-in-wpf
+        //
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -23,7 +27,7 @@ namespace Puzzle15.Wpf
             Task.Factory.StartNew(() =>
             {
                 // Делаем паузу
-                System.Threading.Thread.Sleep(3000);
+                System.Threading.Thread.Sleep(5000);
 
                 // Создаем настоящее главное окно типа MainWindow, делаем его главным окном приложения
                 // и показываем его пользователю. Поскольку мы сейчас вне основного UI-потока, то обращение

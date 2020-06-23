@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Puzzle15.Wpf
 {
@@ -20,6 +12,16 @@ namespace Puzzle15.Wpf
         public SplashScreenWindow()
         {
             InitializeComponent();
+
+            // Используем специальный DispatcherTimer для WPF
+            var opacityTimer = new DispatcherTimer();
+            opacityTimer.Tick += new EventHandler((sender, args) =>
+            {
+                if ((int)(Opacity += 0.005d) == 1)
+                    opacityTimer.Stop();
+            });
+            opacityTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            opacityTimer.Start();
         }
     }
 }

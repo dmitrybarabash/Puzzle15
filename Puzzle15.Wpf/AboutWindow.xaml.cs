@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace Puzzle15.Wpf
 {
@@ -20,6 +12,24 @@ namespace Puzzle15.Wpf
         public AboutWindow()
         {
             InitializeComponent();
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            // Открываем URL. Вместо простого Process.Start(url)
+            // используем workaround из-за вот этого бага в .NET Core:
+            // https://github.com/dotnet/corefx/issues/10361.
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
+            e.Handled = true;
+        }
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

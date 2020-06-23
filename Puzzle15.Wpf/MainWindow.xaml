@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
         Title="Пятнашки" Height="380" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
-        WindowStartupLocation="CenterScreen" Icon="/AppIcon.ico">
+        WindowStartupLocation="CenterScreen" Icon="/Resources/AppIcon.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -60,10 +60,10 @@
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="MovesLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">0</Label>
             </GroupBox>
-            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5">Новая игра</Button>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="ButtonNewGame_Click">Новая игра</Button>
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
-                <Button Margin="5,0,15,10" Padding="15,5">О программе...</Button>
-                <Button Margin="5,5,15,15" Padding="15,5">Выход</Button>
+                <Button Margin="5,0,15,10" Padding="15,5" Click="ButtonAbout_Click">О программе...</Button>
+                <Button Margin="5,5,15,15" Padding="15,5" Click="ButtonExit_Click">Выход</Button>
             </StackPanel>
         </Grid>
     </Grid>

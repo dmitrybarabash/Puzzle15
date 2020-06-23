@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Title="О программе" Height="450" Width="800">
+        Title="О программе"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/AppIcon.ico">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Margin="20,20,20,0" BorderBrush="Gainsboro" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Image Width="119" Height="120" Margin="0,0,20,0" Source="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Пятнашки 1.4" FontWeight="Bold" FontSize="27" Margin="0,0,40,10"/>
+                    <TextBlock Text="Copyright (c) 2015-2020, Дмитрий Барабаш" Margin="0,0,40,10"/>
+                    <TextBlock Margin="0,0,40,10">
+                        <Hyperlink NavigateUri="https://www.barabash.com" RequestNavigate="Hyperlink_RequestNavigate">https://www.barabash.com</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="0,0,40,0">
+                        <Hyperlink NavigateUri="mailto:dmitry@barabash.com" RequestNavigate="Hyperlink_RequestNavigate">dmitry@barabash.com</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Button Grid.Row="1" Content="OK" HorizontalAlignment="Center" Margin="15" Padding="40,5" Click="ButtonOk_Click"/>
     </Grid>
 </Window>
