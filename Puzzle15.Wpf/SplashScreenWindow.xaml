@@ -6,14 +6,12 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
         Width="300" Height="304"
+        AllowsTransparency="True"
         Opacity="0"
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False">
-    <!--<Window.Background>
-        <ImageBrush ImageSource="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
-    </Window.Background>-->
     <Image Width="300" Height="304" Source="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
 </Window>
