@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Width="300" Height="304"
         AllowsTransparency="True"
         Opacity="0"
-        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False">
-    <Image Width="300" Height="304" Source="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
+    <Image Width="250" Height="252" Source="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
 </Window>

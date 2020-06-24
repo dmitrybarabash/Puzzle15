@@ -85,11 +85,11 @@
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="MovesLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">0</Label>
             </GroupBox>
-            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="NewGame_Click">Новая игра</Button>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="NewGame_Click">_Новая игра</Button>
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
-                <Button Margin="5,0,15,10" Padding="15,5" Click="About_Click">О программе...</Button>
-                <Button Margin="5,5,15,15" Padding="15,5" Click="Exit_Click">Выход</Button>
+                <Button Margin="5,0,15,10" Padding="15,5" Click="About_Click">О _программе...</Button>
+                <Button Margin="5,5,15,15" Padding="15,5" Click="Exit_Click">_Выход</Button>
             </StackPanel>
         </Grid>
     </Grid>
