@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="Пятнашки" Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
         WindowStartupLocation="CenterScreen" Icon="/Resources/AppIcon.ico">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="local:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
+        <CommandBinding Command="local:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
+        <CommandBinding Command="local:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
+        <CommandBinding Command="local:PuzzleCommands.About" Executed="AboutCommand_Executed"/>
+    </Window.CommandBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,15 +28,15 @@
         <!-- Главное меню -->
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <MenuItem Header="_Файл" Margin="5,2,0,2">
-                <MenuItem Header="_Лучшие результаты" Click="BestScores_Click"/>
+                <MenuItem Command="local:PuzzleCommands.BestScores"/>
                 <Separator/>
-                <MenuItem Header="_Выход" InputGestureText="Alt+X" Click="Exit_Click"/>
+                <MenuItem Command="local:PuzzleCommands.Exit"/>
             </MenuItem>
             <MenuItem Header="_Игра" Margin="5,2,0,2">
-                <MenuItem Header="_Новая игра" InputGestureText="Ctrl+N" Click="NewGame_Click"/>
+                <MenuItem Command="local:PuzzleCommands.NewGame"/>
             </MenuItem>
             <MenuItem Header="_?" Margin="5,2,0,2">
-                <MenuItem Header="О _программе..." Click="About_Click"/>
+                <MenuItem Command="local:PuzzleCommands.About"/>
             </MenuItem>
         </Menu>
 
@@ -85,11 +93,11 @@
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="MovesLabel" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False">0</Label>
             </GroupBox>
-            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Click="NewGame_Click">_Новая игра</Button>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5" Command="local:PuzzleCommands.NewGame">_Новая игра</Button>
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
-                <Button Margin="5,0,15,10" Padding="15,5" Click="About_Click">О _программе...</Button>
-                <Button Margin="5,5,15,15" Padding="15,5" Click="Exit_Click">_Выход</Button>
+                <Button Margin="5,0,15,10" Padding="15,5" Command="local:PuzzleCommands.About">О _программе...</Button>
+                <Button Margin="5,5,15,15" Padding="15,5" Command="local:PuzzleCommands.Exit">_Выход</Button>
             </StackPanel>
         </Grid>
     </Grid>
@@ -97,12 +105,12 @@
     <!-- Контекстное меню -->
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="_Новая игра" InputGestureText="Ctrl+N" Click="NewGame_Click"/>
-            <MenuItem Header="_Лучшие результаты" Click="BestScores_Click"/>
+            <MenuItem Command="local:PuzzleCommands.NewGame"/>
+            <MenuItem Command="local:PuzzleCommands.BestScores"/>
             <Separator/>
-            <MenuItem Header="О _программе..." Click="About_Click"/>
+            <MenuItem Command="local:PuzzleCommands.About"/>
             <Separator/>
-            <MenuItem Header="_Выход" InputGestureText="Alt+X" Click="Exit_Click"/>
+            <MenuItem Command="local:PuzzleCommands.Exit"/>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

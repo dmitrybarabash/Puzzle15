@@ -17,24 +17,24 @@ namespace Puzzle15.Wpf
             //
         }
 
-        private void BestScores_Click(object sender, RoutedEventArgs e)
+        private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
         {
             //
         }
 
-        private void NewGame_Click(object sender, RoutedEventArgs e)
+        private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
         {
             //
         }
 
-        private void About_Click(object sender, RoutedEventArgs e)
+        private void AboutCommand_Executed(object sender, RoutedEventArgs e)
         {
             // Свойство Owner для модального диалога необходимо установить для того, чтобы диалог
             // действительно стал модальным относительно родительского окна и не был виден по Alt+Tab
             new AboutWindow { Owner = this }.ShowDialog();
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void ExitCommand_Executed(object sender, RoutedEventArgs e)
         {
             Close();
         }
