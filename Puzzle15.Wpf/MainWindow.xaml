@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf"
         mc:Ignorable="d"
-        Title="Пятнашки" Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
-        WindowStartupLocation="CenterScreen" Icon="/Resources/AppIcon.ico">
+        Title="Пятнашки"
+        Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
+        FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/AppIcon.ico">
+    <!-- Установка FocusManager.FocusedElement выше необходима для того, чтобы пункты контекстного меню были
+         сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
 
     <Window.CommandBindings>
         <CommandBinding Command="local:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
