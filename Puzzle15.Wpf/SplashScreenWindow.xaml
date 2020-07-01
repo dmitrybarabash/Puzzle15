@@ -12,5 +12,8 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False">
+    <!--
+        ВАЖНО: Для добавленных в проект картинок не забываем установить Build Action в Resource.
+    -->
     <Image Width="250" Height="252" Source="/Puzzle15.Wpf;component/Resources/LogoImage.jpg"/>
 </Window>
