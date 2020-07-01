@@ -11,14 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="AppIcon.ico" />
-    <None Remove="LogoImage.jpg" />
-    <None Remove="Resources\AppIcon.ico" />
-    <None Remove="Resources\LogoImage.jpg" />
+    <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
+    <None Remove="Resources\AppIcon.ico" />
+    <None Remove="Resources\LogoImage.jpg" />
   </ItemGroup>
 
   <ItemGroup>

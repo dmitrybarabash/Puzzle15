@@ -11,6 +11,9 @@
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         Icon="/Resources/AppIcon.ico">
+    <!--
+        ВАЖНО: Для добавленных в проект картинок не забываем установить Build Action в Resource.
+    -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
