@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Puzzle15.Wpf
+namespace Puzzle15.Wpf.Commands
 {
 	public static class PuzzleCommands
 	{

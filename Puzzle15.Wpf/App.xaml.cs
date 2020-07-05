@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using Puzzle15.Wpf.Views;
 
 namespace Puzzle15.Wpf
 {
