@@ -36,7 +36,7 @@ namespace Puzzle15.Wpf
 
         private void ExitCommand_Executed(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
     }
 }
