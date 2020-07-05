@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Puzzle15.Wpf
+namespace Puzzle15.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -36,7 +36,7 @@ namespace Puzzle15.Wpf
 
         private void ExitCommand_Executed(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
     }
 }
