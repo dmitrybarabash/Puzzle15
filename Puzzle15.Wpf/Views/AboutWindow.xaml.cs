@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Navigation;
 
-namespace Puzzle15.Wpf
+namespace Puzzle15.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for AboutWindow.xaml

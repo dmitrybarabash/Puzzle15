@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Puzzle15.Wpf
+namespace Puzzle15.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
