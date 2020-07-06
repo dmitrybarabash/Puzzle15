@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         xmlns:localcommmands="clr-namespace:Puzzle15.Wpf.Commands"
         mc:Ignorable="d"
+        Icon="/Resources/AppIcon.ico"
         Title="Пятнашки"
         Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
-        FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
         WindowStartupLocation="CenterScreen"
-        Icon="/Resources/AppIcon.ico">
+        FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}">
     <!-- Установка FocusManager.FocusedElement выше необходима для того, чтобы пункты контекстного меню были
          сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
 

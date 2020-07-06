@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         mc:Ignorable="d"
-        Title="Имя" Height="450" Width="800">
+        Icon="/Resources/AppIcon.ico"
+        Title="Имя"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
     </Grid>

@@ -11,5 +11,10 @@ namespace Puzzle15.Wpf.Views
         {
             InitializeComponent();
         }
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
