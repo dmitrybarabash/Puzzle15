@@ -9,9 +9,9 @@
         Opacity="0"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
+        ShowInTaskbar="False"
         WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
-        ShowInTaskbar="False">
+        WindowStartupLocation="CenterScreen">
     <!--
         ВАЖНО: Для добавленных в проект картинок не забываем установить Build Action в Resource.
     -->

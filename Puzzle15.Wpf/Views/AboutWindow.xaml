@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         mc:Ignorable="d"
+        Icon="/Resources/AppIcon.ico"
         Title="О программе"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
-        Icon="/Resources/AppIcon.ico">
+        WindowStartupLocation="CenterScreen">
     <!--
         ВАЖНО: Для добавленных в проект картинок не забываем установить Build Action в Resource.
     -->

@@ -19,7 +19,9 @@ namespace Puzzle15.Wpf.Views
 
         private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
         {
-            //
+            // Свойство Owner для модального диалога необходимо установить для того, чтобы диалог
+            // действительно стал модальным относительно родительского окна и не был виден по Alt+Tab
+            new BestScoresWindow { Owner = this }.ShowDialog();
         }
 
         private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
