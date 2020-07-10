@@ -99,11 +99,17 @@
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="movesLabel" Content="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
-            <Button Grid.Row="2" Content="_Новая игра" Margin="5,10,15,10" Padding="15,5" Command="localcommmands:PuzzleCommands.NewGame"/>
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
+                    Content="{x:Static localcommmands:PuzzleCommands.NewGame}"
+                    Command="localcommmands:PuzzleCommands.NewGame"/>
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
-                <Button Content="О _программе..." Margin="5,0,15,10" Padding="15,5" Command="localcommmands:PuzzleCommands.About"/>
-                <Button Content="_Выход" Margin="5,5,15,15" Padding="15,5" Command="localcommmands:PuzzleCommands.Exit"/>
+                <Button Margin="5,0,15,10" Padding="15,5"
+                        Content="{x:Static localcommmands:PuzzleCommands.About}"
+                        Command="localcommmands:PuzzleCommands.About"/>
+                <Button Margin="5,5,15,15" Padding="15,5"
+                        Content="{x:Static localcommmands:PuzzleCommands.Exit}"
+                        Command="localcommmands:PuzzleCommands.Exit"/>
             </StackPanel>
         </Grid>
     </Grid>
