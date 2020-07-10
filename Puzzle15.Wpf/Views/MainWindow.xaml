@@ -39,7 +39,12 @@
                 <MenuItem Command="localcommmands:PuzzleCommands.Exit"/>
             </MenuItem>
             <MenuItem Header="_Игра" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.NewGame"/>
+                <MenuItem Command="localcommmands:PuzzleCommands.NewGame">
+                    <MenuItem.Icon>
+                        <Image Source="/Puzzle15.Wpf;component/Images/LogoImage.jpg"
+                               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_?" Margin="5,2,0,2">
                 <MenuItem Command="localcommmands:PuzzleCommands.About"/>
@@ -117,7 +122,12 @@
     <!-- Контекстное меню -->
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="localcommmands:PuzzleCommands.NewGame"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.NewGame">
+                <MenuItem.Icon>
+                    <Image Source="/Puzzle15.Wpf;component/Images/LogoImage.jpg"
+                               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Command="localcommmands:PuzzleCommands.BestScores"/>
             <Separator/>
             <MenuItem Command="localcommmands:PuzzleCommands.About"/>
