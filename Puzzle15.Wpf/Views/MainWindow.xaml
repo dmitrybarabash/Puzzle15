@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         xmlns:localcommmands="clr-namespace:Puzzle15.Wpf.Commands"
         mc:Ignorable="d"
-        Icon="/Resources/AppIcon.ico"
+        Icon="/Images/AppIcon.ico"
         Title="Пятнашки"
         Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
         WindowStartupLocation="CenterScreen"

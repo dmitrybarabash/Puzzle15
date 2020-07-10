@@ -15,13 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\AppIcon.ico" />
-    <None Remove="Resources\LogoImage.jpg" />
+    <None Remove="Images\AppIcon.ico" />
+    <None Remove="Images\LogoImage.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\AppIcon.ico" />
-    <Resource Include="Resources\LogoImage.jpg" />
+    <Resource Include="Images\AppIcon.ico" />
+    <Resource Include="Images\LogoImage.jpg" />
   </ItemGroup>
 
 </Project>
