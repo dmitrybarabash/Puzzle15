@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         xmlns:localcommmands="clr-namespace:Puzzle15.Wpf.Commands"
         mc:Ignorable="d"
-        Icon="/Resources/AppIcon.ico"
+        Icon="/Images/AppIcon.ico"
         Title="Пятнашки"
         Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
         WindowStartupLocation="CenterScreen"
@@ -14,7 +14,14 @@
     <!-- Установка FocusManager.FocusedElement выше необходима для того, чтобы пункты контекстного меню были
          сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
 
+    <Window.Resources>
+        <!-- Картинка пунктов "New Game" главного и контекстного меню -->
+        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/LogoImage.jpg"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Window.Resources>
+
     <Window.CommandBindings>
+        <!-- Привязка команд к обработчикам, которые будут выполняться когда команда должна будет отработать -->
         <CommandBinding Command="localcommmands:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
         <CommandBinding Command="localcommmands:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
         <CommandBinding Command="localcommmands:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
@@ -39,7 +46,7 @@
                 <MenuItem Command="localcommmands:PuzzleCommands.Exit"/>
             </MenuItem>
             <MenuItem Header="_Игра" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.NewGame"/>
+                <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
             </MenuItem>
             <MenuItem Header="_?" Margin="5,2,0,2">
                 <MenuItem Command="localcommmands:PuzzleCommands.About"/>
@@ -117,7 +124,7 @@
     <!-- Контекстное меню -->
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="localcommmands:PuzzleCommands.NewGame"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
             <MenuItem Command="localcommmands:PuzzleCommands.BestScores"/>
             <Separator/>
             <MenuItem Command="localcommmands:PuzzleCommands.About"/>

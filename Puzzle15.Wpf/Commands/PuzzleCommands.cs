@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace Puzzle15.Wpf.Commands
 {
 	//
-	// Для своих команд ради переопределения метода ToString() делаем свой потомок RoutedUICommand
+	// Ради переопределения метода ToString() для собственных команд делаем свой потомок RoutedUICommand
 	//
 	public class PuzzleRoutedUICommand : RoutedUICommand
     {
@@ -25,16 +25,26 @@ namespace Puzzle15.Wpf.Commands
 	//
 	public static class PuzzleCommands
 	{
-		public static readonly RoutedUICommand BestScores = new PuzzleRoutedUICommand("_Лучшие результаты",
-			"BestScores", typeof(PuzzleCommands));
+		public static readonly RoutedUICommand BestScores = new PuzzleRoutedUICommand(
+			text: "_Лучшие результаты",
+			name: "BestScores",
+			ownerType: typeof(PuzzleCommands));
 
-		public static readonly RoutedUICommand Exit = new PuzzleRoutedUICommand("_Выход", "Exit",
-			typeof(PuzzleCommands), new InputGestureCollection { new KeyGesture(Key.X, ModifierKeys.Alt) });
+		public static readonly RoutedUICommand Exit = new PuzzleRoutedUICommand(
+			text: "_Выход",
+			name: "Exit",
+			ownerType: typeof(PuzzleCommands),
+			inputGestures: new InputGestureCollection { new KeyGesture(Key.X, ModifierKeys.Alt) });
 
-		public static readonly RoutedUICommand NewGame = new PuzzleRoutedUICommand("_Новая игра", "NewGame",
-			typeof(PuzzleCommands), new InputGestureCollection { new KeyGesture(Key.N, ModifierKeys.Control) });
+		public static readonly RoutedUICommand NewGame = new PuzzleRoutedUICommand(
+			text: "_Новая игра",
+			name: "NewGame",
+			ownerType: typeof(PuzzleCommands),
+			inputGestures: new InputGestureCollection { new KeyGesture(Key.N, ModifierKeys.Control) });
 
-		public static readonly RoutedUICommand About = new PuzzleRoutedUICommand("О _программе...", "About",
-			typeof(PuzzleCommands));
+		public static readonly RoutedUICommand About = new PuzzleRoutedUICommand(
+			text: "О _программе...",
+			name: "About",
+			ownerType: typeof(PuzzleCommands));
 	}
 }

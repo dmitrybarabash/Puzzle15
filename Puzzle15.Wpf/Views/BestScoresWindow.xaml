@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
         mc:Ignorable="d"
-        Icon="/Resources/AppIcon.ico"
+        Icon="/Images/AppIcon.ico"
         Title="Лучшие результаты"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
