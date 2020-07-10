@@ -15,11 +15,13 @@
          сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
 
     <Window.Resources>
+        <!-- Картинка пунктов "New Game" главного и контекстного меню -->
         <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/LogoImage.jpg"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Window.Resources>
 
     <Window.CommandBindings>
+        <!-- Привязка команд к обработчикам, которые будут выполняться когда команда должна будет отработать -->
         <CommandBinding Command="localcommmands:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
         <CommandBinding Command="localcommmands:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
         <CommandBinding Command="localcommmands:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
