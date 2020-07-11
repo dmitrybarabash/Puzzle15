@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 using Puzzle15.Views;
