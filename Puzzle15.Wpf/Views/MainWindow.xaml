@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Icon="/Images/AppIcon.ico"
         Title="Пятнашки"
-        Height="399" Width="525" MinHeight="350" MinWidth="450" MaxHeight="730" MaxWidth="850"
+        Height="399" Width="525" MinHeight="350" MinWidth="450"
         WindowStartupLocation="CenterScreen"
         FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}">
     <!-- Установка FocusManager.FocusedElement выше необходима для того, чтобы пункты контекстного меню были
@@ -107,11 +107,11 @@
             </Grid.RowDefinitions>
 
             <GroupBox Grid.Row="0" Margin="5,10,15,10" Padding="15,5" Header="Время:">
-                <Label x:Name="labelTimer" Content="00:00:00" FontSize="14"
+                <TextBlock x:Name="textBlockTimer" Text="00:00:00" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
-                <Label x:Name="labelMoves" Content="0" FontSize="14"
+                <TextBlock x:Name="textBlockMoves" Text="0" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
             <!-- Просто кнопка без иконки -->

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="/Images/AppIcon.ico"
         Title="Имя"
-        FocusManager.FocusedElement="{Binding ElementName=textBoxName}"
+        FocusManager.FocusedElement="{Binding ElementName=textBoxPlayerName}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"
