@@ -15,8 +15,14 @@
          сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
 
     <Window.Resources>
-        <!-- Картинка пунктов "New Game" главного и контекстного меню -->
-        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/LogoImage.jpg"
+        <!-- Картинки пунктов главного и контекстного меню, а также кнопок -->
+        <Image x:Key="BestScoresIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuBestScores.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="ExitIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuExit.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuNewGame.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="AboutIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuAbout.png"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Window.Resources>
 
@@ -41,15 +47,15 @@
         <!-- Главное меню -->
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <MenuItem Header="_Файл" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.BestScores"/>
+                <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
                 <Separator/>
-                <MenuItem Command="localcommmands:PuzzleCommands.Exit"/>
+                <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
             </MenuItem>
             <MenuItem Header="_Игра" Margin="5,2,0,2">
                 <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
             </MenuItem>
             <MenuItem Header="_?" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.About"/>
+                <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
             </MenuItem>
         </Menu>
 
@@ -109,6 +115,17 @@
             <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
                     Content="{x:Static localcommmands:PuzzleCommands.NewGame}"
                     Command="localcommmands:PuzzleCommands.NewGame"/>
+            <!--
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
+                    Command="localcommmands:PuzzleCommands.NewGame">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/MenuNewGame.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <Label Content="{x:Static localcommmands:PuzzleCommands.NewGame}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            -->
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
                 <Button Margin="5,0,15,10" Padding="15,5"
@@ -117,6 +134,26 @@
                 <Button Margin="5,5,15,15" Padding="15,5"
                         Content="{x:Static localcommmands:PuzzleCommands.Exit}"
                         Command="localcommmands:PuzzleCommands.Exit"/>
+                <!--
+                <Button Margin="5,0,15,10" Padding="15,5"
+                        Command="localcommmands:PuzzleCommands.About">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/MenuAbout.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Label Content="{x:Static localcommmands:PuzzleCommands.About}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="5,5,15,15" Padding="15,5"
+                        Command="localcommmands:PuzzleCommands.Exit">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/MenuExit.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Label Content="{x:Static localcommmands:PuzzleCommands.Exit}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                -->
             </StackPanel>
         </Grid>
     </Grid>
@@ -125,11 +162,11 @@
     <Window.ContextMenu>
         <ContextMenu>
             <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
-            <MenuItem Command="localcommmands:PuzzleCommands.BestScores"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
             <Separator/>
-            <MenuItem Command="localcommmands:PuzzleCommands.About"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
             <Separator/>
-            <MenuItem Command="localcommmands:PuzzleCommands.Exit"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>
