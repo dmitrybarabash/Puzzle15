@@ -14,7 +14,7 @@ namespace Puzzle15.Wpf.Views
 
         private void CellButton_Click(object sender, RoutedEventArgs e)
         {
-            //
+            // ...
         }
 
         private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
@@ -26,7 +26,11 @@ namespace Puzzle15.Wpf.Views
 
         private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
         {
-            //
+            // ...
+
+            var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = this };
+            if (bestScoredPlayerNameWindow.ShowDialog() == true)
+                Title = bestScoredPlayerNameWindow.PlayerName;
         }
 
         private void AboutCommand_Executed(object sender, RoutedEventArgs e)

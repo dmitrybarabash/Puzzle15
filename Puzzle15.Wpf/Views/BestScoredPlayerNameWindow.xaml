@@ -7,11 +7,38 @@
         mc:Ignorable="d"
         Icon="/Images/AppIcon.ico"
         Title="Имя"
+        FocusManager.FocusedElement="{Binding ElementName=textBoxName}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <GroupBox Grid.Row="0" Header="Имя:" Margin="20,15,20,0" BorderBrush="Gainsboro" BorderThickness="1">
+            <StackPanel Margin="10">
+                <TextBlock Text="Похоже, что ваш результат попал в десятку лучших. Это надо увековечить!"
+                           FontWeight="Bold" Width="320" Margin="0,0,0,10" TextAlignment="Center" TextWrapping="Wrap"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ваше имя:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox Name="textBoxName" Grid.Column="1" FontWeight="Bold" Padding="5,3" VerticalContentAlignment="Center" TextChanged="textBoxName_TextChanged" TabIndex="0"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,20,15" HorizontalAlignment="Right">
+            <Button Name="buttonOk" Content="OK" HorizontalAlignment="Center" Width="100" Margin="0,0,15,0" Padding="0,5"
+                    IsDefault="True" IsEnabled="False" Click="ButtonOk_Click" TabIndex="1"/>
+            <Button Content="Отмена" HorizontalAlignment="Center" Width="100" Padding="0,5"
+                    IsCancel="True" Click="ButtonCancel_Click" TabIndex="2"/>
+        </StackPanel>
     </Grid>
 </Window>
