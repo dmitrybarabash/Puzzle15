@@ -23,7 +23,8 @@ namespace Puzzle15.Wpf.Views
             Model = model;
 
             TimerGame = new DispatcherTimer();
-            TimerGame.Tick += (s, a) => labelTimer.Content = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+            TimerGame.Interval = TimeSpan.FromSeconds(1);
+            TimerGame.Tick += (s, a) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
         }
 
         private void CellButton_Click(object sender, RoutedEventArgs e)
@@ -35,7 +36,7 @@ namespace Puzzle15.Wpf.Views
             {
                 Model.Puzzle.Move(y, x);
                 UpdateButtons(true);
-                labelMoves.Content = Model.Puzzle.MovesCounter.ToString();
+                textBlockMoves.Text = Model.Puzzle.MovesCounter.ToString();
 
                 if (Model.Puzzle.IsDone())
                 {
@@ -47,7 +48,7 @@ namespace Puzzle15.Wpf.Views
                     };
 
                     MessageBox.Show(
-                        $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {labelTimer.Content}!",
+                        $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {textBlockTimer.Text}!",
                         "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     try
@@ -119,10 +120,10 @@ namespace Puzzle15.Wpf.Views
 
         private void UpdateGameLabels(bool active)
         {
-            labelTimer.Content = "00:00:00";
-            labelTimer.IsEnabled = active;
-            labelMoves.Content = "0";
-            labelMoves.IsEnabled = active;
+            textBlockTimer.Text = "00:00:00";
+            textBlockTimer.IsEnabled = active;
+            textBlockMoves.Text = "0";
+            textBlockMoves.IsEnabled = active;
         }
 
         private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
