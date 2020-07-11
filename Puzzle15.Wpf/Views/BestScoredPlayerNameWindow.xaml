@@ -29,16 +29,20 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Text="Ваше имя:" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <TextBox Name="textBoxName" Grid.Column="1" FontWeight="Bold" Padding="5,3" VerticalContentAlignment="Center" TextChanged="textBoxName_TextChanged" TabIndex="0"/>
+                    <TextBox Name="textBoxPlayerName" Grid.Column="1" TabIndex="0" FontWeight="Bold"
+                             Padding="5,3" VerticalContentAlignment="Center"
+                             TextChanged="textBoxPlayerName_TextChanged"/>
                 </Grid>
             </StackPanel>
         </GroupBox>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,20,15" HorizontalAlignment="Right">
-            <Button Name="buttonOk" Content="OK" HorizontalAlignment="Center" Width="100" Margin="0,0,15,0" Padding="0,5"
-                    IsDefault="True" IsEnabled="False" Click="ButtonOk_Click" TabIndex="1"/>
-            <Button Content="Отмена" HorizontalAlignment="Center" Width="100" Padding="0,5"
-                    IsCancel="True" Click="ButtonCancel_Click" TabIndex="2"/>
+            <Button Name="buttonOk" Content="OK" TabIndex="1"
+                    Width="100" Margin="0,0,15,0" Padding="0,5" HorizontalAlignment="Center"
+                    IsDefault="True" IsEnabled="False" Click="ButtonOk_Click"/>
+            <Button Content="Отмена" TabIndex="2"
+                    Width="100" Padding="0,5" HorizontalAlignment="Center"
+                    IsCancel="True" Click="ButtonCancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>

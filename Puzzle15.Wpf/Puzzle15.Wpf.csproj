@@ -15,13 +15,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\About.bmp" />
+    <None Remove="Images\About2.bmp" />
     <None Remove="Images\AppIcon.ico" />
+    <None Remove="Images\BestScores.bmp" />
+    <None Remove="Images\BestScores2.bmp" />
+    <None Remove="Images\BestScores2.png" />
+    <None Remove="Images\Exit.bmp" />
     <None Remove="Images\LogoImage.jpg" />
+    <None Remove="Images\MenuAbout.png" />
+    <None Remove="Images\MenuBestScores.png" />
+    <None Remove="Images\MenuExit.png" />
+    <None Remove="Images\MenuNewGame.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\MenuAbout.png" />
     <Resource Include="Images\AppIcon.ico" />
+    <Resource Include="Images\MenuBestScores.png" />
+    <Resource Include="Images\MenuExit.png" />
     <Resource Include="Images\LogoImage.jpg" />
+    <Resource Include="Images\MenuNewGame.png" />
   </ItemGroup>
 
 </Project>
