@@ -16,13 +16,13 @@
 
     <Window.Resources>
         <!-- Картинки пунктов главного и контекстного меню, а также кнопок -->
-        <Image x:Key="BestScoresIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuBestScores.png"
+        <Image x:Key="BestScoresIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuItemBestScores.png"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Image x:Key="ExitIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuExit.png"
+        <Image x:Key="ExitIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuItemExit.png"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuNewGame.png"
+        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuItemNewGame.png"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Image x:Key="AboutIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuAbout.png"
+        <Image x:Key="AboutIcon" x:Shared="False" Source="/Puzzle15.Wpf;component/Images/MenuItemAbout.png"
                Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Window.Resources>
 
@@ -112,15 +112,17 @@
             <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
                 <Label x:Name="movesLabel" Content="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
+            <!-- Просто кнопка без иконки -->
             <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
                     Content="{x:Static localcommmands:PuzzleCommands.NewGame}"
                     Command="localcommmands:PuzzleCommands.NewGame"/>
+            <!-- Кнопка с иконкой. Не понравилось визуально. Оставил для иллюстрации. -->
             <!--
             <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
                     Command="localcommmands:PuzzleCommands.NewGame">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Images/MenuNewGame.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <Image Source="/Images/MenuItemNewGame.png" Width="16" Height="16" Margin="0,0,5,0"/>
                         <Label Content="{x:Static localcommmands:PuzzleCommands.NewGame}"/>
                     </StackPanel>
                 </Button.Content>
@@ -128,18 +130,20 @@
             -->
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
+                <!-- Просто кнопки без иконок -->
                 <Button Margin="5,0,15,10" Padding="15,5"
                         Content="{x:Static localcommmands:PuzzleCommands.About}"
                         Command="localcommmands:PuzzleCommands.About"/>
                 <Button Margin="5,5,15,15" Padding="15,5"
                         Content="{x:Static localcommmands:PuzzleCommands.Exit}"
                         Command="localcommmands:PuzzleCommands.Exit"/>
+                <!-- Кнопки с иконками. Не понравилось визуально. Оставил для иллюстрации. -->
                 <!--
                 <Button Margin="5,0,15,10" Padding="15,5"
                         Command="localcommmands:PuzzleCommands.About">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/MenuAbout.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Image Source="/Images/MenuItemAbout.png" Width="16" Height="16" Margin="0,0,5,0"/>
                             <Label Content="{x:Static localcommmands:PuzzleCommands.About}"/>
                         </StackPanel>
                     </Button.Content>
@@ -148,7 +152,7 @@
                         Command="localcommmands:PuzzleCommands.Exit">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/MenuExit.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Image Source="/Images/MenuItemExit.png" Width="16" Height="16" Margin="0,0,5,0"/>
                             <Label Content="{x:Static localcommmands:PuzzleCommands.Exit}"/>
                         </StackPanel>
                     </Button.Content>
