@@ -7,7 +7,7 @@ namespace Puzzle15.Wpf.Views
     /// </summary>
     public partial class BestScoredPlayerNameWindow : Window
     {
-        public string PlayerName => textBoxName.Text.Trim();
+        public string PlayerName => textBoxPlayerName.Text.Trim();
 
         public BestScoredPlayerNameWindow()
         {
@@ -24,7 +24,7 @@ namespace Puzzle15.Wpf.Views
             DialogResult = false;
         }
 
-        private void textBoxName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void textBoxPlayerName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             buttonOk.IsEnabled = !string.IsNullOrEmpty(PlayerName);
         }
