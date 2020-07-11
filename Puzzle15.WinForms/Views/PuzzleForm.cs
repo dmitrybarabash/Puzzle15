@@ -62,12 +62,12 @@ namespace Puzzle15.Views
             //    Move(sender, EventArgs.Empty);
 
             // Безопасный вариант
-            EventHandler eventHandler = Move;
-            if (eventHandler != null)
-                eventHandler(sender, EventArgs.Empty);
+            //EventHandler eventHandler = Move;
+            //if (eventHandler != null)
+            //    eventHandler(sender, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
-            //Move?.Invoke(sender, EventArgs.Empty);
+            Move?.Invoke(sender, EventArgs.Empty);
         }
 
         private void timerGame_Tick(object sender, EventArgs e)
@@ -77,12 +77,12 @@ namespace Puzzle15.Views
             //    Timer(this, EventArgs.Empty);
 
             // Безопасный вариант
-            EventHandler eventHandler = Timer;
-            if (eventHandler != null)
-                eventHandler(this, EventArgs.Empty);
+            //EventHandler eventHandler = Timer;
+            //if (eventHandler != null)
+            //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
-            //Timer?.Invoke(this, EventArgs.Empty);
+            Timer?.Invoke(this, EventArgs.Empty);
         }
 
         public void NewGameHandler(object sender, EventArgs e)
@@ -92,12 +92,12 @@ namespace Puzzle15.Views
             //    Move(this, EventArgs.Empty);
 
             // Безопасный вариант
-            EventHandler eventHandler = NewGame;
-            if (eventHandler != null)
-                eventHandler(this, EventArgs.Empty);
+            //EventHandler eventHandler = NewGame;
+            //if (eventHandler != null)
+            //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
-            //NewGame?.Invoke(this, EventArgs.Empty);
+            NewGame?.Invoke(this, EventArgs.Empty);
         }
 
         private void BestScoresHandler(object sender, EventArgs e)
@@ -107,12 +107,12 @@ namespace Puzzle15.Views
             //    BestScores(this, EventArgs.Empty);
 
             // Безопасный вариант
-            EventHandler eventHandler = BestScores;
-            if (eventHandler != null)
-                eventHandler(this, EventArgs.Empty);
+            //EventHandler eventHandler = BestScores;
+            //if (eventHandler != null)
+            //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий вариант
-            //BestScores?.Invoke(this, EventArgs.Empty);
+            BestScores?.Invoke(this, EventArgs.Empty);
         }
 
         private void AboutHandler(object sender, EventArgs e)
