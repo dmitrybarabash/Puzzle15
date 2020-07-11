@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using Puzzle15.DomainModel;
 using Puzzle15.Wpf.Views;
 
 namespace Puzzle15.Wpf
@@ -10,9 +11,10 @@ namespace Puzzle15.Wpf
     public partial class App : Application
     {
         //
+        // Splash Screen Implementation
+        //
         // https://wpf.programmingpedia.net/en/tutorial/3948/creating-splash-screen-in-wpf
         //
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -39,7 +41,7 @@ namespace Puzzle15.Wpf
                 {
                     // Создаем настоящее главное окно типа MainWindow, делаем его
                     // главным окном приложения и показываем его пользователю
-                    var mainWindow = new MainWindow();
+                    var mainWindow = new MainWindow(new PuzzleDomainModel());
                     MainWindow = mainWindow;
                     mainWindow.Show();
 
