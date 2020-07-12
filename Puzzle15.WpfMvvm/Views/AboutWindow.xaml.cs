@@ -4,19 +4,14 @@ using System.Windows.Navigation;
 
 namespace Puzzle15.Wpf.Views
 {
-    /// <summary>
-    /// Interaction logic for AboutWindow.xaml
-    /// </summary>
     public partial class AboutWindow : Window
     {
-        public AboutWindow()
-        {
+        public AboutWindow() =>
             InitializeComponent();
-        }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            // Открываем URL. Вместо простого Process.Start(url)
+            // Открываем интернет-ссылку. Вместо простого Process.Start(e.Uri.AbsoluteUri)
             // используем workaround из-за вот этого бага в .NET Core:
             // https://github.com/dotnet/corefx/issues/10361.
             Process.Start(new ProcessStartInfo
@@ -27,9 +22,7 @@ namespace Puzzle15.Wpf.Views
             e.Handled = true;
         }
 
-        private void ButtonOk_Click(object sender, RoutedEventArgs e)
-        {
+        private void ButtonOk_Click(object sender, RoutedEventArgs e) =>
             Close();
-        }
     }
 }

@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace Puzzle15.Wpf.Views
 {
-    /// <summary>
-    /// Interaction logic for BestScoresWindow.xaml
-    /// </summary>
     public partial class BestScoresWindow : Window
     {
         private IPuzzleDomainModel Model { get; }
@@ -22,6 +19,9 @@ namespace Puzzle15.Wpf.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //
+            // Загружаем лучшие результаты из файла
+            //
             try
             {
                 Model.BestScoresStorage.Load(Model.BestScores);
@@ -34,13 +34,17 @@ namespace Puzzle15.Wpf.Views
             }
 
             //
+            // Раскладываем их по TextBlock'ам в сетке
+            //
+
+            //
             // Подробный вариант
             //
             // Получаем все дочерние контролы сетки в виде коллекции UIElementCollection
             //UIElementCollection elementCollection = gridBestScores.Children;
             // Преобразуем полученную коллекцию в List<FrameworkElement>
             //List<FrameworkElement> elementList = elementCollection.Cast<FrameworkElement>().ToList();
-            // Получаем из этого списка все TextBlock
+            // Выделяем из этого списка всех контролов только TextBlock'и
             //IEnumerable<TextBlock> textBlockList = elementList.OfType<TextBlock>();
 
             //
