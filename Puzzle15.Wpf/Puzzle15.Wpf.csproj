@@ -15,13 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Images\About.bmp" />
-    <None Remove="Images\About2.bmp" />
     <None Remove="Images\AppIcon.ico" />
-    <None Remove="Images\BestScores.bmp" />
-    <None Remove="Images\BestScores2.bmp" />
-    <None Remove="Images\BestScores2.png" />
-    <None Remove="Images\Exit.bmp" />
     <None Remove="Images\LogoImage.jpg" />
     <None Remove="Images\MenuItemAbout.png" />
     <None Remove="Images\MenuItemBestScores.png" />
@@ -30,11 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\MenuItemAbout.png" />
     <Resource Include="Images\AppIcon.ico" />
+    <Resource Include="Images\LogoImage.jpg" />
+    <Resource Include="Images\MenuItemAbout.png" />
     <Resource Include="Images\MenuItemBestScores.png" />
     <Resource Include="Images\MenuItemExit.png" />
-    <Resource Include="Images\LogoImage.jpg" />
     <Resource Include="Images\MenuItemNewGame.png" />
   </ItemGroup>
 

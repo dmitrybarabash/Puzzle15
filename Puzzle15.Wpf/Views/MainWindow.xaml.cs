@@ -13,14 +13,12 @@ namespace Puzzle15.Wpf.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IPuzzleDomainModel Model { get; }
+        private IPuzzleDomainModel Model => (Application.Current as App).Model;
         private DispatcherTimer TimerGame { get; }
 
-        public MainWindow(IPuzzleDomainModel model)
+        public MainWindow()
         {
             InitializeComponent();
-
-            Model = model;
 
             TimerGame = new DispatcherTimer();
             TimerGame.Interval = TimeSpan.FromSeconds(1);
@@ -81,7 +79,7 @@ namespace Puzzle15.Wpf.Views
             }
         }
 
-        private void UpdateButtons(bool active)
+        public void UpdateButtons(bool active)
         {
             //
             // Подробный вариант
@@ -108,17 +106,17 @@ namespace Puzzle15.Wpf.Views
             }
         }
 
-        private void StartTimer()
+        public void StartTimer()
         {
             TimerGame.Start();
         }
 
-        private void StopTimer()
+        public void StopTimer()
         {
             TimerGame.Stop();
         }
 
-        private void UpdateGameLabels(bool active)
+        public void UpdateGameLabels(bool active)
         {
             textBlockTimer.Text = "00:00:00";
             textBlockTimer.IsEnabled = active;
@@ -128,10 +126,10 @@ namespace Puzzle15.Wpf.Views
 
         private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
         {
-            Model.Puzzle.Start();
-            UpdateButtons(true);
-            StartTimer();
-            UpdateGameLabels(true);
+            //Model.Puzzle.Start();
+            //UpdateButtons(true);
+            //StartTimer();
+            //UpdateGameLabels(true);
         }
 
         private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)

@@ -11,9 +11,20 @@ namespace Puzzle15.Wpf
     public partial class App : Application
     {
         //
-        // Splash Screen Implementation
+        // Экземпляр модели нашего приложения
         //
-        // https://wpf.programmingpedia.net/en/tutorial/3948/creating-splash-screen-in-wpf
+        public IPuzzleDomainModel Model { get; private set; }
+
+        //
+        // Переопределенный метод OnStartup выполняет здесь две задачи:
+        //
+        //    1. Splash Screen.
+        //         Показывает splash screen, а только затем показывает главное окно приложения.
+        //         Про реализацию splash screen:
+        //         https://wpf.programmingpedia.net/en/tutorial/3948/creating-splash-screen-in-wpf
+        //
+        //    2. Является Application Root нашего приложения.
+        //         Создает экземпляр модели — единственный на всё приложение.
         //
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -39,9 +50,12 @@ namespace Puzzle15.Wpf
                 // BeginInvoke объекта Dispatcher, который как раз и дает доступ к UI-потоку.
                 Dispatcher.Invoke(() =>
                 {
+                    // Создаем модель
+                    Model = new PuzzleDomainModel();
+
                     // Создаем настоящее главное окно типа MainWindow, делаем его
                     // главным окном приложения и показываем его пользователю
-                    var mainWindow = new MainWindow(new PuzzleDomainModel());
+                    var mainWindow = new MainWindow();
                     MainWindow = mainWindow;
                     mainWindow.Show();
 

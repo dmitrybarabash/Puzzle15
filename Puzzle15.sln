@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.Common", "Puzzle15.Common\Puzzle15.Common.csproj", "{1DE500B9-4731-49C6-ABD9-C8E06B752116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common", "Puzzle15.Common\Puzzle15.Common.csproj", "{1DE500B9-4731-49C6-ABD9-C8E06B752116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.Common.Tests", "Puzzle15.Common.Tests\Puzzle15.Common.Tests.csproj", "{332E1183-FC06-4972-AF51-0BC8D5B98473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common.Tests", "Puzzle15.Common.Tests\Puzzle15.Common.Tests.csproj", "{332E1183-FC06-4972-AF51-0BC8D5B98473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.WinForms", "Puzzle15.WinForms\Puzzle15.WinForms.csproj", "{BF855D14-5906-43CC-924F-BC644CDA660C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms", "Puzzle15.WinForms\Puzzle15.WinForms.csproj", "{BF855D14-5906-43CC-924F-BC644CDA660C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.WinForms.Tests", "Puzzle15.WinForms.Tests\Puzzle15.WinForms.Tests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Tests", "Puzzle15.WinForms.Tests\Puzzle15.WinForms.Tests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.Wpf", "Puzzle15.Wpf\Puzzle15.Wpf.csproj", "{DA1874D7-547C-4706-B03E-418199F15893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf", "Puzzle15.Wpf\Puzzle15.Wpf.csproj", "{DA1874D7-547C-4706-B03E-418199F15893}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle15.Wpf.Tests", "Puzzle15.Wpf.Tests\Puzzle15.Wpf.Tests.csproj", "{B8201283-1355-4F8E-BD3A-705749716AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Tests", "Puzzle15.Wpf.Tests\Puzzle15.Wpf.Tests.csproj", "{B8201283-1355-4F8E-BD3A-705749716AA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7C4B93EC-3C2B-4E4E-8340-CD920D179F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C4B93EC-3C2B-4E4E-8340-CD920D179F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C4B93EC-3C2B-4E4E-8340-CD920D179F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C4B93EC-3C2B-4E4E-8340-CD920D179F37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1EFB77C8-12D2-4CED-AF79-D804644E14A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1EFB77C8-12D2-4CED-AF79-D804644E14A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1EFB77C8-12D2-4CED-AF79-D804644E14A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1EFB77C8-12D2-4CED-AF79-D804644E14A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1DE500B9-4731-49C6-ABD9-C8E06B752116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1DE500B9-4731-49C6-ABD9-C8E06B752116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DE500B9-4731-49C6-ABD9-C8E06B752116}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,5 +48,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {974A0B3A-ABAD-431C-B983-E5FB855CC849}
 	EndGlobalSection
 EndGlobal
