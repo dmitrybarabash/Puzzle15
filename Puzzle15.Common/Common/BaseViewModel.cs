@@ -5,43 +5,34 @@ namespace Puzzle15.Common
 {
     public abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
     {
-        //
-        //
-        //
-
+        // Защищенный конструктор
         protected BaseViewModel()
         {
         }
 
 
-        //
-        // Реализация INotifyPropertyChanged
-        // (механизм уведомления об изменении свойств модели)
-        //
+        #region INotifyPropertyChanged implementation (механизм уведомления об изменении свойств модели)
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public virtual void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        #endregion
 
 
-        //
-        // Полиморфная реализация IDisposable
-        //
+        #region IDisposable implementation (полиморфная реализация)
 
         // Собственно, реализация Dispose() из IDisposable
-        public void Dispose()
-        {
+        public void Dispose() =>
             OnDispose();
-        }
 
         // Реальную работу по освобождению ресурсов будем делать
         // здесь, переопределяя этот метод в потомках
         protected virtual void OnDispose()
         {
         }
+
+        #endregion
     }
 }
