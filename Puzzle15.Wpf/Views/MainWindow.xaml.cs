@@ -8,9 +8,6 @@ using Puzzle15.DomainModel;
 
 namespace Puzzle15.Wpf.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private IPuzzleDomainModel Model { get; }
@@ -56,8 +53,6 @@ namespace Puzzle15.Wpf.Views
                         Model.BestScoresStorage.Load(Model.BestScores);
                         if (Model.BestScores.CanBeAdded(score))
                         {
-                            // Свойство Owner для модального диалога необходимо установить для того, чтобы диалог
-                            // действительно стал модальным относительно родительского окна и не был виден по Alt+Tab
                             var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = this };
                             if (bestScoredPlayerNameWindow.ShowDialog() == true)
                             {
@@ -90,7 +85,7 @@ namespace Puzzle15.Wpf.Views
             //UIElementCollection elementCollection = cellButtonsGrid.Children;
             // Преобразуем полученную коллекцию в List<FrameworkElement>
             //List<FrameworkElement> elementList = elementCollection.Cast<FrameworkElement>().ToList();
-            // Получаем из этого списка все кнопки
+            // Выделяем из этого списка всех контролов только кнопки
             //IEnumerable<Button> buttonList = elementList.OfType<Button>();
 
             //
@@ -108,15 +103,11 @@ namespace Puzzle15.Wpf.Views
             }
         }
 
-        private void StartTimer()
-        {
+        private void StartTimer() =>
             TimerGame.Start();
-        }
 
-        private void StopTimer()
-        {
+        private void StopTimer() =>
             TimerGame.Stop();
-        }
 
         private void UpdateGameLabels(bool active)
         {
@@ -134,23 +125,13 @@ namespace Puzzle15.Wpf.Views
             UpdateGameLabels(true);
         }
 
-        private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
-        {
-            // Свойство Owner для модального диалога необходимо установить для того, чтобы диалог
-            // действительно стал модальным относительно родительского окна и не был виден по Alt+Tab
+        private void BestScoresCommand_Executed(object sender, RoutedEventArgs e) =>
             new BestScoresWindow(Model) { Owner = this }.ShowDialog();
-        }
 
-        private void AboutCommand_Executed(object sender, RoutedEventArgs e)
-        {
-            // Свойство Owner для модального диалога необходимо установить для того, чтобы диалог
-            // действительно стал модальным относительно родительского окна и не был виден по Alt+Tab
+        private void AboutCommand_Executed(object sender, RoutedEventArgs e) =>
             new AboutWindow { Owner = this }.ShowDialog();
-        }
 
-        private void ExitCommand_Executed(object sender, RoutedEventArgs e)
-        {
+        private void ExitCommand_Executed(object sender, RoutedEventArgs e) =>
             Application.Current.Shutdown();
-        }
     }
 }

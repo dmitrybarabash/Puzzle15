@@ -5,14 +5,9 @@ using Puzzle15.Wpf.Views;
 
 namespace Puzzle15.Wpf
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-        //
         // Экземпляр модели нашего приложения
-        //
         public IPuzzleDomainModel Model { get; private set; }
 
         //
