@@ -1,0 +1,87 @@
+﻿<Window x:Class="Puzzle15.Wpf.Views.BestScoresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle15.Wpf.Views"
+        mc:Ignorable="d"
+        Icon="/Images/AppIcon.ico"
+        Title="Лучшие результаты"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Лучшие результаты:" Margin="20,15,20,0" BorderBrush="Gainsboro" BorderThickness="1">
+            <Grid Name="gridBestScores" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="1." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="2." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="3." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="4." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="5." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="6." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="7." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="8." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="9." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="9" Grid.Column="0" Text="10." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="textBlockName1" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="textBlockName2" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="textBlockName3" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Name="textBlockName4" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Name="textBlockName5" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Name="textBlockName6" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="1" Name="textBlockName7" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="1" Name="textBlockName8" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="8" Grid.Column="1" Name="textBlockName9" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="9" Grid.Column="1" Name="textBlockName10" Text="&lt;best player&gt;" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Name="textBlockMoves1" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Name="textBlockMoves2" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Name="textBlockMoves3" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" Name="textBlockMoves4" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" Name="textBlockMoves5" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="2" Name="textBlockMoves6" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="2" Name="textBlockMoves7" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="2" Name="textBlockMoves8" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="8" Grid.Column="2" Name="textBlockMoves9" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="9" Grid.Column="2" Name="textBlockMoves10" Text="0 ходов" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Name="textBlockTimer1" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" Name="textBlockTimer2" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" Name="textBlockTimer3" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="3" Name="textBlockTimer4" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="3" Name="textBlockTimer5" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="3" Name="textBlockTimer6" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="6" Grid.Column="3" Name="textBlockTimer7" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="3" Name="textBlockTimer8" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="8" Grid.Column="3" Name="textBlockTimer9" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="9" Grid.Column="3" Name="textBlockTimer10" Text="00:00:00" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Row="1" Content="OK" HorizontalAlignment="Center" Margin="0,15" Padding="40,5" IsDefault="True" IsCancel="True"/>
+    </Grid>
+</Window>

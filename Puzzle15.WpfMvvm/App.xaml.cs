@@ -55,7 +55,7 @@ namespace Puzzle15.Wpf
 
                     // Создаем настоящее главное окно типа MainWindow, делаем его
                     // главным окном приложения и показываем его пользователю
-                    var mainWindow = new MainWindow(Model);
+                    var mainWindow = new MainWindow();
                     MainWindow = mainWindow;
                     mainWindow.Show();
 
