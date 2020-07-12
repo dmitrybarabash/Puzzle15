@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <RootNamespace>Puzzle15.Wpf</RootNamespace>
     <Authors>Dmitry G. Barabash</Authors>
     <Description>Puzzle 15 Game</Description>
     <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
