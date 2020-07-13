@@ -129,7 +129,7 @@ namespace Puzzle15.Wpf.Mvvm.Views
 
         private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
         {
-            new BestScoresWindow(Model) { Owner = this }.ShowDialog();
+            new BestScoresWindow() { Owner = this }.ShowDialog();
         }
 
         private void AboutCommand_Executed(object sender, RoutedEventArgs e)
