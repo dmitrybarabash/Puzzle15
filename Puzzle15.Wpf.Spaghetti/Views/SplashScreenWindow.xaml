@@ -1,0 +1,19 @@
+﻿<Window x:Class="Puzzle15.Wpf.Spaghetti.Views.SplashScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle15.Wpf.Spaghetti.Views"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        Opacity="0"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <!--
+        ВАЖНО: Для добавленных в проект картинок не забываем установить Build Action в Resource.
+    -->
+    <Image Width="250" Height="252" Source="/Puzzle15.Wpf.Spaghetti;component/Images/LogoImage.jpg"/>
+</Window>

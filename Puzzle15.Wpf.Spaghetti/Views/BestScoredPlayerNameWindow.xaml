@@ -1,0 +1,48 @@
+﻿<Window x:Class="Puzzle15.Wpf.Spaghetti.Views.BestScoredPlayerNameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle15.Wpf.Spaghetti.Views"
+        mc:Ignorable="d"
+        Icon="/Images/AppIcon.ico"
+        Title="Имя"
+        FocusManager.FocusedElement="{Binding ElementName=textBoxPlayerName}"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="Имя:" Margin="20,15,20,0" BorderBrush="Gainsboro" BorderThickness="1">
+            <StackPanel Margin="10">
+                <TextBlock Text="Похоже, что ваш результат попал в десятку лучших. Это надо увековечить!"
+                           FontWeight="Bold" Width="320" Margin="0,0,0,10" TextAlignment="Center" TextWrapping="Wrap"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Ваше имя:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBox Name="textBoxPlayerName" Grid.Column="1" TabIndex="0" FontWeight="Bold"
+                             Padding="5,3" VerticalContentAlignment="Center"
+                             TextChanged="textBoxPlayerName_TextChanged"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,15,20,15" HorizontalAlignment="Right">
+            <Button Name="buttonOk" Content="OK" TabIndex="1"
+                    Width="100" Margin="0,0,15,0" Padding="0,5" HorizontalAlignment="Center"
+                    IsDefault="True" IsEnabled="False" Click="ButtonOk_Click"/>
+            <Button Content="Отмена" TabIndex="2"
+                    Width="100" Padding="0,5" HorizontalAlignment="Center"
+                    IsCancel="True" Click="ButtonCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
