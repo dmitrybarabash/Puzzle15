@@ -2,8 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
+    <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
+    <Authors>Dmitry G. Barabash</Authors>
+    <Description>Puzzle 15 Game Tests</Description>
+    <Version>1.4.6</Version>
   </PropertyGroup>
 
   <ItemGroup>
