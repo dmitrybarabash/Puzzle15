@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Threading;
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 using Puzzle15.Wpf.Mvvm.Views;
@@ -11,30 +12,31 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private IPuzzleDomainModel Model => (Application.Current as App).Model;
+        private DispatcherTimer GameTimer { get; }
 
         public DelegateCommand NewGameCommand { get; }
         public DelegateCommand MoveCommand { get; }
 
         public MainWindowViewModel()
         {
+            GameTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+            GameTimer.Tick += (s, a) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+
             Model.Puzzle.Init();
-            GameMoves = "0";
+            IsGameStarted = false;
+            ResetGameLabels();
 
-            NewGameCommand = new DelegateCommand(win =>
+            NewGameCommand = new DelegateCommand(_ =>
             {
-                var mainWindow = win as Puzzle15.Wpf.Mvvm.Views.MainWindow;
-
                 Model.Puzzle.Start();
-                //GameMoves = Model.Puzzle.MovesCounter.ToString();
-
-                mainWindow.UpdateButtons(true);
-                mainWindow.StartTimer();
-                mainWindow.UpdateGameLabels(true);
+                IsGameStarted = true;
+                UpdateCellButtons();
+                ResetGameLabels();
+                StartGameTimer();
             });
 
             MoveCommand = new DelegateCommand(b =>
             {
-                var mainWindow = Application.Current.MainWindow as Puzzle15.Wpf.Mvvm.Views.MainWindow;
                 Button button = b as Button;
 
                 uint clickedNumber = uint.Parse(button.Name.Remove(0, 10));
@@ -43,13 +45,12 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                 if (Model.Puzzle.IsMoveable(y, x))
                 {
                     Model.Puzzle.Move(y, x);
-                    mainWindow.UpdateButtons(true);
-                    GameMoves = Model.Puzzle.MovesCounter.ToString();
-                    //BindingOperations.GetBindingExpression(button, Button.ContentProperty).UpdateTarget();
+                    UpdateCellButtons();
+                    GameMovesText = Model.Puzzle.MovesCounter.ToString();
 
                     if (Model.Puzzle.IsDone())
                     {
-                        mainWindow.StopTimer();
+                        StopGameTimer();
                         var score = new Score
                         {
                             Moves = Model.Puzzle.MovesCounter,
@@ -57,7 +58,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                         };
 
                         MessageBox.Show(
-                            $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimer}!",
+                            $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimerText}!",
                             "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                         try
@@ -65,6 +66,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                             Model.BestScoresStorage.Load(Model.BestScores);
                             if (Model.BestScores.CanBeAdded(score))
                             {
+                                var mainWindow = Application.Current.MainWindow as MainWindow;
                                 var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = mainWindow };
                                 if (bestScoredPlayerNameWindow.ShowDialog() == true)
                                 {
@@ -81,59 +83,133 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                         }
 
                         Model.Puzzle.Init();
-                        mainWindow.UpdateButtons(false);
-                        mainWindow.StopTimer();
-                        mainWindow.UpdateGameLabels(false);
+                        IsGameStarted = false;
+                        UpdateCellButtons();
+                        StopGameTimer();
+                        ResetGameLabels();
                     }
                 }
             });
         }
 
-        //
-        // Свойства привязки для кнопок самих Пятнашек
-        //
-        public string CellValue00 => Model.Puzzle[0, 0].ToString();
-        public string CellValue01 => Model.Puzzle[0, 1].ToString();
-        public string CellValue02 => Model.Puzzle[0, 2].ToString();
-        public string CellValue03 => Model.Puzzle[0, 3].ToString();
-        public string CellValue10 => Model.Puzzle[1, 0].ToString();
-        public string CellValue11 => Model.Puzzle[1, 1].ToString();
-        public string CellValue12 => Model.Puzzle[1, 2].ToString();
-        public string CellValue13 => Model.Puzzle[1, 3].ToString();
-        public string CellValue20 => Model.Puzzle[2, 0].ToString();
-        public string CellValue21 => Model.Puzzle[2, 1].ToString();
-        public string CellValue22 => Model.Puzzle[2, 2].ToString();
-        public string CellValue23 => Model.Puzzle[2, 3].ToString();
-        public string CellValue30 => Model.Puzzle[3, 0].ToString();
-        public string CellValue31 => Model.Puzzle[3, 1].ToString();
-        public string CellValue32 => Model.Puzzle[3, 2].ToString();
-        public string CellValue33 => Model.Puzzle[3, 3].ToString();
-
-
-        private string _gameTimer;
-        public string GameTimer
+        private void StartGameTimer()
         {
-            get => _gameTimer;
-            set
+            GameTimer.Start();
+        }
+
+        private void StopGameTimer()
+        {
+            GameTimer.Stop();
+        }
+
+        private void ResetGameLabels()
+        {
+            GameMovesText = "0";
+            GameTimerText = "00:00:00";
+        }
+
+        private void UpdateCellButtons()
+        {
+            for (int y = 0; y < Model.Puzzle.FieldSideSize; y++)
             {
-                if (_gameTimer != value)
+                for (int x = 0; x < Model.Puzzle.FieldSideSize; x++)
                 {
-                    _gameTimer = value;
-                    OnPropertyChanged("GameTimer");
+                    OnPropertyChanged($"CellButtonValue{y}{x}");
+                    OnPropertyChanged($"CellButtonVisibility{y}{x}");
                 }
             }
         }
 
-        private string _gameMoves;
-        public string GameMoves
+
+        //
+        // Свойства привязки содержимого для кнопок самих Пятнашек
+        //
+        public string CellButtonValue00 => Model.Puzzle[0, 0].ToString();
+        public string CellButtonValue01 => Model.Puzzle[0, 1].ToString();
+        public string CellButtonValue02 => Model.Puzzle[0, 2].ToString();
+        public string CellButtonValue03 => Model.Puzzle[0, 3].ToString();
+        public string CellButtonValue10 => Model.Puzzle[1, 0].ToString();
+        public string CellButtonValue11 => Model.Puzzle[1, 1].ToString();
+        public string CellButtonValue12 => Model.Puzzle[1, 2].ToString();
+        public string CellButtonValue13 => Model.Puzzle[1, 3].ToString();
+        public string CellButtonValue20 => Model.Puzzle[2, 0].ToString();
+        public string CellButtonValue21 => Model.Puzzle[2, 1].ToString();
+        public string CellButtonValue22 => Model.Puzzle[2, 2].ToString();
+        public string CellButtonValue23 => Model.Puzzle[2, 3].ToString();
+        public string CellButtonValue30 => Model.Puzzle[3, 0].ToString();
+        public string CellButtonValue31 => Model.Puzzle[3, 1].ToString();
+        public string CellButtonValue32 => Model.Puzzle[3, 2].ToString();
+        public string CellButtonValue33 => Model.Puzzle[3, 3].ToString();
+
+
+        //
+        // Свойства привязки видимости для кнопок самих Пятнашек
+        //
+        public Visibility CellButtonVisibility00 => Model.Puzzle[0, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility01 => Model.Puzzle[0, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility02 => Model.Puzzle[0, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility03 => Model.Puzzle[0, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility10 => Model.Puzzle[1, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility11 => Model.Puzzle[1, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility12 => Model.Puzzle[1, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility13 => Model.Puzzle[1, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility20 => Model.Puzzle[2, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility21 => Model.Puzzle[2, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility22 => Model.Puzzle[2, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility23 => Model.Puzzle[2, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility30 => Model.Puzzle[3, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility31 => Model.Puzzle[3, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility32 => Model.Puzzle[3, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+        public Visibility CellButtonVisibility33 => Model.Puzzle[3, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+
+
+        //
+        // Свойство привязки состояния IsEnabale для кнопок самих Пятнашек, текста таймера и счетчика ходов
+        //
+        private bool _isGameStarted = false;
+        public bool IsGameStarted
         {
-            get => _gameMoves;
+            get => _isGameStarted;
             set
             {
-                if (_gameMoves != value)
+                if (_isGameStarted != value)
                 {
-                    _gameMoves = value;
-                    OnPropertyChanged("GameMoves");
+                    _isGameStarted = value;
+                    OnPropertyChanged("IsGameStarted");
+                }
+            }
+        }
+
+        //
+        // Свойство привязки текста таймера
+        //
+        private string _gameTimerText;
+        public string GameTimerText
+        {
+            get => _gameTimerText;
+            set
+            {
+                if (_gameTimerText != value)
+                {
+                    _gameTimerText = value;
+                    OnPropertyChanged("GameTimerText");
+                }
+            }
+        }
+
+        //
+        // Свойство привязки счетчика количества ходов
+        //
+        private string _gameMovesText;
+        public string GameMovesText
+        {
+            get => _gameMovesText;
+            set
+            {
+                if (_gameMovesText != value)
+                {
+                    _gameMovesText = value;
+                    OnPropertyChanged("GameMovesText");
                 }
             }
         }
