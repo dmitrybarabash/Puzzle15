@@ -106,11 +106,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <GroupBox Grid.Row="0" Margin="5,10,15,10" Padding="15,5" Header="Время:">
+            <GroupBox Grid.Row="0" Header="Время:" Margin="5,10,15,10" Padding="15,5">
                 <TextBlock x:Name="textBlockTimer" Text="00:00:00" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
-            <GroupBox Grid.Row="1" Margin="5,10,15,10" Padding="15,5" Header="Ходы:">
+            <GroupBox Grid.Row="1" Header="Ходы:" Margin="5,10,15,10" Padding="15,5">
                 <TextBlock x:Name="textBlockMoves" Text="0" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>

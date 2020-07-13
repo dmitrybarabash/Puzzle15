@@ -8,8 +8,7 @@ namespace Puzzle15.DomainModel
 
         #region IBestScores implementation
 
-        private readonly List<Score> scores = new List<Score>();
-        public List<Score> Scores => scores;
+        public List<Score> Scores { get; } = new List<Score>();
 
         public int Count => Scores.Count;
 
@@ -21,8 +20,7 @@ namespace Puzzle15.DomainModel
 
         public bool CanBeAdded(Score score)
         {
-            var tempScores = new List<Score>(Scores);
-            tempScores.Add(score);
+            var tempScores = new List<Score>(Scores) { score };
             tempScores.Sort();
             return !(tempScores.Count == MaxCount + 1 && tempScores[MaxCount] == score);
         }
