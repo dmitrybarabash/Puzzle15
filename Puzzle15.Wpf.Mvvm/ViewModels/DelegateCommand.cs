@@ -9,38 +9,33 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         private readonly Predicate<object> _canExecute;
 
 
-        public DelegateCommand(
-                    Action<object> execute,
-                    Predicate<object> canExecute = null)
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            _execute = execute;
+            //if (execute == null)
+            //    throw new ArgumentNullException(nameof("execute"));
+            //_execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+
             _canExecute = canExecute;
         }
 
 
-        public void Execute(object parameter)
-        {
+        #region ICommand implementation
+
+        public void Execute(object parameter) =>
             _execute(parameter);
-        }
 
-
-        public bool CanExecute(object parameter)
-        {
-            //return _canExecute == null ? true : _canExecute(parameter);
-            return _canExecute == null || _canExecute(parameter);
-        }
-
-        //public event EventHandler CanExecuteChanged
-        //{
-        //    add => CommandManager.RequerySuggested += value;
-        //    remove => CommandManager.RequerySuggested -= value;
-        //}
+        public bool CanExecute(object parameter) =>
+            //_canExecute == null ? true : _canExecute(parameter);
+            //_canExecute == null || _canExecute(parameter);
+            //_canExecute != null ? _canExecute.Invoke(parameter) : true;
+            _canExecute?.Invoke(parameter) ?? true;
 
         public event EventHandler CanExecuteChanged;
 
-        public void RaiseCanExecuteChanged()
-        {
+        #endregion
+
+        public void RaiseCanExecuteChanged() =>
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
     }
 }
