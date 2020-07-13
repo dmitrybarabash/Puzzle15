@@ -65,6 +65,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         public string BestScoreMoves10 => GetBestScoreMoves(10);
 
 
+        //
         // Затраченное время
         //
 

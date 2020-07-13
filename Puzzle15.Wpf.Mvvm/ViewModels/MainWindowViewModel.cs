@@ -52,15 +52,11 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             GameTimerText = "00:00:00";
         }
 
-        private void StartGameTimer()
-        {
+        private void StartGameTimer() =>
             GameTimer.Start();
-        }
 
-        private void StopGameTimer()
-        {
+        private void StopGameTimer() =>
             GameTimer.Stop();
-        }
 
         #endregion
 
@@ -91,22 +87,26 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         //
         // Свойства привязки видимости для кнопок самих Пятнашек
         //
-        public Visibility CellButtonVisibility00 => Model.Puzzle[0, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility01 => Model.Puzzle[0, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility02 => Model.Puzzle[0, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility03 => Model.Puzzle[0, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility10 => Model.Puzzle[1, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility11 => Model.Puzzle[1, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility12 => Model.Puzzle[1, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility13 => Model.Puzzle[1, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility20 => Model.Puzzle[2, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility21 => Model.Puzzle[2, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility22 => Model.Puzzle[2, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility23 => Model.Puzzle[2, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility30 => Model.Puzzle[3, 0] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility31 => Model.Puzzle[3, 1] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility32 => Model.Puzzle[3, 2] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-        public Visibility CellButtonVisibility33 => Model.Puzzle[3, 3] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+
+        private Visibility GetCellButtonVisibility(uint y, uint x) =>
+            Model.Puzzle[y, x] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+
+        public Visibility CellButtonVisibility00 => GetCellButtonVisibility(0, 0);
+        public Visibility CellButtonVisibility01 => GetCellButtonVisibility(0, 1);
+        public Visibility CellButtonVisibility02 => GetCellButtonVisibility(0, 2);
+        public Visibility CellButtonVisibility03 => GetCellButtonVisibility(0, 3);
+        public Visibility CellButtonVisibility10 => GetCellButtonVisibility(1, 0);
+        public Visibility CellButtonVisibility11 => GetCellButtonVisibility(1, 1);
+        public Visibility CellButtonVisibility12 => GetCellButtonVisibility(1, 2);
+        public Visibility CellButtonVisibility13 => GetCellButtonVisibility(1, 3);
+        public Visibility CellButtonVisibility20 => GetCellButtonVisibility(2, 0);
+        public Visibility CellButtonVisibility21 => GetCellButtonVisibility(2, 1);
+        public Visibility CellButtonVisibility22 => GetCellButtonVisibility(2, 2);
+        public Visibility CellButtonVisibility23 => GetCellButtonVisibility(2, 3);
+        public Visibility CellButtonVisibility30 => GetCellButtonVisibility(3, 0);
+        public Visibility CellButtonVisibility31 => GetCellButtonVisibility(3, 1);
+        public Visibility CellButtonVisibility32 => GetCellButtonVisibility(3, 2);
+        public Visibility CellButtonVisibility33 => GetCellButtonVisibility(3, 3);
 
 
         //
