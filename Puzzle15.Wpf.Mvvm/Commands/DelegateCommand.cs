@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Puzzle15.Wpf.Mvvm.ViewModels
+namespace Puzzle15.Wpf.Mvvm.Commands
 {
     public class DelegateCommand : ICommand
     {

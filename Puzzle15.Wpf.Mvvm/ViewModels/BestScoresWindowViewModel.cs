@@ -5,6 +5,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
 {
     public class BestScoresWindowViewModel : BaseViewModel
     {
+        // Берем экземпляр модели из класса приложения App
         private IPuzzleDomainModel Model => (System.Windows.Application.Current as App).Model;
 
         public BestScoresWindowViewModel()
@@ -17,10 +18,16 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             catch
             {
                 // Ничего не делаем, пользователю ничего не говорим.
-                // Не получилось прочитать файл с рекордами — ок, просто пропускаем эту часть.
+                // Не получилось прочитать файл с рекордами — окей, просто пропускаем эту часть.
                 return;
             }
         }
+
+        #region Binding properties (свойства привязки)
+
+        //
+        // Имена
+        //
 
         private string GetBestScoreName(int orderNumber) =>
             Model.BestScores.Count >= orderNumber ? Model.BestScores[orderNumber - 1].Name : "<best player>";
@@ -35,6 +42,11 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         public string BestScoreName8 => GetBestScoreName(8);
         public string BestScoreName9 => GetBestScoreName(9);
         public string BestScoreName10 => GetBestScoreName(10);
+
+
+        //
+        // Количество ходов
+        //
 
         private string GetBestScoreMoves(int orderNumber) =>
             Model.BestScores.Count >= orderNumber
@@ -52,6 +64,10 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         public string BestScoreMoves9 => GetBestScoreMoves(9);
         public string BestScoreMoves10 => GetBestScoreMoves(10);
 
+
+        // Затраченное время
+        //
+
         private string GetBestScoreTimer(int orderNumber) =>
             Model.BestScores.Count >= orderNumber ? Model.BestScores[orderNumber - 1].Timer.ToString(@"hh\:mm\:ss") : "00:00:00";
 
@@ -65,5 +81,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         public string BestScoreTimer8 => GetBestScoreTimer(8);
         public string BestScoreTimer9 => GetBestScoreTimer(9);
         public string BestScoreTimer10 => GetBestScoreTimer(10);
+
+        #endregion
     }
 }

@@ -1,112 +1,38 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
+using Puzzle15.Wpf.Mvvm.Commands;
 using Puzzle15.Wpf.Mvvm.Views;
 
 namespace Puzzle15.Wpf.Mvvm.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        // Берем экземпляр модели из класса приложения App
         private IPuzzleDomainModel Model => (Application.Current as App).Model;
+
+        // Игровой таймер
         private DispatcherTimer GameTimer { get; }
 
-        public DelegateCommand NewGameCommand { get; }
-        public DelegateCommand MoveCommand { get; }
 
         public MainWindowViewModel()
         {
+            // Создаем и настраиваем игровой таймер
             GameTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
             GameTimer.Tick += (s, a) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
 
+            // Устанавливаем дефолтное содержимое и состояние контролов главного окна
             Model.Puzzle.Init();
             IsGameStarted = false;
             ResetGameLabels();
-
-            NewGameCommand = new DelegateCommand(_ =>
-            {
-                Model.Puzzle.Start();
-                IsGameStarted = true;
-                UpdateCellButtons();
-                ResetGameLabels();
-                StartGameTimer();
-            });
-
-            MoveCommand = new DelegateCommand(b =>
-            {
-                Button button = b as Button;
-
-                uint clickedNumber = uint.Parse(button.Name.Remove(0, 10));
-                uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
-                uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
-                if (Model.Puzzle.IsMoveable(y, x))
-                {
-                    Model.Puzzle.Move(y, x);
-                    UpdateCellButtons();
-                    GameMovesText = Model.Puzzle.MovesCounter.ToString();
-
-                    if (Model.Puzzle.IsDone())
-                    {
-                        StopGameTimer();
-                        var score = new Score
-                        {
-                            Moves = Model.Puzzle.MovesCounter,
-                            Timer = DateTime.Now - Model.Puzzle.StartTime
-                        };
-
-                        MessageBox.Show(
-                            $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimerText}!",
-                            "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                        try
-                        {
-                            Model.BestScoresStorage.Load(Model.BestScores);
-                            if (Model.BestScores.CanBeAdded(score))
-                            {
-                                var mainWindow = Application.Current.MainWindow as MainWindow;
-                                var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = mainWindow };
-                                if (bestScoredPlayerNameWindow.ShowDialog() == true)
-                                {
-                                    score.Name = bestScoredPlayerNameWindow.PlayerName;
-                                    Model.BestScores.Add(score);
-                                    Model.BestScoresStorage.Save(Model.BestScores);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            // Ничего не делаем, пользователю ничего не говорим.
-                            // Не получилось прочитать/записать файл с рекордами — ок, просто пропускаем эту часть.
-                        }
-
-                        Model.Puzzle.Init();
-                        IsGameStarted = false;
-                        UpdateCellButtons();
-                        StopGameTimer();
-                        ResetGameLabels();
-                    }
-                }
-            });
         }
 
-        private void StartGameTimer()
-        {
-            GameTimer.Start();
-        }
 
-        private void StopGameTimer()
-        {
-            GameTimer.Stop();
-        }
-
-        private void ResetGameLabels()
-        {
-            GameMovesText = "0";
-            GameTimerText = "00:00:00";
-        }
+        #region Private methods (приватные методы)
 
         private void UpdateCellButtons()
         {
@@ -120,6 +46,26 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             }
         }
 
+        private void ResetGameLabels()
+        {
+            GameMovesText = "0";
+            GameTimerText = "00:00:00";
+        }
+
+        private void StartGameTimer()
+        {
+            GameTimer.Start();
+        }
+
+        private void StopGameTimer()
+        {
+            GameTimer.Stop();
+        }
+
+        #endregion
+
+
+        #region Binding properties (свойства привязки)
 
         //
         // Свойства привязки содержимого для кнопок самих Пятнашек
@@ -214,48 +160,111 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             }
         }
 
+        #endregion
 
 
+        #region Commands & its bindings (команды и их привязки)
+
+        //
+        // NewGameCommand
+        //
+
+        private DelegateCommand _newGameCommand;
+        public ICommand NewGameCommand
+        {
+            get
+            {
+                // Ленивая инициализация
+                if (_newGameCommand == null)
+                    _newGameCommand = new DelegateCommand(ExecuteNewGameCommand);
+                return _newGameCommand;
+            }
+        }
+
+        // execute-привязка команды NewGameCommand (начинаем новую игру)
+        private void ExecuteNewGameCommand(object parameter)
+        {
+            Model.Puzzle.Start();
+            IsGameStarted = true;
+            UpdateCellButtons();
+            ResetGameLabels();
+            StartGameTimer();
+        }
 
 
         //
-        // Команда AddClient и ее привязка (execute и canExecute)
+        // MoveCommand
         //
 
-        /*
-                private RelayCommand _addClientCommand;
-                public ICommand AddClient
+        private DelegateCommand _moveCommand;
+        public ICommand MoveCommand
+        {
+            get
+            {
+                // Ленивая инициализация
+                if (_moveCommand == null)
+                    _moveCommand = new DelegateCommand(ExecuteMoveCommand);
+                return _moveCommand;
+            }
+        }
+
+        // execute-привязка команды MoveCommand (делаем ход)
+        private void ExecuteMoveCommand(object parameter)
+        {
+            Button button = parameter as Button;
+
+            uint clickedNumber = uint.Parse(button.Name.Remove(0, 10));
+            uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
+            uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
+            if (Model.Puzzle.IsMoveable(y, x))
+            {
+                Model.Puzzle.Move(y, x);
+                UpdateCellButtons();
+                GameMovesText = Model.Puzzle.MovesCounter.ToString();
+
+                if (Model.Puzzle.IsDone())
                 {
-                    get
+                    StopGameTimer();
+                    var score = new Score
                     {
-                        // Ленивая инициализация
-                        if (_addClientCommand == null)
-                            _addClientCommand = new RelayCommand(ExecuteAddClientCommand, CanExecuteAddClientCommand);
-                        return _addClientCommand;
+                        Moves = Model.Puzzle.MovesCounter,
+                        Timer = DateTime.Now - Model.Puzzle.StartTime
+                    };
+
+                    MessageBox.Show(
+                        $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimerText}!",
+                        "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    try
+                    {
+                        Model.BestScoresStorage.Load(Model.BestScores);
+                        if (Model.BestScores.CanBeAdded(score))
+                        {
+                            var mainWindow = Application.Current.MainWindow as MainWindow;
+                            var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = mainWindow };
+                            if (bestScoredPlayerNameWindow.ShowDialog() == true)
+                            {
+                                score.Name = bestScoredPlayerNameWindow.PlayerName;
+                                Model.BestScores.Add(score);
+                                Model.BestScoresStorage.Save(Model.BestScores);
+                            }
+                        }
                     }
+                    catch
+                    {
+                        // Ничего не делаем, пользователю ничего не говорим.
+                        // Не получилось прочитать/записать файл с рекордами — окей, просто пропускаем эту часть.
+                    }
+
+                    Model.Puzzle.Init();
+                    IsGameStarted = false;
+                    UpdateCellButtons();
+                    StopGameTimer();
+                    ResetGameLabels();
                 }
+            }
+        }
 
-
-                // execute-привязка (добавляем нового клиента)
-                public void ExecuteAddClientCommand(object parameter)
-                {
-                    Clients.Add(CurrentClient);
-                    CurrentClient = null;
-                }
-
-                // canExecute-привязка (оба поля CurrentClient.FirstName и CurrentClient.LastName должны быть не пустые)
-                public bool CanExecuteAddClientCommand(object parameter)
-                {
-                    //if (string.IsNullOrEmpty(CurrentClient.FirstName) ||
-                    //    string.IsNullOrEmpty(CurrentClient.LastName))
-                    //{
-                    //    return false;
-                    //}
-                    //return true;
-
-                    // Так короче:
-                    return !string.IsNullOrEmpty(CurrentClient.FirstName) && !string.IsNullOrEmpty(CurrentClient.LastName);
-                }
-        */
+        #endregion
     }
 }

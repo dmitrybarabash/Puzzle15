@@ -66,7 +66,7 @@
         </Menu>
 
         <!-- Сетка с цифровыми кнопками -->
-        <Grid x:Name="cellButtonsGrid" Grid.Row="1" Grid.Column="0">
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition/>
@@ -199,7 +199,7 @@
         </Grid>
 
         <!-- Сетка с временем игры, количеством ходов и служебными кнопками -->
-        <Grid x:Name="rightPartGrid" Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
