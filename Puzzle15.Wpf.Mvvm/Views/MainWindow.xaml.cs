@@ -10,7 +10,7 @@ namespace Puzzle15.Wpf.Mvvm.Views
 {
     public partial class MainWindow : Window
     {
-        private IPuzzleDomainModel Model => (Application.Current as App).Model;
+        //private IPuzzleDomainModel Model => (Application.Current as App).Model;
         private DispatcherTimer TimerGame { get; }
 
         public MainWindow()
@@ -19,7 +19,7 @@ namespace Puzzle15.Wpf.Mvvm.Views
 
             TimerGame = new DispatcherTimer();
             TimerGame.Interval = TimeSpan.FromSeconds(1);
-            TimerGame.Tick += (s, a) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+            //TimerGame.Tick += (s, a) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
         }
 
         public void UpdateButtons(bool active)
@@ -37,34 +37,34 @@ namespace Puzzle15.Wpf.Mvvm.Views
             //
             // Этот же вариант покороче
             //
-            var buttonList = cellButtonsGrid.Children.Cast<FrameworkElement>().ToList().OfType<Button>();
+            //var buttonList = cellButtonsGrid.Children.Cast<FrameworkElement>().ToList().OfType<Button>();
 
-            foreach (Button button in buttonList)
-            {
-                button.IsEnabled = active;
-                uint number = uint.Parse(button.Name.Remove(0, 10));
-                uint cellValue = Model.Puzzle[(number - 1) / Model.Puzzle.FieldSideSize, (number - 1) % Model.Puzzle.FieldSideSize];
-                //button.Content = cellValue.ToString();
-                button.Visibility = cellValue != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-            }
+            //foreach (Button button in buttonList)
+            //{
+            //    button.IsEnabled = active;
+            //    uint number = uint.Parse(button.Name.Remove(0, 10));
+            //    uint cellValue = Model.Puzzle[(number - 1) / Model.Puzzle.FieldSideSize, (number - 1) % Model.Puzzle.FieldSideSize];
+            //    //button.Content = cellValue.ToString();
+            //    button.Visibility = cellValue != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
+            //}
         }
 
         public void StartTimer()
         {
-            TimerGame.Start();
+            //TimerGame.Start();
         }
 
         public void StopTimer()
         {
-            TimerGame.Stop();
+            //TimerGame.Stop();
         }
 
         public void UpdateGameLabels(bool active)
         {
-            textBlockTimer.Text = "00:00:00";
-            textBlockTimer.IsEnabled = active;
-            textBlockMoves.Text = "0";
-            textBlockMoves.IsEnabled = active;
+            //textBlockTimer.Text = "00:00:00";
+            //textBlockTimer.IsEnabled = active;
+            //textBlockMoves.Text = "0";
+            //textBlockMoves.IsEnabled = active;
         }
 
         private void NewGameCommand_Executed(object sender, RoutedEventArgs e)
