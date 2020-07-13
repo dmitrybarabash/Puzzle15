@@ -60,7 +60,7 @@
         </Menu>
 
         <!-- Сетка с цифровыми кнопками -->
-        <Grid x:Name="cellButtonsGrid" Grid.Row="1" Grid.Column="0">
+        <Grid Name="cellButtonsGrid" Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition/>
@@ -78,26 +78,26 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="cellButton1" Grid.Row="1" Grid.Column="1" Content="1" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton2" Grid.Row="1" Grid.Column="2" Content="2" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton3" Grid.Row="1" Grid.Column="3" Content="3" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton4" Grid.Row="1" Grid.Column="4" Content="4" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton5" Grid.Row="2" Grid.Column="1" Content="5" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton6" Grid.Row="2" Grid.Column="2" Content="6" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton7" Grid.Row="2" Grid.Column="3" Content="7" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton8" Grid.Row="2" Grid.Column="4" Content="8" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton9" Grid.Row="3" Grid.Column="1" Content="9" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton10" Grid.Row="3" Grid.Column="2" Content="10" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton11" Grid.Row="3" Grid.Column="3" Content="11" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton12" Grid.Row="3" Grid.Column="4" Content="12" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton13" Grid.Row="4" Grid.Column="1" Content="13" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton14" Grid.Row="4" Grid.Column="2" Content="14" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton15" Grid.Row="4" Grid.Column="3" Content="15" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
-            <Button x:Name="cellButton16" Grid.Row="4" Grid.Column="4" Content="16" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click" Visibility="Hidden"/>
+            <Button Name="cellButton1" Grid.Row="1" Grid.Column="1" Content="1" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton2" Grid.Row="1" Grid.Column="2" Content="2" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton3" Grid.Row="1" Grid.Column="3" Content="3" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton4" Grid.Row="1" Grid.Column="4" Content="4" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton5" Grid.Row="2" Grid.Column="1" Content="5" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton6" Grid.Row="2" Grid.Column="2" Content="6" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton7" Grid.Row="2" Grid.Column="3" Content="7" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton8" Grid.Row="2" Grid.Column="4" Content="8" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton9" Grid.Row="3" Grid.Column="1" Content="9" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton10" Grid.Row="3" Grid.Column="2" Content="10" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton11" Grid.Row="3" Grid.Column="3" Content="11" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton12" Grid.Row="3" Grid.Column="4" Content="12" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton13" Grid.Row="4" Grid.Column="1" Content="13" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton14" Grid.Row="4" Grid.Column="2" Content="14" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton15" Grid.Row="4" Grid.Column="3" Content="15" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton16" Grid.Row="4" Grid.Column="4" Content="16" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click" Visibility="Hidden"/>
         </Grid>
 
         <!-- Сетка с временем игры, количеством ходов и служебными кнопками -->
-        <Grid x:Name="rightPartGrid" Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -107,11 +107,11 @@
             </Grid.RowDefinitions>
 
             <GroupBox Grid.Row="0" Header="Время:" Margin="5,10,15,10" Padding="15,5">
-                <TextBlock x:Name="textBlockTimer" Text="00:00:00" FontSize="14"
+                <TextBlock Name="textBlockTimer" Text="00:00:00" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
             <GroupBox Grid.Row="1" Header="Ходы:" Margin="5,10,15,10" Padding="15,5">
-                <TextBlock x:Name="textBlockMoves" Text="0" FontSize="14"
+                <TextBlock Name="textBlockMoves" Text="0" FontSize="14"
                        VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
             </GroupBox>
             <!-- Просто кнопка без иконки -->
