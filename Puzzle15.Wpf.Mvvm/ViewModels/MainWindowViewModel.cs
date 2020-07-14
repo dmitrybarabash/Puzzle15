@@ -48,8 +48,8 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
 
         private void ResetGameLabels()
         {
-            GameMovesText = "0";
             GameTimerText = "00:00:00";
+            GameMovesText = "0";
         }
 
         private void StartGameTimer() =>
