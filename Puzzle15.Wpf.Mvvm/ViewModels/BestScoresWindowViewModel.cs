@@ -8,6 +8,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         // Берем экземпляр модели из класса приложения App
         private IPuzzleDomainModel Model => (System.Windows.Application.Current as App).Model;
 
+
         public BestScoresWindowViewModel()
         {
             // Загружаем лучшие результаты из файла
@@ -22,6 +23,10 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                 return;
             }
         }
+
+        protected override void OnDispose() =>
+            Model.BestScores.Scores.Clear();
+
 
         #region Binding properties (свойства привязки)
 

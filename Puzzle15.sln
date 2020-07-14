@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common", "Puzzle15
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common.Tests", "Puzzle15.Common.Tests\Puzzle15.Common.Tests.csproj", "{332E1183-FC06-4972-AF51-0BC8D5B98473}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms", "Puzzle15.WinForms\Puzzle15.WinForms.csproj", "{BF855D14-5906-43CC-924F-BC644CDA660C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Mvp", "Puzzle15.WinForms.Mvp\Puzzle15.WinForms.Mvp.csproj", "{BF855D14-5906-43CC-924F-BC644CDA660C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Tests", "Puzzle15.WinForms.Tests\Puzzle15.WinForms.Tests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Mvp.Tests", "Puzzle15.WinForms.Mvp.Tests\Puzzle15.WinForms.Mvp.Tests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Spaghetti", "Puzzle15.Wpf.Spaghetti\Puzzle15.Wpf.Spaghetti.csproj", "{DA1874D7-547C-4706-B03E-418199F15893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.NoMvvm", "Puzzle15.Wpf.NoMvvm\Puzzle15.Wpf.NoMvvm.csproj", "{DA1874D7-547C-4706-B03E-418199F15893}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Mvvm.Tests", "Puzzle15.Wpf.Mvvm.Tests\Puzzle15.Wpf.Mvvm.Tests.csproj", "{B8201283-1355-4F8E-BD3A-705749716AA8}"
 EndProject
