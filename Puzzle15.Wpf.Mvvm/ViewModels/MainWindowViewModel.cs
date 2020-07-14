@@ -121,7 +121,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                 if (_isGameStarted != value)
                 {
                     _isGameStarted = value;
-                    OnPropertyChanged("IsGameStarted");
+                    OnPropertyChanged(nameof(IsGameStarted));
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                 if (_gameTimerText != value)
                 {
                     _gameTimerText = value;
-                    OnPropertyChanged("GameTimerText");
+                    OnPropertyChanged(nameof(GameTimerText));
                 }
             }
         }
@@ -155,7 +155,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                 if (_gameMovesText != value)
                 {
                     _gameMovesText = value;
-                    OnPropertyChanged("GameMovesText");
+                    OnPropertyChanged(nameof(GameMovesText));
                 }
             }
         }
