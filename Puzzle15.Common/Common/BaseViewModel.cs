@@ -11,7 +11,7 @@ namespace Puzzle15.Common
         }
 
 
-        #region INotifyPropertyChanged implementation (механизм уведомления об изменении свойств модели)
+        #region INotifyPropertyChanged implementation (механизм уведомления об изменении свойств ViewModel)
 
         public event PropertyChangedEventHandler PropertyChanged;
 

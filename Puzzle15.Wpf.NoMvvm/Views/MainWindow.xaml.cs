@@ -19,8 +19,7 @@ namespace Puzzle15.Wpf.NoMvvm.Views
 
             Model = model;
 
-            TimerGame = new DispatcherTimer();
-            TimerGame.Interval = TimeSpan.FromSeconds(1);
+            TimerGame = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             TimerGame.Tick += (s, a) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
         }
 
