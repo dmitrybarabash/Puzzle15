@@ -1,0 +1,178 @@
+﻿<Window x:Class="Puzzle15.Wpf.NoMvvm.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Puzzle15.Wpf.NoMvvm.Views"
+        xmlns:localcommmands="clr-namespace:Puzzle15.Wpf.NoMvvm.Commands"
+        mc:Ignorable="d"
+        Icon="/Images/AppIcon.ico"
+        Title="Пятнашки"
+        Height="399" Width="525" MinHeight="350" MinWidth="450"
+        WindowStartupLocation="CenterScreen"
+        FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}">
+    <!-- Установка FocusManager.FocusedElement выше необходима для того, чтобы пункты контекстного меню были
+         сразу доступны. Без этого они станут доступны только после первой отработки любой из команд. -->
+
+    <Window.Resources>
+        <!-- Картинки пунктов главного и контекстного меню, а также кнопок -->
+        <Image x:Key="BestScoresIcon" x:Shared="False" Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemBestScores.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="ExitIcon" x:Shared="False" Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemExit.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="NewGameIcon" x:Shared="False" Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemNewGame.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Image x:Key="AboutIcon" x:Shared="False" Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemAbout.png"
+               Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <!-- Привязка команд к обработчикам, которые будут выполняться когда команда должна будет отработать -->
+        <CommandBinding Command="localcommmands:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
+        <CommandBinding Command="localcommmands:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
+        <CommandBinding Command="localcommmands:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
+        <CommandBinding Command="localcommmands:PuzzleCommands.About" Executed="AboutCommand_Executed"/>
+    </Window.CommandBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Главное меню -->
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <MenuItem Header="_Файл" Margin="5,2,0,2">
+                <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
+                <Separator/>
+                <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
+            </MenuItem>
+            <MenuItem Header="_Игра" Margin="5,2,0,2">
+                <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
+            </MenuItem>
+            <MenuItem Header="_?" Margin="5,2,0,2">
+                <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Сетка с цифровыми кнопками -->
+        <Grid Name="cellButtonsGrid" Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="cellButton1" Grid.Row="1" Grid.Column="1" Content="1" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton2" Grid.Row="1" Grid.Column="2" Content="2" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton3" Grid.Row="1" Grid.Column="3" Content="3" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton4" Grid.Row="1" Grid.Column="4" Content="4" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton5" Grid.Row="2" Grid.Column="1" Content="5" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton6" Grid.Row="2" Grid.Column="2" Content="6" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton7" Grid.Row="2" Grid.Column="3" Content="7" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton8" Grid.Row="2" Grid.Column="4" Content="8" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton9" Grid.Row="3" Grid.Column="1" Content="9" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton10" Grid.Row="3" Grid.Column="2" Content="10" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton11" Grid.Row="3" Grid.Column="3" Content="11" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton12" Grid.Row="3" Grid.Column="4" Content="12" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton13" Grid.Row="4" Grid.Column="1" Content="13" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton14" Grid.Row="4" Grid.Column="2" Content="14" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton15" Grid.Row="4" Grid.Column="3" Content="15" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click"/>
+            <Button Name="cellButton16" Grid.Row="4" Grid.Column="4" Content="16" FontSize="16" Margin="5,5" IsEnabled="False" Click="CellButton_Click" Visibility="Hidden"/>
+        </Grid>
+
+        <!-- Сетка с временем игры, количеством ходов и служебными кнопками -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Row="0" Header="Время:" Margin="5,10,15,10" Padding="15,5">
+                <TextBlock Name="textBlockTimer" Text="00:00:00" FontSize="14"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Ходы:" Margin="5,10,15,10" Padding="15,5">
+                <TextBlock Name="textBlockMoves" Text="0" FontSize="14"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+            </GroupBox>
+            <!-- Просто кнопка без иконки -->
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
+                    Content="{x:Static localcommmands:PuzzleCommands.NewGame}"
+                    Command="localcommmands:PuzzleCommands.NewGame"/>
+            <!-- Кнопка с иконкой. Не понравилось визуально. Оставил для иллюстрации. -->
+            <!--
+            <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
+                    Command="localcommmands:PuzzleCommands.NewGame">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemNewGame.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <Label Content="{x:Static localcommmands:PuzzleCommands.NewGame}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            -->
+
+            <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
+                <!-- Просто кнопки без иконок -->
+                <Button Margin="5,0,15,10" Padding="15,5"
+                        Content="{x:Static localcommmands:PuzzleCommands.About}"
+                        Command="localcommmands:PuzzleCommands.About"/>
+                <Button Margin="5,5,15,15" Padding="15,5"
+                        Content="{x:Static localcommmands:PuzzleCommands.Exit}"
+                        Command="localcommmands:PuzzleCommands.Exit"/>
+                <!-- Кнопки с иконками. Не понравилось визуально. Оставил для иллюстрации. -->
+                <!--
+                <Button Margin="5,0,15,10" Padding="15,5"
+                        Command="localcommmands:PuzzleCommands.About">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemAbout.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Label Content="{x:Static localcommmands:PuzzleCommands.About}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="5,5,15,15" Padding="15,5"
+                        Command="localcommmands:PuzzleCommands.Exit">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Puzzle15.Wpf.NoMvvm;component/Images/MenuItemExit.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                            <Label Content="{x:Static localcommmands:PuzzleCommands.Exit}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                -->
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+    <!-- Контекстное меню -->
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
+            <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
+            <Separator/>
+            <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
+            <Separator/>
+            <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
+        </ContextMenu>
+    </Window.ContextMenu>
+</Window>
