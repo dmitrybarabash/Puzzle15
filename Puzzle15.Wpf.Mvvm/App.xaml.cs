@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using Puzzle15.DomainModel;
+using Puzzle15.Wpf.Mvvm.ViewModels;
 using Puzzle15.Wpf.Mvvm.Views;
 
 namespace Puzzle15.Wpf.Mvvm
@@ -50,7 +51,7 @@ namespace Puzzle15.Wpf.Mvvm
 
                     // Создаем настоящее главное окно типа MainWindow, делаем его
                     // главным окном приложения и показываем его пользователю
-                    var mainWindow = new MainWindow();
+                    var mainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
                     MainWindow = mainWindow;
                     mainWindow.Show();
 

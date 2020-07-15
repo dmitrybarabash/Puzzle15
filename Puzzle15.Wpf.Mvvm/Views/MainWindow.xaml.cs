@@ -17,7 +17,7 @@ namespace Puzzle15.Wpf.Mvvm.Views
 
         private void BestScoresCommand_Executed(object sender, RoutedEventArgs e)
         {
-            new BestScoresWindow() { Owner = this }.ShowDialog();
+            new BestScoresWindow() { Owner = this, DataContext = new BestScoresWindowViewModel() }.ShowDialog();
         }
 
         private void AboutCommand_Executed(object sender, RoutedEventArgs e)
