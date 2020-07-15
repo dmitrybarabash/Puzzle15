@@ -10,7 +10,7 @@ using Puzzle15.Wpf.Mvvm.Views;
 
 namespace Puzzle15.Wpf.Mvvm.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class PuzzleViewModel : BaseViewModel
     {
         // Берем экземпляр модели из класса приложения App
         private IPuzzleDomainModel Model => (Application.Current as App).Model;
@@ -19,11 +19,11 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         private DispatcherTimer GameTimer { get; }
 
 
-        public MainWindowViewModel()
+        public PuzzleViewModel()
         {
             // Создаем и настраиваем игровой таймер
             GameTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
-            GameTimer.Tick += (s, a) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+            GameTimer.Tick += (s, e) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
 
             // Устанавливаем дефолтное содержимое и состояние контролов главного окна
             Model.Puzzle.Init();
@@ -240,8 +240,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
                         Model.BestScoresStorage.Load(Model.BestScores);
                         if (Model.BestScores.CanBeAdded(score))
                         {
-                            var mainWindow = Application.Current.MainWindow as MainWindow;
-                            var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = mainWindow };
+                            var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = Application.Current.MainWindow };
                             if (bestScoredPlayerNameWindow.ShowDialog() == true)
                             {
                                 score.Name = bestScoredPlayerNameWindow.PlayerName;

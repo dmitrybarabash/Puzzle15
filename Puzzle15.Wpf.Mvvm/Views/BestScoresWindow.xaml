@@ -17,7 +17,7 @@
     <!-- В данном случае из соображений low coupling я предпочел сделать это не здесь, а при
          создании экземпляра этого окна, но пример как это делается в XAML'е закомментировал и оставил.
     <Window.DataContext>
-        <localviewmodels:BestScoresWindowViewModel/>
+        <localviewmodels:BestScoresViewModel/>
     </Window.DataContext>
     -->
 
