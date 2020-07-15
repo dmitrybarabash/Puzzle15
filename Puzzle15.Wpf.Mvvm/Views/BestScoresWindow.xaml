@@ -13,9 +13,13 @@
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen">
 
+    <!-- Создаем ViewModel и соединяем его с нашим View -->
+    <!-- В данном случае из соображений low coupling я предпочел сделать это не здесь,
+         а в App.OnStartup, но пример как это делается в XAML'е закомментировал и оставил.
     <Window.DataContext>
         <localviewmodels:BestScoresWindowViewModel/>
     </Window.DataContext>
+    -->
 
     <Grid>
         <Grid.RowDefinitions>
