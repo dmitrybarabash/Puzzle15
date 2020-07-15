@@ -38,7 +38,7 @@ namespace Puzzle15.Wpf.NoMvvm
                 // Делаем паузу
                 System.Threading.Thread.Sleep(5000);
 
-                // Создаем настоящее главное окно типа MainWindow, делаем его главным окном
+                // Создаем настоящее главное окно типа PuzzleWindow, делаем его главным окном
                 // приложения и показываем его пользователю. Поскольку мы сейчас вне основного
                 // UI-потока, то обращение к тому, что имеет отношение UI-потоку, должно быть
                 // вызвано потокобезопасно. В WPF это делается при помощи методов Invoke или
@@ -48,11 +48,10 @@ namespace Puzzle15.Wpf.NoMvvm
                     // Создаем модель
                     Model = new PuzzleDomainModel();
 
-                    // Создаем настоящее главное окно типа MainWindow, делаем его
+                    // Создаем настоящее главное окно типа PuzzleWindow, делаем его
                     // главным окном приложения и показываем его пользователю
-                    var mainWindow = new MainWindow(Model);
-                    MainWindow = mainWindow;
-                    mainWindow.Show();
+                    MainWindow = new PuzzleWindow(Model);
+                    MainWindow.Show();
 
                     // Закрываем splash screen
                     splashScreen.Close();

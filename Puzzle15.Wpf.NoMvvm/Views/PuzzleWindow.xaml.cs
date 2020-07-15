@@ -8,19 +8,19 @@ using Puzzle15.DomainModel;
 
 namespace Puzzle15.Wpf.NoMvvm.Views
 {
-    public partial class MainWindow : Window
+    public partial class PuzzleWindow : Window
     {
         private IPuzzleDomainModel Model { get; }
         private DispatcherTimer TimerGame { get; }
 
-        public MainWindow(IPuzzleDomainModel model)
+        public PuzzleWindow(IPuzzleDomainModel model)
         {
             InitializeComponent();
 
             Model = model;
 
             TimerGame = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            TimerGame.Tick += (s, a) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+            TimerGame.Tick += (s, e) => textBlockTimer.Text = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
         }
 
         private void CellButton_Click(object sender, RoutedEventArgs e)

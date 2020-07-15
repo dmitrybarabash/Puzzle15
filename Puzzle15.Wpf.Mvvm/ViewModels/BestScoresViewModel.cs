@@ -3,13 +3,13 @@ using Puzzle15.DomainModel;
 
 namespace Puzzle15.Wpf.Mvvm.ViewModels
 {
-    public class BestScoresWindowViewModel : BaseViewModel
+    public class BestScoresViewModel : BaseViewModel
     {
         // Берем экземпляр модели из класса приложения App
         private IPuzzleDomainModel Model => (System.Windows.Application.Current as App).Model;
 
 
-        public BestScoresWindowViewModel()
+        public BestScoresViewModel()
         {
             // Загружаем лучшие результаты из файла
             try
