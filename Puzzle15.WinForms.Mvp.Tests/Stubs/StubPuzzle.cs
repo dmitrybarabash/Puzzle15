@@ -13,8 +13,8 @@ namespace Puzzle15.WinForms.Mvp.Tests.Stubs
             Down
         }
 
-        private const uint EmptyCellValueConst = 16;
         private const uint FieldSideSizeConst = 4;
+        private const uint EmptyCellValueConst = FieldSideSizeConst * FieldSideSizeConst;
 
         public StubPuzzle()
         {
@@ -49,10 +49,10 @@ namespace Puzzle15.WinForms.Mvp.Tests.Stubs
 
         public void Start()
         {
-            Cells[3, 2] = 16;
-            Cells[3, 3] = 15;
-            EmptyY = 3;
-            EmptyX = 2;
+            Cells[FieldSideSize - 1, FieldSideSize - 2] = 16;
+            Cells[FieldSideSize - 1, FieldSideSize - 1] = 15;
+            EmptyY = FieldSideSize - 1;
+            EmptyX = FieldSideSize - 2;
             MovesCounter = 100;
             StartTime = DateTime.Now - new TimeSpan(0, 0, 1, 30);
         }
