@@ -19,8 +19,8 @@ namespace Puzzle15.Tests.DomainModel
                     if (puzzle[y, x] != y * puzzle.FieldSideSize + x + 1)
                         Assert.Fail();
 
-            Assert.That(puzzle.EmptyY, Is.EqualTo(3));
-            Assert.That(puzzle.EmptyX, Is.EqualTo(3));
+            Assert.That(puzzle.EmptyY, Is.EqualTo(puzzle.FieldSideSize - 1));
+            Assert.That(puzzle.EmptyX, Is.EqualTo(puzzle.FieldSideSize - 1));
             Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
         }
 
@@ -79,6 +79,7 @@ namespace Puzzle15.Tests.DomainModel
         [TestCase(0U, 1U, ExpectedResult = true)]
         [TestCase(1U, 0U, ExpectedResult = true)]
         [TestCase(1U, 1U, ExpectedResult = false)]
+        [TestCase(2U, 3U, ExpectedResult = false)]
         public bool IsMoveable_CellCoordsAroundCorner_ReturnsResult(uint y, uint x)
         {
             var puzzle = new Puzzle();

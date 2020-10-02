@@ -12,8 +12,8 @@ namespace Puzzle15.DomainModel
             Down
         }
 
-        private const uint EmptyCellValueConst = 16;
         private const uint FieldSideSizeConst = 4;
+        private const uint EmptyCellValueConst = FieldSideSizeConst * FieldSideSizeConst;
 
         public Puzzle()
         {
