@@ -49,10 +49,10 @@ namespace Puzzle15.WinForms.Mvp.Tests.Stubs
 
         public void Start()
         {
-            Cells[FieldSideSize - 1, FieldSideSize - 2] = 16;
-            Cells[FieldSideSize - 1, FieldSideSize - 1] = 15;
-            EmptyY = FieldSideSize - 1;
-            EmptyX = FieldSideSize - 2;
+            Cells[FieldSideSize - 1, FieldSideSize - 2] = EmptyCellValue;      // 16
+            Cells[FieldSideSize - 1, FieldSideSize - 1] = EmptyCellValue - 1;  // 15
+            EmptyY = FieldSideSize - 1;                                        // 3
+            EmptyX = FieldSideSize - 2;                                        // 2
             MovesCounter = 100;
             StartTime = DateTime.Now - new TimeSpan(0, 0, 1, 30);
         }
