@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <Version>1.4.6</Version>
     <Authors>Dmitry G. Barabash</Authors>
     <Description>Puzzle 15 Game Tests</Description>
     <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
