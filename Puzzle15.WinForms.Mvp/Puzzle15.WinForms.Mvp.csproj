@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>Dmitry G. Barabash</Authors>
     <Company>Dmitry G. Barabash</Company>
@@ -10,6 +10,7 @@
     <Version>1.4.6</Version>
     <PackageIcon>AppIcon.ico</PackageIcon>
     <Description>Puzzle 15 Game</Description>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
