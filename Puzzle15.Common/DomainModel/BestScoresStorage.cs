@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace Puzzle15.DomainModel
 {
@@ -17,12 +17,9 @@ namespace Puzzle15.DomainModel
 
         public void Save(IBestScores bestScores)
         {
-            var formatter = new BinaryFormatter();
-            using (var fileStream = new FileStream(FileName,
-                FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                formatter.Serialize(fileStream, bestScores.Scores);
-            }
+            using var fileStream = new FileStream(FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            var serializer = new XmlSerializer(typeof(List<Score>));
+            serializer.Serialize(fileStream, bestScores.Scores);
         }
 
         public void Load(IBestScores bestScores)
@@ -30,13 +27,11 @@ namespace Puzzle15.DomainModel
             if (!File.Exists(FileName))
                 return;
 
-            using (var fileStream = new FileStream(FileName, FileMode.Open))
-            {
-                var formatter = new BinaryFormatter();
-                var scores = (List<Score>)formatter.Deserialize(fileStream);
-                bestScores.Scores.Clear();
-                bestScores.Scores.AddRange(scores);
-            }
+            using var fileStream = new FileStream(FileName, FileMode.Open);
+            var serializer = new XmlSerializer(typeof(List<Score>));
+            var scores = (List<Score>)serializer.Deserialize(fileStream);
+            bestScores.Scores.Clear();
+            bestScores.Scores.AddRange(scores);
         }
 
         #endregion
