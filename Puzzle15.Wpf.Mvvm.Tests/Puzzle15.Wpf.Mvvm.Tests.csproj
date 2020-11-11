@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
     <Version>1.4.6</Version>
     <Authors>Dmitry G. Barabash</Authors>
@@ -15,10 +15,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
     <ProjectReference Include="..\Puzzle15.Wpf.Mvvm\Puzzle15.Wpf.Mvvm.csproj" />
   </ItemGroup>
 

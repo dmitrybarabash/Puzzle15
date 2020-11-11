@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
     <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
     <Authors>Dmitry G. Barabash</Authors>
     <Description>Puzzle 15 Game Tests</Description>
     <Version>1.4.6</Version>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,10 +16,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
     <ProjectReference Include="..\Puzzle15.WinForms.Mvp\Puzzle15.WinForms.Mvp.csproj" />
   </ItemGroup>
 
