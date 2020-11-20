@@ -22,7 +22,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
         public PuzzleViewModel()
         {
             // Создаем и настраиваем игровой таймер
-            GameTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
+            GameTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             GameTimer.Tick += (s, e) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
 
             // Устанавливаем дефолтное содержимое и состояние контролов главного окна
