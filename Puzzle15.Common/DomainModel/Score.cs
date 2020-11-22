@@ -44,10 +44,18 @@ namespace Puzzle15.DomainModel
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return ((int)Moves * 397) ^ (int)Timer.TotalSeconds;
-            }
+            //
+            // Классический вариант из Рихтера
+            //
+            //unchecked
+            //{
+            //    return ((int)Moves * 397) ^ (int)Timer.TotalSeconds;
+            //}
+
+            //
+            // Используем класс HashCode, добавленный в .NET Core 2.1
+            //
+            return HashCode.Combine(Moves, Timer.TotalSeconds);
         }
     }
 }
