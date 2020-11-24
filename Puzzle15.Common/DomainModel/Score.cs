@@ -25,7 +25,7 @@ namespace Puzzle15.DomainModel
 
         public override bool Equals(object other)
         {
-            if (other == null) return false;
+            if (other is null) return false;
             if (object.ReferenceEquals(this, other)) return true;
             if (GetType() != other.GetType()) return false;
             return Equals(other as Score);
@@ -33,7 +33,7 @@ namespace Puzzle15.DomainModel
 
         public bool Equals(Score other)
         {
-            if (other == null) return false;
+            if (other is null) return false;
             if (object.ReferenceEquals(this, other)) return true;
             if (GetType() != other.GetType()) return false;
             return
