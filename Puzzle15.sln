@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common", "Puzzle15.Common\Puzzle15.Common.csproj", "{1DE500B9-4731-49C6-ABD9-C8E06B752116}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common.Tests", "Puzzle15.Common.Tests\Puzzle15.Common.Tests.csproj", "{332E1183-FC06-4972-AF51-0BC8D5B98473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Common.UnitTests", "Puzzle15.Common.Tests\Puzzle15.Common.UnitTests.csproj", "{332E1183-FC06-4972-AF51-0BC8D5B98473}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Mvp", "Puzzle15.WinForms.Mvp\Puzzle15.WinForms.Mvp.csproj", "{BF855D14-5906-43CC-924F-BC644CDA660C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Mvp.Tests", "Puzzle15.WinForms.Mvp.Tests\Puzzle15.WinForms.Mvp.Tests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.WinForms.Mvp.UnitTests", "Puzzle15.WinForms.Mvp.Tests\Puzzle15.WinForms.Mvp.UnitTests.csproj", "{5AD58EB0-3C62-4CD2-84B0-C1FDECEFEFB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.NoMvvm", "Puzzle15.Wpf.NoMvvm\Puzzle15.Wpf.NoMvvm.csproj", "{DA1874D7-547C-4706-B03E-418199F15893}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Mvvm.Tests", "Puzzle15.Wpf.Mvvm.Tests\Puzzle15.Wpf.Mvvm.Tests.csproj", "{B8201283-1355-4F8E-BD3A-705749716AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Mvvm.UnitTests", "Puzzle15.Wpf.Mvvm.Tests\Puzzle15.Wpf.Mvvm.UnitTests.csproj", "{B8201283-1355-4F8E-BD3A-705749716AA8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puzzle15.Wpf.Mvvm", "Puzzle15.Wpf.Mvvm\Puzzle15.Wpf.Mvvm.csproj", "{B7DF65A9-8CDF-43A3-9355-2F9AC8C1080F}"
 EndProject

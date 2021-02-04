@@ -4,9 +4,9 @@ using System.Windows.Forms;
 using NUnit.Framework;
 using Puzzle15.WinForms.Mvp.Presenters;
 using Puzzle15.WinForms.Mvp.Views;
-using Puzzle15.WinForms.Mvp.Tests.Stubs;
+using Puzzle15.WinForms.Mvp.UnitTests.Stubs;
 
-namespace Puzzle15.WinForms.Mvp.Tests.Presenters
+namespace Puzzle15.WinForms.Mvp.UnitTests.Presenters
 {
     [TestFixture]
     class PuzzlePresenterTests
