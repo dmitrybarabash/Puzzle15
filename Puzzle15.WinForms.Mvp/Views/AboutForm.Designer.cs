@@ -102,7 +102,7 @@
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(289, 17);
             this.labelCopyright.TabIndex = 1;
-            this.labelCopyright.Text = "Copyright (c) 2015-2020, Дмитрий Барабаш";
+            this.labelCopyright.Text = "Copyright (c) 2015-2021, Дмитрий Барабаш";
             // 
             // labelProductName
             // 
