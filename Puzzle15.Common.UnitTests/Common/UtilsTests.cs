@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Puzzle15.Common;
 
-namespace Puzzle15.Tests.Common
+namespace Puzzle15.UnitTests.Common
 {
     [TestFixture]
     class UtilsTests

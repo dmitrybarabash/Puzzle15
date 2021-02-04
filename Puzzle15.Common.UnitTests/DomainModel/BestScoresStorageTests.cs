@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Puzzle15.Common;
 using Puzzle15.DomainModel;
 
-namespace Puzzle15.Tests.DomainModel
+namespace Puzzle15.UnitTests.DomainModel
 {
     [TestFixture]
     public class BestScoresStorageTests

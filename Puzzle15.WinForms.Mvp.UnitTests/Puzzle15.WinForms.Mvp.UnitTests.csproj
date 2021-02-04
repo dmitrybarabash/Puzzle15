@@ -4,10 +4,10 @@
     <OutputType>Library</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Version>1.4.6</Version>
+    <Copyright>Copyright © 2015-2021 Dmitry G. Barabash</Copyright>
     <Authors>Dmitry G. Barabash</Authors>
     <Description>Puzzle 15 Game Tests</Description>
-    <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
+    <Version>1.4.6</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
-    <ProjectReference Include="..\Puzzle15.Wpf.Mvvm\Puzzle15.Wpf.Mvvm.csproj" />
+    <ProjectReference Include="..\Puzzle15.WinForms.Mvp\Puzzle15.WinForms.Mvp.csproj" />
   </ItemGroup>
 
 </Project>

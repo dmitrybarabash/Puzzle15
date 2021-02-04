@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <Authors>Dmitry G. Barabash</Authors>
     <Description>Puzzle 15 Game</Description>
-    <Copyright>Copyright © 2015-2020 Dmitry G. Barabash</Copyright>
+    <Copyright>Copyright © 2015-2021 Dmitry G. Barabash</Copyright>
     <PackageIcon>AppIcon.ico</PackageIcon>
     <Version>1.4.6</Version>
     <AssemblyVersion>1.4.6.0</AssemblyVersion>
