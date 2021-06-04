@@ -175,7 +175,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             get
             {
                 // Ленивая инициализация
-                if (_newGameCommand == null)
+                if (_newGameCommand is null)
                     _newGameCommand = new DelegateCommand(ExecuteNewGameCommand);
                 return _newGameCommand;
             }
@@ -202,7 +202,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels
             get
             {
                 // Ленивая инициализация
-                if (_moveCommand == null)
+                if (_moveCommand is null)
                     _moveCommand = new DelegateCommand(ExecuteMoveCommand);
                 return _moveCommand;
             }

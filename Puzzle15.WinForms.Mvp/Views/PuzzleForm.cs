@@ -58,12 +58,12 @@ namespace Puzzle15.WinForms.Mvp.Views
         public void buttonCell_Click(object sender, EventArgs e)
         {
             // Потенциально опасный вариант, который может привести к NullReferenceException
-            //if (Move != null)
+            //if (Move is not null)
             //    Move(sender, EventArgs.Empty);
 
             // Безопасный вариант
             //EventHandler eventHandler = Move;
-            //if (eventHandler != null)
+            //if (eventHandler is not null)
             //    eventHandler(sender, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
@@ -73,12 +73,12 @@ namespace Puzzle15.WinForms.Mvp.Views
         private void timerGame_Tick(object sender, EventArgs e)
         {
             // Потенциально опасный вариант, который может привести к NullReferenceException
-            //if (Timer != null)
+            //if (Timer is not null)
             //    Timer(this, EventArgs.Empty);
 
             // Безопасный вариант
             //EventHandler eventHandler = Timer;
-            //if (eventHandler != null)
+            //if (eventHandler is not null)
             //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
@@ -88,12 +88,12 @@ namespace Puzzle15.WinForms.Mvp.Views
         public void NewGameHandler(object sender, EventArgs e)
         {
             // Потенциально опасный вариант, который может привести к NullReferenceException
-            //if (Move != null)
+            //if (Move is not null)
             //    Move(this, EventArgs.Empty);
 
             // Безопасный вариант
             //EventHandler eventHandler = NewGame;
-            //if (eventHandler != null)
+            //if (eventHandler is not null)
             //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий безопасный вариант
@@ -103,12 +103,12 @@ namespace Puzzle15.WinForms.Mvp.Views
         private void BestScoresHandler(object sender, EventArgs e)
         {
             // Потенциально опасный вариант, который может привести к NullReferenceException
-            //if (BestScores != null)
+            //if (BestScores is not null)
             //    BestScores(this, EventArgs.Empty);
 
             // Безопасный вариант
             //EventHandler eventHandler = BestScores;
-            //if (eventHandler != null)
+            //if (eventHandler is not null)
             //    eventHandler(this, EventArgs.Empty);
 
             // Другой, более короткий вариант
