@@ -11,7 +11,7 @@ namespace Puzzle15.Wpf.Mvvm.Commands
         // Конструктор
         public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
-            //if (execute == null)
+            //if (execute is null)
             //    throw new ArgumentNullException(nameof("execute"));
             //_execute = execute;
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
@@ -26,7 +26,7 @@ namespace Puzzle15.Wpf.Mvvm.Commands
             _execute.Invoke(parameter);
 
         public bool CanExecute(object parameter) =>
-            //_canExecute != null ? _canExecute.Invoke(parameter) : true;
+            //_canExecute is not null ? _canExecute.Invoke(parameter) : true;
             _canExecute?.Invoke(parameter) ?? true;
 
         // Либо мы сами следим за тем когда дергать CanExecuteChanged, либо делегируем это CommandManager'у,
