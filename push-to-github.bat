@@ -1,0 +1,1 @@
+@git push https://github.com/dmitrybarabash/Puzzle15.git --all
