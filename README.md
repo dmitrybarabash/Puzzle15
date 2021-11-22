@@ -1,10 +1,11 @@
-# Puzzle15 Game #
+# Puzzle15 Game
 
-**Puzzle15 Game** is a demo project that is written in .NET 5 and illustrates working with:
+**Puzzle15 Game** is a demo project that is written in .NET 6 and illustrates working with:
 
-**GUI frameworks:**
+#### GUI frameworks:
 
-* Windows Forms with MVP pattern
-* WPF with MVVM pattern
+ - Windows Forms with MVP pattern
+ - WPF with MVVM pattern
 
-**Unit testing with NUnit framework**
+#### Unit testing framework:
+ - NUnit
