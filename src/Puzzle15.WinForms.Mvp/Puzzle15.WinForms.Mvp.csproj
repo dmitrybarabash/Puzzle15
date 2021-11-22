@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <Authors>Dmitry Barabash</Authors>
+    <Company>Dmitry Barabash's Software Company</Company>
+    <Description>Puzzle 15 Game</Description>
+    <Copyright>Copyright © 2015-2021 Dmitry Barabash</Copyright>
+    <Version>1.4.7</Version>
+    <AssemblyVersion>1.4.7.0</AssemblyVersion>
+    <FileVersion>1.4.7.0</FileVersion>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <PackageIcon>AppIcon.ico</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\AppIcon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="Resources\LogoImage.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
