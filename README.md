@@ -1,6 +1,6 @@
 # Puzzle15 Game
 
-**Puzzle15 Game** is a demo project that is written in .NET 6 and illustrates working with:
+**Puzzle15 Game** is a demo project that is written in .NET 7 and illustrates working with:
 
 #### GUI frameworks:
 
