@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
 
     <Authors>Dmitry Barabash</Authors>
     <Company>Dmitry Barabash's Software Company</Company>
     <Description>Puzzle 15 Game</Description>
-    <Copyright>Copyright © 2015-2021 Dmitry Barabash</Copyright>
+    <Copyright>Copyright © 2015-2022 Dmitry Barabash</Copyright>
     <Version>1.4.7</Version>
     <AssemblyVersion>1.4.7.0</AssemblyVersion>
     <FileVersion>1.4.7.0</FileVersion>
