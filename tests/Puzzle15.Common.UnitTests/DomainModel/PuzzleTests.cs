@@ -9,16 +9,14 @@ public class PuzzleTests
     [Test]
     public void Init_None_DefaultStateOfGame()
     {
-        var puzzle = new Puzzle();
+        // Arrange & Act
+        var puzzle = new Puzzle();   // Init() is called in the constructor
 
-        // Этот вызов не нужен, Init() вызывается в конструкторе
-        //puzzle.Init();
-
+        // Assert
         for (uint y = 0; y < puzzle.FieldSideSize; y++)
             for (uint x = 0; x < puzzle.FieldSideSize; x++)
                 if (puzzle[y, x] != y * puzzle.FieldSideSize + x + 1)
                     Assert.Fail();
-
         Assert.That(puzzle.EmptyY, Is.EqualTo(puzzle.FieldSideSize - 1));
         Assert.That(puzzle.EmptyX, Is.EqualTo(puzzle.FieldSideSize - 1));
         Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
@@ -37,6 +35,7 @@ public class PuzzleTests
     [TestCase(2U, 3U, ExpectedResult = false)]
     public bool Move_CellCoords_ReturnsResult(uint y, uint x)
     {
+        // Arrange
         var puzzle = new Puzzle();
         puzzle[0, 0] =  1; puzzle[0, 1] =  2; puzzle[0, 2] =  3; puzzle[0, 3] =  4;
         puzzle[1, 0] =  5; puzzle[1, 1] = 16; puzzle[1, 2] =  7; puzzle[1, 3] =  8;
@@ -45,8 +44,10 @@ public class PuzzleTests
         puzzle.EmptyY = 1;
         puzzle.EmptyX = 1;
 
+        // Act
         puzzle.Move(y, x);
 
+        // Assert
         return puzzle[y, x] == puzzle.EmptyCellValue;
     }
 
@@ -64,6 +65,7 @@ public class PuzzleTests
     [TestCase(2U, 3U, ExpectedResult = false)]
     public bool IsMoveable_CellCoords_ReturnsResult(uint y, uint x)
     {
+        // Arrange
         var puzzle = new Puzzle();
         puzzle[0, 0] =  1; puzzle[0, 1] =  2; puzzle[0, 2] =  3; puzzle[0, 3] =  4;
         puzzle[1, 0] =  5; puzzle[1, 1] = 16; puzzle[1, 2] =  7; puzzle[1, 3] =  8;
@@ -72,6 +74,7 @@ public class PuzzleTests
         puzzle.EmptyY = 1;
         puzzle.EmptyX = 1;
 
+        // Act & Assert
         return puzzle.IsMoveable(y, x);
     }
 
@@ -82,6 +85,7 @@ public class PuzzleTests
     [TestCase(2U, 3U, ExpectedResult = false)]
     public bool IsMoveable_CellCoordsAroundCorner_ReturnsResult(uint y, uint x)
     {
+        // Arrange
         var puzzle = new Puzzle();
         puzzle[0, 0] = 16; puzzle[0, 1] =  2; puzzle[0, 2] =  3; puzzle[0, 3] =  4;
         puzzle[1, 0] =  5; puzzle[1, 1] =  6; puzzle[1, 2] =  7; puzzle[1, 3] =  8;
@@ -90,12 +94,14 @@ public class PuzzleTests
         puzzle.EmptyY = 0;
         puzzle.EmptyX = 0;
 
+        // Act & Assert
         return puzzle.IsMoveable(y, x);
     }
 
     [Test]
     public void IsDone_RealyDone_ReturnsTrue()
     {
+        // Arrange
         var puzzle = new Puzzle();
         puzzle[0, 0] =  1; puzzle[0, 1] =  2; puzzle[0, 2] =  3; puzzle[0, 3] =  4;
         puzzle[1, 0] =  5; puzzle[1, 1] =  6; puzzle[1, 2] =  7; puzzle[1, 3] =  8;
@@ -104,14 +110,17 @@ public class PuzzleTests
         puzzle.EmptyY = 3;
         puzzle.EmptyX = 3;
 
+        // Act
         bool actual = puzzle.IsDone();
 
+        // Assert
         Assert.That(actual, Is.True);
     }
 
     [Test]
     public void IsDone_NotDoneYet_ReturnsFalse()
     {
+        // Arrange
         var puzzle = new Puzzle();
         puzzle[0, 0] =  1; puzzle[0, 1] =  2; puzzle[0, 2] =  3; puzzle[0, 3] =  4;
         puzzle[1, 0] =  5; puzzle[1, 1] =  6; puzzle[1, 2] =  7; puzzle[1, 3] =  8;
@@ -120,8 +129,10 @@ public class PuzzleTests
         puzzle.EmptyY = 3;
         puzzle.EmptyX = 2;
 
+        // Act
         bool actual = puzzle.IsDone();
 
+        // Assert
         Assert.That(actual, Is.Not.True);
     }
 }

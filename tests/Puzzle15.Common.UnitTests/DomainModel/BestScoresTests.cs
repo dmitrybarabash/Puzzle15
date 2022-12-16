@@ -10,6 +10,8 @@ public class BestScoresTests
     [Test]
     public void CanBeAdded_OneOfTheBestScores_AddsScore()
     {
+        // Arrange
+
         // Best scores
         var bestScores = new BestScores();
         bestScores.Add(new Score { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
@@ -25,14 +27,18 @@ public class BestScoresTests
         // New score
         var score = new Score { Name = "Dmitrik", Moves = 5, Timer = new TimeSpan(0, 0, 10, 25) };
 
+        // Act
         bool actual = bestScores.CanBeAdded(score);
 
+        // Assert
         Assert.That(actual, Is.True);
     }
 
     [Test]
     public void CanBeAdded_NotOneOfTheBestScores_DoesntAddScore()
     {
+        // Arrange
+
         // Best scores
         var bestScores = new BestScores();
         bestScores.Add(new Score { Name = "A", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) });
@@ -48,8 +54,10 @@ public class BestScoresTests
         // New score
         var score = new Score { Name = "Dmitrik", Moves = 11, Timer = new TimeSpan(0, 0, 10, 25) };
 
+        // Act
         bool actual = bestScores.CanBeAdded(score);
 
+        // Assert
         Assert.That(actual, Is.False);
     }
 
@@ -68,13 +76,16 @@ public class BestScoresTests
     [TestCase(10, 11U, 9, ExpectedResult = false)]
     public bool Add_ExistingScores_Adds(int existingScores, uint moves, int expectedIndex)
     {
+        // Arrange
         var bestScores = new BestScores();
         for (uint i = 0; i < existingScores; i++)
             bestScores.Add(new Score { Name = i.ToString(), Moves = i + 1, Timer = new TimeSpan(0, 1, 2, 3) });
         var score = new Score { Name = "Dmitrik", Moves = moves, Timer = new TimeSpan(0, 0, 1, 30) };
 
+        // Act
         bestScores.Add(score);
 
+        // Assert
         return bestScores.Scores[expectedIndex] == score;
     }
 }

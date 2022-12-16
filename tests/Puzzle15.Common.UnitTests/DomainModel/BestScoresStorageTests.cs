@@ -12,6 +12,7 @@ public class BestScoresStorageTests
     [Test]
     public void Save_10BestScores_Saves()
     {
+        // Arrange
         var bestScores = new BestScores();
         bestScores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
         bestScores.Add(new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
@@ -24,16 +25,19 @@ public class BestScoresStorageTests
         bestScores.Add(new Score { Name = "Iiiiiiii", Moves = 159, Timer = new TimeSpan(0, 1, 19, 25) });
         bestScores.Add(new Score { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
 
+        // Act
         var bestScoresStoragePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\{Options.BestScoresStorageFileName}";
         new BestScoresStorage(bestScoresStoragePath).Save(bestScores);
         bool actual = File.Exists(bestScoresStoragePath);
 
+        // Assert
         Assert.That(actual, Is.True);
     }
 
     [Test]
     public void Load_10BestScores_Loads()
     {
+        // Arrange
         var bestScores = new BestScores();
         bestScores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
         bestScores.Add(new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
@@ -46,12 +50,15 @@ public class BestScoresStorageTests
         bestScores.Add(new Score { Name = "Iiiiiiii", Moves = 159, Timer = new TimeSpan(0, 1, 19, 25) });
         bestScores.Add(new Score { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
 
+        // Act
         var bestScoresStoragePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\{Options.BestScoresStorageFileName}";
         var bestScoresStorage = new BestScoresStorage(bestScoresStoragePath);
         bestScoresStorage.Save(bestScores);
 
         var loadBestScores = new BestScores();
         bestScoresStorage.Load(loadBestScores);
+
+        // Assert
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // Вариант на случай отсутствия перегруженного метода Score.Equals
