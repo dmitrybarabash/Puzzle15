@@ -16,6 +16,9 @@ public class StubPuzzle : IPuzzle
     private const uint FieldSideSizeConst = 4;
     private const uint EmptyCellValueConst = FieldSideSizeConst * FieldSideSizeConst;
 
+    private uint _emptyX;
+    private uint _emptyY;
+
     public StubPuzzle()
     {
         Cells = new uint[FieldSideSize, FieldSideSize];
@@ -24,17 +27,48 @@ public class StubPuzzle : IPuzzle
 
     #region IPuzzle implementation
 
-    public uint[,] Cells { get; set; }
+    public uint[,] Cells { get; private set; }
+
     public uint this[uint indexY, uint indexX]
     {
-        get => Cells[indexY, indexX];
-        set => Cells[indexY, indexX] = value;
+        get
+        {
+            if (indexY >= FieldSideSize)
+                throw new IndexOutOfRangeException(nameof(indexY));
+            if (indexX >= FieldSideSize)
+                throw new IndexOutOfRangeException(nameof(indexX));
+
+            return Cells[indexY, indexX];
+        }
+        set
+        {
+            if (indexY >= FieldSideSize)
+                throw new IndexOutOfRangeException(nameof(indexY));
+            if (indexX >= FieldSideSize)
+                throw new IndexOutOfRangeException(nameof(indexX));
+
+            Cells[indexY, indexX] = value;
+        }
     }
-    public uint EmptyX { get; set; }
-    public uint EmptyY { get; set; }
-    public uint EmptyCellValue { get => EmptyCellValueConst; }
-    public uint FieldSideSize { get => FieldSideSizeConst; }
+
+    public uint EmptyY
+    {
+        get => _emptyY;
+        set => _emptyY = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyY));
+    }
+
+    public uint EmptyX
+    {
+        get => _emptyX;
+        set => _emptyX = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyX));
+    }
+
+    public uint EmptyCellValue => EmptyCellValueConst;
+
+    public uint FieldSideSize => FieldSideSizeConst;
+
     public uint MovesCounter { get; private set; }
+
     public DateTime StartTime { get; private set; }
 
     public void Init()
@@ -99,6 +133,11 @@ public class StubPuzzle : IPuzzle
 
     public void Move(uint y, uint x)
     {
+        if (y >= FieldSideSize)
+            throw new IndexOutOfRangeException(nameof(y));
+        if (x >= FieldSideSize)
+            throw new IndexOutOfRangeException(nameof(x));
+
         if (y == EmptyY && x == EmptyX - 1) Move(MoveDirection.Left);
         if (y == EmptyY && x == EmptyX + 1) Move(MoveDirection.Right);
         if (y == EmptyY - 1 && x == EmptyX) Move(MoveDirection.Up);
@@ -107,6 +146,11 @@ public class StubPuzzle : IPuzzle
 
     public bool IsMoveable(uint y, uint x)
     {
+        if (y >= FieldSideSize)
+            throw new IndexOutOfRangeException(nameof(y));
+        if (x >= FieldSideSize)
+            throw new IndexOutOfRangeException(nameof(x));
+
         return
             (y == EmptyY && x == EmptyX - 1) ||
             (y == EmptyY && x == EmptyX + 1) ||
