@@ -8,8 +8,8 @@
 
     <Description>Puzzle 15 Game Tests</Description>
     <Authors>Dmitry Barabash</Authors>
-    <Copyright>Copyright © 2015-2022 Dmitry Barabash</Copyright>
-    <Version>1.4.7</Version>
+    <Copyright>Copyright © 2015-2023 Dmitry Barabash</Copyright>
+    <Version>1.4.7.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
   </ItemGroup>
 
   <ItemGroup>
