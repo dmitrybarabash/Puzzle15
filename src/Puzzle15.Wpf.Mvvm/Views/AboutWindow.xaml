@@ -24,7 +24,7 @@
                 <Image Width="119" Height="120" Margin="0,0,20,0" Source="/Puzzle15.Wpf.Mvvm;component/Images/LogoImage.jpg"/>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Пятнашки 1.4" FontWeight="Bold" FontSize="27" Margin="0,0,40,10"/>
-                    <TextBlock Text="Copyright (c) 2015-2022, Дмитрий Барабаш" Margin="0,0,40,10"/>
+                    <TextBlock Text="Copyright (c) 2015-2023, Дмитрий Барабаш" Margin="0,0,40,10"/>
                     <TextBlock Margin="0,0,40,10">
                         <Hyperlink NavigateUri="https://www.barabash.com" RequestNavigate="Hyperlink_RequestNavigate">https://www.barabash.com</Hyperlink>
                     </TextBlock>

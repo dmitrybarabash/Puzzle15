@@ -9,10 +9,10 @@
     <Authors>Dmitry Barabash</Authors>
     <Company>Dmitry Barabash's Software Company</Company>
     <Description>Puzzle 15 Game</Description>
-    <Copyright>Copyright © 2015-2022 Dmitry Barabash</Copyright>
-    <Version>1.4.7</Version>
-    <AssemblyVersion>1.4.7.0</AssemblyVersion>
-    <FileVersion>1.4.7.0</FileVersion>
+    <Copyright>Copyright © 2015-2023 Dmitry Barabash</Copyright>
+    <Version>1.4.7.1</Version>
+    <AssemblyVersion>1.4.7.1</AssemblyVersion>
+    <FileVersion>1.4.7.1</FileVersion>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
     <PackageIcon>AppIcon.ico</PackageIcon>
   </PropertyGroup>
