@@ -81,6 +81,7 @@ public class Score : IComparable<Score>, IEquatable<Score>
 
     public static bool operator ==(Score left, Score right) =>
         ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.Equals(right);
+        // (object)left == right || ((object)left != null && left.Equals(right));
 
     public static bool operator !=(Score left, Score right) =>
         !(left == right);
