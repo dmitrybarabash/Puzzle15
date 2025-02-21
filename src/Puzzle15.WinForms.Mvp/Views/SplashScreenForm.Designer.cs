@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreenForm));
-            this.closeTimer = new System.Windows.Forms.Timer(this.components);
-            this.opacityTimer = new System.Windows.Forms.Timer(this.components);
-            this.SuspendLayout();
+            closeTimer = new System.Windows.Forms.Timer(components);
+            opacityTimer = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
             // 
             // closeTimer
             // 
-            this.closeTimer.Enabled = true;
-            this.closeTimer.Interval = 5000;
-            this.closeTimer.Tick += new System.EventHandler(this.closeTimer_Tick);
+            closeTimer.Enabled = true;
+            closeTimer.Interval = 5000;
+            closeTimer.Tick += closeTimer_Tick;
             // 
             // opacityTimer
             // 
-            this.opacityTimer.Enabled = true;
-            this.opacityTimer.Interval = 1;
-            this.opacityTimer.Tick += new System.EventHandler(this.opacityTimer_Tick);
+            opacityTimer.Enabled = true;
+            opacityTimer.Interval = 1;
+            opacityTimer.Tick += opacityTimer_Tick;
             // 
             // SplashScreenForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(200, 203);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "SplashScreenForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Пятнашки";
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(200, 203);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            Name = "SplashScreenForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Пятнашки";
+            ResumeLayout(false);
 
         }
 

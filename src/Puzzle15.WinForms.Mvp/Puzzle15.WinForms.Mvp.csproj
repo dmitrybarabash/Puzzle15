@@ -2,17 +2,21 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <LangVersion>latest</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
+
+    <NoWarn>
+      WFO1000 <!-- Property does not configure the code serialization for its property content -->
+    </NoWarn>
 
     <Authors>Dmitry Barabash</Authors>
     <Company>Dmitry Barabash's Software Company</Company>
     <Description>Puzzle 15 Game</Description>
-    <Copyright>Copyright © 2015-2023 Dmitry Barabash</Copyright>
-    <Version>1.4.7.1</Version>
-    <AssemblyVersion>1.4.7.1</AssemblyVersion>
-    <FileVersion>1.4.7.1</FileVersion>
+    <Copyright>Copyright © 2015-2025 Dmitry Barabash</Copyright>
+    <Version>1.4.7.2</Version>
+    <AssemblyVersion>1.4.7.2</AssemblyVersion>
+    <FileVersion>1.4.7.2</FileVersion>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
     <PackageIcon>AppIcon.ico</PackageIcon>
   </PropertyGroup>

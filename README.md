@@ -1,10 +1,11 @@
 # Puzzle15 Game
 
-**Puzzle15 Game** is a demo project that is written in .NET 8 and illustrates working with:
+**Puzzle15 Game** is a demo project that is written in .NET 9 and illustrates working with:
 
-#### GUI frameworks:
+#### .NET GUI frameworks:
 
  - Windows Forms with MVP pattern
+ - WPF without MVVM pattern
  - WPF with MVVM pattern
 
 #### Unit testing framework:
