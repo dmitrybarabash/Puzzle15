@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Puzzle15.Common/Puzzle15.Common.csproj" />
+    <Project Path="src/Puzzle15.WinForms.Mvp/Puzzle15.WinForms.Mvp.csproj" />
+    <Project Path="src/Puzzle15.Wpf.Mvvm/Puzzle15.Wpf.Mvvm.csproj" />
+    <Project Path="src/Puzzle15.Wpf.NoMvvm/Puzzle15.Wpf.NoMvvm.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Puzzle15.Common.UnitTests/Puzzle15.Common.UnitTests.csproj" />
+    <Project Path="tests/Puzzle15.WinForms.Mvp.UnitTests/Puzzle15.WinForms.Mvp.UnitTests.csproj" />
+    <Project Path="tests/Puzzle15.Wpf.Mvvm.UnitTests/Puzzle15.Wpf.Mvvm.UnitTests.csproj" />
+  </Folder>
+</Solution>
