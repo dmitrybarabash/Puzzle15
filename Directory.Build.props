@@ -1,0 +1,19 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+
+    <Authors>Dmitry Barabash</Authors>
+    <Company>Dmitry Barabash's Software Company</Company>
+    <Description>Puzzle 15 Game</Description>
+    <Copyright>Copyright (c) 2015-2025 Dmitry Barabash</Copyright>
+    <Version>1.4.7.2</Version>
+    <AssemblyVersion>1.4.7.2</AssemblyVersion>
+    <FileVersion>1.4.7.2</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+  </PropertyGroup>
+
+</Project>

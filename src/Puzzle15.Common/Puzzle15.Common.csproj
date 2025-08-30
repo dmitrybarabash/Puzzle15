@@ -3,13 +3,6 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <Version>1.4.7.2</Version>
-
-    <Authors>Dmitry Barabash</Authors>
-    <Description>Puzzle 15 Game Tests</Description>
-    <Copyright>Copyright © 2015-2025 Dmitry Barabash</Copyright>
-    <Version>1.4.7.2</Version>
   </PropertyGroup>
 
 </Project>
