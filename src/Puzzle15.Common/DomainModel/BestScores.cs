@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Puzzle15.Common.DomainModel;
 
@@ -18,23 +19,25 @@ public class BestScores : IBestScores
         set => Scores[index] = value;
     }
 
-    public bool CanBeAdded(Score score)
-    {
-        var tempScores = new List<Score>(Scores) { score };
-        tempScores.Sort();
-        return !(tempScores.Count == MaxCount + 1 && tempScores[MaxCount] == score);
-    }
+    // Новый результат встаёт после всех имеющихся результатов, которые лучше него или равны ему,
+    // поэтому он попадает в список, только если таких результатов меньше MaxCount
+    public bool CanBeAdded(Score score) =>
+        CountBetterOrEqual(score) < MaxCount;
 
+    // Поддерживает Scores отсортированным и не длиннее MaxCount
     public void Add(Score score)
     {
-        if (CanBeAdded(score))
-        {
-            Scores.Add(score);
-            Scores.Sort();
-            if (Scores.Count == MaxCount + 1)
-                Scores.RemoveAt(MaxCount);
-        }
+        int index = CountBetterOrEqual(score);
+        if (index >= MaxCount)
+            return;
+
+        Scores.Insert(index, score);
+        if (Scores.Count > MaxCount)
+            Scores.RemoveRange(MaxCount, Scores.Count - MaxCount);
     }
 
-    #endregion
+    #endregion IBestScores implementation
+
+    private int CountBetterOrEqual(Score score) =>
+        Scores.Count(s => s.CompareTo(score) <= 0);
 }

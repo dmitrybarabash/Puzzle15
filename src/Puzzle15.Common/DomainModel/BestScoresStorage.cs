@@ -27,11 +27,17 @@ public class BestScoresStorage : IBestScoresStorage
         if (!File.Exists(FileName))
             return;
 
-        using var fileStream = new FileStream(FileName, FileMode.Open);
+        using var fileStream = File.OpenRead(FileName);
         var serializer = new XmlSerializer(typeof(List<Score>));
         var scores = (List<Score>)serializer.Deserialize(fileStream);
         bestScores.Scores.Clear();
-        bestScores.Scores.AddRange(scores);
+        // Add (а не AddRange), чтобы даже из файла с неотсортированными или лишними результатами
+        // получался отсортированный список не более чем из MaxCount лучших результатов
+        foreach (var score in scores)
+        {
+            if (score is not null)
+                bestScores.Add(score);
+        }
     }
 
     #endregion
