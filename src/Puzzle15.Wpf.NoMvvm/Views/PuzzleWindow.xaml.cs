@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 
 namespace Puzzle15.Wpf.NoMvvm.Views
 {

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.Wpf.Mvvm.Commands;
 using Puzzle15.Wpf.Mvvm.Views;
 

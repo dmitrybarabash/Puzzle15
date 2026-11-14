@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Puzzle15.DomainModel;
+namespace Puzzle15.Common.DomainModel;
 
 [Serializable]
 public class Score : IComparable<Score>, IEquatable<Score>

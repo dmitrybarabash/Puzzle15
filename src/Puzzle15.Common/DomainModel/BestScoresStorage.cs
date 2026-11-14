@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Puzzle15.DomainModel;
+namespace Puzzle15.Common.DomainModel;
 
 public class BestScoresStorage : IBestScoresStorage
 {

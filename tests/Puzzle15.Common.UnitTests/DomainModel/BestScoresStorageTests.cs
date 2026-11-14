@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using NUnit.Framework;
-using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 
-namespace Puzzle15.UnitTests.DomainModel;
+namespace Puzzle15.Common.UnitTests.DomainModel;
 
 [TestFixture]
 public class BestScoresStorageTests

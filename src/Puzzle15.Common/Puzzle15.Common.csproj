@@ -7,4 +7,8 @@
     <AssemblyTitle>Puzzle 15 Common Library</AssemblyTitle>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
 </Project>

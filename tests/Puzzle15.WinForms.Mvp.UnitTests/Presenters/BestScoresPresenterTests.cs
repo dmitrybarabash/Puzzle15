@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using NUnit.Framework;
-using Puzzle15.Common;
 using Puzzle15.WinForms.Mvp.Presenters;
 using Puzzle15.WinForms.Mvp.Views;
 using Puzzle15.WinForms.Mvp.UnitTests.Stubs;
+using Puzzle15.Common;
 
 namespace Puzzle15.WinForms.Mvp.UnitTests.Presenters;
 

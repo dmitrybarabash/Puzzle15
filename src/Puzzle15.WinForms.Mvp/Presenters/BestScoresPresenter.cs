@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Views;
 
 namespace Puzzle15.WinForms.Mvp.Presenters;

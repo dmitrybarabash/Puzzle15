@@ -1,5 +1,5 @@
 ﻿using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;

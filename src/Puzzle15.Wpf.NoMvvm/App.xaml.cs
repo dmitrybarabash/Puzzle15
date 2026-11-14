@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.Wpf.NoMvvm.Views;
 
 namespace Puzzle15.Wpf.NoMvvm

@@ -1,6 +1,4 @@
-﻿using Puzzle15.Common;
-
-namespace Puzzle15.DomainModel;
+﻿namespace Puzzle15.Common.DomainModel;
 
 public class PuzzleDomainModel : IPuzzleDomainModel
 {

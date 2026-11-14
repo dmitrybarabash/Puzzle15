@@ -1,8 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 
-namespace Puzzle15.UnitTests.DomainModel;
+namespace Puzzle15.Common.UnitTests.DomainModel;
 
 [TestFixture]
 public class BestScoresTests
@@ -61,6 +61,25 @@ public class BestScoresTests
         Assert.That(actual, Is.False);
     }
 
+    [Test]
+    public void CanBeAdded_MoreThanMaxCountScores_DoesntAddWorstScore()
+    {
+        // Arrange
+
+        // Best scores (more than MaxCount, e.g. read from a hand-edited file)
+        var bestScores = new BestScores();
+        for (uint i = 1; i <= BestScores.MaxCount + 2; i++)
+            bestScores.Scores.Add(new Score { Name = "A", Moves = i, Timer = new TimeSpan(0, 0, 10, 25) });
+        // New score
+        var score = new Score { Name = "Dmitrik", Moves = BestScores.MaxCount + 5, Timer = new TimeSpan(0, 0, 10, 25) };
+
+        // Act
+        bool actual = bestScores.CanBeAdded(score);
+
+        // Assert
+        Assert.That(actual, Is.False);
+    }
+
     [TestCase(0, 1U, 0, ExpectedResult = true)]
     [TestCase(1, 0U, 0, ExpectedResult = true)]
     [TestCase(1, 1U, 0, ExpectedResult = true)]
@@ -87,5 +106,25 @@ public class BestScoresTests
 
         // Assert
         return bestScores.Scores[expectedIndex] == score;
+    }
+
+    [Test]
+    public void Add_MoreThanMaxCountScores_KeepsMaxCountScores()
+    {
+        // Arrange
+
+        // Best scores (more than MaxCount, e.g. read from a hand-edited file)
+        var bestScores = new BestScores();
+        for (uint i = 2; i <= BestScores.MaxCount + 3; i++)
+            bestScores.Scores.Add(new Score { Name = "A", Moves = i, Timer = new TimeSpan(0, 0, 10, 25) });
+        // New score
+        var score = new Score { Name = "Dmitrik", Moves = 1, Timer = new TimeSpan(0, 0, 10, 25) };
+
+        // Act
+        bestScores.Add(score);
+
+        // Assert
+        Assert.That(bestScores.Count, Is.EqualTo(BestScores.MaxCount));
+        Assert.That(bestScores[0], Is.SameAs(score));
     }
 }
