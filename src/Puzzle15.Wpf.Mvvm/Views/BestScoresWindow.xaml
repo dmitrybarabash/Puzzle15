@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Puzzle15.Wpf.Mvvm.Views"
         xmlns:localviewmodels="clr-namespace:Puzzle15.Wpf.Mvvm.ViewModels"
         mc:Ignorable="d"
-        Icon="/Images/AppIcon.ico"
+        Icon="/Images/Puzzle15.ico"
         Title="Лучшие результаты"
         ResizeMode="NoResize"
         ShowInTaskbar="False"

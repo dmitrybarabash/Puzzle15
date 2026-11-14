@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/assets/">
+    <File Path="assets/Puzzle15.ico" />
+    <File Path="assets/Puzzle15.jpg" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />

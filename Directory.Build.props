@@ -10,6 +10,8 @@
     <Copyright>Copyright (c) 2015-2026 Dmitry Barabash</Copyright>
     <NeutralLanguage>ru</NeutralLanguage>
 
+    <ApplicationIcon>$(MSBuildThisFileDirectory)assets\Puzzle15.ico</ApplicationIcon>
+
     <Version>1.4.7.4</Version>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 
