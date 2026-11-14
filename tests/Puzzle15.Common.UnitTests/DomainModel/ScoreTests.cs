@@ -8,7 +8,7 @@ namespace Puzzle15.Common.UnitTests.DomainModel;
 class ScoreTests
 {
     [Test]
-    public void EqualOperator_EqualOperands_ReturnsTrue()
+    public void EqualOperator_ShouldReturnTrue_WhenOperandsAreEqual()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -23,7 +23,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_LeftOperandIsNull_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenLeftOperandIsNull()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -38,7 +38,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_RightOperandIsNull_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenRightOperandIsNull()
     {
         // Arrange
         var score = (Score)null;
@@ -53,7 +53,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_BothOperandsAreNull_ReturnsTrue()
+    public void EqualOperator_ShouldReturnTrue_WhenBothOperandsAreNull()
     {
         // Arrange
         var score = (Score)null;
@@ -68,7 +68,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_BothOperandsReferToTheSameObject_ReturnsTrue()
+    public void EqualOperator_ShouldReturnTrue_WhenBothOperandsReferToTheSameObject()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -83,7 +83,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_NotEqualOperandsWithGreaterMoves_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenRightOperandHasGreaterMoves()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -98,7 +98,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_NotEqualOperandsWithLessMoves_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenRightOperandHasLessMoves()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -113,7 +113,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_NotEqualOperandsWithGreaterTimer_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenRightOperandHasGreaterTimer()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -128,7 +128,7 @@ class ScoreTests
     }
 
     [Test]
-    public void EqualOperator_NotEqualOperandsWithLessTimer_ReturnsFalse()
+    public void EqualOperator_ShouldReturnFalse_WhenRightOperandHasLessTimer()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -143,7 +143,7 @@ class ScoreTests
     }
 
     [Test]
-    public void CompareTo_EqualObject_Returns0()
+    public void CompareTo_ShouldReturn0_WhenObjectIsEqual()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -158,7 +158,7 @@ class ScoreTests
     }
 
     [Test]
-    public void CompareTo_ObjectWithGreaterMoves_ReturnsMinus1()
+    public void CompareTo_ShouldReturnMinus1_WhenObjectHasGreaterMoves()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -173,7 +173,7 @@ class ScoreTests
     }
 
     [Test]
-    public void CompareTo_ObjectWithEqualMovesAndGreaterTimer_ReturnsMinus1()
+    public void CompareTo_ShouldReturnMinus1_WhenObjectHasEqualMovesAndGreaterTimer()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -188,7 +188,7 @@ class ScoreTests
     }
 
     [Test]
-    public void CompareTo_ObjectWithLessMoves_Returns1()
+    public void CompareTo_ShouldReturn1_WhenObjectHasLessMoves()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
@@ -203,7 +203,7 @@ class ScoreTests
     }
 
     [Test]
-    public void CompareTo_ObjectWithEqualMovesAndLessTimer_Returns1()
+    public void CompareTo_ShouldReturn1_WhenObjectHasEqualMovesAndLessTimer()
     {
         // Arrange
         var score = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };

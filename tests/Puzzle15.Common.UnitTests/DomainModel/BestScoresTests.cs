@@ -8,7 +8,7 @@ namespace Puzzle15.Common.UnitTests.DomainModel;
 public class BestScoresTests
 {
     [Test]
-    public void CanBeAdded_OneOfTheBestScores_AddsScore()
+    public void CanBeAdded_ShouldReturnTrue_WhenScoreIsOneOfTheBest()
     {
         // Arrange
 
@@ -35,7 +35,7 @@ public class BestScoresTests
     }
 
     [Test]
-    public void CanBeAdded_NotOneOfTheBestScores_DoesntAddScore()
+    public void CanBeAdded_ShouldReturnFalse_WhenScoreIsNotOneOfTheBest()
     {
         // Arrange
 
@@ -62,7 +62,7 @@ public class BestScoresTests
     }
 
     [Test]
-    public void CanBeAdded_MoreThanMaxCountScores_DoesntAddWorstScore()
+    public void CanBeAdded_ShouldReturnFalseForWorstScore_WhenMoreThanMaxCountScores()
     {
         // Arrange
 
@@ -93,7 +93,7 @@ public class BestScoresTests
     [TestCase(10, 5U, 4, ExpectedResult = true)]
     [TestCase(10, 10U, 9, ExpectedResult = true)]
     [TestCase(10, 11U, 9, ExpectedResult = false)]
-    public bool Add_ExistingScores_Adds(int existingScores, uint moves, int expectedIndex)
+    public bool Add_ShouldAddAtExpectedIndex_WhenExistingScoresGiven(int existingScores, uint moves, int expectedIndex)
     {
         // Arrange
         var bestScores = new BestScores();
@@ -109,7 +109,7 @@ public class BestScoresTests
     }
 
     [Test]
-    public void Add_MoreThanMaxCountScores_KeepsMaxCountScores()
+    public void Add_ShouldKeepMaxCountScores_WhenMoreThanMaxCountScores()
     {
         // Arrange
 

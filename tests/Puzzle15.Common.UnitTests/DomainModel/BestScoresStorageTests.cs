@@ -9,7 +9,7 @@ namespace Puzzle15.Common.UnitTests.DomainModel;
 public class BestScoresStorageTests
 {
     [Test]
-    public void Save_10BestScores_Saves()
+    public void Save_ShouldSave_When10BestScores()
     {
         // Arrange
         var bestScores = new BestScores();
@@ -34,7 +34,7 @@ public class BestScoresStorageTests
     }
 
     [Test]
-    public void Load_10BestScores_Loads()
+    public void Load_ShouldLoad_When10BestScores()
     {
         // Arrange
         var bestScores = new BestScores();

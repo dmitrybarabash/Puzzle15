@@ -23,7 +23,7 @@ class UtilsTests
     [TestCase(23U, "хода", ExpectedResult = true)]
     [TestCase(24U, "хода", ExpectedResult = true)]
     [TestCase(25U, "ходов", ExpectedResult = true)]
-    public bool GetMovesWord_Moves_ReturnsWord(uint moves, string result)
+    public bool GetMovesWord_ShouldReturnWord_WhenMovesGiven(uint moves, string result)
     {
         return Utils.GetMovesWord(moves) == result;
     }

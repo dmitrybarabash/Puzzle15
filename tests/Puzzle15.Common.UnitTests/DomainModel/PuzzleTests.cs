@@ -7,7 +7,7 @@ namespace Puzzle15.Common.UnitTests.DomainModel;
 public class PuzzleTests
 {
     [Test]
-    public void Init_None_DefaultStateOfGame()
+    public void Init_ShouldSetDefaultStateOfGame_WhenPuzzleIsCreated()
     {
         // Arrange & Act
         var puzzle = new Puzzle();   // Init() is called in the constructor
@@ -19,7 +19,7 @@ public class PuzzleTests
                     Assert.Fail();
         Assert.That(puzzle.EmptyY, Is.EqualTo(puzzle.FieldSideSize - 1));
         Assert.That(puzzle.EmptyX, Is.EqualTo(puzzle.FieldSideSize - 1));
-        Assert.That(puzzle.MovesCounter, Is.EqualTo(0));
+        Assert.That(puzzle.MovesCounter, Is.Zero);
     }
 
     [TestCase(0U, 0U, ExpectedResult = false)]
@@ -33,7 +33,7 @@ public class PuzzleTests
     [TestCase(2U, 1U, ExpectedResult = true)]
     [TestCase(2U, 2U, ExpectedResult = false)]
     [TestCase(2U, 3U, ExpectedResult = false)]
-    public bool Move_CellCoords_ReturnsResult(uint y, uint x)
+    public bool Move_ShouldReturnResult_WhenCellCoordsGiven(uint y, uint x)
     {
         // Arrange
         var puzzle = new Puzzle();
@@ -63,7 +63,7 @@ public class PuzzleTests
     [TestCase(2U, 1U, ExpectedResult = true)]
     [TestCase(2U, 2U, ExpectedResult = false)]
     [TestCase(2U, 3U, ExpectedResult = false)]
-    public bool IsMoveable_CellCoords_ReturnsResult(uint y, uint x)
+    public bool IsMoveable_ShouldReturnResult_WhenCellCoordsGiven(uint y, uint x)
     {
         // Arrange
         var puzzle = new Puzzle();
@@ -83,7 +83,7 @@ public class PuzzleTests
     [TestCase(1U, 0U, ExpectedResult = true)]
     [TestCase(1U, 1U, ExpectedResult = false)]
     [TestCase(2U, 3U, ExpectedResult = false)]
-    public bool IsMoveable_CellCoordsAroundCorner_ReturnsResult(uint y, uint x)
+    public bool IsMoveable_ShouldReturnResult_WhenEmptyCellIsInCorner(uint y, uint x)
     {
         // Arrange
         var puzzle = new Puzzle();
@@ -99,7 +99,7 @@ public class PuzzleTests
     }
 
     [Test]
-    public void IsDone_RealyDone_ReturnsTrue()
+    public void IsDone_ShouldReturnTrue_WhenReallyDone()
     {
         // Arrange
         var puzzle = new Puzzle();
@@ -118,7 +118,7 @@ public class PuzzleTests
     }
 
     [Test]
-    public void IsDone_NotDoneYet_ReturnsFalse()
+    public void IsDone_ShouldReturnFalse_WhenNotDoneYet()
     {
         // Arrange
         var puzzle = new Puzzle();
