@@ -33,19 +33,15 @@ public class StubPuzzle : IPuzzle
     {
         get
         {
-            if (indexY >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexY));
-            if (indexX >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexX));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexY, FieldSideSize);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexX, FieldSideSize);
 
             return Cells[indexY, indexX];
         }
         set
         {
-            if (indexY >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexY));
-            if (indexX >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexX));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexY, FieldSideSize);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexX, FieldSideSize);
 
             Cells[indexY, indexX] = value;
         }
@@ -54,13 +50,21 @@ public class StubPuzzle : IPuzzle
     public uint EmptyY
     {
         get => _emptyY;
-        set => _emptyY = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyY));
+        set
+        {
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(value, FieldSideSize);
+            _emptyY = value;
+        }
     }
 
     public uint EmptyX
     {
         get => _emptyX;
-        set => _emptyX = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyX));
+        set
+        {
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(value, FieldSideSize);
+            _emptyX = value;
+        }
     }
 
     public uint EmptyCellValue => EmptyCellValueConst;
@@ -69,7 +73,7 @@ public class StubPuzzle : IPuzzle
 
     public uint MovesCounter { get; private set; }
 
-    public DateTime StartTime { get; private set; }
+    public TimeSpan ElapsedTime { get; private set; }
 
     public void Init()
     {
@@ -88,7 +92,7 @@ public class StubPuzzle : IPuzzle
         EmptyY = FieldSideSize - 1;                                        // 3
         EmptyX = FieldSideSize - 2;                                        // 2
         MovesCounter = 100;
-        StartTime = DateTime.Now - new TimeSpan(0, 0, 1, 30);
+        ElapsedTime = new TimeSpan(0, 0, 1, 30);
     }
 
     private void Move(MoveDirection moveDirection)
@@ -133,23 +137,19 @@ public class StubPuzzle : IPuzzle
 
     public void Move(uint y, uint x)
     {
-        if (y >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(y));
-        if (x >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(x));
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(y, FieldSideSize);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(x, FieldSideSize);
 
         if (y == EmptyY && x == EmptyX - 1) Move(MoveDirection.Left);
-        if (y == EmptyY && x == EmptyX + 1) Move(MoveDirection.Right);
-        if (y == EmptyY - 1 && x == EmptyX) Move(MoveDirection.Up);
-        if (y == EmptyY + 1 && x == EmptyX) Move(MoveDirection.Down);
+        else if (y == EmptyY && x == EmptyX + 1) Move(MoveDirection.Right);
+        else if (y == EmptyY - 1 && x == EmptyX) Move(MoveDirection.Up);
+        else if (y == EmptyY + 1 && x == EmptyX) Move(MoveDirection.Down);
     }
 
     public bool IsMoveable(uint y, uint x)
     {
-        if (y >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(y));
-        if (x >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(x));
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(y, FieldSideSize);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(x, FieldSideSize);
 
         return
             (y == EmptyY && x == EmptyX - 1) ||

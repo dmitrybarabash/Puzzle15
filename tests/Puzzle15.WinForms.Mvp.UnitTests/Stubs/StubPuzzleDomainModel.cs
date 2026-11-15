@@ -3,17 +3,10 @@ using Puzzle15.Common.DomainModel;
 
 namespace Puzzle15.WinForms.Mvp.UnitTests.Stubs;
 
-public class StubPuzzleDomainModel : IPuzzleDomainModel
+public class StubPuzzleDomainModel : PuzzleDomainModel
 {
-    private readonly IPuzzle puzzle = new StubPuzzle();
-    private readonly IBestScores bestScores = new StubBestScores();
-    private readonly IBestScoresStorage bestScoresStorage = new StubBestScoresStorage(Options.BestScoresStorageFileName);
-
-    #region IPuzzleDomainModel implementation
-
-    public IPuzzle Puzzle { get => puzzle; }
-    public IBestScores BestScores { get => bestScores; }
-    public IBestScoresStorage BestScoresStorage { get => bestScoresStorage; }
-
-    #endregion
+    public StubPuzzleDomainModel()
+        : base(new StubPuzzle(), new StubBestScores(), new StubBestScoresStorage(Options.BestScoresStorageFileName))
+    {
+    }
 }

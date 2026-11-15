@@ -66,7 +66,7 @@ public class BestScoresTests
     {
         // Arrange
 
-        // Best scores (more than MaxCount, e.g. read from a hand-edited file)
+        // Рекорды (больше MaxCount, например прочитанные из файла, отредактированного вручную)
         var bestScores = new BestScores();
         for (uint i = 1; i <= BestScores.MaxCount + 2; i++)
             bestScores.Scores.Add(new Score { Name = "A", Moves = i, Timer = new TimeSpan(0, 0, 10, 25) });
@@ -113,7 +113,7 @@ public class BestScoresTests
     {
         // Arrange
 
-        // Best scores (more than MaxCount, e.g. read from a hand-edited file)
+        // Рекорды (больше MaxCount, например прочитанные из файла, отредактированного вручную)
         var bestScores = new BestScores();
         for (uint i = 2; i <= BestScores.MaxCount + 3; i++)
             bestScores.Scores.Add(new Score { Name = "A", Moves = i, Timer = new TimeSpan(0, 0, 10, 25) });

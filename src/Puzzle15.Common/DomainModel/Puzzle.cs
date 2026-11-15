@@ -18,8 +18,21 @@ public class Puzzle : IPuzzle
     private uint _emptyX;
     private uint _emptyY;
 
-    public Puzzle()
+    private readonly TimeProvider _timeProvider;
+    // Отметка начала партии или null, если партия еще не началась
+    private long? _startTimestamp;
+    // Время уже завершённой партии
+    private TimeSpan _finishedElapsedTime;
+
+    public Puzzle() : this(TimeProvider.System)
     {
+    }
+
+    // Нужен для тестов: источник времени можно будет подменить
+    public Puzzle(TimeProvider timeProvider)
+    {
+        ArgumentNullException.ThrowIfNull(timeProvider);
+        _timeProvider = timeProvider;
         Cells = new uint[FieldSideSize, FieldSideSize];
         Init();
     }
@@ -32,19 +45,15 @@ public class Puzzle : IPuzzle
     {
         get
         {
-            if (indexY >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexY));
-            if (indexX >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexX));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexY, FieldSideSize);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexX, FieldSideSize);
 
             return Cells[indexY, indexX];
         }
         set
         {
-            if (indexY >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexY));
-            if (indexX >= FieldSideSize)
-                throw new IndexOutOfRangeException(nameof(indexX));
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexY, FieldSideSize);
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(indexX, FieldSideSize);
 
             Cells[indexY, indexX] = value;
         }
@@ -53,13 +62,21 @@ public class Puzzle : IPuzzle
     public uint EmptyY
     {
         get => _emptyY;
-        set => _emptyY = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyY));
+        set
+        {
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(value, FieldSideSize);
+            _emptyY = value;
+        }
     }
 
     public uint EmptyX
     {
         get => _emptyX;
-        set => _emptyX = value < FieldSideSize ? value : throw new IndexOutOfRangeException(nameof(EmptyX));
+        set
+        {
+            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(value, FieldSideSize);
+            _emptyX = value;
+        }
     }
 
     public uint EmptyCellValue => EmptyCellValueConst;
@@ -68,7 +85,8 @@ public class Puzzle : IPuzzle
 
     public uint MovesCounter { get; private set; }
 
-    public DateTime StartTime { get; private set; }
+    public TimeSpan ElapsedTime =>
+        _startTimestamp is long start ? _timeProvider.GetElapsedTime(start) : _finishedElapsedTime;
 
     public void Init()
     {
@@ -78,6 +96,8 @@ public class Puzzle : IPuzzle
         EmptyX = FieldSideSize - 1;
         EmptyY = FieldSideSize - 1;
         MovesCounter = 0;
+        _startTimestamp = null;
+        _finishedElapsedTime = TimeSpan.Zero;
     }
 
     public void Start()
@@ -86,7 +106,8 @@ public class Puzzle : IPuzzle
         for (int i = 0; i < 1000; i++)
             Move((MoveDirection)rnd.Next(4));
         MovesCounter = 0;
-        StartTime = DateTime.Now;
+        _startTimestamp = _timeProvider.GetTimestamp();
+        _finishedElapsedTime = TimeSpan.Zero;
     }
 
     private void Move(MoveDirection moveDirection)
@@ -131,30 +152,18 @@ public class Puzzle : IPuzzle
 
     public void Move(uint y, uint x)
     {
-        if (y >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(y));
-        if (x >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(x));
+        if (GetMoveDirection(y, x) is MoveDirection moveDirection)
+            Move(moveDirection);
 
-        if (y == EmptyY && x == EmptyX - 1) Move(MoveDirection.Left);
-        if (y == EmptyY && x == EmptyX + 1) Move(MoveDirection.Right);
-        if (y == EmptyY - 1 && x == EmptyX) Move(MoveDirection.Up);
-        if (y == EmptyY + 1 && x == EmptyX) Move(MoveDirection.Down);
+        if (_startTimestamp is long start && IsDone())
+        {
+            _startTimestamp = null;
+            _finishedElapsedTime = _timeProvider.GetElapsedTime(start);
+        }
     }
 
-    public bool IsMoveable(uint y, uint x)
-    {
-        if (y >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(y));
-        if (x >= FieldSideSize)
-            throw new IndexOutOfRangeException(nameof(x));
-
-        return
-            (y == EmptyY && x == EmptyX - 1) ||
-            (y == EmptyY && x == EmptyX + 1) ||
-            (y == EmptyY - 1 && x == EmptyX) ||
-            (y == EmptyY + 1 && x == EmptyX);
-    }
+    public bool IsMoveable(uint y, uint x) =>
+        GetMoveDirection(y, x) is not null;
 
     public bool IsDone()
     {
@@ -163,6 +172,20 @@ public class Puzzle : IPuzzle
                 if (Cells[i, j] != i * FieldSideSize + j + 1)
                     return false;
         return true;
+    }
+
+    // Куда сдвинется пустая клетка при нажатии на клетку (y, x), или null, если эта клетка не соседняя с пустой.
+    // Пишем x + 1 == EmptyX, а не x == EmptyX - 1: при EmptyX == 0 вычитание в uint дало бы переполнение.
+    private MoveDirection? GetMoveDirection(uint y, uint x)
+    {
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(y, FieldSideSize);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(x, FieldSideSize);
+
+        if (y == EmptyY && x + 1 == EmptyX) return MoveDirection.Left;
+        if (y == EmptyY && x == EmptyX + 1) return MoveDirection.Right;
+        if (y + 1 == EmptyY && x == EmptyX) return MoveDirection.Up;
+        if (y == EmptyY + 1 && x == EmptyX) return MoveDirection.Down;
+        return null;
     }
 
     #endregion

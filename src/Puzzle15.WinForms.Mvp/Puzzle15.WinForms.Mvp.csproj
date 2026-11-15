@@ -6,8 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
 
     <AssemblyTitle>Puzzle 15 (WinForms, MVP)</AssemblyTitle>
+    <ApplicationIcon>..\..\assets\Puzzle15.ico</ApplicationIcon>
 
     <NoWarn>
+      $(NoWarn);
       WFO1000 <!-- Property does not configure the code serialization for its property content -->
     </NoWarn>
   </PropertyGroup>

@@ -11,20 +11,26 @@ namespace Puzzle15.Common.UnitTests.DomainModel;
 [TestFixture]
 public class BestScoresStorageTests
 {
+    private string _tempDirectory;
     private string _tempFileName;
 
     [SetUp]
-    public void SetUp() =>
-        _tempFileName = Path.Combine(Path.GetTempPath(), $"Puzzle15.{Guid.NewGuid():N}.dat");
+    public void SetUp()
+    {
+        // Отдельная временная папка на каждый тест: в TearDown удаляется всё,
+        // что в ней оказалось, включая временный файл, который создаёт Save
+        _tempDirectory = Path.Combine(Path.GetTempPath(), $"Puzzle15.{Guid.NewGuid():N}");
+        Directory.CreateDirectory(_tempDirectory);
+        _tempFileName = Path.Combine(_tempDirectory, Options.BestScoresStorageFileName);
+    }
 
     [TearDown]
     public void TearDown()
     {
-        if (File.Exists(_tempFileName))
-        {
-            File.SetAttributes(_tempFileName, FileAttributes.Normal);
-            File.Delete(_tempFileName);
-        }
+        // Снимаем атрибут «только чтение», иначе файл может не удалиться
+        foreach (var fileName in Directory.EnumerateFiles(_tempDirectory))
+            File.SetAttributes(fileName, FileAttributes.Normal);
+        Directory.Delete(_tempDirectory, recursive: true);
     }
 
     [Test]
@@ -44,12 +50,10 @@ public class BestScoresStorageTests
         bestScores.Add(new Score { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
 
         // Act
-        var bestScoresStoragePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\{Options.BestScoresStorageFileName}";
-        new BestScoresStorage(bestScoresStoragePath).Save(bestScores);
-        bool actual = File.Exists(bestScoresStoragePath);
+        new BestScoresStorage(_tempFileName).Save(bestScores);
 
         // Assert
-        Assert.That(actual, Is.True);
+        Assert.That(ReadScoresFile(), Is.EqualTo(bestScores.Scores));
     }
 
     [Test]
@@ -67,14 +71,11 @@ public class BestScoresStorageTests
         bestScores.Add(new Score { Name = "Hhhhhhh", Moves = 158, Timer = new TimeSpan(0, 1, 18, 25) });
         bestScores.Add(new Score { Name = "Iiiiiiii", Moves = 159, Timer = new TimeSpan(0, 1, 19, 25) });
         bestScores.Add(new Score { Name = "Jjjjjjj", Moves = 200, Timer = new TimeSpan(0, 1, 20, 25) });
+        WriteScoresFile(bestScores.Scores);
 
         // Act
-        var bestScoresStoragePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\{Options.BestScoresStorageFileName}";
-        var bestScoresStorage = new BestScoresStorage(bestScoresStoragePath);
-        bestScoresStorage.Save(bestScores);
-
         var loadBestScores = new BestScores();
-        bestScoresStorage.Load(loadBestScores);
+        new BestScoresStorage(_tempFileName).Load(loadBestScores);
 
         // Assert
 
@@ -96,6 +97,55 @@ public class BestScoresStorageTests
         //}
         //Assert.That(equals, Is.True);
 
+        Assert.That(loadBestScores.Scores, Is.EqualTo(bestScores.Scores));
+    }
+
+    [Test]
+    public void Save_ShouldReplacePreviousFile_WhenFileExists()
+    {
+        // Arrange
+        var bestScoresStorage = new BestScoresStorage(_tempFileName);
+        var previousBestScores = new BestScores();
+        previousBestScores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
+        bestScoresStorage.Save(previousBestScores);
+
+        var bestScores = new BestScores();
+        bestScores.Add(new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
+        bestScores.Add(new Score { Name = "Cccccc", Moves = 103, Timer = new TimeSpan(0, 0, 13, 25) });
+
+        // Act
+        bestScoresStorage.Save(bestScores);
+
+        // Assert
+        var loadBestScores = new BestScores();
+        bestScoresStorage.Load(loadBestScores);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(loadBestScores.Scores, Is.EqualTo(bestScores.Scores));
+            // После успешного сохранения рядом не должно остаться временных файлов
+            Assert.That(Directory.GetFiles(_tempDirectory), Is.EqualTo([_tempFileName]));
+        }
+    }
+
+    [Test]
+    public void Save_ShouldKeepPreviousFile_WhenSerializationFails()
+    {
+        // Arrange
+        var bestScoresStorage = new BestScoresStorage(_tempFileName);
+        var bestScores = new BestScores();
+        bestScores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
+        bestScoresStorage.Save(bestScores);
+
+        // XmlSerializer не знает о типе-наследнике и бросает исключение посреди записи
+        var brokenBestScores = new BestScores();
+        brokenBestScores.Scores.Add(new UnknownScore { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
+
+        // Act
+        Assert.That(() => bestScoresStorage.Save(brokenBestScores), Throws.InvalidOperationException);
+
+        // Assert
+        var loadBestScores = new BestScores();
+        bestScoresStorage.Load(loadBestScores);
         Assert.That(loadBestScores.Scores, Is.EqualTo(bestScores.Scores));
     }
 
@@ -128,8 +178,7 @@ public class BestScoresStorageTests
         var fileScores = moves
             .Select(m => new Score { Name = m.ToString(), Moves = m, Timer = new TimeSpan(0, 0, 10, 25) })
             .ToList();
-        using (var fileStream = File.Create(_tempFileName))
-            new XmlSerializer(typeof(List<Score>)).Serialize(fileStream, fileScores);
+        WriteScoresFile(fileScores);
 
         // Act
         var loadBestScores = new BestScores();
@@ -137,5 +186,24 @@ public class BestScoresStorageTests
 
         // Assert
         Assert.That(loadBestScores.Scores.Select(s => s.Moves), Is.EqualTo(new uint[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }));
+    }
+
+    // Запись и чтение файла напрямую через XmlSerializer, в обход BestScoresStorage:
+    // так тест Save не зависит от Load, а тесты Load не зависят от Save
+    private void WriteScoresFile(List<Score> scores)
+    {
+        using var fileStream = File.Create(_tempFileName);
+        new XmlSerializer(typeof(List<Score>)).Serialize(fileStream, scores);
+    }
+
+    private List<Score> ReadScoresFile()
+    {
+        using var fileStream = File.OpenRead(_tempFileName);
+        return (List<Score>)new XmlSerializer(typeof(List<Score>)).Deserialize(fileStream);
+    }
+
+    // Наследник Score, о котором XmlSerializer не знает: его сериализация завершается исключением
+    public class UnknownScore : Score
+    {
     }
 }

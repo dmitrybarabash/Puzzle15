@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
 
     <AssemblyTitle>Puzzle 15 (WPF, No MVVM)</AssemblyTitle>
+    <ApplicationIcon>..\..\assets\Puzzle15.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

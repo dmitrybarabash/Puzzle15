@@ -23,7 +23,7 @@ public class PuzzleViewModel : BaseViewModel
     {
         // Создаем и настраиваем игровой таймер
         GameTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        GameTimer.Tick += (s, e) => GameTimerText = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+        GameTimer.Tick += (s, e) => GameTimerText = Model.Puzzle.ElapsedTime.ToString(@"hh\:mm\:ss");
 
         // Устанавливаем дефолтное содержимое и состояние контролов главного окна
         Model.Puzzle.Init();
@@ -228,32 +228,18 @@ public class PuzzleViewModel : BaseViewModel
                 var score = new Score
                 {
                     Moves = Model.Puzzle.MovesCounter,
-                    Timer = DateTime.Now - Model.Puzzle.StartTime
+                    Timer = Model.Puzzle.ElapsedTime
                 };
 
                 MessageBox.Show(
                     $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimerText}!",
                     "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                try
+                Model.TryAddBestScore(score, () =>
                 {
-                    Model.BestScoresStorage.Load(Model.BestScores);
-                    if (Model.BestScores.CanBeAdded(score))
-                    {
-                        var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = Application.Current.MainWindow };
-                        if (bestScoredPlayerNameWindow.ShowDialog() == true)
-                        {
-                            score.Name = bestScoredPlayerNameWindow.PlayerName;
-                            Model.BestScores.Add(score);
-                            Model.BestScoresStorage.Save(Model.BestScores);
-                        }
-                    }
-                }
-                catch
-                {
-                    // Ничего не делаем, пользователю ничего не говорим.
-                    // Не получилось прочитать/записать файл с рекордами — окей, просто пропускаем эту часть.
-                }
+                    var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = Application.Current.MainWindow };
+                    return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;
+                });
 
                 Model.Puzzle.Init();
                 IsGameStarted = false;

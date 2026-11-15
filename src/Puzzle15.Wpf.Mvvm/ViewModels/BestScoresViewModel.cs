@@ -12,16 +12,7 @@ public class BestScoresViewModel : BaseViewModel
     public BestScoresViewModel()
     {
         // Загружаем лучшие результаты из файла
-        try
-        {
-            Model.BestScoresStorage.Load(Model.BestScores);
-        }
-        catch
-        {
-            // Ничего не делаем, пользователю ничего не говорим.
-            // Не получилось прочитать файл с рекордами — окей, просто пропускаем эту часть.
-            return;
-        }
+        Model.TryLoadBestScores();
     }
 
     protected override void OnDispose() =>

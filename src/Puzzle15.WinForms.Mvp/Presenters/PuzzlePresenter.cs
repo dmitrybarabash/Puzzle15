@@ -45,7 +45,7 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
 
     private void OnTimer(object sender, EventArgs e)
     {
-        View.LabelTimer = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+        View.LabelTimer = Model.Puzzle.ElapsedTime.ToString(@"hh\:mm\:ss");
     }
 
     private void OnMove(object sender, EventArgs e)
@@ -65,32 +65,18 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
                 var score = new Score
                 {
                     Moves = Model.Puzzle.MovesCounter,
-                    Timer = DateTime.Now - Model.Puzzle.StartTime
+                    Timer = Model.Puzzle.ElapsedTime
                 };
 
                 MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.Puzzle.MovesCounter + " " +
                     Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
                     "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                try
+                Model.TryAddBestScore(score, () =>
                 {
-                    Model.BestScoresStorage.Load(Model.BestScores);
-                    if (Model.BestScores.CanBeAdded(score))
-                    {
-                        var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
-                        if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
-                        {
-                            score.Name = bestScoredPlayerNameForm.PlayerName;
-                            Model.BestScores.Add(score);
-                            Model.BestScoresStorage.Save(Model.BestScores);
-                        }
-                    }
-                }
-                catch
-                {
-                    // Ничего не делаем, пользователю ничего не говорим.
-                    // Не получилось прочитать/записать файл с рекордами — окей, просто пропускаем эту часть.
-                }
+                    var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
+                    return bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK ? bestScoredPlayerNameForm.PlayerName : null;
+                });
 
                 Model.Puzzle.Init();
                 UpdateButtons(false);

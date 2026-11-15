@@ -12,7 +12,7 @@ public interface IPuzzle
     uint FieldSideSize { get; }
 
     uint MovesCounter { get; }
-    DateTime StartTime { get; }
+    TimeSpan ElapsedTime { get; }
 
     void Init();
     void Start();

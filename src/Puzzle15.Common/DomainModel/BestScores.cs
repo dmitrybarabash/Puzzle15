@@ -9,7 +9,7 @@ public class BestScores : IBestScores
 
     #region IBestScores implementation
 
-    public List<Score> Scores { get; } = new List<Score>();
+    public List<Score> Scores { get; } = [];
 
     public int Count => Scores.Count;
 

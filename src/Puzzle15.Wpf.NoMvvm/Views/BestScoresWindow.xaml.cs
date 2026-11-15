@@ -22,16 +22,8 @@ namespace Puzzle15.Wpf.NoMvvm.Views
             //
             // Загружаем лучшие результаты из файла
             //
-            try
-            {
-                Model.BestScoresStorage.Load(Model.BestScores);
-            }
-            catch
-            {
-                // Ничего не делаем, пользователю ничего не говорим.
-                // Не получилось прочитать файл с рекордами — ок, просто пропускаем эту часть.
+            if (!Model.TryLoadBestScores())
                 return;
-            }
 
             //
             // Раскладываем их по TextBlock'ам в сетке
