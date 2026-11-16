@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -19,38 +20,72 @@ public class BestScoresStorage : IBestScoresStorage
     {
         // Сначала пишем во временный файл рядом с основным и только потом подменяем им основной.
         // Если запись прервётся (сбой, нехватка места, исключение при сериализации),
-        // прежний файл с рекордами останется целым
+        // прежний файл с рекордами останется целым.
         var tempFileName = $"{FileName}.tmp";
-        using (var fileStream = new FileStream(tempFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+        // Создаём файл до try: если создать его не удалось, он не наш (например, его сейчас
+        // пишет другой экземпляр игры), и удалять его при ошибке нельзя
+        var fileStream = new FileStream(tempFileName, FileMode.Create, FileAccess.Write, FileShare.None);
+        try
         {
-            var serializer = new XmlSerializer(typeof(List<Score>));
-            serializer.Serialize(fileStream, bestScores.Scores);
-            // Сбрасываем данные на диск до переименования, иначе при отключении питания
-            // можно получить уже переименованный, но пустой файл
-            fileStream.Flush(flushToDisk: true);
+            using (fileStream)
+            {
+                var serializer = new XmlSerializer(typeof(List<Score>));
+                serializer.Serialize(fileStream, bestScores.Scores);
+                // Сбрасываем данные на диск до переименования, иначе при отключении питания
+                // можно получить уже переименованный, но пустой файл
+                fileStream.Flush(flushToDisk: true);
+            }
+            // Временный файл лежит на том же диске, поэтому это просто переименование:
+            // основной файл в любой момент либо старый, либо новый, но не наполовину записанный
+            File.Move(tempFileName, FileName, overwrite: true);
         }
-        // Временный файл лежит на том же диске, поэтому это просто переименование:
-        // основной файл в любой момент либо старый, либо новый, но не наполовину записанный
-        File.Move(tempFileName, FileName, overwrite: true);
+        catch
+        {
+            // Сохранить не удалось, и недописанный временный файл больше не нужен
+            TryDeleteFile(tempFileName);
+            throw;
+        }
     }
 
     public void Load(IBestScores bestScores)
     {
-        if (!File.Exists(FileName))
-            return;
+        // Нет файла — нет рекордов: либо их ещё не было, либо файл удалили, чтобы их сбросить.
+        // Таблицу в памяти всё равно надо очистить, иначе при следующем сохранении
+        // удалённые рекорды вернутся в файл.
+        List<Score> scores = File.Exists(FileName) ? ReadScores() : [];
 
-        using var fileStream = File.OpenRead(FileName);
-        var serializer = new XmlSerializer(typeof(List<Score>));
-        var scores = (List<Score>)serializer.Deserialize(fileStream);
+        // Если файл повреждён, ReadScores бросит InvalidOperationException ещё до очистки,
+        // и неудачная загрузка не изменит таблицу в памяти. Исключение перехватывает PuzzleDomainModel.TryLoadBestScores.
         bestScores.Scores.Clear();
         // Add (а не AddRange), чтобы даже из файла с неотсортированными или лишними результатами
         // получался отсортированный список не более чем из MaxCount лучших результатов
         foreach (var score in scores)
         {
+            // Add не принимает null, а в отредактированном вручную файле
+            // могут оказаться пустые записи (<Score xsi:nil="true" />)
             if (score is not null)
                 bestScores.Add(score);
         }
     }
 
     #endregion
+
+    private List<Score> ReadScores()
+    {
+        using var fileStream = File.OpenRead(FileName);
+        var serializer = new XmlSerializer(typeof(List<Score>));
+        return (List<Score>)serializer.Deserialize(fileStream);
+    }
+
+    private static void TryDeleteFile(string fileName)
+    {
+        try
+        {
+            File.Delete(fileName);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            // Ошибку удаления не пробрасываем, чтобы она не подменила собой исходную ошибку сохранения
+        }
+    }
 }

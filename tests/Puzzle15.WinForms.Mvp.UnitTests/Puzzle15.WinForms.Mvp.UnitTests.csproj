@@ -4,22 +4,7 @@
     <TargetFramework>net11.0-windows</TargetFramework>
 
     <AssemblyTitle>Puzzle 15 (WinForms, MVP) Unit Tests</AssemblyTitle>
-
-    <OutputType>Exe</OutputType>
-    <EnableNUnitRunner>true</EnableNUnitRunner>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
-    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
-    <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="NUnit3TestAdapter" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Puzzle15.Common\Puzzle15.Common.csproj" />

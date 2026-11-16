@@ -68,8 +68,8 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
                     Timer = Model.Puzzle.ElapsedTime
                 };
 
-                MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.Puzzle.MovesCounter + " " +
-                    Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
+                MessageBox.Show(
+                    $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {View.LabelTimer}!",
                     "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Model.TryAddBestScore(score, () =>

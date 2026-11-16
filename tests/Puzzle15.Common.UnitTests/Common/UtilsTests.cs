@@ -3,28 +3,44 @@
 namespace Puzzle15.Common.UnitTests.Common;
 
 [TestFixture]
-class UtilsTests
+public class UtilsTests
 {
-    [TestCase( 1U, "ход", ExpectedResult = true)]
-    [TestCase( 2U, "хода", ExpectedResult = true)]
-    [TestCase( 3U, "хода", ExpectedResult = true)]
-    [TestCase( 4U, "хода", ExpectedResult = true)]
-    [TestCase( 5U, "ходов", ExpectedResult = true)]
-    [TestCase( 6U, "ходов", ExpectedResult = true)]
-    [TestCase( 7U, "ходов", ExpectedResult = true)]
-    [TestCase( 8U, "ходов", ExpectedResult = true)]
-    [TestCase( 9U, "ходов", ExpectedResult = true)]
-    [TestCase(10U, "ходов", ExpectedResult = true)]
-    [TestCase(14U, "ходов", ExpectedResult = true)]
-    [TestCase(15U, "ходов", ExpectedResult = true)]
-    [TestCase(20U, "ходов", ExpectedResult = true)]
-    [TestCase(21U, "ход", ExpectedResult = true)]
-    [TestCase(22U, "хода", ExpectedResult = true)]
-    [TestCase(23U, "хода", ExpectedResult = true)]
-    [TestCase(24U, "хода", ExpectedResult = true)]
-    [TestCase(25U, "ходов", ExpectedResult = true)]
-    public bool GetMovesWord_ShouldReturnWord_WhenMovesGiven(uint moves, string result)
+    [TestCase(   0U, ExpectedResult = "ходов")]
+    [TestCase(   1U, ExpectedResult = "ход")]
+    [TestCase(   2U, ExpectedResult = "хода")]
+    [TestCase(   3U, ExpectedResult = "хода")]
+    [TestCase(   4U, ExpectedResult = "хода")]
+    [TestCase(   5U, ExpectedResult = "ходов")]
+    [TestCase(   6U, ExpectedResult = "ходов")]
+    [TestCase(   7U, ExpectedResult = "ходов")]
+    [TestCase(   8U, ExpectedResult = "ходов")]
+    [TestCase(   9U, ExpectedResult = "ходов")]
+    [TestCase(  10U, ExpectedResult = "ходов")]
+    // От 11 до 14 — «ходов», хотя последняя цифра от 1 до 4
+    [TestCase(  11U, ExpectedResult = "ходов")]
+    [TestCase(  12U, ExpectedResult = "ходов")]
+    [TestCase(  13U, ExpectedResult = "ходов")]
+    [TestCase(  14U, ExpectedResult = "ходов")]
+    [TestCase(  15U, ExpectedResult = "ходов")]
+    [TestCase(  20U, ExpectedResult = "ходов")]
+    [TestCase(  21U, ExpectedResult = "ход")]
+    [TestCase(  22U, ExpectedResult = "хода")]
+    [TestCase(  23U, ExpectedResult = "хода")]
+    [TestCase(  24U, ExpectedResult = "хода")]
+    [TestCase(  25U, ExpectedResult = "ходов")]
+    // Начиная с сотни, решают только две последние цифры
+    [TestCase( 100U, ExpectedResult = "ходов")]
+    [TestCase( 101U, ExpectedResult = "ход")]
+    [TestCase( 102U, ExpectedResult = "хода")]
+    [TestCase( 105U, ExpectedResult = "ходов")]
+    [TestCase( 111U, ExpectedResult = "ходов")]
+    [TestCase( 112U, ExpectedResult = "ходов")]
+    [TestCase( 114U, ExpectedResult = "ходов")]
+    [TestCase( 121U, ExpectedResult = "ход")]
+    [TestCase(1011U, ExpectedResult = "ходов")]
+    [TestCase(uint.MaxValue, ExpectedResult = "ходов")]  // 4294967295
+    public string GetMovesWord_ShouldReturnWord_WhenMovesGiven(uint moves)
     {
-        return Utils.GetMovesWord(moves) == result;
+        return Utils.GetMovesWord(moves);
     }
 }

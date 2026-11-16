@@ -18,21 +18,25 @@ public class Puzzle : IPuzzle
     private uint _emptyX;
     private uint _emptyY;
 
+    private readonly Random _random;
+
     private readonly TimeProvider _timeProvider;
     // Отметка начала партии или null, если партия еще не началась
     private long? _startTimestamp;
     // Время уже завершённой партии
     private TimeSpan _finishedElapsedTime;
 
-    public Puzzle() : this(TimeProvider.System)
+    public Puzzle() : this(TimeProvider.System, Random.Shared)
     {
     }
 
-    // Нужен для тестов: источник времени можно будет подменить
-    public Puzzle(TimeProvider timeProvider)
+    // Нужен для тестов: источник времени и генератор случайных чисел можно будет подменить
+    public Puzzle(TimeProvider timeProvider, Random random)
     {
         ArgumentNullException.ThrowIfNull(timeProvider);
+        ArgumentNullException.ThrowIfNull(random);
         _timeProvider = timeProvider;
+        _random = random;
         Cells = new uint[FieldSideSize, FieldSideSize];
         Init();
     }
@@ -102,9 +106,8 @@ public class Puzzle : IPuzzle
 
     public void Start()
     {
-        var rnd = new Random();
         for (int i = 0; i < 1000; i++)
-            Move((MoveDirection)rnd.Next(4));
+            Move((MoveDirection)_random.Next(4));
         MovesCounter = 0;
         _startTimestamp = _timeProvider.GetTimestamp();
         _finishedElapsedTime = TimeSpan.Zero;
@@ -174,6 +177,8 @@ public class Puzzle : IPuzzle
         return true;
     }
 
+    #endregion
+
     // Куда сдвинется пустая клетка при нажатии на клетку (y, x), или null, если эта клетка не соседняя с пустой.
     // Пишем x + 1 == EmptyX, а не x == EmptyX - 1: при EmptyX == 0 вычитание в uint дало бы переполнение.
     private MoveDirection? GetMoveDirection(uint y, uint x)
@@ -187,6 +192,4 @@ public class Puzzle : IPuzzle
         if (y == EmptyY + 1 && x == EmptyX) return MoveDirection.Down;
         return null;
     }
-
-    #endregion
 }

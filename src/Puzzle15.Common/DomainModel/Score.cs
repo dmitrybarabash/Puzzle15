@@ -19,7 +19,7 @@ public class Score : IComparable<Score>, IEquatable<Score>
 
         // Сравниваются только ходы и время, имя намеренно не учитывается: этот порядок определяет
         // место в таблице рекордов, и при одинаковых ходах и времени BestScores ставит новый результат
-        // после уже имеющихся. Поэтому CompareTo может вернуть 0 для результатов, не равных по Equals
+        // после уже имеющихся. Поэтому CompareTo может вернуть 0 для результатов, не равных по Equals.
         if (Moves < other.Moves) return -1;
         if (Moves > other.Moves) return 1;
         if (Timer < other.Timer) return -1;
