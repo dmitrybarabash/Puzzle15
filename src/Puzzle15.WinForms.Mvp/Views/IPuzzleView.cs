@@ -12,7 +12,7 @@ public interface IPuzzleView : IView
 
     event EventHandler NewGame;
     event EventHandler Timer;
-    event EventHandler Move;
+    event EventHandler CellClicked;
     event EventHandler BestScores;
 
     void StartTimer();

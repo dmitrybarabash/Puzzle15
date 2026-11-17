@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Puzzle15.Common.UnitTests.Common;
 
@@ -42,5 +43,21 @@ public class UtilsTests
     public string GetMovesWord_ShouldReturnWord_WhenMovesGiven(uint moves)
     {
         return Utils.GetMovesWord(moves);
+    }
+
+    [TestCase(  0,  0,  0,   0, ExpectedResult = "00:00:00")]
+    [TestCase(  0,  0,  5,   0, ExpectedResult = "00:00:05")]
+    [TestCase(  0,  1, 30,   0, ExpectedResult = "00:01:30")]
+    [TestCase( 12, 34, 56,   0, ExpectedResult = "12:34:56")]
+    [TestCase( 23, 59, 59,   0, ExpectedResult = "23:59:59")]
+    // Доли секунды отбрасываются, а не округляются
+    [TestCase(  0,  1, 29, 999, ExpectedResult = "00:01:29")]
+    // Сутки не отбрасываются, а входят в часы
+    [TestCase( 25,  0,  0,   0, ExpectedResult = "25:00:00")]
+    [TestCase(100,  0,  0,   0, ExpectedResult = "100:00:00")]
+    public string FormatElapsedTime_ShouldReturnHoursMinutesSeconds_WhenTimeGiven(
+        int hours, int minutes, int seconds, int milliseconds)
+    {
+        return Utils.FormatElapsedTime(new TimeSpan(0, hours, minutes, seconds, milliseconds));
     }
 }

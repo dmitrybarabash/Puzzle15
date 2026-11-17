@@ -4,66 +4,56 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Puzzle15.Wpf.NoMvvm.Views
+namespace Puzzle15.Wpf.NoMvvm.Views;
+
+public partial class BestScoresWindow : Window
 {
-    public partial class BestScoresWindow : Window
+    private const int NameColumn = 1;
+    private const int MovesColumn = 2;
+    private const int TimerColumn = 3;
+
+    private IPuzzleDomainModel Model { get; }
+
+    public BestScoresWindow(IPuzzleDomainModel model)
     {
-        private IPuzzleDomainModel Model { get; }
+        InitializeComponent();
 
-        public BestScoresWindow(IPuzzleDomainModel model)
+        Model = model;
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        //
+        // Загружаем лучшие результаты из файла
+        //
+        if (!Model.TryLoadBestScores())
+            return;
+
+        //
+        // Раскладываем их по TextBlock'ам в сетке
+        //
+
+        // Из всех дочерних контролов сетки получаем все TextBlock'и
+        var textBlockList = gridBestScores.Children.OfType<TextBlock>();
+
+        foreach (TextBlock textBlock in textBlockList)
         {
-            InitializeComponent();
+            int row = Grid.GetRow(textBlock);
+            if (row >= Model.BestScores.Count)
+                continue;
 
-            Model = model;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //
-            // Загружаем лучшие результаты из файла
-            //
-            if (!Model.TryLoadBestScores())
-                return;
-
-            //
-            // Раскладываем их по TextBlock'ам в сетке
-            //
-
-            //
-            // Подробный вариант
-            //
-            // Получаем все дочерние контролы сетки в виде коллекции UIElementCollection
-            //UIElementCollection elementCollection = gridBestScores.Children;
-            // Преобразуем полученную коллекцию в List<FrameworkElement>
-            //List<FrameworkElement> elementList = elementCollection.Cast<FrameworkElement>().ToList();
-            // Выделяем из этого списка всех контролов только TextBlock'и
-            //IEnumerable<TextBlock> textBlockList = elementList.OfType<TextBlock>();
-
-            //
-            // Этот же вариант покороче
-            //
-            var textBlockList = gridBestScores.Children.Cast<FrameworkElement>().ToList().OfType<TextBlock>();
-
-            foreach (TextBlock textBlock in textBlockList)
+            Score score = Model.BestScores[row];
+            switch (Grid.GetColumn(textBlock))
             {
-                if (textBlock.Name.StartsWith("textBlockName"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 13)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = Model.BestScores[index].Name;
-                }
-                if (textBlock.Name.StartsWith("textBlockMoves"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 14)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = $"{Model.BestScores[index].Moves} {Utils.GetMovesWord(Model.BestScores.Scores[index].Moves)}";
-                }
-                if (textBlock.Name.StartsWith("textBlockTimer"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 14)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = Model.BestScores[index].Timer.ToString(@"hh\:mm\:ss");
-                }
+                case NameColumn:
+                    textBlock.Text = score.Name;
+                    break;
+                case MovesColumn:
+                    textBlock.Text = $"{score.Moves} {Utils.GetMovesWord(score.Moves)}";
+                    break;
+                case TimerColumn:
+                    textBlock.Text = Utils.FormatElapsedTime(score.Timer);
+                    break;
             }
         }
     }

@@ -68,7 +68,7 @@ class PuzzlePresenterTests
     //    var buttonNewGame = view.Controls.Find("buttonNewGame", searchAllChildren: true)[0];
     //    view.NewGameHandler(buttonNewGame, EventArgs.Empty);
     //    var buttonCell16 = view.Controls.Find("buttonCell16", searchAllChildren: true)[0] as Button;
-    //    view.buttonCell_Click(buttonCell16, EventArgs.Empty);
+    //    view.CellClickedHandler(buttonCell16, EventArgs.Empty);
     //
     //    // Assert
     //    for (int i = 1; i <= 16; i++)

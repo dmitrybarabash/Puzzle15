@@ -5,6 +5,8 @@ namespace Puzzle15.Common.DomainModel;
 [Serializable]
 public class Score : IComparable<Score>, IEquatable<Score>
 {
+    public const int MaxNameLength = 20;
+
     public string Name { get; set; }
     public uint Moves { get; set; }
     public TimeSpan Timer { get; set; }

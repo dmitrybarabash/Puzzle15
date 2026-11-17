@@ -17,7 +17,11 @@ public class PuzzleRoutedUICommand : RoutedUICommand
 
     // Собственно, то, ради чего делаем этот класс. Если этого не сделать, то по умолчанию ToString()
     // будет возвращать полное имя класса, а нам нужно, чтобы он возвращал текст команды.
-    public override string ToString() => Text.Remove(Text.IndexOf('_'), 1);
+    public override string ToString()
+    {
+        int index = Text.IndexOf('_');
+        return index >= 0 ? Text.Remove(index, 1) : Text;
+    }
 }
 
 //

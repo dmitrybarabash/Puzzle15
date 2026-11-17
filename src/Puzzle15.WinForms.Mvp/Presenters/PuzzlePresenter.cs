@@ -18,18 +18,23 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
         // Подписываемся на события представления
         View.NewGame += OnNewGame;
         View.Timer += OnTimer;
-        View.Move += OnMove;
+        View.CellClicked += OnCellClicked;
         View.BestScores += OnBestScores;
+    }
+
+    private (uint y, uint x) GetCellPosition(Button button)
+    {
+        TableLayoutPanelCellPosition position = View.Buttons.Container.GetCellPosition(button);
+        return ((uint)position.Row, (uint)position.Column);
     }
 
     private void UpdateButtons(bool active)
     {
-        foreach (var control in View.Buttons)
+        foreach (Button button in View.Buttons)
         {
-            var button = control as Button;
+            (uint y, uint x) = GetCellPosition(button);
+            uint cellValue = Model.Puzzle[y, x];
             button.Enabled = active;
-            uint number = uint.Parse(button.Name.Remove(0, 10));
-            uint cellValue = Model.Puzzle[(number - 1) / Model.Puzzle.FieldSideSize, (number - 1) % Model.Puzzle.FieldSideSize];
             button.Text = cellValue.ToString();
             button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
         }
@@ -45,14 +50,12 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
 
     private void OnTimer(object sender, EventArgs e)
     {
-        View.LabelTimer = Model.Puzzle.ElapsedTime.ToString(@"hh\:mm\:ss");
+        View.LabelTimer = Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime);
     }
 
-    private void OnMove(object sender, EventArgs e)
+    private void OnCellClicked(object sender, EventArgs e)
     {
-        uint clickedNumber = uint.Parse((sender as Button).Name.Remove(0, 10));
-        uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
-        uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
+        (uint y, uint x) = GetCellPosition((Button)sender);
         if (Model.Puzzle.IsMoveable(y, x))
         {
             Model.Puzzle.Move(y, x);
@@ -68,19 +71,21 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
                     Timer = Model.Puzzle.ElapsedTime
                 };
 
+                string elapsedTime = Utils.FormatElapsedTime(score.Timer);
+                View.LabelTimer = elapsedTime;
+
                 MessageBox.Show(
-                    $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {View.LabelTimer}!",
+                    $"Вы выиграли!\n\nВы сделали {score.Moves} {Utils.GetMovesWord(score.Moves)} за {elapsedTime}!",
                     "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Model.TryAddBestScore(score, () =>
                 {
-                    var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
+                    using var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
                     return bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK ? bestScoredPlayerNameForm.PlayerName : null;
                 });
 
                 Model.Puzzle.Init();
                 UpdateButtons(false);
-                View.StopTimer();
                 View.UpdateGameLabels(false);
             }
         }
@@ -88,7 +93,8 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
 
     private void OnBestScores(object sender, EventArgs e)
     {
-        var bestScoresPresenter = new BestScoresPresenter(Model, new BestScoresForm());
-        ((Form)bestScoresPresenter.View).ShowDialog();
+        using var bestScoresForm = new BestScoresForm();
+        new BestScoresPresenter(Model, bestScoresForm);
+        bestScoresForm.ShowDialog();
     }
 }

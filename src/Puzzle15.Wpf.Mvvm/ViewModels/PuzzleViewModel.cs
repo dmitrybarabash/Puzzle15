@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Puzzle15.Common;
@@ -13,7 +12,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels;
 public class PuzzleViewModel : BaseViewModel
 {
     // Берем экземпляр модели из класса приложения App
-    private IPuzzleDomainModel Model => (Application.Current as App).Model;
+    private IPuzzleDomainModel Model => ((App)Application.Current).Model;
 
     // Игровой таймер
     private DispatcherTimer GameTimer { get; }
@@ -21,9 +20,11 @@ public class PuzzleViewModel : BaseViewModel
 
     public PuzzleViewModel()
     {
-        // Создаем и настраиваем игровой таймер
-        GameTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        GameTimer.Tick += (s, e) => GameTimerText = Model.Puzzle.ElapsedTime.ToString(@"hh\:mm\:ss");
+        // Создаем и настраиваем игровой таймер.
+        // DispatcherTimer отсчитывает следующий тик от конца предыдущего, поэтому отставание копится.
+        // При интервале в 1 с таймер из-за этого иногда перескакивает через секунду, а при 200 мс — нет.
+        GameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
+        GameTimer.Tick += (s, e) => GameTimerText = Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime);
 
         // Устанавливаем дефолтное содержимое и состояние контролов главного окна
         Model.Puzzle.Init();
@@ -48,7 +49,7 @@ public class PuzzleViewModel : BaseViewModel
 
     private void ResetGameLabels()
     {
-        GameTimerText = "00:00:00";
+        GameTimerText = Utils.FormatElapsedTime(TimeSpan.Zero);
         GameMovesText = "0";
     }
 
@@ -110,7 +111,7 @@ public class PuzzleViewModel : BaseViewModel
 
 
     //
-    // Свойство привязки состояния IsEnabale для кнопок самих Пятнашек, текста таймера и счетчика ходов
+    // Свойство привязки состояния IsEnabled для кнопок самих Пятнашек, текста таймера и счетчика ходов
     //
     private bool _isGameStarted = false;
     public bool IsGameStarted
@@ -211,9 +212,7 @@ public class PuzzleViewModel : BaseViewModel
     // execute-привязка команды MoveCommand (делаем ход)
     private void ExecuteMoveCommand(object parameter)
     {
-        Button button = parameter as Button;
-
-        uint clickedNumber = uint.Parse(button.Name.Remove(0, 10));
+        uint clickedNumber = uint.Parse((string)parameter);
         uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
         uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
         if (Model.Puzzle.IsMoveable(y, x))
@@ -231,8 +230,11 @@ public class PuzzleViewModel : BaseViewModel
                     Timer = Model.Puzzle.ElapsedTime
                 };
 
+                string elapsedTime = Utils.FormatElapsedTime(score.Timer);
+                GameTimerText = elapsedTime;
+
                 MessageBox.Show(
-                    $"Вы выиграли!\n\nВы сделали {Model.Puzzle.MovesCounter} {Utils.GetMovesWord(Model.Puzzle.MovesCounter)} за {GameTimerText}!",
+                    $"Вы выиграли!\n\nВы сделали {score.Moves} {Utils.GetMovesWord(score.Moves)} за {elapsedTime}!",
                     "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 Model.TryAddBestScore(score, () =>
@@ -244,7 +246,6 @@ public class PuzzleViewModel : BaseViewModel
                 Model.Puzzle.Init();
                 IsGameStarted = false;
                 UpdateCellButtons();
-                StopGameTimer();
                 ResetGameLabels();
             }
         }

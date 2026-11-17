@@ -1,62 +1,63 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Puzzle15.Common.DomainModel;
 using Puzzle15.Wpf.NoMvvm.Views;
 
-namespace Puzzle15.Wpf.NoMvvm
+namespace Puzzle15.Wpf.NoMvvm;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    // Экземпляр модели нашего приложения
+    public IPuzzleDomainModel Model { get; private set; }
+
+    //
+    // Переопределенный метод OnStartup выполняет здесь две задачи:
+    //
+    //    1. Splash Screen.
+    //         Показывает splash screen, а только затем показывает главное окно приложения.
+    //
+    //    2. Является Application Root нашего приложения.
+    //         Создает экземпляр модели — единственный на всё приложение.
+    //
+    protected override async void OnStartup(StartupEventArgs e)
     {
-        // Экземпляр модели нашего приложения
-        public IPuzzleDomainModel Model { get; private set; }
+        base.OnStartup(e);
 
-        //
-        // Переопределенный метод OnStartup выполняет здесь две задачи:
-        //
-        //    1. Splash Screen.
-        //         Показывает splash screen, а только затем показывает главное окно приложения.
-        //         Про реализацию splash screen:
-        //         https://wpf.programmingpedia.net/en/tutorial/3948/creating-splash-screen-in-wpf
-        //
-        //    2. Является Application Root нашего приложения.
-        //         Создает экземпляр модели — единственный на всё приложение.
-        //
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        // Необработанное исключение показываем пользователю и закрываем приложение.
+        // Иначе ошибка при создании главного окна оставила бы на экране висящий splash screen.
+        DispatcherUnhandledException += App_DispatcherUnhandledException;
 
-            // Создаем окно splash screen, временно делаем его главным
-            // окном приложения и показываем его пользователю
-            var splashScreen = new SplashScreenWindow();
-            MainWindow = splashScreen;
-            splashScreen.Show();
+        // Создаем окно splash screen, временно делаем его главным
+        // окном приложения и показываем его пользователю
+        var splashScreen = new SplashScreenWindow();
+        MainWindow = splashScreen;
+        splashScreen.Show();
 
-            // Чтобы UI оставался отзывчивым, асинхронно делаем паузу
-            // и потом переходим к показу настоящего главного окна
-            Task.Factory.StartNew(() =>
-            {
-                // Делаем паузу
-                System.Threading.Thread.Sleep(5000);
+        // Чтобы UI оставался отзывчивым, асинхронно делаем паузу
+        // и потом переходим к показу настоящего главного окна
+        await Task.Delay(5000);
 
-                // Создаем настоящее главное окно типа PuzzleWindow, делаем его главным окном
-                // приложения и показываем его пользователю. Поскольку мы сейчас вне основного
-                // UI-потока, то обращение к тому, что имеет отношение UI-потоку, должно быть
-                // вызвано потокобезопасно. В WPF это делается при помощи методов Invoke или
-                // BeginInvoke объекта Dispatcher, который как раз и дает доступ к UI-потоку.
-                Dispatcher.Invoke(() =>
-                {
-                    // Создаем модель
-                    Model = new PuzzleDomainModel();
+        // Создаем модель
+        Model = new PuzzleDomainModel();
 
-                    // Создаем настоящее главное окно типа PuzzleWindow, делаем его
-                    // главным окном приложения и показываем его пользователю
-                    MainWindow = new PuzzleWindow(Model);
-                    MainWindow.Show();
+        // Создаем настоящее главное окно типа PuzzleWindow, делаем его
+        // главным окном приложения и показываем его пользователю
+        MainWindow = new PuzzleWindow(Model);
+        MainWindow.Show();
 
-                    // Закрываем splash screen
-                    splashScreen.Close();
-                });
-            });
-        }
+        // Закрываем splash screen
+        splashScreen.Close();
+    }
+
+    private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+        MessageBox.Show(
+            $"Произошла непредвиденная ошибка, и игра будет закрыта.\n\n{e.Exception.GetBaseException().Message}",
+            "Пятнашки", MessageBoxButton.OK, MessageBoxImage.Error);
+
+        // Помечаем исключение обработанным, чтобы WPF не завершил процесс аварийно, и закрываем приложение сами
+        e.Handled = true;
+        Shutdown(1);
     }
 }

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf.Mvvm.Views"
-        xmlns:localcommmands="clr-namespace:Puzzle15.Wpf.Mvvm.Commands"
+        xmlns:localcommands="clr-namespace:Puzzle15.Wpf.Mvvm.Commands"
         xmlns:localviewmodels="clr-namespace:Puzzle15.Wpf.Mvvm.ViewModels"
         mc:Ignorable="d"
         Icon="/Images/Puzzle15.ico"
@@ -37,10 +37,10 @@
 
     <Window.CommandBindings>
         <!-- Привязка команд к обработчикам, которые будут выполняться когда команда должна будет отработать -->
-        <CommandBinding Command="localcommmands:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
-        <CommandBinding Command="localcommmands:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
-        <CommandBinding Command="localcommmands:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
-        <CommandBinding Command="localcommmands:PuzzleCommands.About" Executed="AboutCommand_Executed"/>
+        <CommandBinding Command="localcommands:PuzzleCommands.BestScores" Executed="BestScoresCommand_Executed"/>
+        <CommandBinding Command="localcommands:PuzzleCommands.Exit" Executed="ExitCommand_Executed"/>
+        <CommandBinding Command="localcommands:PuzzleCommands.NewGame" Executed="NewGameCommand_Executed"/>
+        <CommandBinding Command="localcommands:PuzzleCommands.About" Executed="AboutCommand_Executed"/>
     </Window.CommandBindings>
 
     <Grid>
@@ -56,15 +56,15 @@
         <!-- Главное меню -->
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <MenuItem Header="_Файл" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
+                <MenuItem Command="localcommands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
                 <Separator/>
-                <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
+                <MenuItem Command="localcommands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
             </MenuItem>
             <MenuItem Header="_Игра" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
+                <MenuItem Command="localcommands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
             </MenuItem>
             <MenuItem Header="_?" Margin="5,2,0,2">
-                <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
+                <MenuItem Command="localcommands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
             </MenuItem>
         </Menu>
 
@@ -93,112 +93,112 @@
                     Visibility="{Binding Path=CellButtonVisibility00, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="1"/>
             <Button Grid.Row="1" Grid.Column="2"
                     Name="cellButton2" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue01, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility01, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="2"/>
             <Button Grid.Row="1" Grid.Column="3"
                     Name="cellButton3" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue02, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility02, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="3"/>
             <Button Grid.Row="1" Grid.Column="4"
                     Name="cellButton4" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue03, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility03, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="4"/>
             <Button Grid.Row="2" Grid.Column="1"
                     Name="cellButton5" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="5"/>
             <Button Grid.Row="2" Grid.Column="2"
                     Name="cellButton6" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue11, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility11, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="6"/>
             <Button Grid.Row="2" Grid.Column="3"
                     Name="cellButton7" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue12, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility12, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="7"/>
             <Button Grid.Row="2" Grid.Column="4"
                     Name="cellButton8" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue13, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility13, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="8"/>
             <Button Grid.Row="3" Grid.Column="1"
                     Name="cellButton9" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue20, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility20, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="9"/>
             <Button Grid.Row="3" Grid.Column="2"
                     Name="cellButton10" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue21, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility21, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="10"/>
             <Button Grid.Row="3" Grid.Column="3"
                     Name="cellButton11" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue22, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility22, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="11"/>
             <Button Grid.Row="3" Grid.Column="4"
                     Name="cellButton12" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue23, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility23, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="12"/>
             <Button Grid.Row="4" Grid.Column="1"
                     Name="cellButton13" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue30, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility30, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="13"/>
             <Button Grid.Row="4" Grid.Column="2"
                     Name="cellButton14" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue31, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility31, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="14"/>
             <Button Grid.Row="4" Grid.Column="3"
                     Name="cellButton15" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue32, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility32, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="15"/>
             <Button Grid.Row="4" Grid.Column="4"
                     Name="cellButton16" FontSize="16" Margin="5,5"
                     Content="{Binding Path=CellButtonValue33, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Visibility="{Binding Path=CellButtonVisibility33, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     IsEnabled="{Binding Path=IsGameStarted, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding MoveCommand}"
-                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"/>
+                    CommandParameter="16"/>
         </Grid>
 
         <!-- Сетка с временем игры, количеством ходов и служебными кнопками -->
@@ -222,17 +222,17 @@
                            Text="{Binding Path=GameMovesText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
             <Button Grid.Row="2" Margin="5,10,15,10" Padding="15,5"
-                    Content="{x:Static localcommmands:PuzzleCommands.NewGame}"
+                    Content="{x:Static localcommands:PuzzleCommands.NewGame}"
                     Command="{Binding NewGameCommand}"/>
                 <!--CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>-->
 
             <StackPanel Grid.Row="4" VerticalAlignment="Bottom">
                 <Button Margin="5,0,15,10" Padding="15,5"
-                        Content="{x:Static localcommmands:PuzzleCommands.About}"
-                        Command="localcommmands:PuzzleCommands.About"/>
+                        Content="{x:Static localcommands:PuzzleCommands.About}"
+                        Command="localcommands:PuzzleCommands.About"/>
                 <Button Margin="5,5,15,15" Padding="15,5"
-                        Content="{x:Static localcommmands:PuzzleCommands.Exit}"
-                        Command="localcommmands:PuzzleCommands.Exit"/>
+                        Content="{x:Static localcommands:PuzzleCommands.Exit}"
+                        Command="localcommands:PuzzleCommands.Exit"/>
             </StackPanel>
         </Grid>
     </Grid>
@@ -240,12 +240,12 @@
     <!-- Контекстное меню -->
     <Window.ContextMenu>
         <ContextMenu>
-            <MenuItem Command="localcommmands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
-            <MenuItem Command="localcommmands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
+            <MenuItem Command="localcommands:PuzzleCommands.NewGame" Icon="{StaticResource NewGameIcon}"/>
+            <MenuItem Command="localcommands:PuzzleCommands.BestScores" Icon="{StaticResource BestScoresIcon}"/>
             <Separator/>
-            <MenuItem Command="localcommmands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
+            <MenuItem Command="localcommands:PuzzleCommands.About" Icon="{StaticResource AboutIcon}"/>
             <Separator/>
-            <MenuItem Command="localcommmands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
+            <MenuItem Command="localcommands:PuzzleCommands.Exit" Icon="{StaticResource ExitIcon}"/>
         </ContextMenu>
     </Window.ContextMenu>
 </Window>

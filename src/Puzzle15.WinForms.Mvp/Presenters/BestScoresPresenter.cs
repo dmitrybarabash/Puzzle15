@@ -7,6 +7,10 @@ namespace Puzzle15.WinForms.Mvp.Presenters;
 
 public class BestScoresPresenter : BasePresenter<IBestScoresView>
 {
+    private const int NameColumn = 1;
+    private const int MovesColumn = 2;
+    private const int TimerColumn = 3;
+
     private IPuzzleDomainModel Model { get; set; }
 
     public BestScoresPresenter(IPuzzleDomainModel domainModel, IBestScoresView bestScoresView)
@@ -25,25 +29,22 @@ public class BestScoresPresenter : BasePresenter<IBestScoresView>
 
         foreach (Label label in View.Labels)
         {
-            if (label.Name.StartsWith("nameLabel"))
+            TableLayoutPanelCellPosition position = View.Labels.Container.GetCellPosition(label);
+            if (position.Row >= Model.BestScores.Count)
+                continue;
+
+            Score score = Model.BestScores[position.Row];
+            switch (position.Column)
             {
-                int index = int.Parse(label.Name.Remove(0, 9)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text = Model.BestScores[index].Name;
-            }
-            if (label.Name.StartsWith("movesLabel"))
-            {
-                int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text =
-                        Model.BestScores[index].Moves + " " +
-                        Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
-            }
-            if (label.Name.StartsWith("timerLabel"))
-            {
-                int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text = Model.BestScores[index].Timer.ToString(@"hh\:mm\:ss");
+                case NameColumn:
+                    label.Text = score.Name;
+                    break;
+                case MovesColumn:
+                    label.Text = $"{score.Moves} {Utils.GetMovesWord(score.Moves)}";
+                    break;
+                case TimerColumn:
+                    label.Text = Utils.FormatElapsedTime(score.Timer);
+                    break;
             }
         }
     }

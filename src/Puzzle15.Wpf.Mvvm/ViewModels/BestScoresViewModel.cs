@@ -1,4 +1,5 @@
-﻿using Puzzle15.Common;
+﻿using System;
+using Puzzle15.Common;
 using Puzzle15.Common.DomainModel;
 
 namespace Puzzle15.Wpf.Mvvm.ViewModels;
@@ -6,7 +7,7 @@ namespace Puzzle15.Wpf.Mvvm.ViewModels;
 public class BestScoresViewModel : BaseViewModel
 {
     // Берем экземпляр модели из класса приложения App
-    private IPuzzleDomainModel Model => (System.Windows.Application.Current as App).Model;
+    private IPuzzleDomainModel Model => ((App)System.Windows.Application.Current).Model;
 
 
     public BestScoresViewModel()
@@ -26,7 +27,9 @@ public class BestScoresViewModel : BaseViewModel
     //
 
     private string GetBestScoreName(int orderNumber) =>
-        Model.BestScores.Count >= orderNumber ? Model.BestScores[orderNumber - 1].Name : "<best player>";
+        Model.BestScores.Count >= orderNumber
+            ? Model.BestScores[orderNumber - 1].Name
+            : "<best player>";
 
     public string BestScoreName1 => GetBestScoreName(1);
     public string BestScoreName2 => GetBestScoreName(2);
@@ -66,7 +69,9 @@ public class BestScoresViewModel : BaseViewModel
     //
 
     private string GetBestScoreTimer(int orderNumber) =>
-        Model.BestScores.Count >= orderNumber ? Model.BestScores[orderNumber - 1].Timer.ToString(@"hh\:mm\:ss") : "00:00:00";
+        Utils.FormatElapsedTime(Model.BestScores.Count >= orderNumber
+            ? Model.BestScores[orderNumber - 1].Timer
+            : TimeSpan.Zero);
 
     public string BestScoreTimer1 => GetBestScoreTimer(1);
     public string BestScoreTimer2 => GetBestScoreTimer(2);
