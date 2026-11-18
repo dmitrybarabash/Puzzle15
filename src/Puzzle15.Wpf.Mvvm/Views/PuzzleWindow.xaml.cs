@@ -12,7 +12,7 @@ public partial class PuzzleWindow : Window
         (DataContext as PuzzleViewModel).NewGameCommand.Execute(null);
 
     private void BestScoresCommand_Executed(object sender, RoutedEventArgs e) =>
-        new BestScoresWindow() { Owner = this, DataContext = new BestScoresViewModel() }.ShowDialog();
+        new BestScoresWindow { Owner = this, DataContext = new BestScoresViewModel(((App)Application.Current).Model) }.ShowDialog();
 
     private void AboutCommand_Executed(object sender, RoutedEventArgs e) =>
         new AboutWindow { Owner = this }.ShowDialog();

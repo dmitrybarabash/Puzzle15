@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Threading;
 using Puzzle15.Common.DomainModel;
+using Puzzle15.Wpf.Mvvm.Services;
 using Puzzle15.Wpf.Mvvm.ViewModels;
 using Puzzle15.Wpf.Mvvm.Views;
 
@@ -19,7 +20,8 @@ public partial class App : Application
     //         Показывает splash screen, а только затем показывает главное окно приложения.
     //
     //    2. Является Application Root нашего приложения.
-    //         Создает экземпляр модели — единственный на всё приложение.
+    //         Создает экземпляр модели — единственный на всё приложение — и вместе со службой диалогов
+    //         передает его во ViewModel главного окна.
     //
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -44,7 +46,7 @@ public partial class App : Application
 
         // Создаем настоящее главное окно типа PuzzleWindow, делаем его
         // главным окном приложения и показываем его пользователю
-        MainWindow = new PuzzleWindow { DataContext = new PuzzleViewModel() };
+        MainWindow = new PuzzleWindow { DataContext = new PuzzleViewModel(Model, new DialogService()) };
         MainWindow.Show();
 
         // Закрываем splash screen

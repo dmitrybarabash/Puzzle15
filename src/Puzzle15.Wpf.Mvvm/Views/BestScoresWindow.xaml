@@ -16,6 +16,9 @@
     <!-- Создаем ViewModel и соединяем его с нашим View -->
     <!-- В данном случае из соображений low coupling я предпочел сделать это не здесь, а при
          создании экземпляра этого окна, но пример как это делается в XAML'е закомментировал и оставил.
+         Так XAML умеет создать объект только конструктором без параметров, а BestScoresViewModel
+         получает модель через конструктор. Поэтому пример сейчас не заработает, и это еще одна причина
+         создавать ViewModel в коде.
     <Window.DataContext>
         <localviewmodels:BestScoresViewModel/>
     </Window.DataContext>
@@ -27,130 +30,38 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="Лучшие результаты:" Margin="20,15,20,0" BorderBrush="Gainsboro" BorderThickness="1">
-            <Grid Name="gridBestScores" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+            <!-- Каждая строка — отдельный Grid, а SharedSizeGroup выравнивает ширину столбцов во всех строках -->
+            <!-- ItemsControl — тоже Control, и без Focusable="False" Tab останавливался бы на нем самом -->
+            <ItemsControl Margin="10" Focusable="False" Grid.IsSharedSizeScope="True"
+                          ItemsSource="{Binding Path=Rows, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <!-- Строки не меняются, пока окно открыто, поэтому их свойства привязаны в режиме OneTime -->
+                    <DataTemplate DataType="{x:Type localviewmodels:BestScoreRowViewModel}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Place"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Name"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Moves"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Timer"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Margin" Value="20,5,20,5"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </Grid.Resources>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="1." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="2." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="3." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="4." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="5." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="5" Grid.Column="0" Text="6." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="6" Grid.Column="0" Text="7." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="7" Grid.Column="0" Text="8." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="8" Grid.Column="0" Text="9." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="9" Grid.Column="0" Text="10." FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
-                <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName1, Mode=OneWay}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName2, Mode=OneWay}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName3, Mode=OneWay}"/>
-                <TextBlock Grid.Row="3" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName4, Mode=OneWay}"/>
-                <TextBlock Grid.Row="4" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName5, Mode=OneWay}"/>
-                <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName6, Mode=OneWay}"/>
-                <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName7, Mode=OneWay}"/>
-                <TextBlock Grid.Row="7" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName8, Mode=OneWay}"/>
-                <TextBlock Grid.Row="8" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName9, Mode=OneWay}"/>
-                <TextBlock Grid.Row="9" Grid.Column="1" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreName10, Mode=OneWay}"/>
-
-                <TextBlock Grid.Row="0" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves1, Mode=OneWay}"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves2, Mode=OneWay}"/>
-                <TextBlock Grid.Row="2" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves3, Mode=OneWay}"/>
-                <TextBlock Grid.Row="3" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves4, Mode=OneWay}"/>
-                <TextBlock Grid.Row="4" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves5, Mode=OneWay}"/>
-                <TextBlock Grid.Row="5" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves6, Mode=OneWay}"/>
-                <TextBlock Grid.Row="6" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves7, Mode=OneWay}"/>
-                <TextBlock Grid.Row="7" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves8, Mode=OneWay}"/>
-                <TextBlock Grid.Row="8" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves9, Mode=OneWay}"/>
-                <TextBlock Grid.Row="9" Grid.Column="2" FontWeight="Bold" Margin="20,5,20,5"
-                           TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreMoves10, Mode=OneWay}"/>
-
-                <TextBlock Grid.Row="0" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer1, Mode=OneWay}"/>
-                <TextBlock Grid.Row="1" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer2, Mode=OneWay}"/>
-                <TextBlock Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer3, Mode=OneWay}"/>
-                <TextBlock Grid.Row="3" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer4, Mode=OneWay}"/>
-                <TextBlock Grid.Row="4" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer5, Mode=OneWay}"/>
-                <TextBlock Grid.Row="5" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer6, Mode=OneWay}"/>
-                <TextBlock Grid.Row="6" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer7, Mode=OneWay}"/>
-                <TextBlock Grid.Row="7" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer8, Mode=OneWay}"/>
-                <TextBlock Grid.Row="8" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer9, Mode=OneWay}"/>
-                <TextBlock Grid.Row="9" Grid.Column="3" FontWeight="Bold" Margin="20,5,20,5" TextAlignment="Center"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Text="{Binding Path=BestScoreTimer10, Mode=OneWay}"/>
-            </Grid>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Place, Mode=OneTime, StringFormat={}{0}.}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Name, Mode=OneTime}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=Moves, Mode=OneTime}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Path=Timer, Mode=OneTime}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </GroupBox>
         <Button Grid.Row="1" Content="OK" HorizontalAlignment="Center" Margin="0,15" Padding="40,5" IsDefault="True" IsCancel="True"/>
     </Grid>

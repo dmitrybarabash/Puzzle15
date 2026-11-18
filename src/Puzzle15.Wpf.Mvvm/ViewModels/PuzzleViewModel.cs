@@ -1,30 +1,43 @@
 ﻿using System;
-using System.Windows;
+using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Puzzle15.Common;
 using Puzzle15.Common.DomainModel;
 using Puzzle15.Wpf.Mvvm.Commands;
-using Puzzle15.Wpf.Mvvm.Views;
+using Puzzle15.Wpf.Mvvm.Services;
 
 namespace Puzzle15.Wpf.Mvvm.ViewModels;
 
 public class PuzzleViewModel : BaseViewModel
 {
-    // Берем экземпляр модели из класса приложения App
-    private IPuzzleDomainModel Model => ((App)Application.Current).Model;
+    // Экземпляр модели нашего приложения
+    private IPuzzleDomainModel Model { get; }
+
+    // Сервис, через который ViewModel просит представление показать игроку сообщение или задать вопрос
+    private IDialogService DialogService { get; }
 
     // Игровой таймер
     private DispatcherTimer GameTimer { get; }
 
 
-    public PuzzleViewModel()
+    public PuzzleViewModel(IPuzzleDomainModel model, IDialogService dialogService)
     {
+        Model = model;
+        DialogService = dialogService;
+
         // Создаем и настраиваем игровой таймер.
         // DispatcherTimer отсчитывает следующий тик от конца предыдущего, поэтому отставание копится.
         // При интервале в 1 с таймер из-за этого иногда перескакивает через секунду, а при 200 мс — нет.
         GameTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
         GameTimer.Tick += (s, e) => GameTimerText = Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime);
+
+        // UniformGrid в представлении раскладывает кнопки по строкам, поэтому и клетки добавляем по строкам
+        var cells = new List<CellViewModel>();
+        for (uint y = 0; y < Model.Puzzle.FieldSideSize; y++)
+            for (uint x = 0; x < Model.Puzzle.FieldSideSize; x++)
+                cells.Add(new CellViewModel(Model.Puzzle, y, x));
+        Cells = cells;
 
         // Устанавливаем дефолтное содержимое и состояние контролов главного окна
         Model.Puzzle.Init();
@@ -37,14 +50,8 @@ public class PuzzleViewModel : BaseViewModel
 
     private void UpdateCellButtons()
     {
-        for (int y = 0; y < Model.Puzzle.FieldSideSize; y++)
-        {
-            for (int x = 0; x < Model.Puzzle.FieldSideSize; x++)
-            {
-                OnPropertyChanged($"CellButtonValue{y}{x}");
-                OnPropertyChanged($"CellButtonVisibility{y}{x}");
-            }
-        }
+        foreach (CellViewModel cell in Cells)
+            cell.Refresh();
     }
 
     private void ResetGameLabels()
@@ -65,50 +72,9 @@ public class PuzzleViewModel : BaseViewModel
     #region Binding properties (свойства привязки)
 
     //
-    // Свойства привязки содержимого для кнопок самих Пятнашек
+    // Свойство привязки клеток поля для кнопок самих Пятнашек
     //
-    public string CellButtonValue00 => Model.Puzzle[0, 0].ToString();
-    public string CellButtonValue01 => Model.Puzzle[0, 1].ToString();
-    public string CellButtonValue02 => Model.Puzzle[0, 2].ToString();
-    public string CellButtonValue03 => Model.Puzzle[0, 3].ToString();
-    public string CellButtonValue10 => Model.Puzzle[1, 0].ToString();
-    public string CellButtonValue11 => Model.Puzzle[1, 1].ToString();
-    public string CellButtonValue12 => Model.Puzzle[1, 2].ToString();
-    public string CellButtonValue13 => Model.Puzzle[1, 3].ToString();
-    public string CellButtonValue20 => Model.Puzzle[2, 0].ToString();
-    public string CellButtonValue21 => Model.Puzzle[2, 1].ToString();
-    public string CellButtonValue22 => Model.Puzzle[2, 2].ToString();
-    public string CellButtonValue23 => Model.Puzzle[2, 3].ToString();
-    public string CellButtonValue30 => Model.Puzzle[3, 0].ToString();
-    public string CellButtonValue31 => Model.Puzzle[3, 1].ToString();
-    public string CellButtonValue32 => Model.Puzzle[3, 2].ToString();
-    public string CellButtonValue33 => Model.Puzzle[3, 3].ToString();
-
-
-    //
-    // Свойства привязки видимости для кнопок самих Пятнашек
-    //
-
-    private Visibility GetCellButtonVisibility(uint y, uint x) =>
-        Model.Puzzle[y, x] != Model.Puzzle.EmptyCellValue ? Visibility.Visible : Visibility.Hidden;
-
-    public Visibility CellButtonVisibility00 => GetCellButtonVisibility(0, 0);
-    public Visibility CellButtonVisibility01 => GetCellButtonVisibility(0, 1);
-    public Visibility CellButtonVisibility02 => GetCellButtonVisibility(0, 2);
-    public Visibility CellButtonVisibility03 => GetCellButtonVisibility(0, 3);
-    public Visibility CellButtonVisibility10 => GetCellButtonVisibility(1, 0);
-    public Visibility CellButtonVisibility11 => GetCellButtonVisibility(1, 1);
-    public Visibility CellButtonVisibility12 => GetCellButtonVisibility(1, 2);
-    public Visibility CellButtonVisibility13 => GetCellButtonVisibility(1, 3);
-    public Visibility CellButtonVisibility20 => GetCellButtonVisibility(2, 0);
-    public Visibility CellButtonVisibility21 => GetCellButtonVisibility(2, 1);
-    public Visibility CellButtonVisibility22 => GetCellButtonVisibility(2, 2);
-    public Visibility CellButtonVisibility23 => GetCellButtonVisibility(2, 3);
-    public Visibility CellButtonVisibility30 => GetCellButtonVisibility(3, 0);
-    public Visibility CellButtonVisibility31 => GetCellButtonVisibility(3, 1);
-    public Visibility CellButtonVisibility32 => GetCellButtonVisibility(3, 2);
-    public Visibility CellButtonVisibility33 => GetCellButtonVisibility(3, 3);
-
+    public IReadOnlyList<CellViewModel> Cells { get; }
 
     //
     // Свойство привязки IsEnabled для текста таймера и счетчика ходов, от него же зависит доступность MoveCommand
@@ -210,13 +176,11 @@ public class PuzzleViewModel : BaseViewModel
         }
     }
 
-    // execute-привязка команды MoveCommand (делаем ход)
+    // execute-привязка команды MoveCommand (делаем ход), параметр команды — модель нажатой клетки
     private void ExecuteMoveCommand(object parameter)
     {
-        uint clickedNumber = uint.Parse((string)parameter);
-        uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
-        uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
-        if (Model.TryMove(y, x, out Score finishedGameScore))
+        var cell = (CellViewModel)parameter;
+        if (Model.TryMove(cell.Y, cell.X, out Score finishedGameScore))
         {
             UpdateCellButtons();
             GameMovesText = Model.Puzzle.MovesCounter.ToString();
@@ -226,14 +190,8 @@ public class PuzzleViewModel : BaseViewModel
                 StopGameTimer();
                 GameTimerText = Utils.FormatElapsedTime(finishedGameScore.Timer);
 
-                MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
-                    "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                Model.TryAddBestScore(finishedGameScore, () =>
-                {
-                    var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = Application.Current.MainWindow };
-                    return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;
-                });
+                DialogService.ShowWinMessage(finishedGameScore);
+                Model.TryAddBestScore(finishedGameScore, DialogService.AskPlayerName);
 
                 Model.Puzzle.Init();
                 IsGameStarted = false;
