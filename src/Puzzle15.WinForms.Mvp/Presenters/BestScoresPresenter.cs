@@ -40,7 +40,7 @@ public class BestScoresPresenter : BasePresenter<IBestScoresView>
                     label.Text = score.Name;
                     break;
                 case MovesColumn:
-                    label.Text = $"{score.Moves} {Utils.GetMovesWord(score.Moves)}";
+                    label.Text = Utils.FormatMoves(score.Moves);
                     break;
                 case TimerColumn:
                     label.Text = Utils.FormatElapsedTime(score.Timer);

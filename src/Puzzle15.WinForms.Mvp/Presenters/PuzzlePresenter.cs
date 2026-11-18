@@ -56,29 +56,20 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
     private void OnCellClicked(object sender, EventArgs e)
     {
         (uint y, uint x) = GetCellPosition((Button)sender);
-        if (Model.Puzzle.IsMoveable(y, x))
+        if (Model.TryMove(y, x, out Score finishedGameScore))
         {
-            Model.Puzzle.Move(y, x);
             UpdateButtons(true);
             View.LabelMoves = Model.Puzzle.MovesCounter.ToString();
 
-            if (Model.Puzzle.IsDone())
+            if (finishedGameScore is not null)
             {
                 View.StopTimer();
-                var score = new Score
-                {
-                    Moves = Model.Puzzle.MovesCounter,
-                    Timer = Model.Puzzle.ElapsedTime
-                };
+                View.LabelTimer = Utils.FormatElapsedTime(finishedGameScore.Timer);
 
-                string elapsedTime = Utils.FormatElapsedTime(score.Timer);
-                View.LabelTimer = elapsedTime;
-
-                MessageBox.Show(
-                    $"Вы выиграли!\n\nВы сделали {score.Moves} {Utils.GetMovesWord(score.Moves)} за {elapsedTime}!",
+                MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
                     "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Model.TryAddBestScore(score, () =>
+                Model.TryAddBestScore(finishedGameScore, () =>
                 {
                     using var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
                     return bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK ? bestScoredPlayerNameForm.PlayerName : null;

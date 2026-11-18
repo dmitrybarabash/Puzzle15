@@ -20,6 +20,54 @@ public class PuzzleDomainModelTests
     }
 
     [Test]
+    public void TryMove_ShouldReturnFalse_WhenCellIsNotNextToEmptyCell()
+    {
+        // Act
+        bool actual = _model.TryMove(0, 0, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.False);
+            Assert.That(finishedGameScore, Is.Null);
+            Assert.That(_model.Puzzle.MovesCounter, Is.Zero);
+        }
+    }
+
+    [Test]
+    public void TryMove_ShouldNotReturnScore_WhenGameIsNotFinished()
+    {
+        // Act
+        bool actual = _model.TryMove(3, 2, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(finishedGameScore, Is.Null);
+            Assert.That(_model.Puzzle.MovesCounter, Is.EqualTo(1U));
+        }
+    }
+
+    [Test]
+    public void TryMove_ShouldReturnScore_WhenMoveFinishesGame()
+    {
+        // Arrange
+        // Поле после Init собрано, а пустая клетка стоит в правом нижнем углу, поэтому два хода туда и обратно снова собирают поле
+        _model.TryMove(3, 2, out _);
+
+        // Act
+        bool actual = _model.TryMove(3, 3, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(finishedGameScore, Is.EqualTo(new Score { Moves = 2, Timer = TimeSpan.Zero }));
+        }
+    }
+
+    [Test]
     public void TryLoadBestScores_ShouldLoadScoresFromStorage_WhenStorageIsReadable()
     {
         // Arrange

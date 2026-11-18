@@ -215,29 +215,20 @@ public class PuzzleViewModel : BaseViewModel
         uint clickedNumber = uint.Parse((string)parameter);
         uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
         uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
-        if (Model.Puzzle.IsMoveable(y, x))
+        if (Model.TryMove(y, x, out Score finishedGameScore))
         {
-            Model.Puzzle.Move(y, x);
             UpdateCellButtons();
             GameMovesText = Model.Puzzle.MovesCounter.ToString();
 
-            if (Model.Puzzle.IsDone())
+            if (finishedGameScore is not null)
             {
                 StopGameTimer();
-                var score = new Score
-                {
-                    Moves = Model.Puzzle.MovesCounter,
-                    Timer = Model.Puzzle.ElapsedTime
-                };
+                GameTimerText = Utils.FormatElapsedTime(finishedGameScore.Timer);
 
-                string elapsedTime = Utils.FormatElapsedTime(score.Timer);
-                GameTimerText = elapsedTime;
-
-                MessageBox.Show(
-                    $"Вы выиграли!\n\nВы сделали {score.Moves} {Utils.GetMovesWord(score.Moves)} за {elapsedTime}!",
+                MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
                     "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                Model.TryAddBestScore(score, () =>
+                Model.TryAddBestScore(finishedGameScore, () =>
                 {
                     var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = Application.Current.MainWindow };
                     return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;

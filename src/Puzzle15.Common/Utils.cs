@@ -1,4 +1,5 @@
 ﻿using System;
+using Puzzle15.Common.DomainModel;
 
 namespace Puzzle15.Common;
 
@@ -14,9 +15,15 @@ public static class Utils
         return "ход"; // if (last == 1)
     }
 
+    public static string FormatMoves(uint moves) =>
+        $"{moves} {GetMovesWord(moves)}";
+
     // Единый формат времени партии для таймера, сообщения о победе и таблицы рекордов:
     //   - доли секунды отбрасываются, а не округляются, поэтому таймер никогда не забегает вперёд;
     //   - часы считаются полностью, без отбрасывания суток, поэтому 25 часов показываются как 25:00:00.
     public static string FormatElapsedTime(TimeSpan time) =>
         $"{(int)time.TotalHours:00}:{time.Minutes:00}:{time.Seconds:00}";
+
+    public static string GetWinMessage(Score score) =>
+        $"Вы выиграли!\n\nВы сделали {FormatMoves(score.Moves)} за {FormatElapsedTime(score.Timer)}!";
 }

@@ -94,9 +94,9 @@ public class Puzzle : IPuzzle
 
     public void Init()
     {
-        for (uint i = 0; i < FieldSideSize; i++)
-            for (uint j = 0; j < FieldSideSize; j++)
-                Cells[i, j] = i * FieldSideSize + j + 1;
+        for (uint y = 0; y < FieldSideSize; y++)
+            for (uint x = 0; x < FieldSideSize; x++)
+                Cells[y, x] = y * FieldSideSize + x + 1;
         EmptyX = FieldSideSize - 1;
         EmptyY = FieldSideSize - 1;
         MovesCounter = 0;
@@ -170,9 +170,9 @@ public class Puzzle : IPuzzle
 
     public bool IsDone()
     {
-        for (uint i = 0; i < FieldSideSize; i++)
-            for (uint j = 0; j < FieldSideSize; j++)
-                if (Cells[i, j] != i * FieldSideSize + j + 1)
+        for (uint y = 0; y < FieldSideSize; y++)
+            for (uint x = 0; x < FieldSideSize; x++)
+                if (Cells[y, x] != y * FieldSideSize + x + 1)
                     return false;
         return true;
     }

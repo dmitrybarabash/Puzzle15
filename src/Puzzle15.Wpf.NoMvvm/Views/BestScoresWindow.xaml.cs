@@ -49,7 +49,7 @@ public partial class BestScoresWindow : Window
                     textBlock.Text = score.Name;
                     break;
                 case MovesColumn:
-                    textBlock.Text = $"{score.Moves} {Utils.GetMovesWord(score.Moves)}";
+                    textBlock.Text = Utils.FormatMoves(score.Moves);
                     break;
                 case TimerColumn:
                     textBlock.Text = Utils.FormatElapsedTime(score.Timer);

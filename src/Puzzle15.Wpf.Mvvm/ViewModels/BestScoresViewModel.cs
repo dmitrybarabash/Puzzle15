@@ -48,9 +48,9 @@ public class BestScoresViewModel : BaseViewModel
     //
 
     private string GetBestScoreMoves(int orderNumber) =>
-        Model.BestScores.Count >= orderNumber
-            ? $"{Model.BestScores[orderNumber - 1].Moves} {Utils.GetMovesWord(Model.BestScores.Scores[orderNumber - 1].Moves)}"
-            : "0 ходов";
+        Utils.FormatMoves(Model.BestScores.Count >= orderNumber
+            ? Model.BestScores[orderNumber - 1].Moves
+            : 0);
 
     public string BestScoreMoves1 => GetBestScoreMoves(1);
     public string BestScoreMoves2 => GetBestScoreMoves(2);

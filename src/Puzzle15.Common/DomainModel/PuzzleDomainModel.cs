@@ -24,6 +24,18 @@ public class PuzzleDomainModel : IPuzzleDomainModel
     public IBestScores BestScores { get; }
     public IBestScoresStorage BestScoresStorage { get; }
 
+    public bool TryMove(uint y, uint x, out Score finishedGameScore)
+    {
+        finishedGameScore = null;
+        if (!Puzzle.IsMoveable(y, x))
+            return false;
+
+        Puzzle.Move(y, x);
+        if (Puzzle.IsDone())
+            finishedGameScore = new Score { Moves = Puzzle.MovesCounter, Timer = Puzzle.ElapsedTime };
+        return true;
+    }
+
     public bool TryLoadBestScores()
     {
         try

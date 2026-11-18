@@ -30,29 +30,20 @@ public partial class PuzzleWindow : Window
         var button = (Button)sender;
         uint y = (uint)Grid.GetRow(button);
         uint x = (uint)Grid.GetColumn(button);
-        if (Model.Puzzle.IsMoveable(y, x))
+        if (Model.TryMove(y, x, out Score finishedGameScore))
         {
-            Model.Puzzle.Move(y, x);
             UpdateButtons(true);
             textBlockMoves.Text = Model.Puzzle.MovesCounter.ToString();
 
-            if (Model.Puzzle.IsDone())
+            if (finishedGameScore is not null)
             {
                 StopTimer();
-                var score = new Score
-                {
-                    Moves = Model.Puzzle.MovesCounter,
-                    Timer = Model.Puzzle.ElapsedTime
-                };
+                textBlockTimer.Text = Utils.FormatElapsedTime(finishedGameScore.Timer);
 
-                string elapsedTime = Utils.FormatElapsedTime(score.Timer);
-                textBlockTimer.Text = elapsedTime;
-
-                MessageBox.Show(
-                    $"Вы выиграли!\n\nВы сделали {score.Moves} {Utils.GetMovesWord(score.Moves)} за {elapsedTime}!",
+                MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
                     "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                Model.TryAddBestScore(score, () =>
+                Model.TryAddBestScore(finishedGameScore, () =>
                 {
                     var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = this };
                     return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;

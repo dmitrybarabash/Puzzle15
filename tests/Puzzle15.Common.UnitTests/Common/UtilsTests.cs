@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Puzzle15.Common.DomainModel;
 
 namespace Puzzle15.Common.UnitTests.Common;
 
@@ -45,6 +46,14 @@ public class UtilsTests
         return Utils.GetMovesWord(moves);
     }
 
+    [TestCase( 0U, ExpectedResult = "0 ходов")]
+    [TestCase( 1U, ExpectedResult = "1 ход")]
+    [TestCase(92U, ExpectedResult = "92 хода")]
+    public string FormatMoves_ShouldReturnNumberWithWord_WhenMovesGiven(uint moves)
+    {
+        return Utils.FormatMoves(moves);
+    }
+
     [TestCase(  0,  0,  0,   0, ExpectedResult = "00:00:00")]
     [TestCase(  0,  0,  5,   0, ExpectedResult = "00:00:05")]
     [TestCase(  0,  1, 30,   0, ExpectedResult = "00:01:30")]
@@ -59,5 +68,18 @@ public class UtilsTests
         int hours, int minutes, int seconds, int milliseconds)
     {
         return Utils.FormatElapsedTime(new TimeSpan(0, hours, minutes, seconds, milliseconds));
+    }
+
+    [Test]
+    public void GetWinMessage_ShouldReturnMovesAndTime_WhenScoreGiven()
+    {
+        // Arrange
+        var score = new Score { Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) };
+
+        // Act
+        string actual = Utils.GetWinMessage(score);
+
+        // Assert
+        Assert.That(actual, Is.EqualTo("Вы выиграли!\n\nВы сделали 92 хода за 00:11:25!"));
     }
 }
