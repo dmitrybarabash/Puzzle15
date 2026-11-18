@@ -16,9 +16,6 @@ public class BestScoresViewModel : BaseViewModel
         Model.TryLoadBestScores();
     }
 
-    protected override void OnDispose() =>
-        Model.BestScores.Scores.Clear();
-
 
     #region Binding properties (свойства привязки)
 

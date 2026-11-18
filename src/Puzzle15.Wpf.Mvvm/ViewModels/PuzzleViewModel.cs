@@ -111,7 +111,7 @@ public class PuzzleViewModel : BaseViewModel
 
 
     //
-    // Свойство привязки состояния IsEnabled для кнопок самих Пятнашек, текста таймера и счетчика ходов
+    // Свойство привязки IsEnabled для текста таймера и счетчика ходов, от него же зависит доступность MoveCommand
     //
     private bool _isGameStarted = false;
     public bool IsGameStarted
@@ -123,6 +123,7 @@ public class PuzzleViewModel : BaseViewModel
             {
                 _isGameStarted = value;
                 OnPropertyChanged(nameof(IsGameStarted));
+                _moveCommand?.RaiseCanExecuteChanged();
             }
         }
     }
@@ -204,7 +205,7 @@ public class PuzzleViewModel : BaseViewModel
         {
             // Ленивая инициализация
             if (_moveCommand is null)
-                _moveCommand = new DelegateCommand(ExecuteMoveCommand);
+                _moveCommand = new DelegateCommand(ExecuteMoveCommand, _ => IsGameStarted);
             return _moveCommand;
         }
     }
