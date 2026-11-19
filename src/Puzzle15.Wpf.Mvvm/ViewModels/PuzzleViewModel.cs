@@ -191,7 +191,10 @@ public class PuzzleViewModel : BaseViewModel
                 GameTimerText = Utils.FormatElapsedTime(finishedGameScore.Timer);
 
                 DialogService.ShowWinMessage(finishedGameScore);
-                Model.TryAddBestScore(finishedGameScore, DialogService.AskPlayerName);
+                AddBestScoreResult result = Model.AddBestScore(finishedGameScore, DialogService.AskPlayerName);
+                string errorMessage = Utils.GetAddBestScoreErrorMessage(result, Model.BestScoresStorage.FileName);
+                if (errorMessage is not null)
+                    DialogService.ShowWarning(errorMessage);
 
                 Model.Puzzle.Init();
                 IsGameStarted = false;

@@ -82,4 +82,36 @@ public class UtilsTests
         // Assert
         Assert.That(actual, Is.EqualTo("Вы выиграли!\n\nВы сделали 92 хода за 00:11:25!"));
     }
+
+    [Test]
+    public void GetLoadBestScoresErrorMessage_ShouldReturnMessageWithFileName_WhenFileNameGiven()
+    {
+        // Act
+        string actual = Utils.GetLoadBestScoresErrorMessage(@"C:\Program Files\Puzzle15\Puzzle.dat");
+
+        // Assert
+        Assert.That(actual, Is.EqualTo("Не удалось прочитать таблицу рекордов.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat"));
+    }
+
+    [TestCase(AddBestScoreResult.LoadFailed,
+        ExpectedResult = "Не удалось прочитать таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat")]
+    [TestCase(AddBestScoreResult.SaveFailed,
+        ExpectedResult = "Не удалось сохранить таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat")]
+    public string GetAddBestScoreErrorMessage_ShouldReturnMessageWithFileName_WhenStorageFailed(AddBestScoreResult result)
+    {
+        return Utils.GetAddBestScoreErrorMessage(result, @"C:\Program Files\Puzzle15\Puzzle.dat");
+    }
+
+    // Ни один из этих исходов не ошибка, поэтому предупреждать игрока не о чем
+    [TestCase(AddBestScoreResult.Added)]
+    [TestCase(AddBestScoreResult.NotBestScore)]
+    [TestCase(AddBestScoreResult.PlayerDeclined)]
+    public void GetAddBestScoreErrorMessage_ShouldReturnNull_WhenThereIsNothingToReport(AddBestScoreResult result)
+    {
+        // Act
+        string actual = Utils.GetAddBestScoreErrorMessage(result, @"C:\Program Files\Puzzle15\Puzzle.dat");
+
+        // Assert
+        Assert.That(actual, Is.Null);
+    }
 }

@@ -33,6 +33,11 @@ public partial class BestScoresForm : Form, IBestScoresView
         _labels[index, TimerColumn].Text = time;
     }
 
+    public void ShowWarning(string message)
+    {
+        MessageBox.Show(message, "Пятнашки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+
     public void ShowModal()
     {
         ShowDialog();

@@ -43,11 +43,14 @@ public partial class PuzzleWindow : Window
                 MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
                     "Молодец!", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                Model.TryAddBestScore(finishedGameScore, () =>
+                AddBestScoreResult result = Model.AddBestScore(finishedGameScore, () =>
                 {
                     var bestScoredPlayerNameWindow = new BestScoredPlayerNameWindow { Owner = this };
                     return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;
                 });
+                string errorMessage = Utils.GetAddBestScoreErrorMessage(result, Model.BestScoresStorage.FileName);
+                if (errorMessage is not null)
+                    MessageBox.Show(errorMessage, "Пятнашки", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 Model.Puzzle.Init();
                 UpdateButtons(false);

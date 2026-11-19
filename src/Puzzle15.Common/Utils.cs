@@ -26,4 +26,18 @@ public static class Utils
 
     public static string GetWinMessage(Score score) =>
         $"Вы выиграли!\n\nВы сделали {FormatMoves(score.Moves)} за {FormatElapsedTime(score.Timer)}!";
+
+    public static string GetLoadBestScoresErrorMessage(string fileName) =>
+        $"Не удалось прочитать таблицу рекордов.\n\nФайл: {fileName}";
+
+    // Предупреждение для игрока после AddBestScore или null, если предупреждать не о чем
+    public static string GetAddBestScoreErrorMessage(AddBestScoreResult result, string fileName) =>
+        result switch
+        {
+            AddBestScoreResult.LoadFailed =>
+                $"Не удалось прочитать таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: {fileName}",
+            AddBestScoreResult.SaveFailed =>
+                $"Не удалось сохранить таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: {fileName}",
+            _ => null
+        };
 }

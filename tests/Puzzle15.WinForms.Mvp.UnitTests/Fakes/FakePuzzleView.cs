@@ -16,6 +16,7 @@ public class FakePuzzleView : IPuzzleView
     public bool AreGameLabelsEnabled { get; private set; }
     public bool IsTimerRunning { get; private set; }
     public List<string> WinMessages { get; } = [];
+    public List<string> Warnings { get; } = [];
 
     // Имя, которое «введет» игрок, или null, если он откажется
     public string PlayerName { get; set; }
@@ -67,6 +68,9 @@ public class FakePuzzleView : IPuzzleView
 
     public void ShowWinMessage(string message) =>
         WinMessages.Add(message);
+
+    public void ShowWarning(string message) =>
+        Warnings.Add(message);
 
     public string AskPlayerName()
     {

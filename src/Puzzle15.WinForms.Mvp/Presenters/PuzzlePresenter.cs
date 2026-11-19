@@ -71,7 +71,10 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
                 View.ShowElapsedTime(Utils.FormatElapsedTime(finishedGameScore.Timer));
 
                 View.ShowWinMessage(Utils.GetWinMessage(finishedGameScore));
-                Model.TryAddBestScore(finishedGameScore, View.AskPlayerName);
+                AddBestScoreResult result = Model.AddBestScore(finishedGameScore, View.AskPlayerName);
+                string errorMessage = Utils.GetAddBestScoreErrorMessage(result, Model.BestScoresStorage.FileName);
+                if (errorMessage is not null)
+                    View.ShowWarning(errorMessage);
 
                 Model.Puzzle.Init();
                 UpdateField(false);

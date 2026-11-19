@@ -11,4 +11,7 @@ public interface IDialogService
 
     // Спрашивает имя игрока для таблицы рекордов. Возвращает null, если игрок отказался.
     string AskPlayerName();
+
+    // Предупреждает игрока о проблеме (например, с файлом рекордов)
+    void ShowWarning(string message);
 }

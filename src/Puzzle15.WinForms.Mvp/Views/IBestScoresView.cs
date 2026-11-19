@@ -8,5 +8,6 @@ public interface IBestScoresView : IView, IDisposable
 {
     // Показывает результат в строке таблицы с номером index, строки считаются с нуля
     void ShowScore(int index, string name, string moves, string time);
+    void ShowWarning(string message);
     void ShowModal();
 }

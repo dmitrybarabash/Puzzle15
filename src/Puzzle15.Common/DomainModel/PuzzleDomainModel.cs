@@ -49,29 +49,31 @@ public class PuzzleDomainModel : IPuzzleDomainModel
         }
     }
 
-    public bool TryAddBestScore(Score score, Func<string> askPlayerName)
+    public AddBestScoreResult AddBestScore(Score score, Func<string> askPlayerName)
     {
         ArgumentNullException.ThrowIfNull(score);
         ArgumentNullException.ThrowIfNull(askPlayerName);
 
         // Перечитываем таблицу, потому что в памяти она могла ещё не загружаться или устареть
-        if (!TryLoadBestScores() || !BestScores.CanBeAdded(score))
-            return false;
+        if (!TryLoadBestScores())
+            return AddBestScoreResult.LoadFailed;
+        if (!BestScores.CanBeAdded(score))
+            return AddBestScoreResult.NotBestScore;
 
         string playerName = askPlayerName();
         if (playerName is null)
-            return false;
+            return AddBestScoreResult.PlayerDeclined;
 
         score.Name = playerName;
         BestScores.Add(score);
         try
         {
             BestScoresStorage.Save(BestScores);
-            return true;
+            return AddBestScoreResult.Added;
         }
         catch (Exception e) when (IsStorageError(e))
         {
-            return false;
+            return AddBestScoreResult.SaveFailed;
         }
     }
 

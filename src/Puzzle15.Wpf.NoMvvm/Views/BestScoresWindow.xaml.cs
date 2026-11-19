@@ -27,7 +27,12 @@ public partial class BestScoresWindow : Window
         // Загружаем лучшие результаты из файла
         //
         if (!Model.TryLoadBestScores())
+        {
+            // Окно рекордов уже на экране, поэтому делаем его владельцем, чтобы сообщение появилось поверх него
+            MessageBox.Show(this, Utils.GetLoadBestScoresErrorMessage(Model.BestScoresStorage.FileName),
+                "Пятнашки", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
+        }
 
         //
         // Раскладываем их по TextBlock'ам в сетке

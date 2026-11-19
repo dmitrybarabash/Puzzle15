@@ -1,4 +1,5 @@
-﻿using Puzzle15.Common.DomainModel;
+﻿using System.Collections.Generic;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.Wpf.Mvvm.Services;
 
 namespace Puzzle15.Wpf.Mvvm.UnitTests.Fakes;
@@ -14,6 +15,8 @@ public class FakeDialogService : IDialogService
 
     public int AskPlayerNameCount { get; private set; }
 
+    public List<string> Warnings { get; } = [];
+
     #region IDialogService implementation
 
     // Запоминаем копию, потому что потом модель впишет в этот же результат имя игрока
@@ -25,6 +28,9 @@ public class FakeDialogService : IDialogService
         AskPlayerNameCount++;
         return PlayerName;
     }
+
+    public void ShowWarning(string message) =>
+        Warnings.Add(message);
 
     #endregion
 }

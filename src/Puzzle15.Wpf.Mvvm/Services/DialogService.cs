@@ -18,5 +18,8 @@ public class DialogService : IDialogService
         return bestScoredPlayerNameWindow.ShowDialog() == true ? bestScoredPlayerNameWindow.PlayerName : null;
     }
 
+    public void ShowWarning(string message) =>
+        MessageBox.Show(message, "Пятнашки", MessageBoxButton.OK, MessageBoxImage.Warning);
+
     #endregion
 }

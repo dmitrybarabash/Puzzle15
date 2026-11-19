@@ -112,25 +112,25 @@ public class PuzzleDomainModelTests
     }
 
     [Test]
-    public void TryAddBestScore_ShouldAddAndSaveScore_WhenScoreIsOneOfTheBestAndNameGiven()
+    public void AddBestScore_ShouldAddAndSaveScore_WhenScoreIsOneOfTheBestAndNameGiven()
     {
         // Arrange
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => "Dmitrik");
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
 
         // Assert
         var expected = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(actual, Is.True);
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.Added));
             Assert.That(_bestScoresStorage.Scores, Is.EqualTo(new[] { expected }));
         }
     }
 
     [Test]
-    public void TryAddBestScore_ShouldNotAskPlayerName_WhenScoreIsNotOneOfTheBest()
+    public void AddBestScore_ShouldNotAskPlayerName_WhenScoreIsNotOneOfTheBest()
     {
         // Arrange
         // В хранилище MaxCount результатов лучше нового, а таблица в памяти пуста:
@@ -141,30 +141,30 @@ public class PuzzleDomainModelTests
         bool isPlayerNameAsked = false;
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
+        AddBestScoreResult actual = _model.AddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
 
         // Assert
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(actual, Is.False);
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.NotBestScore));
             Assert.That(isPlayerNameAsked, Is.False);
             Assert.That(_bestScoresStorage.SaveCount, Is.Zero);
         }
     }
 
     [Test]
-    public void TryAddBestScore_ShouldNotSave_WhenPlayerDeclinedToEnterName()
+    public void AddBestScore_ShouldNotSave_WhenPlayerDeclinedToEnterName()
     {
         // Arrange
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => null);
+        AddBestScoreResult actual = _model.AddBestScore(score, () => null);
 
         // Assert
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(actual, Is.False);
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.PlayerDeclined));
             Assert.That(_bestScoresStorage.SaveCount, Is.Zero);
         }
     }
@@ -172,7 +172,7 @@ public class PuzzleDomainModelTests
     [TestCase(typeof(IOException))]
     [TestCase(typeof(UnauthorizedAccessException))]
     [TestCase(typeof(InvalidOperationException))]
-    public void TryAddBestScore_ShouldNotAskPlayerName_WhenStorageCannotBeRead(Type exceptionType)
+    public void AddBestScore_ShouldNotAskPlayerName_WhenStorageCannotBeRead(Type exceptionType)
     {
         // Arrange
         _bestScoresStorage.LoadException = (Exception)Activator.CreateInstance(exceptionType);
@@ -180,12 +180,12 @@ public class PuzzleDomainModelTests
         bool isPlayerNameAsked = false;
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
+        AddBestScoreResult actual = _model.AddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
 
         // Assert
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(actual, Is.False);
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.LoadFailed));
             Assert.That(isPlayerNameAsked, Is.False);
         }
     }
@@ -193,21 +193,21 @@ public class PuzzleDomainModelTests
     [TestCase(typeof(IOException))]
     [TestCase(typeof(UnauthorizedAccessException))]
     [TestCase(typeof(InvalidOperationException))]
-    public void TryAddBestScore_ShouldReturnFalse_WhenStorageCannotBeWritten(Type exceptionType)
+    public void AddBestScore_ShouldReturnSaveFailed_WhenStorageCannotBeWritten(Type exceptionType)
     {
         // Arrange
         _bestScoresStorage.SaveException = (Exception)Activator.CreateInstance(exceptionType);
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => "Dmitrik");
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
 
         // Assert
-        Assert.That(actual, Is.False);
+        Assert.That(actual, Is.EqualTo(AddBestScoreResult.SaveFailed));
     }
 
     [Test]
-    public void TryAddBestScore_ShouldThrow_WhenAskPlayerNameThrows()
+    public void AddBestScore_ShouldThrow_WhenAskPlayerNameThrows()
     {
         // Arrange
         // Ошибка в окне ввода имени — это ошибка в коде приложения, её нельзя молча проглатывать,
@@ -216,11 +216,11 @@ public class PuzzleDomainModelTests
 
         // Act & Assert
         Assert.Throws<InvalidOperationException>(
-            () => _model.TryAddBestScore(score, () => throw new InvalidOperationException()));
+            () => _model.AddBestScore(score, () => throw new InvalidOperationException()));
     }
 
     [Test]
-    public void TryAddBestScore_ShouldKeepExistingScores_WhenScoreIsAdded()
+    public void AddBestScore_ShouldKeepExistingScores_WhenScoreIsAdded()
     {
         // Arrange
         _bestScoresStorage.Scores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
@@ -228,7 +228,7 @@ public class PuzzleDomainModelTests
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act
-        bool actual = _model.TryAddBestScore(score, () => "Dmitrik");
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
 
         // Assert
         // Новый результат встаёт на своё место между имеющимися, и ни один из них не теряется
@@ -240,32 +240,32 @@ public class PuzzleDomainModelTests
         };
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(actual, Is.True);
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.Added));
             Assert.That(_bestScoresStorage.Scores, Is.EqualTo(expected));
         }
     }
 
     [Test]
-    public void TryAddBestScore_ShouldThrowArgumentNullException_WhenScoreIsNull()
+    public void AddBestScore_ShouldThrowArgumentNullException_WhenScoreIsNull()
     {
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => _model.TryAddBestScore(null, () => "Dmitrik"));
+        var exception = Assert.Throws<ArgumentNullException>(() => _model.AddBestScore(null, () => "Dmitrik"));
         Assert.That(exception.ParamName, Is.EqualTo("score"));
     }
 
     [Test]
-    public void TryAddBestScore_ShouldThrowArgumentNullException_WhenAskPlayerNameIsNull()
+    public void AddBestScore_ShouldThrowArgumentNullException_WhenAskPlayerNameIsNull()
     {
         // Arrange
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => _model.TryAddBestScore(score, null));
+        var exception = Assert.Throws<ArgumentNullException>(() => _model.AddBestScore(score, null));
         Assert.That(exception.ParamName, Is.EqualTo("askPlayerName"));
     }
 
     [Test]
-    public void TryAddBestScore_ShouldThrow_WhenSaveErrorIsNotStorageError()
+    public void AddBestScore_ShouldThrow_WhenSaveErrorIsNotStorageError()
     {
         // Arrange
         // Перехватываются только ошибки работы с файлом, остальные ошибки нельзя молча проглатывать
@@ -273,6 +273,6 @@ public class PuzzleDomainModelTests
         var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
 
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => _model.TryAddBestScore(score, () => "Dmitrik"));
+        Assert.Throws<ArgumentException>(() => _model.AddBestScore(score, () => "Dmitrik"));
     }
 }

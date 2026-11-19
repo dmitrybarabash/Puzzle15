@@ -1,4 +1,5 @@
-﻿using Puzzle15.Wpf.Mvvm.ViewModels;
+﻿using Puzzle15.Wpf.Mvvm.Services;
+using Puzzle15.Wpf.Mvvm.ViewModels;
 using System.Windows;
 
 namespace Puzzle15.Wpf.Mvvm.Views;
@@ -12,7 +13,11 @@ public partial class PuzzleWindow : Window
         (DataContext as PuzzleViewModel).NewGameCommand.Execute(null);
 
     private void BestScoresCommand_Executed(object sender, RoutedEventArgs e) =>
-        new BestScoresWindow { Owner = this, DataContext = new BestScoresViewModel(((App)Application.Current).Model) }.ShowDialog();
+        new BestScoresWindow
+        {
+            Owner = this,
+            DataContext = new BestScoresViewModel(((App)Application.Current).Model, new DialogService())
+        }.ShowDialog();
 
     private void AboutCommand_Executed(object sender, RoutedEventArgs e) =>
         new AboutWindow { Owner = this }.ShowDialog();

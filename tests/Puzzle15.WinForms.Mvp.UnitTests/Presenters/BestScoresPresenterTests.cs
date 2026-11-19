@@ -18,7 +18,8 @@ public class BestScoresPresenterTests
     [SetUp]
     public void SetUp()
     {
-        _bestScoresStorage = new FakeBestScoresStorage();
+        // Путь к файлу попадает в текст предупреждения
+        _bestScoresStorage = new FakeBestScoresStorage { FileName = @"C:\Program Files\Puzzle15\Puzzle.dat" };
         _model = new PuzzleDomainModel(new Puzzle(), new BestScores(), _bestScoresStorage);
         _view = new FakeBestScoresView();
     }
@@ -41,16 +42,20 @@ public class BestScoresPresenterTests
         new BestScoresPresenter(_model, _view);
 
         // Assert
-        // В остальных строках таблицы остается то, что задано в дизайнере
-        Assert.That(_view.Rows, Is.EqualTo(
-        [
-            new FakeBestScoresView.Row(0, "Aaaaaaaaaa", "92 хода", "00:11:25"),
-            new FakeBestScoresView.Row(1, "Bbbbbbbbb", "101 ход", "01:12:25")
-        ]));
+        using (Assert.EnterMultipleScope())
+        {
+            // В остальных строках таблицы остается то, что задано в дизайнере
+            Assert.That(_view.Rows, Is.EqualTo(
+            [
+                new FakeBestScoresView.Row(0, "Aaaaaaaaaa", "92 хода", "00:11:25"),
+                new FakeBestScoresView.Row(1, "Bbbbbbbbb", "101 ход", "01:12:25")
+            ]));
+            Assert.That(_view.Warnings, Is.Empty);
+        }
     }
 
     [Test]
-    public void Constructor_ShouldShowNothing_WhenStorageCannotBeRead()
+    public void Constructor_ShouldShowWarningAndNoScores_WhenStorageCannotBeRead()
     {
         // Arrange
         _bestScoresStorage.LoadException = new IOException("Файл недоступен");
@@ -59,6 +64,11 @@ public class BestScoresPresenterTests
         new BestScoresPresenter(_model, _view);
 
         // Assert
-        Assert.That(_view.Rows, Is.Empty);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_view.Rows, Is.Empty);
+            Assert.That(_view.Warnings,
+                Is.EqualTo(["Не удалось прочитать таблицу рекордов.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat"]));
+        }
     }
 }

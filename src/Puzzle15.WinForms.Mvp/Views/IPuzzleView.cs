@@ -22,6 +22,7 @@ public interface IPuzzleView : IView
     void StopTimer();
 
     void ShowWinMessage(string message);
+    void ShowWarning(string message);
 
     // Спрашивает имя игрока для таблицы рекордов. Возвращает null, если игрок отказался.
     string AskPlayerName();

@@ -20,7 +20,10 @@ public class BestScoresPresenter : BasePresenter<IBestScoresView>
     private void UpdateView()
     {
         if (!Model.TryLoadBestScores())
+        {
+            View.ShowWarning(Utils.GetLoadBestScoresErrorMessage(Model.BestScoresStorage.FileName));
             return;
+        }
 
         for (int index = 0; index < Model.BestScores.Count; index++)
         {

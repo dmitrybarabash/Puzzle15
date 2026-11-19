@@ -75,6 +75,11 @@ public partial class PuzzleForm : Form, IPuzzleView
         MessageBox.Show(message, "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
+    public void ShowWarning(string message)
+    {
+        MessageBox.Show(message, "Пятнашки", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+
     public string AskPlayerName()
     {
         using var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();

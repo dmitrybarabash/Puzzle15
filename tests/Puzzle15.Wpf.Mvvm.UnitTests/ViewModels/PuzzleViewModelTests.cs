@@ -22,7 +22,8 @@ public class PuzzleViewModelTests
     public void SetUp()
     {
         _timeProvider = new ManualTimeProvider();
-        _bestScoresStorage = new FakeBestScoresStorage();
+        // Путь к файлу попадает в текст предупреждений
+        _bestScoresStorage = new FakeBestScoresStorage { FileName = @"C:\Program Files\Puzzle15\Puzzle.dat" };
         _dialogService = new FakeDialogService();
         _model = new PuzzleDomainModel(new Puzzle(_timeProvider, new Random(1)), new BestScores(), _bestScoresStorage);
         _viewModel = new PuzzleViewModel(_model, _dialogService);
@@ -150,6 +151,7 @@ public class PuzzleViewModelTests
             Assert.That(_dialogService.WinMessageScore, Is.EqualTo(new Score { Moves = 1, Timer = TimeSpan.FromSeconds(90) }));
             Assert.That(_bestScoresStorage.Scores,
                 Is.EqualTo([new Score { Name = "Player", Moves = 1, Timer = TimeSpan.FromSeconds(90) }]));
+            Assert.That(_dialogService.Warnings, Is.Empty);
         }
     }
 
@@ -168,6 +170,49 @@ public class PuzzleViewModelTests
         {
             Assert.That(_dialogService.AskPlayerNameCount, Is.EqualTo(1));
             Assert.That(_bestScoresStorage.Scores, Is.Empty);
+            // Отказ игрока — не ошибка, предупреждать не о чем
+            Assert.That(_dialogService.Warnings, Is.Empty);
+        }
+    }
+
+    [Test]
+    public void MoveCommand_ShouldShowWarning_WhenBestScoreCannotBeSaved()
+    {
+        // Arrange
+        // Так бывает, если игра установлена в Program Files: обычному пользователю писать туда нельзя
+        _bestScoresStorage.SaveException = new UnauthorizedAccessException();
+        StartGameWithOneMoveLeft();
+        _dialogService.PlayerName = "Player";
+
+        // Act
+        _viewModel.MoveCommand.Execute(GetCell(3, 3));
+
+        // Assert
+        Assert.That(_dialogService.Warnings, Is.EqualTo(
+        [
+            "Не удалось сохранить таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat"
+        ]));
+    }
+
+    [Test]
+    public void MoveCommand_ShouldShowWarningWithoutAskingName_WhenBestScoresCannotBeRead()
+    {
+        // Arrange
+        // Так XmlSerializer сообщает об испорченном файле
+        _bestScoresStorage.LoadException = new InvalidOperationException();
+        StartGameWithOneMoveLeft();
+
+        // Act
+        _viewModel.MoveCommand.Execute(GetCell(3, 3));
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(_dialogService.AskPlayerNameCount, Is.Zero);
+            Assert.That(_dialogService.Warnings, Is.EqualTo(
+            [
+                "Не удалось прочитать таблицу рекордов, поэтому результат в неё не записан.\n\nФайл: C:\\Program Files\\Puzzle15\\Puzzle.dat"
+            ]));
         }
     }
 
