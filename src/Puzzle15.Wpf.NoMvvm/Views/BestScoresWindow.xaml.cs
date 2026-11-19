@@ -1,77 +1,64 @@
 ﻿using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Puzzle15.Wpf.NoMvvm.Views
+namespace Puzzle15.Wpf.NoMvvm.Views;
+
+public partial class BestScoresWindow : Window
 {
-    public partial class BestScoresWindow : Window
+    private const int NameColumn = 1;
+    private const int MovesColumn = 2;
+    private const int TimerColumn = 3;
+
+    private IPuzzleDomainModel Model { get; }
+
+    public BestScoresWindow(IPuzzleDomainModel model)
     {
-        private IPuzzleDomainModel Model { get; }
+        InitializeComponent();
 
-        public BestScoresWindow(IPuzzleDomainModel model)
+        Model = model;
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        //
+        // Загружаем лучшие результаты из файла
+        //
+        if (!Model.TryLoadBestScores())
         {
-            InitializeComponent();
-
-            Model = model;
+            // Окно рекордов уже на экране, поэтому делаем его владельцем, чтобы сообщение появилось поверх него
+            MessageBox.Show(this, Utils.GetLoadBestScoresErrorMessage(Model.BestScoresStorage.FileName),
+                "Пятнашки", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        //
+        // Раскладываем их по TextBlock'ам в сетке
+        //
+
+        // Из всех дочерних контролов сетки получаем все TextBlock'и
+        var textBlockList = gridBestScores.Children.OfType<TextBlock>();
+
+        foreach (TextBlock textBlock in textBlockList)
         {
-            //
-            // Загружаем лучшие результаты из файла
-            //
-            try
+            int row = Grid.GetRow(textBlock);
+            if (row >= Model.BestScores.Count)
+                continue;
+
+            Score score = Model.BestScores[row];
+            switch (Grid.GetColumn(textBlock))
             {
-                Model.BestScoresStorage.Load(Model.BestScores);
-            }
-            catch
-            {
-                // Ничего не делаем, пользователю ничего не говорим.
-                // Не получилось прочитать файл с рекордами — ок, просто пропускаем эту часть.
-                return;
-            }
-
-            //
-            // Раскладываем их по TextBlock'ам в сетке
-            //
-
-            //
-            // Подробный вариант
-            //
-            // Получаем все дочерние контролы сетки в виде коллекции UIElementCollection
-            //UIElementCollection elementCollection = gridBestScores.Children;
-            // Преобразуем полученную коллекцию в List<FrameworkElement>
-            //List<FrameworkElement> elementList = elementCollection.Cast<FrameworkElement>().ToList();
-            // Выделяем из этого списка всех контролов только TextBlock'и
-            //IEnumerable<TextBlock> textBlockList = elementList.OfType<TextBlock>();
-
-            //
-            // Этот же вариант покороче
-            //
-            var textBlockList = gridBestScores.Children.Cast<FrameworkElement>().ToList().OfType<TextBlock>();
-
-            foreach (TextBlock textBlock in textBlockList)
-            {
-                if (textBlock.Name.StartsWith("textBlockName"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 13)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = Model.BestScores[index].Name;
-                }
-                if (textBlock.Name.StartsWith("textBlockMoves"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 14)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = $"{Model.BestScores[index].Moves} {Utils.GetMovesWord(Model.BestScores.Scores[index].Moves)}";
-                }
-                if (textBlock.Name.StartsWith("textBlockTimer"))
-                {
-                    int index = int.Parse(textBlock.Name.Remove(0, 14)) - 1;
-                    if (index < Model.BestScores.Count)
-                        textBlock.Text = Model.BestScores[index].Timer.ToString(@"hh\:mm\:ss");
-                }
+                case NameColumn:
+                    textBlock.Text = score.Name;
+                    break;
+                case MovesColumn:
+                    textBlock.Text = Utils.FormatMoves(score.Moves);
+                    break;
+                case TimerColumn:
+                    textBlock.Text = Utils.FormatElapsedTime(score.Timer);
+                    break;
             }
         }
     }

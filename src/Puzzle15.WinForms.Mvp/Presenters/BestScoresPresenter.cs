@@ -1,6 +1,5 @@
-﻿using System.Windows.Forms;
-using Puzzle15.Common;
-using Puzzle15.DomainModel;
+﻿using Puzzle15.Common;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Views;
 
 namespace Puzzle15.WinForms.Mvp.Presenters;
@@ -20,39 +19,16 @@ public class BestScoresPresenter : BasePresenter<IBestScoresView>
 
     private void UpdateView()
     {
-        try
+        if (!Model.TryLoadBestScores())
         {
-            Model.BestScoresStorage.Load(Model.BestScores);
-        }
-        catch
-        {
-            // Ничего не делаем, пользователю ничего не говорим.
-            // Не получилось прочитать файл с рекордами — окей, просто пропускаем эту часть.
+            View.ShowWarning(Utils.GetLoadBestScoresErrorMessage(Model.BestScoresStorage.FileName));
             return;
         }
 
-        foreach (Label label in View.Labels)
+        for (int index = 0; index < Model.BestScores.Count; index++)
         {
-            if (label.Name.StartsWith("nameLabel"))
-            {
-                int index = int.Parse(label.Name.Remove(0, 9)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text = Model.BestScores[index].Name;
-            }
-            if (label.Name.StartsWith("movesLabel"))
-            {
-                int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text =
-                        Model.BestScores[index].Moves + " " +
-                        Utils.GetMovesWord(Model.BestScores.Scores[index].Moves);
-            }
-            if (label.Name.StartsWith("timerLabel"))
-            {
-                int index = int.Parse(label.Name.Remove(0, 10)) - 1;
-                if (index < Model.BestScores.Count)
-                    label.Text = Model.BestScores[index].Timer.ToString(@"hh\:mm\:ss");
-            }
+            Score score = Model.BestScores[index];
+            View.ShowScore(index, score.Name, Utils.FormatMoves(score.Moves), Utils.FormatElapsedTime(score.Timer));
         }
     }
 }

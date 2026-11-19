@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Puzzle15.Wpf.NoMvvm.Views"
         mc:Ignorable="d"
-        Icon="/Images/AppIcon.ico"
+        Icon="/Images/Puzzle15.ico"
         Title="Имя"
         FocusManager.FocusedElement="{Binding ElementName=textBoxPlayerName}"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Puzzle15.DomainModel;
+namespace Puzzle15.Common.DomainModel;
 
 public interface IPuzzle
 {
@@ -12,7 +12,7 @@ public interface IPuzzle
     uint FieldSideSize { get; }
 
     uint MovesCounter { get; }
-    DateTime StartTime { get; }
+    TimeSpan ElapsedTime { get; }
 
     void Init();
     void Start();

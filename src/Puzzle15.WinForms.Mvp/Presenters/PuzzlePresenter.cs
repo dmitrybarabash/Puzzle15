@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using Puzzle15.Common;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Views;
 
 namespace Puzzle15.WinForms.Mvp.Presenters;
@@ -18,91 +17,76 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
         // Подписываемся на события представления
         View.NewGame += OnNewGame;
         View.Timer += OnTimer;
-        View.Move += OnMove;
+        View.CellClicked += OnCellClicked;
         View.BestScores += OnBestScores;
+        // Начинаем с собранного поля и показываем его в представлении
+        Model.Puzzle.Init();
+        UpdateField(false);
+        ResetGameLabels(false);
     }
 
-    private void UpdateButtons(bool active)
+    private void UpdateField(bool enabled)
     {
-        foreach (var control in View.Buttons)
+        for (uint y = 0; y < Model.Puzzle.FieldSideSize; y++)
         {
-            var button = control as Button;
-            button.Enabled = active;
-            uint number = uint.Parse(button.Name.Remove(0, 10));
-            uint cellValue = Model.Puzzle[(number - 1) / Model.Puzzle.FieldSideSize, (number - 1) % Model.Puzzle.FieldSideSize];
-            button.Text = cellValue.ToString();
-            button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
+            for (uint x = 0; x < Model.Puzzle.FieldSideSize; x++)
+            {
+                uint cellValue = Model.Puzzle[y, x];
+                View.ShowCell(y, x, cellValue.ToString(), cellValue != Model.Puzzle.EmptyCellValue);
+            }
         }
+        View.SetFieldEnabled(enabled);
+    }
+
+    private void ResetGameLabels(bool enabled)
+    {
+        View.ShowElapsedTime(Utils.FormatElapsedTime(TimeSpan.Zero));
+        View.ShowMoves("0");
+        View.SetGameLabelsEnabled(enabled);
     }
 
     private void OnNewGame(object sender, EventArgs e)
     {
         Model.Puzzle.Start();
-        UpdateButtons(true);
+        UpdateField(true);
+        ResetGameLabels(true);
         View.StartTimer();
-        View.UpdateGameLabels(true);
     }
 
     private void OnTimer(object sender, EventArgs e)
     {
-        View.LabelTimer = (DateTime.Now - Model.Puzzle.StartTime).ToString(@"hh\:mm\:ss");
+        View.ShowElapsedTime(Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime));
     }
 
-    private void OnMove(object sender, EventArgs e)
+    private void OnCellClicked(object sender, CellClickedEventArgs e)
     {
-        uint clickedNumber = uint.Parse((sender as Button).Name.Remove(0, 10));
-        uint y = (clickedNumber - 1) / Model.Puzzle.FieldSideSize;
-        uint x = (clickedNumber - 1) % Model.Puzzle.FieldSideSize;
-        if (Model.Puzzle.IsMoveable(y, x))
+        if (Model.TryMove(e.Y, e.X, out Score finishedGameScore))
         {
-            Model.Puzzle.Move(y, x);
-            UpdateButtons(true);
-            View.LabelMoves = Model.Puzzle.MovesCounter.ToString();
+            UpdateField(true);
+            View.ShowMoves(Model.Puzzle.MovesCounter.ToString());
 
-            if (Model.Puzzle.IsDone())
+            if (finishedGameScore is not null)
             {
                 View.StopTimer();
-                var score = new Score
-                {
-                    Moves = Model.Puzzle.MovesCounter,
-                    Timer = DateTime.Now - Model.Puzzle.StartTime
-                };
+                View.ShowElapsedTime(Utils.FormatElapsedTime(finishedGameScore.Timer));
 
-                MessageBox.Show("Вы выиграли!\n\nВы сделали " + Model.Puzzle.MovesCounter + " " +
-                    Utils.GetMovesWord(Model.Puzzle.MovesCounter) + " за " + View.LabelTimer + "!",
-                    "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                try
-                {
-                    Model.BestScoresStorage.Load(Model.BestScores);
-                    if (Model.BestScores.CanBeAdded(score))
-                    {
-                        var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
-                        if (bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK)
-                        {
-                            score.Name = bestScoredPlayerNameForm.PlayerName;
-                            Model.BestScores.Add(score);
-                            Model.BestScoresStorage.Save(Model.BestScores);
-                        }
-                    }
-                }
-                catch
-                {
-                    // Ничего не делаем, пользователю ничего не говорим.
-                    // Не получилось прочитать/записать файл с рекордами — окей, просто пропускаем эту часть.
-                }
+                View.ShowWinMessage(Utils.GetWinMessage(finishedGameScore));
+                AddBestScoreResult result = Model.AddBestScore(finishedGameScore, View.AskPlayerName);
+                string errorMessage = Utils.GetAddBestScoreErrorMessage(result, Model.BestScoresStorage.FileName);
+                if (errorMessage is not null)
+                    View.ShowWarning(errorMessage);
 
                 Model.Puzzle.Init();
-                UpdateButtons(false);
-                View.StopTimer();
-                View.UpdateGameLabels(false);
+                UpdateField(false);
+                ResetGameLabels(false);
             }
         }
     }
 
     private void OnBestScores(object sender, EventArgs e)
     {
-        var bestScoresPresenter = new BestScoresPresenter(Model, new BestScoresForm());
-        ((Form)bestScoresPresenter.View).ShowDialog();
+        using IBestScoresView bestScoresView = View.CreateBestScoresView();
+        new BestScoresPresenter(Model, bestScoresView);
+        bestScoresView.ShowModal();
     }
 }

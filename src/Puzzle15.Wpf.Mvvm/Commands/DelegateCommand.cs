@@ -11,11 +11,7 @@ public class DelegateCommand : ICommand
 
     public DelegateCommand(Action<object> execute, Predicate<object> canExecute = null)
     {
-        //if (execute is null)
-        //    throw new ArgumentNullException(nameof("execute"));
-        //_execute = execute;
         _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-
         _canExecute = canExecute;
     }
 
@@ -26,9 +22,6 @@ public class DelegateCommand : ICommand
         _execute(parameter);
 
     public bool CanExecute(object parameter) =>
-        //_canExecute is null ? true : _canExecute(parameter);
-        //_canExecute is null || _canExecute(parameter);
-        //_canExecute is not null ? _canExecute.Invoke(parameter) : true;
         _canExecute?.Invoke(parameter) ?? true;
 
     public event EventHandler CanExecuteChanged;

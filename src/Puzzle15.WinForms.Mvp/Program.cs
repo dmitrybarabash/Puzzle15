@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Puzzle15.DomainModel;
+using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Presenters;
 using Puzzle15.WinForms.Mvp.Views;
 
@@ -17,7 +17,8 @@ static class Program
         ApplicationConfiguration.Initialize();
 
         Application.Run(new SplashScreenForm());
-        var puzzlePresenter = new PuzzlePresenter(new PuzzleDomainModel(), new PuzzleForm());
-        Application.Run((Form)puzzlePresenter.View);
+        var puzzleForm = new PuzzleForm();
+        new PuzzlePresenter(new PuzzleDomainModel(), puzzleForm);
+        Application.Run(puzzleForm);
     }
 }

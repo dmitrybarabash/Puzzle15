@@ -1,7 +1,13 @@
 <Solution>
+  <Folder Name="/assets/">
+    <File Path="assets/Puzzle15.ico" />
+    <File Path="assets/Puzzle15.jpg" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
@@ -11,7 +17,9 @@
     <Project Path="src/Puzzle15.Wpf.NoMvvm/Puzzle15.Wpf.NoMvvm.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <File Path="tests/Directory.Build.props" />
     <Project Path="tests/Puzzle15.Common.UnitTests/Puzzle15.Common.UnitTests.csproj" />
+    <Project Path="tests/Puzzle15.TestUtilities/Puzzle15.TestUtilities.csproj" />
     <Project Path="tests/Puzzle15.WinForms.Mvp.UnitTests/Puzzle15.WinForms.Mvp.UnitTests.csproj" />
     <Project Path="tests/Puzzle15.Wpf.Mvvm.UnitTests/Puzzle15.Wpf.Mvvm.UnitTests.csproj" />
   </Folder>

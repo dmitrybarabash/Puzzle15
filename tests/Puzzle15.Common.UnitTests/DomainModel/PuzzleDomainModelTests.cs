@@ -1,0 +1,278 @@
+﻿using System;
+using System.IO;
+using NUnit.Framework;
+using Puzzle15.Common.DomainModel;
+using Puzzle15.TestUtilities;
+
+namespace Puzzle15.Common.UnitTests.DomainModel;
+
+[TestFixture]
+public class PuzzleDomainModelTests
+{
+    private FakeBestScoresStorage _bestScoresStorage;
+    private PuzzleDomainModel _model;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _bestScoresStorage = new FakeBestScoresStorage();
+        _model = new PuzzleDomainModel(new Puzzle(), new BestScores(), _bestScoresStorage);
+    }
+
+    [Test]
+    public void TryMove_ShouldReturnFalse_WhenCellIsNotNextToEmptyCell()
+    {
+        // Act
+        bool actual = _model.TryMove(0, 0, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.False);
+            Assert.That(finishedGameScore, Is.Null);
+            Assert.That(_model.Puzzle.MovesCounter, Is.Zero);
+        }
+    }
+
+    [Test]
+    public void TryMove_ShouldNotReturnScore_WhenGameIsNotFinished()
+    {
+        // Act
+        bool actual = _model.TryMove(3, 2, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(finishedGameScore, Is.Null);
+            Assert.That(_model.Puzzle.MovesCounter, Is.EqualTo(1U));
+        }
+    }
+
+    [Test]
+    public void TryMove_ShouldReturnScore_WhenMoveFinishesGame()
+    {
+        // Arrange
+        // Поле после Init собрано, а пустая клетка стоит в правом нижнем углу, поэтому два хода туда и обратно снова собирают поле
+        _model.TryMove(3, 2, out _);
+
+        // Act
+        bool actual = _model.TryMove(3, 3, out Score finishedGameScore);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(finishedGameScore, Is.EqualTo(new Score { Moves = 2, Timer = TimeSpan.Zero }));
+        }
+    }
+
+    [Test]
+    public void TryLoadBestScores_ShouldLoadScoresFromStorage_WhenStorageIsReadable()
+    {
+        // Arrange
+        _bestScoresStorage.Scores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
+        _bestScoresStorage.Scores.Add(new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
+
+        // Act
+        bool actual = _model.TryLoadBestScores();
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(_model.BestScores.Scores, Is.EqualTo(_bestScoresStorage.Scores));
+        }
+    }
+
+    [TestCase(typeof(IOException))]
+    [TestCase(typeof(UnauthorizedAccessException))]
+    [TestCase(typeof(InvalidOperationException))]
+    public void TryLoadBestScores_ShouldReturnFalse_WhenStorageCannotBeRead(Type exceptionType)
+    {
+        // Arrange
+        _bestScoresStorage.LoadException = (Exception)Activator.CreateInstance(exceptionType);
+
+        // Act
+        bool actual = _model.TryLoadBestScores();
+
+        // Assert
+        Assert.That(actual, Is.False);
+    }
+
+    [Test]
+    public void TryLoadBestScores_ShouldThrow_WhenErrorIsNotStorageError()
+    {
+        // Arrange
+        // Перехватываются только ошибки работы с файлом, остальные ошибки нельзя молча проглатывать
+        _bestScoresStorage.LoadException = new ArgumentException();
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => _model.TryLoadBestScores());
+    }
+
+    [Test]
+    public void AddBestScore_ShouldAddAndSaveScore_WhenScoreIsOneOfTheBestAndNameGiven()
+    {
+        // Arrange
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
+
+        // Assert
+        var expected = new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.Added));
+            Assert.That(_bestScoresStorage.Scores, Is.EqualTo(new[] { expected }));
+        }
+    }
+
+    [Test]
+    public void AddBestScore_ShouldNotAskPlayerName_WhenScoreIsNotOneOfTheBest()
+    {
+        // Arrange
+        // В хранилище MaxCount результатов лучше нового, а таблица в памяти пуста:
+        // модель должна перечитать таблицу из хранилища, прежде чем решать
+        for (uint i = 1; i <= BestScores.MaxCount; i++)
+            _bestScoresStorage.Scores.Add(new Score { Name = "A", Moves = i, Timer = new TimeSpan(0, 0, 10, 25) });
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+        bool isPlayerNameAsked = false;
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.NotBestScore));
+            Assert.That(isPlayerNameAsked, Is.False);
+            Assert.That(_bestScoresStorage.SaveCount, Is.Zero);
+        }
+    }
+
+    [Test]
+    public void AddBestScore_ShouldNotSave_WhenPlayerDeclinedToEnterName()
+    {
+        // Arrange
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => null);
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.PlayerDeclined));
+            Assert.That(_bestScoresStorage.SaveCount, Is.Zero);
+        }
+    }
+
+    [TestCase(typeof(IOException))]
+    [TestCase(typeof(UnauthorizedAccessException))]
+    [TestCase(typeof(InvalidOperationException))]
+    public void AddBestScore_ShouldNotAskPlayerName_WhenStorageCannotBeRead(Type exceptionType)
+    {
+        // Arrange
+        _bestScoresStorage.LoadException = (Exception)Activator.CreateInstance(exceptionType);
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+        bool isPlayerNameAsked = false;
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => { isPlayerNameAsked = true; return "Dmitrik"; });
+
+        // Assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.LoadFailed));
+            Assert.That(isPlayerNameAsked, Is.False);
+        }
+    }
+
+    [TestCase(typeof(IOException))]
+    [TestCase(typeof(UnauthorizedAccessException))]
+    [TestCase(typeof(InvalidOperationException))]
+    public void AddBestScore_ShouldReturnSaveFailed_WhenStorageCannotBeWritten(Type exceptionType)
+    {
+        // Arrange
+        _bestScoresStorage.SaveException = (Exception)Activator.CreateInstance(exceptionType);
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
+
+        // Assert
+        Assert.That(actual, Is.EqualTo(AddBestScoreResult.SaveFailed));
+    }
+
+    [Test]
+    public void AddBestScore_ShouldThrow_WhenAskPlayerNameThrows()
+    {
+        // Arrange
+        // Ошибка в окне ввода имени — это ошибка в коде приложения, её нельзя молча проглатывать,
+        // даже если её тип совпадает с типом ошибки работы с файлом
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act & Assert
+        Assert.Throws<InvalidOperationException>(
+            () => _model.AddBestScore(score, () => throw new InvalidOperationException()));
+    }
+
+    [Test]
+    public void AddBestScore_ShouldKeepExistingScores_WhenScoreIsAdded()
+    {
+        // Arrange
+        _bestScoresStorage.Scores.Add(new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) });
+        _bestScoresStorage.Scores.Add(new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) });
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act
+        AddBestScoreResult actual = _model.AddBestScore(score, () => "Dmitrik");
+
+        // Assert
+        // Новый результат встаёт на своё место между имеющимися, и ни один из них не теряется
+        var expected = new[]
+        {
+            new Score { Name = "Aaaaaaaaaa", Moves = 92, Timer = new TimeSpan(0, 0, 11, 25) },
+            new Score { Name = "Dmitrik", Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) },
+            new Score { Name = "Bbbbbbbbb", Moves = 102, Timer = new TimeSpan(0, 0, 12, 25) },
+        };
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.EqualTo(AddBestScoreResult.Added));
+            Assert.That(_bestScoresStorage.Scores, Is.EqualTo(expected));
+        }
+    }
+
+    [Test]
+    public void AddBestScore_ShouldThrowArgumentNullException_WhenScoreIsNull()
+    {
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => _model.AddBestScore(null, () => "Dmitrik"));
+        Assert.That(exception.ParamName, Is.EqualTo("score"));
+    }
+
+    [Test]
+    public void AddBestScore_ShouldThrowArgumentNullException_WhenAskPlayerNameIsNull()
+    {
+        // Arrange
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => _model.AddBestScore(score, null));
+        Assert.That(exception.ParamName, Is.EqualTo("askPlayerName"));
+    }
+
+    [Test]
+    public void AddBestScore_ShouldThrow_WhenSaveErrorIsNotStorageError()
+    {
+        // Arrange
+        // Перехватываются только ошибки работы с файлом, остальные ошибки нельзя молча проглатывать
+        _bestScoresStorage.SaveException = new ArgumentException();
+        var score = new Score { Moves = 100, Timer = new TimeSpan(0, 0, 1, 30) };
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => _model.AddBestScore(score, () => "Dmitrik"));
+    }
+}

@@ -1,0 +1,22 @@
+﻿<Project>
+
+  <!-- MSBuild подключает только ближайший Directory.Build.props, поэтому общий файл из корня репозитория подключаем сами -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- Настройки ниже нужны только тестовым проектам. Puzzle15.TestUtilities — обычная библиотека с общими заглушками для них. -->
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.UnitTests'))">
+    <!-- Тесты запускает Microsoft.Testing.Platform, поэтому тестовый проект собирается в исполняемый файл -->
+    <OutputType>Exe</OutputType>
+    <EnableNUnitRunner>true</EnableNUnitRunner>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.UnitTests'))">
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NUnit3TestAdapter" />
+  </ItemGroup>
+
+</Project>

@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace Puzzle15.DomainModel;
+namespace Puzzle15.Common.DomainModel;
 
 [Serializable]
 public class Score : IComparable<Score>, IEquatable<Score>
 {
+    public const int MaxNameLength = 20;
+
     public string Name { get; set; }
     public uint Moves { get; set; }
     public TimeSpan Timer { get; set; }
@@ -14,6 +16,12 @@ public class Score : IComparable<Score>, IEquatable<Score>
 
     public int CompareTo(Score other)
     {
+        // По соглашению IComparable любой объект больше null
+        if (other is null) return 1;
+
+        // Сравниваются только ходы и время, имя намеренно не учитывается: этот порядок определяет
+        // место в таблице рекордов, и при одинаковых ходах и времени BestScores ставит новый результат
+        // после уже имеющихся. Поэтому CompareTo может вернуть 0 для результатов, не равных по Equals.
         if (Moves < other.Moves) return -1;
         if (Moves > other.Moves) return 1;
         if (Timer < other.Timer) return -1;
@@ -37,7 +45,7 @@ public class Score : IComparable<Score>, IEquatable<Score>
         if (object.ReferenceEquals(this, other)) return true;
         if (GetType() != other.GetType()) return false;
         return
-            string.Compare(Name, other.Name, StringComparison.CurrentCulture) == 0 &&
+            string.Equals(Name, other.Name) &&
             Moves.Equals(other.Moves) &&
             Timer.Equals(other.Timer);
     }
@@ -55,13 +63,7 @@ public class Score : IComparable<Score>, IEquatable<Score>
     // Equals(object, object) method on your class. In addition, you should overload the op_Equality (==)
     // and op_Inequality (!=) operators. This ensures that all tests for equality return consistent results.
 
-    public override bool Equals(object other)
-    {
-        if (other is null) return false;
-        if (object.ReferenceEquals(this, other)) return true;
-        if (GetType() != other.GetType()) return false;
-        return Equals(other as Score);
-    }
+    public override bool Equals(object obj) => Equals(obj as Score);
 
     public override int GetHashCode()
     {
@@ -70,18 +72,21 @@ public class Score : IComparable<Score>, IEquatable<Score>
         //
         //unchecked
         //{
-        //    return ((int)Moves * 397) ^ (int)Timer.TotalSeconds;
+        //    int hashCode = Name != null ? Name.GetHashCode() : 0;
+        //    hashCode = (hashCode * 397) ^ Moves.GetHashCode();
+        //    hashCode = (hashCode * 397) ^ Timer.GetHashCode();
+        //    return hashCode;
         //}
 
         //
         // Используем класс HashCode, добавленный в .NET Core 2.1
         //
-        return HashCode.Combine(Moves, Timer.TotalSeconds);
+        return HashCode.Combine(Name, Moves, Timer);
     }
 
     public static bool operator ==(Score left, Score right) =>
-        ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.Equals(right);
         // (object)left == right || ((object)left != null && left.Equals(right));
+        ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.Equals(right);
 
     public static bool operator !=(Score left, Score right) =>
         !(left == right);

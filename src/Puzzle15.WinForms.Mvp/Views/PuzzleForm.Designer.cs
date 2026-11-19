@@ -138,7 +138,7 @@
             buttonCell16.TabStop = false;
             buttonCell16.UseVisualStyleBackColor = true;
             buttonCell16.Visible = false;
-            buttonCell16.Click += buttonCell_Click;
+            buttonCell16.Click += CellClickedHandler;
             // 
             // buttonCell15
             // 
@@ -153,7 +153,7 @@
             buttonCell15.TabStop = false;
             buttonCell15.Text = "15";
             buttonCell15.UseVisualStyleBackColor = true;
-            buttonCell15.Click += buttonCell_Click;
+            buttonCell15.Click += CellClickedHandler;
             // 
             // buttonCell14
             // 
@@ -168,7 +168,7 @@
             buttonCell14.TabStop = false;
             buttonCell14.Text = "14";
             buttonCell14.UseVisualStyleBackColor = true;
-            buttonCell14.Click += buttonCell_Click;
+            buttonCell14.Click += CellClickedHandler;
             // 
             // buttonCell13
             // 
@@ -183,7 +183,7 @@
             buttonCell13.TabStop = false;
             buttonCell13.Text = "13";
             buttonCell13.UseVisualStyleBackColor = true;
-            buttonCell13.Click += buttonCell_Click;
+            buttonCell13.Click += CellClickedHandler;
             // 
             // buttonCell12
             // 
@@ -198,7 +198,7 @@
             buttonCell12.TabStop = false;
             buttonCell12.Text = "12";
             buttonCell12.UseVisualStyleBackColor = true;
-            buttonCell12.Click += buttonCell_Click;
+            buttonCell12.Click += CellClickedHandler;
             // 
             // buttonCell11
             // 
@@ -213,7 +213,7 @@
             buttonCell11.TabStop = false;
             buttonCell11.Text = "11";
             buttonCell11.UseVisualStyleBackColor = true;
-            buttonCell11.Click += buttonCell_Click;
+            buttonCell11.Click += CellClickedHandler;
             // 
             // buttonCell10
             // 
@@ -228,7 +228,7 @@
             buttonCell10.TabStop = false;
             buttonCell10.Text = "10";
             buttonCell10.UseVisualStyleBackColor = true;
-            buttonCell10.Click += buttonCell_Click;
+            buttonCell10.Click += CellClickedHandler;
             // 
             // buttonCell9
             // 
@@ -243,7 +243,7 @@
             buttonCell9.TabStop = false;
             buttonCell9.Text = "9";
             buttonCell9.UseVisualStyleBackColor = true;
-            buttonCell9.Click += buttonCell_Click;
+            buttonCell9.Click += CellClickedHandler;
             // 
             // buttonCell8
             // 
@@ -258,7 +258,7 @@
             buttonCell8.TabStop = false;
             buttonCell8.Text = "8";
             buttonCell8.UseVisualStyleBackColor = true;
-            buttonCell8.Click += buttonCell_Click;
+            buttonCell8.Click += CellClickedHandler;
             // 
             // buttonCell7
             // 
@@ -273,7 +273,7 @@
             buttonCell7.TabStop = false;
             buttonCell7.Text = "7";
             buttonCell7.UseVisualStyleBackColor = true;
-            buttonCell7.Click += buttonCell_Click;
+            buttonCell7.Click += CellClickedHandler;
             // 
             // buttonCell5
             // 
@@ -288,7 +288,7 @@
             buttonCell5.TabStop = false;
             buttonCell5.Text = "5";
             buttonCell5.UseVisualStyleBackColor = true;
-            buttonCell5.Click += buttonCell_Click;
+            buttonCell5.Click += CellClickedHandler;
             // 
             // buttonCell4
             // 
@@ -303,7 +303,7 @@
             buttonCell4.TabStop = false;
             buttonCell4.Text = "4";
             buttonCell4.UseVisualStyleBackColor = true;
-            buttonCell4.Click += buttonCell_Click;
+            buttonCell4.Click += CellClickedHandler;
             // 
             // buttonCell3
             // 
@@ -318,7 +318,7 @@
             buttonCell3.TabStop = false;
             buttonCell3.Text = "3";
             buttonCell3.UseVisualStyleBackColor = true;
-            buttonCell3.Click += buttonCell_Click;
+            buttonCell3.Click += CellClickedHandler;
             // 
             // buttonCell2
             // 
@@ -333,7 +333,7 @@
             buttonCell2.TabStop = false;
             buttonCell2.Text = "2";
             buttonCell2.UseVisualStyleBackColor = true;
-            buttonCell2.Click += buttonCell_Click;
+            buttonCell2.Click += CellClickedHandler;
             // 
             // buttonCell1
             // 
@@ -348,7 +348,7 @@
             buttonCell1.TabStop = false;
             buttonCell1.Text = "1";
             buttonCell1.UseVisualStyleBackColor = true;
-            buttonCell1.Click += buttonCell_Click;
+            buttonCell1.Click += CellClickedHandler;
             // 
             // buttonCell6
             // 
@@ -363,7 +363,7 @@
             buttonCell6.TabStop = false;
             buttonCell6.Text = "6";
             buttonCell6.UseVisualStyleBackColor = true;
-            buttonCell6.Click += buttonCell_Click;
+            buttonCell6.Click += CellClickedHandler;
             // 
             // groupBoxTime
             // 
@@ -420,7 +420,7 @@
             // 
             // timerGame
             // 
-            timerGame.Tick += timerGame_Tick;
+            timerGame.Tick += TimerHandler;
             // 
             // mainMenuStrip
             // 

@@ -2,30 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFramework>net11.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
+    <AssemblyTitle>Puzzle 15 (WinForms, MVP)</AssemblyTitle>
+    <ApplicationIcon>..\..\assets\Puzzle15.ico</ApplicationIcon>
+
     <NoWarn>
+      $(NoWarn);
       WFO1000 <!-- Property does not configure the code serialization for its property content -->
     </NoWarn>
-
-    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
-    <PackageIcon>AppIcon.ico</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Resources\AppIcon.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="Resources\LogoImage.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

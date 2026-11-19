@@ -1,27 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFramework>net11.0-windows</TargetFramework>
 
-    <OutputType>Exe</OutputType>
-    <EnableNUnitRunner>true</EnableNUnitRunner>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
-    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
-    <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
+    <AssemblyTitle>Puzzle 15 (WinForms, MVP) Unit Tests</AssemblyTitle>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit.Analyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="NUnit3TestAdapter" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Puzzle15.Common\Puzzle15.Common.csproj" />
     <ProjectReference Include="..\..\src\Puzzle15.WinForms.Mvp\Puzzle15.WinForms.Mvp.csproj" />
+    <ProjectReference Include="..\Puzzle15.TestUtilities\Puzzle15.TestUtilities.csproj" />
   </ItemGroup>
 
 </Project>

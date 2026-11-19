@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFramework>net11.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
 
-    <ApplicationIcon>Images\AppIcon.ico</ApplicationIcon>
-    <PackageIcon>Images\AppIcon.ico</PackageIcon>
+    <AssemblyTitle>Puzzle 15 (WPF, No MVVM)</AssemblyTitle>
+    <ApplicationIcon>..\..\assets\Puzzle15.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,8 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Images\AppIcon.ico" />
-    <None Remove="Images\LogoImage.jpg" />
     <None Remove="Images\MenuItemAbout.png" />
     <None Remove="Images\MenuItemBestScores.png" />
     <None Remove="Images\MenuItemExit.png" />
@@ -23,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\AppIcon.ico" />
-    <Resource Include="Images\LogoImage.jpg" />
+    <Resource Include="..\..\assets\Puzzle15.ico" Link="Images\Puzzle15.ico" />
+    <Resource Include="..\..\assets\Puzzle15.jpg" Link="Images\Puzzle15.jpg" />
     <Resource Include="Images\MenuItemAbout.png" />
     <Resource Include="Images\MenuItemBestScores.png" />
     <Resource Include="Images\MenuItemExit.png" />

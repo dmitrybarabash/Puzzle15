@@ -39,9 +39,9 @@
             groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             SuspendLayout();
-            // 
+            //
             // buttonOk
-            // 
+            //
             buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             buttonOk.Location = new System.Drawing.Point(232, 234);
             buttonOk.Name = "buttonOk";
@@ -49,9 +49,9 @@
             buttonOk.TabIndex = 0;
             buttonOk.Text = "OK";
             buttonOk.UseVisualStyleBackColor = true;
-            // 
+            //
             // groupBox
-            // 
+            //
             groupBox.Controls.Add(linkLabelWebsite);
             groupBox.Controls.Add(linkLabelEmail);
             groupBox.Controls.Add(pictureBoxLogo);
@@ -62,9 +62,9 @@
             groupBox.Size = new System.Drawing.Size(528, 196);
             groupBox.TabIndex = 1;
             groupBox.TabStop = false;
-            // 
+            //
             // linkLabelWebsite
-            // 
+            //
             linkLabelWebsite.AutoSize = true;
             linkLabelWebsite.Location = new System.Drawing.Point(189, 118);
             linkLabelWebsite.Name = "linkLabelWebsite";
@@ -73,9 +73,9 @@
             linkLabelWebsite.TabStop = true;
             linkLabelWebsite.Text = "https://www.barabash.com";
             linkLabelWebsite.LinkClicked += linkLabelWebsite_LinkClicked;
-            // 
+            //
             // linkLabelEmail
-            // 
+            //
             linkLabelEmail.AutoSize = true;
             linkLabelEmail.Location = new System.Drawing.Point(189, 153);
             linkLabelEmail.Name = "linkLabelEmail";
@@ -84,9 +84,9 @@
             linkLabelEmail.TabStop = true;
             linkLabelEmail.Text = "dmitry@barabash.com";
             linkLabelEmail.LinkClicked += linkLabelEmail_LinkClicked;
-            // 
+            //
             // pictureBoxLogo
-            // 
+            //
             pictureBoxLogo.Image = (System.Drawing.Image)resources.GetObject("pictureBoxLogo.Image");
             pictureBoxLogo.Location = new System.Drawing.Point(24, 31);
             pictureBoxLogo.Name = "pictureBoxLogo";
@@ -94,28 +94,28 @@
             pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBoxLogo.TabIndex = 2;
             pictureBoxLogo.TabStop = false;
-            // 
+            //
             // labelCopyright
-            // 
+            //
             labelCopyright.AutoSize = true;
             labelCopyright.Location = new System.Drawing.Point(188, 82);
             labelCopyright.Name = "labelCopyright";
             labelCopyright.Size = new System.Drawing.Size(289, 17);
             labelCopyright.TabIndex = 1;
-            labelCopyright.Text = "Copyright (c) 2015-2025, Дмитрий Барабаш";
-            // 
+            labelCopyright.Text = "Copyright (c) 2015-2026, Дмитрий Барабаш";
+            //
             // labelProductName
-            // 
+            //
             labelProductName.AutoSize = true;
             labelProductName.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
             labelProductName.Location = new System.Drawing.Point(183, 22);
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new System.Drawing.Size(246, 46);
             labelProductName.TabIndex = 0;
-            labelProductName.Text = "Пятнашки 1.4";
-            // 
+            labelProductName.Text = "Пятнашки 0.0";
+            //
             // AboutForm
-            // 
+            //
             AcceptButton = buttonOk;
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
