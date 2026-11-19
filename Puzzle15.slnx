@@ -19,6 +19,7 @@
   <Folder Name="/tests/">
     <File Path="tests/Directory.Build.props" />
     <Project Path="tests/Puzzle15.Common.UnitTests/Puzzle15.Common.UnitTests.csproj" />
+    <Project Path="tests/Puzzle15.TestUtilities/Puzzle15.TestUtilities.csproj" />
     <Project Path="tests/Puzzle15.WinForms.Mvp.UnitTests/Puzzle15.WinForms.Mvp.UnitTests.csproj" />
     <Project Path="tests/Puzzle15.Wpf.Mvvm.UnitTests/Puzzle15.Wpf.Mvvm.UnitTests.csproj" />
   </Folder>

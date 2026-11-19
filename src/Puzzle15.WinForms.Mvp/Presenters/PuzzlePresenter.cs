@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using Puzzle15.Common;
 using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Views;
@@ -20,72 +19,71 @@ public class PuzzlePresenter : BasePresenter<IPuzzleView>
         View.Timer += OnTimer;
         View.CellClicked += OnCellClicked;
         View.BestScores += OnBestScores;
+        // Начинаем с собранного поля и показываем его в представлении
+        Model.Puzzle.Init();
+        UpdateField(false);
+        ResetGameLabels(false);
     }
 
-    private (uint y, uint x) GetCellPosition(Button button)
+    private void UpdateField(bool enabled)
     {
-        TableLayoutPanelCellPosition position = View.Buttons.Container.GetCellPosition(button);
-        return ((uint)position.Row, (uint)position.Column);
-    }
-
-    private void UpdateButtons(bool active)
-    {
-        foreach (Button button in View.Buttons)
+        for (uint y = 0; y < Model.Puzzle.FieldSideSize; y++)
         {
-            (uint y, uint x) = GetCellPosition(button);
-            uint cellValue = Model.Puzzle[y, x];
-            button.Enabled = active;
-            button.Text = cellValue.ToString();
-            button.Visible = cellValue != Model.Puzzle.EmptyCellValue;
+            for (uint x = 0; x < Model.Puzzle.FieldSideSize; x++)
+            {
+                uint cellValue = Model.Puzzle[y, x];
+                View.ShowCell(y, x, cellValue.ToString(), cellValue != Model.Puzzle.EmptyCellValue);
+            }
         }
+        View.SetFieldEnabled(enabled);
+    }
+
+    private void ResetGameLabels(bool enabled)
+    {
+        View.ShowElapsedTime(Utils.FormatElapsedTime(TimeSpan.Zero));
+        View.ShowMoves("0");
+        View.SetGameLabelsEnabled(enabled);
     }
 
     private void OnNewGame(object sender, EventArgs e)
     {
         Model.Puzzle.Start();
-        UpdateButtons(true);
+        UpdateField(true);
+        ResetGameLabels(true);
         View.StartTimer();
-        View.UpdateGameLabels(true);
     }
 
     private void OnTimer(object sender, EventArgs e)
     {
-        View.LabelTimer = Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime);
+        View.ShowElapsedTime(Utils.FormatElapsedTime(Model.Puzzle.ElapsedTime));
     }
 
-    private void OnCellClicked(object sender, EventArgs e)
+    private void OnCellClicked(object sender, CellClickedEventArgs e)
     {
-        (uint y, uint x) = GetCellPosition((Button)sender);
-        if (Model.TryMove(y, x, out Score finishedGameScore))
+        if (Model.TryMove(e.Y, e.X, out Score finishedGameScore))
         {
-            UpdateButtons(true);
-            View.LabelMoves = Model.Puzzle.MovesCounter.ToString();
+            UpdateField(true);
+            View.ShowMoves(Model.Puzzle.MovesCounter.ToString());
 
             if (finishedGameScore is not null)
             {
                 View.StopTimer();
-                View.LabelTimer = Utils.FormatElapsedTime(finishedGameScore.Timer);
+                View.ShowElapsedTime(Utils.FormatElapsedTime(finishedGameScore.Timer));
 
-                MessageBox.Show(Utils.GetWinMessage(finishedGameScore),
-                    "Молодец!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Model.TryAddBestScore(finishedGameScore, () =>
-                {
-                    using var bestScoredPlayerNameForm = new BestScoredPlayerNameForm();
-                    return bestScoredPlayerNameForm.ShowDialog() == DialogResult.OK ? bestScoredPlayerNameForm.PlayerName : null;
-                });
+                View.ShowWinMessage(Utils.GetWinMessage(finishedGameScore));
+                Model.TryAddBestScore(finishedGameScore, View.AskPlayerName);
 
                 Model.Puzzle.Init();
-                UpdateButtons(false);
-                View.UpdateGameLabels(false);
+                UpdateField(false);
+                ResetGameLabels(false);
             }
         }
     }
 
     private void OnBestScores(object sender, EventArgs e)
     {
-        using var bestScoresForm = new BestScoresForm();
-        new BestScoresPresenter(Model, bestScoresForm);
-        bestScoresForm.ShowDialog();
+        using IBestScoresView bestScoresView = View.CreateBestScoresView();
+        new BestScoresPresenter(Model, bestScoresView);
+        bestScoresView.ShowModal();
     }
 }

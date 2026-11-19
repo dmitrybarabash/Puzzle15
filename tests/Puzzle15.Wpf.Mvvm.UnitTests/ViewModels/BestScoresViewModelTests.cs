@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Puzzle15.Common.DomainModel;
-using Puzzle15.Wpf.Mvvm.UnitTests.Fakes;
+using Puzzle15.TestUtilities;
 using Puzzle15.Wpf.Mvvm.ViewModels;
 
 namespace Puzzle15.Wpf.Mvvm.UnitTests.ViewModels;

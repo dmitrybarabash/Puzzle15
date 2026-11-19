@@ -17,7 +17,8 @@ static class Program
         ApplicationConfiguration.Initialize();
 
         Application.Run(new SplashScreenForm());
-        var puzzlePresenter = new PuzzlePresenter(new PuzzleDomainModel(), new PuzzleForm());
-        Application.Run((Form)puzzlePresenter.View);
+        var puzzleForm = new PuzzleForm();
+        new PuzzlePresenter(new PuzzleDomainModel(), puzzleForm);
+        Application.Run(puzzleForm);
     }
 }

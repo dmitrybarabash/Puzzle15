@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using Puzzle15.Common.DomainModel;
 
-namespace Puzzle15.Wpf.Mvvm.UnitTests.Fakes;
+namespace Puzzle15.TestUtilities;
 
-// Хранит таблицу рекордов в памяти вместо файла
+// Хранилище рекордов в памяти. Если задано исключение, бросает его, как при ошибке работы с файлом.
 public class FakeBestScoresStorage : IBestScoresStorage
 {
     public List<Score> Scores { get; } = [];
+    public int SaveCount { get; private set; }
     public Exception LoadException { get; set; }
+    public Exception SaveException { get; set; }
 
     #region IBestScoresStorage implementation
 
@@ -24,8 +26,11 @@ public class FakeBestScoresStorage : IBestScoresStorage
 
     public void Save(IBestScores bestScores)
     {
+        if (SaveException is not null)
+            throw SaveException;
         Scores.Clear();
         Scores.AddRange(bestScores.Scores);
+        SaveCount++;
     }
 
     #endregion

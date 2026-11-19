@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+
+    <AssemblyTitle>Puzzle 15 Test Utilities</AssemblyTitle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Puzzle15.Common\Puzzle15.Common.csproj" />
+  </ItemGroup>
+
+</Project>

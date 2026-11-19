@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using Puzzle15.Common.DomainModel;
+using Puzzle15.TestUtilities;
 
 namespace Puzzle15.Common.UnitTests.DomainModel;
 
@@ -274,33 +274,5 @@ public class PuzzleDomainModelTests
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => _model.TryAddBestScore(score, () => "Dmitrik"));
-    }
-
-    // Хранилище рекордов в памяти. Если задано исключение, бросает его, как при ошибке работы с файлом.
-    public class FakeBestScoresStorage : IBestScoresStorage
-    {
-        public List<Score> Scores { get; } = [];
-        public int SaveCount { get; private set; }
-        public Exception LoadException { get; set; }
-        public Exception SaveException { get; set; }
-
-        public string FileName { get; set; }
-
-        public void Load(IBestScores bestScores)
-        {
-            if (LoadException is not null)
-                throw LoadException;
-            bestScores.Scores.Clear();
-            bestScores.Scores.AddRange(Scores);
-        }
-
-        public void Save(IBestScores bestScores)
-        {
-            if (SaveException is not null)
-                throw SaveException;
-            Scores.Clear();
-            Scores.AddRange(bestScores.Scores);
-            SaveCount++;
-        }
     }
 }

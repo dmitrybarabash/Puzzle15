@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Puzzle15.Common\Puzzle15.Common.csproj" />
+    <ProjectReference Include="..\Puzzle15.TestUtilities\Puzzle15.TestUtilities.csproj" />
   </ItemGroup>
 
 </Project>

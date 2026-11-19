@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Puzzle15.Common\Puzzle15.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="Puzzle15.WinForms.Mvp.UnitTests" />
-  </ItemGroup>
-
 </Project>

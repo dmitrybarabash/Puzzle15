@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Puzzle15.Common;
+﻿using Puzzle15.Common;
 using Puzzle15.Common.DomainModel;
 using Puzzle15.WinForms.Mvp.Views;
 
@@ -7,10 +6,6 @@ namespace Puzzle15.WinForms.Mvp.Presenters;
 
 public class BestScoresPresenter : BasePresenter<IBestScoresView>
 {
-    private const int NameColumn = 1;
-    private const int MovesColumn = 2;
-    private const int TimerColumn = 3;
-
     private IPuzzleDomainModel Model { get; set; }
 
     public BestScoresPresenter(IPuzzleDomainModel domainModel, IBestScoresView bestScoresView)
@@ -27,25 +22,10 @@ public class BestScoresPresenter : BasePresenter<IBestScoresView>
         if (!Model.TryLoadBestScores())
             return;
 
-        foreach (Label label in View.Labels)
+        for (int index = 0; index < Model.BestScores.Count; index++)
         {
-            TableLayoutPanelCellPosition position = View.Labels.Container.GetCellPosition(label);
-            if (position.Row >= Model.BestScores.Count)
-                continue;
-
-            Score score = Model.BestScores[position.Row];
-            switch (position.Column)
-            {
-                case NameColumn:
-                    label.Text = score.Name;
-                    break;
-                case MovesColumn:
-                    label.Text = Utils.FormatMoves(score.Moves);
-                    break;
-                case TimerColumn:
-                    label.Text = Utils.FormatElapsedTime(score.Timer);
-                    break;
-            }
+            Score score = Model.BestScores[index];
+            View.ShowScore(index, score.Name, Utils.FormatMoves(score.Moves), Utils.FormatElapsedTime(score.Timer));
         }
     }
 }

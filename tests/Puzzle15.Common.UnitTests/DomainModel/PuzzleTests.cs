@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Puzzle15.Common.DomainModel;
+using Puzzle15.TestUtilities;
 
 namespace Puzzle15.Common.UnitTests.DomainModel;
 
@@ -330,7 +331,7 @@ public class PuzzleTests
         var puzzle = new Puzzle(timeProvider, Random.Shared);
         puzzle.Start();
         // До сборки остался один ход: пустая клетка стоит слева от 15
-        SetFieldWithEmptyCellAt(puzzle, 3, 2);
+        puzzle.SetFieldWithEmptyCellAt(3, 2);
         timeProvider.Advance(TimeSpan.FromSeconds(90));
 
         // Act
@@ -371,7 +372,7 @@ public class PuzzleTests
         var puzzle = new Puzzle(timeProvider, Random.Shared);
         puzzle.Start();
         // До сборки остался один ход: пустая клетка стоит слева от 15
-        SetFieldWithEmptyCellAt(puzzle, 3, 2);
+        puzzle.SetFieldWithEmptyCellAt(3, 2);
         timeProvider.Advance(TimeSpan.FromSeconds(90));
         puzzle.Move(3, 3);
 
@@ -386,21 +387,8 @@ public class PuzzleTests
     private static Puzzle CreatePuzzleWithEmptyCellAt(uint emptyY, uint emptyX)
     {
         var puzzle = new Puzzle();
-        SetFieldWithEmptyCellAt(puzzle, emptyY, emptyX);
+        puzzle.SetFieldWithEmptyCellAt(emptyY, emptyX);
         return puzzle;
-    }
-
-    // То же поле в уже созданной игре: например, после Start, чтобы таймер партии продолжал идти
-    private static void SetFieldWithEmptyCellAt(Puzzle puzzle, uint emptyY, uint emptyX)
-    {
-        for (uint y = 0; y < puzzle.FieldSideSize; y++)
-            for (uint x = 0; x < puzzle.FieldSideSize; x++)
-                puzzle[y, x] = y * puzzle.FieldSideSize + x + 1;
-        uint last = puzzle.FieldSideSize - 1;
-        puzzle[last, last] = puzzle[emptyY, emptyX];
-        puzzle[emptyY, emptyX] = puzzle.EmptyCellValue;
-        puzzle.EmptyY = emptyY;
-        puzzle.EmptyX = emptyX;
     }
 
     // Ходами из собранного поля получается только половина всех раскладок. Каждый ход меняет местами
@@ -436,18 +424,6 @@ public class PuzzleTests
             Assert.That(puzzle.EmptyX, Is.EqualTo(3U));
             Assert.That(puzzle.MovesCounter, Is.Zero);
         }
-    }
-
-    // Часы для тестов: время идёт, только когда вызывают Advance
-    public class ManualTimeProvider : TimeProvider
-    {
-        private long _timestamp;
-
-        public override long TimestampFrequency => TimeSpan.TicksPerSecond;
-
-        public override long GetTimestamp() => _timestamp;
-
-        public void Advance(TimeSpan time) => _timestamp += time.Ticks;
     }
 }
 

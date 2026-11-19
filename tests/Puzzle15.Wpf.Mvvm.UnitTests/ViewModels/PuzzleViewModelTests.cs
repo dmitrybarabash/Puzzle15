@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Puzzle15.Common.DomainModel;
+using Puzzle15.TestUtilities;
 using Puzzle15.Wpf.Mvvm.UnitTests.Fakes;
 using Puzzle15.Wpf.Mvvm.ViewModels;
 
@@ -198,14 +199,6 @@ public class PuzzleViewModelTests
     private void StartGameWithOneMoveLeft()
     {
         _viewModel.NewGameCommand.Execute(null);
-
-        IPuzzle puzzle = _model.Puzzle;
-        for (uint y = 0; y < puzzle.FieldSideSize; y++)
-            for (uint x = 0; x < puzzle.FieldSideSize; x++)
-                puzzle[y, x] = y * puzzle.FieldSideSize + x + 1;
-        puzzle[3, 3] = 15;
-        puzzle[3, 2] = puzzle.EmptyCellValue;
-        puzzle.EmptyY = 3;
-        puzzle.EmptyX = 2;
+        _model.Puzzle.SetFieldWithEmptyCellAt(3, 2);
     }
 }

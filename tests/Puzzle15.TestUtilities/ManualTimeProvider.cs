@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Puzzle15.Wpf.Mvvm.UnitTests.Fakes;
+namespace Puzzle15.TestUtilities;
 
-// Время идет только тогда, когда его двигает сам тест
+// TimeProvider для тестов: время идёт, только когда вызывают Advance
 public class ManualTimeProvider : TimeProvider
 {
     private long _timestamp;
